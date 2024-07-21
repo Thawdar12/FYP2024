@@ -222,3 +222,15 @@
 2024-07-21T19:00:48.672+08:00  INFO 9028 --- [FYP] [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
 2024-07-21T19:00:48.673+08:00  INFO 9028 --- [FYP] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
 2024-07-21T19:00:48.673+08:00  INFO 9028 --- [FYP] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 0 ms
+2024-07-21T19:26:37.078+08:00  INFO 2071 --- [FYP] [main] com.fyp14.fyp.FypApplication             : Starting FypApplication using Java 21 with PID 2071 (/Users/adwwee/Library/CloudStorage/OneDrive-Personal/FYP2024/target/classes started by adwwee in /Users/adwwee/Library/CloudStorage/OneDrive-Personal/FYP2024)
+2024-07-21T19:26:37.080+08:00  INFO 2071 --- [FYP] [main] com.fyp14.fyp.FypApplication             : No active profile set, falling back to 1 default profile: "default"
+2024-07-21T19:26:37.720+08:00  INFO 2071 --- [FYP] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
+2024-07-21T19:26:37.732+08:00  INFO 2071 --- [FYP] [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2024-07-21T19:26:37.733+08:00  INFO 2071 --- [FYP] [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.26]
+2024-07-21T19:26:37.770+08:00  INFO 2071 --- [FYP] [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2024-07-21T19:26:37.771+08:00  INFO 2071 --- [FYP] [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 658 ms
+2024-07-21T19:26:38.051+08:00  INFO 2071 --- [FYP] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path '/'
+2024-07-21T19:26:38.057+08:00  INFO 2071 --- [FYP] [main] com.fyp14.fyp.FypApplication             : Started FypApplication in 1.385 seconds (process running for 2.061)
+2024-07-21T19:26:47.314+08:00  INFO 2071 --- [FYP] [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2024-07-21T19:26:47.314+08:00  INFO 2071 --- [FYP] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2024-07-21T19:26:47.315+08:00  INFO 2071 --- [FYP] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 0 ms

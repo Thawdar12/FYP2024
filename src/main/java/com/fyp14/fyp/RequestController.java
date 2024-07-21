@@ -26,4 +26,6 @@ public class RequestController {
         String redirectUrl = String.format("/transferRequest?amount=%.2f&receiver=%s", a, receiver);
         return new RedirectView(redirectUrl);
     }
+
+    //Test Push
 }
