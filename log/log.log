@@ -1,0 +1,224 @@
+2024-07-21T16:37:31.961+08:00  INFO 52064 --- [FYP] [main] com.fyp14.fyp.FypApplication             : Starting FypApplication using Java 21.0.2 with PID 52064 (C:\Users\adwwe\Desktop\FYP\target\classes started by adwwe in C:\Users\adwwe\Desktop\FYP)
+2024-07-21T16:37:31.963+08:00  INFO 52064 --- [FYP] [main] com.fyp14.fyp.FypApplication             : No active profile set, falling back to 1 default profile: "default"
+2024-07-21T16:37:32.640+08:00  INFO 52064 --- [FYP] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
+2024-07-21T16:37:32.650+08:00  INFO 52064 --- [FYP] [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2024-07-21T16:37:32.650+08:00  INFO 52064 --- [FYP] [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.26]
+2024-07-21T16:37:32.688+08:00  INFO 52064 --- [FYP] [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2024-07-21T16:37:32.689+08:00  INFO 52064 --- [FYP] [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 687 ms
+2024-07-21T16:37:32.959+08:00  INFO 52064 --- [FYP] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path '/'
+2024-07-21T16:37:32.964+08:00  INFO 52064 --- [FYP] [main] com.fyp14.fyp.FypApplication             : Started FypApplication in 1.339 seconds (process running for 1.956)
+2024-07-21T16:37:38.082+08:00  INFO 52064 --- [FYP] [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2024-07-21T16:37:38.082+08:00  INFO 52064 --- [FYP] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2024-07-21T16:37:38.083+08:00  INFO 52064 --- [FYP] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
+2024-07-21T16:50:15.618+08:00  INFO 51424 --- [FYP] [main] com.fyp14.fyp.FypApplication             : Starting FypApplication using Java 21.0.2 with PID 51424 (C:\Users\adwwe\Desktop\FYP\target\classes started by adwwe in C:\Users\adwwe\Desktop\FYP)
+2024-07-21T16:50:15.620+08:00  INFO 51424 --- [FYP] [main] com.fyp14.fyp.FypApplication             : No active profile set, falling back to 1 default profile: "default"
+2024-07-21T16:50:16.224+08:00  INFO 51424 --- [FYP] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
+2024-07-21T16:50:16.233+08:00  INFO 51424 --- [FYP] [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2024-07-21T16:50:16.233+08:00  INFO 51424 --- [FYP] [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.26]
+2024-07-21T16:50:16.266+08:00  INFO 51424 --- [FYP] [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2024-07-21T16:50:16.266+08:00  INFO 51424 --- [FYP] [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 608 ms
+2024-07-21T16:50:16.507+08:00  INFO 51424 --- [FYP] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path '/'
+2024-07-21T16:50:16.512+08:00  INFO 51424 --- [FYP] [main] com.fyp14.fyp.FypApplication             : Started FypApplication in 1.21 seconds (process running for 1.604)
+2024-07-21T16:50:19.542+08:00  INFO 51424 --- [FYP] [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2024-07-21T16:50:19.542+08:00  INFO 51424 --- [FYP] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2024-07-21T16:50:19.543+08:00  INFO 51424 --- [FYP] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
+2024-07-21T16:52:07.922+08:00  INFO 51904 --- [FYP] [main] com.fyp14.fyp.FypApplication             : Starting FypApplication using Java 21.0.2 with PID 51904 (C:\Users\adwwe\Desktop\FYP\target\classes started by adwwe in C:\Users\adwwe\Desktop\FYP)
+2024-07-21T16:52:07.923+08:00  INFO 51904 --- [FYP] [main] com.fyp14.fyp.FypApplication             : No active profile set, falling back to 1 default profile: "default"
+2024-07-21T16:52:08.512+08:00  INFO 51904 --- [FYP] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
+2024-07-21T16:52:08.521+08:00  INFO 51904 --- [FYP] [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2024-07-21T16:52:08.522+08:00  INFO 51904 --- [FYP] [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.26]
+2024-07-21T16:52:08.556+08:00  INFO 51904 --- [FYP] [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2024-07-21T16:52:08.556+08:00  INFO 51904 --- [FYP] [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 603 ms
+2024-07-21T16:52:08.815+08:00  INFO 51904 --- [FYP] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path '/'
+2024-07-21T16:52:08.821+08:00  INFO 51904 --- [FYP] [main] com.fyp14.fyp.FypApplication             : Started FypApplication in 1.183 seconds (process running for 1.615)
+2024-07-21T16:52:10.288+08:00  INFO 51904 --- [FYP] [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2024-07-21T16:52:10.289+08:00  INFO 51904 --- [FYP] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2024-07-21T16:52:10.290+08:00  INFO 51904 --- [FYP] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
+2024-07-21T16:53:33.589+08:00  INFO 29820 --- [FYP] [main] com.fyp14.fyp.FypApplication             : Starting FypApplication using Java 21.0.2 with PID 29820 (C:\Users\adwwe\Desktop\FYP\target\classes started by adwwe in C:\Users\adwwe\Desktop\FYP)
+2024-07-21T16:53:33.591+08:00  INFO 29820 --- [FYP] [main] com.fyp14.fyp.FypApplication             : No active profile set, falling back to 1 default profile: "default"
+2024-07-21T16:53:34.196+08:00  INFO 29820 --- [FYP] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
+2024-07-21T16:53:34.204+08:00  INFO 29820 --- [FYP] [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2024-07-21T16:53:34.204+08:00  INFO 29820 --- [FYP] [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.26]
+2024-07-21T16:53:34.241+08:00  INFO 29820 --- [FYP] [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2024-07-21T16:53:34.241+08:00  INFO 29820 --- [FYP] [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 616 ms
+2024-07-21T16:53:34.520+08:00  INFO 29820 --- [FYP] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path '/'
+2024-07-21T16:53:34.525+08:00  INFO 29820 --- [FYP] [main] com.fyp14.fyp.FypApplication             : Started FypApplication in 1.227 seconds (process running for 1.751)
+2024-07-21T16:53:39.598+08:00  INFO 29820 --- [FYP] [http-nio-8080-exec-2] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2024-07-21T16:53:39.599+08:00  INFO 29820 --- [FYP] [http-nio-8080-exec-2] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2024-07-21T16:53:39.599+08:00  INFO 29820 --- [FYP] [http-nio-8080-exec-2] o.s.web.servlet.DispatcherServlet        : Completed initialization in 0 ms
+2024-07-21T16:55:51.299+08:00  INFO 51684 --- [FYP] [main] com.fyp14.fyp.FypApplication             : Starting FypApplication using Java 21.0.2 with PID 51684 (C:\Users\adwwe\Desktop\FYP\target\classes started by adwwe in C:\Users\adwwe\Desktop\FYP)
+2024-07-21T16:55:51.300+08:00  INFO 51684 --- [FYP] [main] com.fyp14.fyp.FypApplication             : No active profile set, falling back to 1 default profile: "default"
+2024-07-21T16:55:51.924+08:00  INFO 51684 --- [FYP] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
+2024-07-21T16:55:51.932+08:00  INFO 51684 --- [FYP] [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2024-07-21T16:55:51.932+08:00  INFO 51684 --- [FYP] [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.26]
+2024-07-21T16:55:51.968+08:00  INFO 51684 --- [FYP] [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2024-07-21T16:55:51.968+08:00  INFO 51684 --- [FYP] [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 630 ms
+2024-07-21T16:55:52.210+08:00  INFO 51684 --- [FYP] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path '/'
+2024-07-21T16:55:52.215+08:00  INFO 51684 --- [FYP] [main] com.fyp14.fyp.FypApplication             : Started FypApplication in 1.214 seconds (process running for 1.602)
+2024-07-21T16:56:01.151+08:00  INFO 51684 --- [FYP] [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2024-07-21T16:56:01.151+08:00  INFO 51684 --- [FYP] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2024-07-21T16:56:01.152+08:00  INFO 51684 --- [FYP] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 0 ms
+2024-07-21T16:56:57.803+08:00  INFO 35264 --- [FYP] [main] com.fyp14.fyp.FypApplication             : Starting FypApplication using Java 21.0.2 with PID 35264 (C:\Users\adwwe\Desktop\FYP\target\classes started by adwwe in C:\Users\adwwe\Desktop\FYP)
+2024-07-21T16:56:57.805+08:00  INFO 35264 --- [FYP] [main] com.fyp14.fyp.FypApplication             : No active profile set, falling back to 1 default profile: "default"
+2024-07-21T16:56:58.412+08:00  INFO 35264 --- [FYP] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
+2024-07-21T16:56:58.421+08:00  INFO 35264 --- [FYP] [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2024-07-21T16:56:58.422+08:00  INFO 35264 --- [FYP] [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.26]
+2024-07-21T16:56:58.455+08:00  INFO 35264 --- [FYP] [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2024-07-21T16:56:58.456+08:00  INFO 35264 --- [FYP] [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 621 ms
+2024-07-21T16:56:58.692+08:00  INFO 35264 --- [FYP] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path '/'
+2024-07-21T16:56:58.697+08:00  INFO 35264 --- [FYP] [main] com.fyp14.fyp.FypApplication             : Started FypApplication in 1.175 seconds (process running for 1.573)
+2024-07-21T16:57:03.309+08:00  INFO 35264 --- [FYP] [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2024-07-21T16:57:03.309+08:00  INFO 35264 --- [FYP] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2024-07-21T16:57:03.310+08:00  INFO 35264 --- [FYP] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 0 ms
+2024-07-21T16:57:14.011+08:00  WARN 35264 --- [FYP] [http-nio-8080-exec-5] .w.s.m.s.DefaultHandlerExceptionResolver : Resolved [org.springframework.web.bind.MissingServletRequestParameterException: Required request parameter 'amount' for method parameter type float is not present]
+2024-07-21T16:57:16.074+08:00  WARN 35264 --- [FYP] [http-nio-8080-exec-7] .w.s.m.s.DefaultHandlerExceptionResolver : Resolved [org.springframework.web.bind.MissingServletRequestParameterException: Required request parameter 'amount' for method parameter type float is not present]
+2024-07-21T16:57:33.112+08:00  INFO 40412 --- [FYP] [main] com.fyp14.fyp.FypApplication             : Starting FypApplication using Java 21.0.2 with PID 40412 (C:\Users\adwwe\Desktop\FYP\target\classes started by adwwe in C:\Users\adwwe\Desktop\FYP)
+2024-07-21T16:57:33.114+08:00  INFO 40412 --- [FYP] [main] com.fyp14.fyp.FypApplication             : No active profile set, falling back to 1 default profile: "default"
+2024-07-21T16:57:33.710+08:00  INFO 40412 --- [FYP] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
+2024-07-21T16:57:33.719+08:00  INFO 40412 --- [FYP] [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2024-07-21T16:57:33.719+08:00  INFO 40412 --- [FYP] [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.26]
+2024-07-21T16:57:33.752+08:00  INFO 40412 --- [FYP] [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2024-07-21T16:57:33.753+08:00  INFO 40412 --- [FYP] [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 608 ms
+2024-07-21T16:57:33.984+08:00  INFO 40412 --- [FYP] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path '/'
+2024-07-21T16:57:33.989+08:00  INFO 40412 --- [FYP] [main] com.fyp14.fyp.FypApplication             : Started FypApplication in 1.161 seconds (process running for 1.582)
+2024-07-21T16:57:38.538+08:00  INFO 40412 --- [FYP] [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2024-07-21T16:57:38.538+08:00  INFO 40412 --- [FYP] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2024-07-21T16:57:38.539+08:00  INFO 40412 --- [FYP] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
+2024-07-21T16:57:38.566+08:00  WARN 40412 --- [FYP] [http-nio-8080-exec-1] .w.s.m.s.DefaultHandlerExceptionResolver : Resolved [org.springframework.web.bind.MissingServletRequestParameterException: Required request parameter 'amount' for method parameter type float is not present]
+2024-07-21T16:57:39.190+08:00  WARN 40412 --- [FYP] [http-nio-8080-exec-2] .w.s.m.s.DefaultHandlerExceptionResolver : Resolved [org.springframework.web.bind.MissingServletRequestParameterException: Required request parameter 'amount' for method parameter type float is not present]
+2024-07-21T16:57:53.445+08:00  INFO 33932 --- [FYP] [main] com.fyp14.fyp.FypApplication             : Starting FypApplication using Java 21.0.2 with PID 33932 (C:\Users\adwwe\Desktop\FYP\target\classes started by adwwe in C:\Users\adwwe\Desktop\FYP)
+2024-07-21T16:57:53.447+08:00  INFO 33932 --- [FYP] [main] com.fyp14.fyp.FypApplication             : No active profile set, falling back to 1 default profile: "default"
+2024-07-21T16:57:54.059+08:00  INFO 33932 --- [FYP] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
+2024-07-21T16:57:54.071+08:00  INFO 33932 --- [FYP] [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2024-07-21T16:57:54.072+08:00  INFO 33932 --- [FYP] [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.26]
+2024-07-21T16:57:54.112+08:00  INFO 33932 --- [FYP] [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2024-07-21T16:57:54.112+08:00  INFO 33932 --- [FYP] [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 634 ms
+2024-07-21T16:57:54.378+08:00  INFO 33932 --- [FYP] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path '/'
+2024-07-21T16:57:54.383+08:00  INFO 33932 --- [FYP] [main] com.fyp14.fyp.FypApplication             : Started FypApplication in 1.224 seconds (process running for 1.653)
+2024-07-21T16:58:02.266+08:00  INFO 33932 --- [FYP] [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2024-07-21T16:58:02.266+08:00  INFO 33932 --- [FYP] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2024-07-21T16:58:02.267+08:00  INFO 33932 --- [FYP] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
+2024-07-21T17:01:28.612+08:00  INFO 39528 --- [FYP] [main] com.fyp14.fyp.FypApplication             : Starting FypApplication using Java 21.0.2 with PID 39528 (C:\Users\adwwe\Desktop\FYP\target\classes started by adwwe in C:\Users\adwwe\Desktop\FYP)
+2024-07-21T17:01:28.614+08:00  INFO 39528 --- [FYP] [main] com.fyp14.fyp.FypApplication             : No active profile set, falling back to 1 default profile: "default"
+2024-07-21T17:01:29.206+08:00  INFO 39528 --- [FYP] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
+2024-07-21T17:01:29.214+08:00  INFO 39528 --- [FYP] [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2024-07-21T17:01:29.215+08:00  INFO 39528 --- [FYP] [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.26]
+2024-07-21T17:01:29.248+08:00  INFO 39528 --- [FYP] [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2024-07-21T17:01:29.248+08:00  INFO 39528 --- [FYP] [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 600 ms
+2024-07-21T17:01:29.479+08:00  INFO 39528 --- [FYP] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path '/'
+2024-07-21T17:01:29.484+08:00  INFO 39528 --- [FYP] [main] com.fyp14.fyp.FypApplication             : Started FypApplication in 1.174 seconds (process running for 1.578)
+2024-07-21T17:01:33.064+08:00  INFO 39528 --- [FYP] [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2024-07-21T17:01:33.065+08:00  INFO 39528 --- [FYP] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2024-07-21T17:01:33.065+08:00  INFO 39528 --- [FYP] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 0 ms
+2024-07-21T17:03:16.380+08:00  INFO 43920 --- [FYP] [main] com.fyp14.fyp.FypApplication             : Starting FypApplication using Java 21.0.2 with PID 43920 (C:\Users\adwwe\Desktop\FYP\target\classes started by adwwe in C:\Users\adwwe\Desktop\FYP)
+2024-07-21T17:03:16.382+08:00  INFO 43920 --- [FYP] [main] com.fyp14.fyp.FypApplication             : No active profile set, falling back to 1 default profile: "default"
+2024-07-21T17:03:16.986+08:00  INFO 43920 --- [FYP] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
+2024-07-21T17:03:16.995+08:00  INFO 43920 --- [FYP] [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2024-07-21T17:03:16.995+08:00  INFO 43920 --- [FYP] [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.26]
+2024-07-21T17:03:17.028+08:00  INFO 43920 --- [FYP] [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2024-07-21T17:03:17.029+08:00  INFO 43920 --- [FYP] [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 616 ms
+2024-07-21T17:03:17.267+08:00  INFO 43920 --- [FYP] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path '/'
+2024-07-21T17:03:17.272+08:00  INFO 43920 --- [FYP] [main] com.fyp14.fyp.FypApplication             : Started FypApplication in 1.179 seconds (process running for 1.619)
+2024-07-21T17:03:38.346+08:00  INFO 43920 --- [FYP] [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2024-07-21T17:03:38.347+08:00  INFO 43920 --- [FYP] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2024-07-21T17:03:38.347+08:00  INFO 43920 --- [FYP] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 0 ms
+2024-07-21T17:03:41.125+08:00  WARN 43920 --- [FYP] [http-nio-8080-exec-3] .w.s.m.s.DefaultHandlerExceptionResolver : Resolved [org.springframework.web.bind.MissingServletRequestParameterException: Required request parameter 'amount' for method parameter type float is not present]
+2024-07-21T17:05:35.187+08:00  INFO 47124 --- [FYP] [main] com.fyp14.fyp.FypApplication             : Starting FypApplication using Java 21.0.2 with PID 47124 (C:\Users\adwwe\Desktop\FYP\target\classes started by adwwe in C:\Users\adwwe\Desktop\FYP)
+2024-07-21T17:05:35.189+08:00  INFO 47124 --- [FYP] [main] com.fyp14.fyp.FypApplication             : No active profile set, falling back to 1 default profile: "default"
+2024-07-21T17:05:35.767+08:00  INFO 47124 --- [FYP] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
+2024-07-21T17:05:35.776+08:00  INFO 47124 --- [FYP] [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2024-07-21T17:05:35.777+08:00  INFO 47124 --- [FYP] [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.26]
+2024-07-21T17:05:35.815+08:00  INFO 47124 --- [FYP] [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2024-07-21T17:05:35.815+08:00  INFO 47124 --- [FYP] [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 594 ms
+2024-07-21T17:05:36.055+08:00  INFO 47124 --- [FYP] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path '/'
+2024-07-21T17:05:36.060+08:00  INFO 47124 --- [FYP] [main] com.fyp14.fyp.FypApplication             : Started FypApplication in 1.15 seconds (process running for 1.564)
+2024-07-21T17:05:42.400+08:00  INFO 47124 --- [FYP] [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2024-07-21T17:05:42.401+08:00  INFO 47124 --- [FYP] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2024-07-21T17:05:42.401+08:00  INFO 47124 --- [FYP] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 0 ms
+2024-07-21T17:06:01.137+08:00  INFO 46308 --- [FYP] [main] com.fyp14.fyp.FypApplication             : Starting FypApplication using Java 21.0.2 with PID 46308 (C:\Users\adwwe\Desktop\FYP\target\classes started by adwwe in C:\Users\adwwe\Desktop\FYP)
+2024-07-21T17:06:01.139+08:00  INFO 46308 --- [FYP] [main] com.fyp14.fyp.FypApplication             : No active profile set, falling back to 1 default profile: "default"
+2024-07-21T17:06:01.717+08:00  INFO 46308 --- [FYP] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
+2024-07-21T17:06:01.725+08:00  INFO 46308 --- [FYP] [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2024-07-21T17:06:01.725+08:00  INFO 46308 --- [FYP] [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.26]
+2024-07-21T17:06:01.760+08:00  INFO 46308 --- [FYP] [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2024-07-21T17:06:01.760+08:00  INFO 46308 --- [FYP] [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 586 ms
+2024-07-21T17:06:02.020+08:00  INFO 46308 --- [FYP] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path '/'
+2024-07-21T17:06:02.025+08:00  INFO 46308 --- [FYP] [main] com.fyp14.fyp.FypApplication             : Started FypApplication in 1.196 seconds (process running for 1.584)
+2024-07-21T17:06:06.471+08:00  INFO 46308 --- [FYP] [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2024-07-21T17:06:06.471+08:00  INFO 46308 --- [FYP] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2024-07-21T17:06:06.472+08:00  INFO 46308 --- [FYP] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
+2024-07-21T17:06:37.643+08:00  INFO 37584 --- [FYP] [main] com.fyp14.fyp.FypApplication             : Starting FypApplication using Java 21.0.2 with PID 37584 (C:\Users\adwwe\Desktop\FYP\target\classes started by adwwe in C:\Users\adwwe\Desktop\FYP)
+2024-07-21T17:06:37.645+08:00  INFO 37584 --- [FYP] [main] com.fyp14.fyp.FypApplication             : No active profile set, falling back to 1 default profile: "default"
+2024-07-21T17:06:38.207+08:00  INFO 37584 --- [FYP] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
+2024-07-21T17:06:38.216+08:00  INFO 37584 --- [FYP] [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2024-07-21T17:06:38.216+08:00  INFO 37584 --- [FYP] [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.26]
+2024-07-21T17:06:38.253+08:00  INFO 37584 --- [FYP] [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2024-07-21T17:06:38.253+08:00  INFO 37584 --- [FYP] [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 580 ms
+2024-07-21T17:06:38.482+08:00  INFO 37584 --- [FYP] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path '/'
+2024-07-21T17:06:38.487+08:00  INFO 37584 --- [FYP] [main] com.fyp14.fyp.FypApplication             : Started FypApplication in 1.141 seconds (process running for 1.544)
+2024-07-21T17:06:44.858+08:00  INFO 37584 --- [FYP] [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2024-07-21T17:06:44.858+08:00  INFO 37584 --- [FYP] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2024-07-21T17:06:44.859+08:00  INFO 37584 --- [FYP] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
+2024-07-21T18:10:22.136+08:00  INFO 48040 --- [FYP] [main] com.fyp14.fyp.FypApplication             : Starting FypApplication using Java 21.0.2 with PID 48040 (C:\Users\adwwe\Desktop\FYP\target\classes started by adwwe in C:\Users\adwwe\Desktop\FYP)
+2024-07-21T18:10:22.137+08:00  INFO 48040 --- [FYP] [main] com.fyp14.fyp.FypApplication             : No active profile set, falling back to 1 default profile: "default"
+2024-07-21T18:10:22.841+08:00  INFO 48040 --- [FYP] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 443 (https)
+2024-07-21T18:10:22.851+08:00  INFO 48040 --- [FYP] [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2024-07-21T18:10:22.851+08:00  INFO 48040 --- [FYP] [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.26]
+2024-07-21T18:10:22.884+08:00  INFO 48040 --- [FYP] [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2024-07-21T18:10:22.885+08:00  INFO 48040 --- [FYP] [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 712 ms
+2024-07-21T18:10:23.286+08:00  INFO 48040 --- [FYP] [main] o.a.t.util.net.NioEndpoint.certificate   : Connector [https-jsse-nio-443], TLS virtual host [_default_], certificate type [UNDEFINED] configured from keystore [C:\Users\adwwe\.keystore] using alias [HTTPSKey] with trust store [null]
+2024-07-21T18:10:23.296+08:00  INFO 48040 --- [FYP] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 443 (https) with context path '/'
+2024-07-21T18:10:23.301+08:00  INFO 48040 --- [FYP] [main] com.fyp14.fyp.FypApplication             : Started FypApplication in 1.451 seconds (process running for 1.861)
+2024-07-21T18:15:15.723+08:00  INFO 52268 --- [FYP] [main] com.fyp14.fyp.FypApplicationTests        : Starting FypApplicationTests using Java 21.0.2 with PID 52268 (started by adwwe in C:\Users\adwwe\Desktop\FYP)
+2024-07-21T18:15:15.725+08:00  INFO 52268 --- [FYP] [main] com.fyp14.fyp.FypApplicationTests        : No active profile set, falling back to 1 default profile: "default"
+2024-07-21T18:15:16.675+08:00  INFO 52268 --- [FYP] [main] com.fyp14.fyp.FypApplicationTests        : Started FypApplicationTests in 1.228 seconds (process running for 2.223)
+2024-07-21T18:15:44.230+08:00  INFO 53696 --- [FYP] [main] com.fyp14.fyp.FypApplicationTests        : Starting FypApplicationTests using Java 21.0.2 with PID 53696 (started by adwwe in C:\Users\adwwe\Desktop\FYP)
+2024-07-21T18:15:44.231+08:00  INFO 53696 --- [FYP] [main] com.fyp14.fyp.FypApplicationTests        : No active profile set, falling back to 1 default profile: "default"
+2024-07-21T18:15:45.110+08:00  INFO 53696 --- [FYP] [main] com.fyp14.fyp.FypApplicationTests        : Started FypApplicationTests in 1.106 seconds (process running for 1.858)
+2024-07-21T18:29:07.733+08:00  INFO 52624 --- [FYP] [main] com.fyp14.fyp.FypApplication             : Starting FypApplication using Java 21.0.2 with PID 52624 (C:\Users\adwwe\Desktop\FYP\target\classes started by adwwe in C:\Users\adwwe\Desktop\FYP)
+2024-07-21T18:29:07.734+08:00  INFO 52624 --- [FYP] [main] com.fyp14.fyp.FypApplication             : No active profile set, falling back to 1 default profile: "default"
+2024-07-21T18:29:08.412+08:00  INFO 52624 --- [FYP] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 443 (https)
+2024-07-21T18:29:08.423+08:00  INFO 52624 --- [FYP] [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2024-07-21T18:29:08.423+08:00  INFO 52624 --- [FYP] [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.26]
+2024-07-21T18:29:08.458+08:00  INFO 52624 --- [FYP] [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2024-07-21T18:29:08.458+08:00  INFO 52624 --- [FYP] [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 687 ms
+2024-07-21T18:29:08.833+08:00  INFO 52624 --- [FYP] [main] o.a.t.util.net.NioEndpoint.certificate   : Connector [https-jsse-nio-443], TLS virtual host [_default_], certificate type [UNDEFINED] configured from keystore [C:\Users\adwwe\.keystore] using alias [HTTPSKey] with trust store [null]
+2024-07-21T18:29:08.842+08:00  INFO 52624 --- [FYP] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 443 (https) with context path '/'
+2024-07-21T18:29:08.847+08:00  INFO 52624 --- [FYP] [main] com.fyp14.fyp.FypApplication             : Started FypApplication in 1.414 seconds (process running for 1.831)
+2024-07-21T18:29:45.768+08:00  INFO 47132 --- [FYP] [main] com.fyp14.fyp.FypApplication             : Starting FypApplication using Java 21.0.2 with PID 47132 (C:\Users\adwwe\Desktop\FYP\target\classes started by adwwe in C:\Users\adwwe\Desktop\FYP)
+2024-07-21T18:29:45.770+08:00  INFO 47132 --- [FYP] [main] com.fyp14.fyp.FypApplication             : No active profile set, falling back to 1 default profile: "default"
+2024-07-21T18:29:46.431+08:00  INFO 47132 --- [FYP] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (https)
+2024-07-21T18:29:46.443+08:00  INFO 47132 --- [FYP] [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2024-07-21T18:29:46.444+08:00  INFO 47132 --- [FYP] [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.26]
+2024-07-21T18:29:46.478+08:00  INFO 47132 --- [FYP] [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2024-07-21T18:29:46.478+08:00  INFO 47132 --- [FYP] [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 663 ms
+2024-07-21T18:29:46.886+08:00  INFO 47132 --- [FYP] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (https) with context path '/'
+2024-07-21T18:29:46.891+08:00  INFO 47132 --- [FYP] [main] com.fyp14.fyp.FypApplication             : Started FypApplication in 1.419 seconds (process running for 1.861)
+2024-07-21T18:29:48.357+08:00  INFO 49320 --- [FYP] [main] com.fyp14.fyp.FypApplication             : Starting FypApplication using Java 21.0.2 with PID 49320 (C:\Users\adwwe\Desktop\FYP\target\classes started by adwwe in C:\Users\adwwe\Desktop\FYP)
+2024-07-21T18:29:48.359+08:00  INFO 49320 --- [FYP] [main] com.fyp14.fyp.FypApplication             : No active profile set, falling back to 1 default profile: "default"
+2024-07-21T18:29:49.012+08:00  INFO 49320 --- [FYP] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (https)
+2024-07-21T18:29:49.023+08:00  INFO 49320 --- [FYP] [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2024-07-21T18:29:49.023+08:00  INFO 49320 --- [FYP] [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.26]
+2024-07-21T18:29:49.060+08:00  INFO 49320 --- [FYP] [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2024-07-21T18:29:49.060+08:00  INFO 49320 --- [FYP] [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 669 ms
+2024-07-21T18:29:49.432+08:00  INFO 49320 --- [FYP] [main] o.a.t.util.net.NioEndpoint.certificate   : Connector [https-jsse-nio-8080], TLS virtual host [_default_], certificate type [UNDEFINED] configured from keystore [C:\Users\adwwe\.keystore] using alias [HTTPSKey] with trust store [null]
+2024-07-21T18:29:49.443+08:00  INFO 49320 --- [FYP] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (https) with context path '/'
+2024-07-21T18:29:49.447+08:00  INFO 49320 --- [FYP] [main] com.fyp14.fyp.FypApplication             : Started FypApplication in 1.392 seconds (process running for 1.794)
+2024-07-21T18:30:30.915+08:00  INFO 46156 --- [FYP] [main] com.fyp14.fyp.FypApplicationTests        : Starting FypApplicationTests using Java 21.0.2 with PID 46156 (started by adwwe in C:\Users\adwwe\Desktop\FYP)
+2024-07-21T18:30:30.916+08:00  INFO 46156 --- [FYP] [main] com.fyp14.fyp.FypApplicationTests        : No active profile set, falling back to 1 default profile: "default"
+2024-07-21T18:30:31.970+08:00  INFO 46156 --- [FYP] [main] com.fyp14.fyp.FypApplicationTests        : Started FypApplicationTests in 1.389 seconds (process running for 2.298)
+2024-07-21T18:57:49.340+08:00  INFO 49492 --- [FYP] [main] com.fyp14.fyp.FypApplicationTests        : Starting FypApplicationTests using Java 21.0.2 with PID 49492 (started by adwwe in C:\Users\adwwe\Desktop\FYP)
+2024-07-21T18:57:49.341+08:00  INFO 49492 --- [FYP] [main] com.fyp14.fyp.FypApplicationTests        : No active profile set, falling back to 1 default profile: "default"
+2024-07-21T18:57:50.240+08:00  INFO 49492 --- [FYP] [main] com.fyp14.fyp.FypApplicationTests        : Started FypApplicationTests in 1.141 seconds (process running for 1.929)
+2024-07-21T19:00:47.533+08:00  INFO 9028 --- [FYP] [main] com.fyp14.fyp.FypApplication             : Starting FypApplication using Java 21.0.2 with PID 9028 (C:\Users\adwwe\Desktop\FYP\target\classes started by adwwe in C:\Users\adwwe\Desktop\FYP)
+2024-07-21T19:00:47.535+08:00  INFO 9028 --- [FYP] [main] com.fyp14.fyp.FypApplication             : No active profile set, falling back to 1 default profile: "default"
+2024-07-21T19:00:48.186+08:00  INFO 9028 --- [FYP] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
+2024-07-21T19:00:48.194+08:00  INFO 9028 --- [FYP] [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2024-07-21T19:00:48.194+08:00  INFO 9028 --- [FYP] [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.26]
+2024-07-21T19:00:48.232+08:00  INFO 9028 --- [FYP] [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2024-07-21T19:00:48.232+08:00  INFO 9028 --- [FYP] [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 664 ms
+2024-07-21T19:00:48.491+08:00  INFO 9028 --- [FYP] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path '/'
+2024-07-21T19:00:48.497+08:00  INFO 9028 --- [FYP] [main] com.fyp14.fyp.FypApplication             : Started FypApplication in 1.325 seconds (process running for 1.857)
+2024-07-21T19:00:48.672+08:00  INFO 9028 --- [FYP] [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2024-07-21T19:00:48.673+08:00  INFO 9028 --- [FYP] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2024-07-21T19:00:48.673+08:00  INFO 9028 --- [FYP] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 0 ms
