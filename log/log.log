@@ -5,3 +5,7 @@
 2024-07-29T04:39:15.923+08:00  WARN 18721 --- [FYP] [HikariPool-1 housekeeper] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=1h1m1s512ms).
 2024-07-29T05:40:19.563+08:00  WARN 18721 --- [FYP] [HikariPool-1 housekeeper] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=1h1m3s638ms).
 2024-07-29T06:08:22.916+08:00  WARN 18721 --- [FYP] [HikariPool-1 housekeeper] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=28m3s355ms).
+2024-07-29T06:11:25.795+08:00  WARN 18721 --- [FYP] [HikariPool-1 housekeeper] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=2m32s876ms).
+2024-07-29T06:11:26.962+08:00  INFO 18721 --- [FYP] [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2024-07-29T06:11:26.982+08:00  INFO 18721 --- [FYP] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2024-07-29T06:11:27.010+08:00  INFO 18721 --- [FYP] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
