@@ -1,7 +1,5 @@
-package com.fyp14.fyp;
+package com.fyp14.fyp.Transcation;
 
-import com.fyp14.fyp.transcation.Transaction;
-import com.fyp14.fyp.transcation.TransactionRepository;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;

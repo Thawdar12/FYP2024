@@ -1,4 +1,4 @@
-package com.fyp14.fyp.transcation;
+package com.fyp14.fyp.Transcation;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
