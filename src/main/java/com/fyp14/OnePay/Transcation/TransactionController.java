@@ -1,4 +1,4 @@
-package com.fyp14.fyp.Transcation;
+package com.fyp14.OnePay.Transcation;
 
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;

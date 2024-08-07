@@ -1,0 +1,119 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    width: 80%;
+    margin: 0 auto;
+}
+
+header {
+    background-color: #333;
+    color: #fff;
+    padding: 1em 0;
+}
+
+header h1 {
+    display: inline;
+    margin: 0;
+}
+
+nav {
+    float: right;
+}
+
+nav ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+nav ul li {
+    display: inline;
+    margin-left: 20px;
+}
+
+nav ul li a {
+    color: #fff;
+    text-decoration: none;
+}
+
+main {
+    position: relative;
+    height: calc(100vh - 140px); /* Adjust height based on header/footer size */
+}
+
+.background-image {
+    background: url('https://images.unsplash.com/photo-1515378791036-0648a3ef77b2?fit=crop&w=1500&q=80') no-repeat center center;
+    background-size: cover;
+    height: 100%;
+}
+
+.overlay {
+    background: rgba(0, 0, 0, 0.5);
+    height: 100%;
+    display: flex;
+    align-items: center;
+    padding: 20px; /* Add padding to the overlay */
+}
+
+.container-right {
+    margin-left: auto;
+    width: 400px;
+    padding-right: 20px; /* Add right padding to the container-right */
+}
+
+.intro {
+    color: #fff;
+    margin-bottom: 20px;
+}
+
+.login-signup {
+    width: 300px;
+    padding: 20px;
+    background-color: rgba(255, 255, 255, 0.8);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    color: #000;
+}
+
+.login-signup h3 {
+    margin-top: 0;
+}
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 5px;
+}
+
+.form-group input {
+    width: 100%;
+    padding: 8px;
+    box-sizing: border-box;
+}
+
+button {
+    width: 100%;
+    padding: 10px;
+    background-color: #333;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #555;
+}
+
+footer {
+    background-color: #333;
+    color: #fff;
+    text-align: center;
+    padding: 1em 0;
+    position: relative;
+}

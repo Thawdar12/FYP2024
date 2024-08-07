@@ -1,4 +1,4 @@
-package com.fyp14.fyp.Transcation;
+package com.fyp14.OnePay.Transcation;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;

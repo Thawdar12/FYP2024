@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <title>OnePay - Home</title>
+    <link rel="stylesheet" th:href="@{/css/styles-home.css}">
+</head>
+<body>
+<header>
+    <div class="container">
+        <h1>OnePay</h1>
+        <nav>
+            <ul>
+                <li><a th:href="@{/}">Home</a></li>
+                <li><a th:href="@{/about}">About</a></li>
+                <li><a th:href="@{/services}">Services</a></li>
+                <li><a th:href="@{/contact}">Contact</a></li>
+            </ul>
+        </nav>
+    </div>
+</header>
+
+<main>
+    <div class="background-image">
+        <div class="overlay">
+            <div class="container-right">
+                <section class="intro">
+                    <h2>Welcome to OnePay</h2>
+                    <p>Your reliable fintech solution for seamless transactions.</p>
+                </section>
+                <aside class="login-signup">
+                    <h3>Login / Signup</h3>
+                    <form method="post" th:action="@{/login}">
+                        <div class="form-group">
+                            <label for="username">Username:</label>
+                            <input id="username" name="username" required type="text">
+                        </div>
+                        <div class="form-group">
+                            <label for="password">Password:</label>
+                            <input id="password" name="password" required type="password">
+                        </div>
+                        <button type="submit">Login</button>
+                        <p>Don't have an account? <a th:href="@{/OnePay/signUp}">Signup</a></p>
+                    </form>
+                </aside>
+            </div>
+        </div>
+    </div>
+</main>
+
+<footer>
+    <div class="container">
+        <p>&copy; 2024 OnePay. All rights reserved.</p>
+    </div>
+</footer>
+</body>
+</html>

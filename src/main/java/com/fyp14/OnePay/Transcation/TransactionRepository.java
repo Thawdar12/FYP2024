@@ -1,4 +1,4 @@
-package com.fyp14.fyp.Transcation;
+package com.fyp14.OnePay.Transcation;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
