@@ -1,58 +1,1025 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8">
-    <meta content="width=device-width, initial-scale=1.0" name="viewport">
-    <title>OnePay - Home</title>
-    <link rel="stylesheet" th:href="@{/css/styles-home.css}">
+
+	<!-- Meta -->
+	<meta charset="utf-8">  <!-- page char set -->
+	<meta http-equiv="X-UA-Compatible" content="IE=edge"> <!-- browser compatibility setting  -->
+	<meta name="description" content="OnePay - A secure payment Gateway"> <!-- For Open Graphic protocol -->
+	<meta property="og:title" content="OnePay - A secure payment Gateway"> <!-- For Open Graphic protocol -->
+	<meta property="og:description" content="OnePay - A secure payment Gateway"> <!-- For Open Graphic protocol -->
+	<meta property="og:image" content=""> <!-- For Open Graphic protocol -->
+	<meta name="format-detection" content="telephone=no"> <!-- For converting phone number on this page to clickable link -->
+
+	<!-- Mobile Specific -->
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<!-- Title -->
+	<title>OnePay - A secure payment gateway</title>
+
+	<!-- Favicon icon -->
+	<link rel="icon" type="image/png" th:href="@{/assets/images/favicon.png}">
+	<!-- ↓↓↓ Important ↓↓↓ -->
+	<!-- ^^^ We are using Thymeleaf Engine, please include external file and any variable require server side information like this ^^^ -->
+	<!-- ^^^ We are using Thymeleaf Engine, please include external file and any variable require server side information like this ^^^ -->
+	<!-- ^^^ We are using Thymeleaf Engine, please include external file and any variable require server side information like this ^^^ -->
+	<!-- ↑↑↑ Important ↑↑↑ -->
+
+	<!-- Stylesheet -->
+	<link th:href="@{/assets/vendor/animate/animate.css}" rel="stylesheet">
+	<link th:href="@{/assets/vendor/magnific-popup/magnific-popup.css}" rel="stylesheet">
+	<link th:href="@{/assets/vendor/swiper/swiper-bundle.min.css}" rel="stylesheet">
+	<link th:href="@{/assets/vendor/switcher/switcher.css}" rel="stylesheet">
+	<link th:href="@{/assets/vendor/rangeslider/rangeslider.css}" rel="stylesheet">
+	<link rel="stylesheet" type="text/css" th:href="@{/assets/plugin/twentytwenty-master/css/twentytwenty.css}">
+
+	<!-- Custom Stylesheet -->
+	<link rel="stylesheet" th:href="@{/assets/css/style.css}">
+	<link class="skin" rel="stylesheet" th:href="@{/assets/css/skin/skin-1.css}">
+
+
+	<!-- Google Fonts -->
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+
 </head>
-<body>
-<header>
-    <div class="container">
-        <h1>OnePay</h1>
-        <nav>
-            <ul>
-                <li><a th:href="@{/}">Home</a></li>
-                <li><a th:href="@{/about}">About</a></li>
-                <li><a th:href="@{/services}">Services</a></li>
-                <li><a th:href="@{/contact}">Contact</a></li>
-            </ul>
-        </nav>
-    </div>
-</header>
+<body id="bg" data-anm=".anm">
 
-<main>
-    <div class="background-image">
-        <div class="overlay">
-            <div class="container-right">
-                <section class="intro">
-                    <h2>Welcome to OnePay</h2>
-                    <p>Your reliable fintech solution for seamless transactions.</p>
-                </section>
-                <aside class="login-signup">
-                    <h3>Login / Signup</h3>
-                    <form method="post" th:action="@{/login}">
-                        <div class="form-group">
-                            <label for="username">Username:</label>
-                            <input id="username" name="username" required type="text">
-                        </div>
-                        <div class="form-group">
-                            <label for="password">Password:</label>
-                            <input id="password" name="password" required type="password">
-                        </div>
-                        <button type="submit">Login</button>
-                        <p>Don't have an account? <a th:href="@{/OnePay/signUp}">Signup</a></p>
-                    </form>
-                </aside>
-            </div>
-        </div>
-    </div>
-</main>
+<!--loader start -->
+<div id="loading-area" class="loading-page-1">
+	<div class="loader">
+		<div class="loading-dot"></div>
+	</div>
+</div>
+<!--loader start -->
 
-<footer>
-    <div class="container">
-        <p>&copy; 2024 OnePay. All rights reserved.</p>
-    </div>
-</footer>
-</body>
+<div class="page-wraper">
+
+	<!-- Header -->
+	<header class="site-header style-1 mo-left header-transparent">
+		<!-- Main Header -->
+		<div class="sticky-header main-bar-wraper navbar-expand-lg">
+			<div class="main-bar clearfix ">
+				<div class="container-fluid clearfix">
+					<div class="logo-header mostion logo-dark">
+						<a href="dashboard.html"><img src="/assets/images/logo.png" alt=""></a>
+					</div>
+					<button class="navbar-toggler collapsed navicon justify-content-end" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+						<span></span>
+						<span></span>
+						<span></span>
+					</button>
+
+					<!-- Extra Nav -->
+					<div class="extra-nav">
+						<div class="extra-cell d-flex align-items-center">
+							<ul class="nav-link-list">
+								<li><a href="javascript:void(0);" class="btn-login" data-bs-toggle="modal" data-bs-target="#modalLogin">Login</a></li>
+								<li><a href="javascript:void(0);" class="btn-login" data-bs-toggle="modal" data-bs-target="#modalLogin">Register</a></li>
+							</ul>
+							<a href="javascript:void(0);" class="menu-btn" data-bs-toggle="modal" data-bs-target="#modalMohpy">
+								<svg width="32" height="22" viewBox="0 0 32 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+									<rect y="20" width="32" height="2" fill="black"/>
+									<rect width="32" height="2" fill="black"/>
+									<rect y="10" width="32" height="2" fill="black"/>
+								</svg>
+							</a>
+						</div>
+					</div>
+
+					<!-- Header Nav -->
+					<div class="header-nav navbar-collapse collapse justify-content-start" id="navbarNavDropdown">
+						<div class="logo-header logo-dark">
+							<a href="dashboard.html"><img src="/assets/images/logo.png" alt=""></a>
+						</div>
+						<ul class="nav navbar-nav navbar navbar-left">
+							<li><a href="dashboard.html">Home</a></li>
+							<li><a href="about-us.html">About</a></li>
+							<li><a href="pricing.html">Pricing</a></li>
+							<li><a href="faq.html">Faq</a></li>
+							<li class="sub-menu-down"><a href="javascript:void(0)">Blog</a>
+								<ul class="sub-menu">
+									<li><a href="blog-grid.html">Blog Grid</a></li>
+									<li><a href="blog-list.html">Blog List</a></li>
+									<li><a href="blog-details.html">Blog Details</a></li>
+								</ul>
+							</li>
+							<li><a href="contact-us.html">Contact Us</a></li>
+
+
+						</ul>
+						<div class="header-bottom">
+							<a href="javascript:void(0);" class="btn btn-rounded btn-primary btn-login btn-sm" data-bs-toggle="modal" data-bs-target="#modalLogin">
+								<i class="flaticon-logout me-3"></i>Login / Sign Up
+							</a>
+							<div class="dz-social-icon">
+								<ul>
+									<li><a href="https://www.facebook.com/dexignzone/"><i class="fab fa-facebook-f"></i></a></li>
+									<li><a href="https://twitter.com/dexignzones"><i class="fab fa-twitter"></i></a></li>
+									<li><a href="https://www.youtube.com/channel/UCGL8V6uxNNMRrk3oZfVct1g"><i class="fab fa-youtube"></i></a></li>
+									<li><a href="https://www.instagram.com/dexignzone/"><i class="fab fa-instagram"></i></a></li>
+								</ul>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- Main Header End -->
+
+	</header>
+	<!-- Header End -->
+
+	<!-- Contact Sidebar -->
+	<div class="contact-sidebar">
+		<div class="contact-box">
+			<div class="logo-contact logo-dark">
+				<a href="dashboard.html"><img src="/assets/images/logo.png" alt=""></a>
+			</div>
+			<div class="m-b50 contact-text">
+				<div class="dz-title">
+					<h4>About us</h4>
+					<div class="dz-separator style-1 text-primary mb-0"></div>
+				</div>
+				<p>lorem aliquet venenatis libero a nulla placerat egestas.</p>
+				<a href="about-us.html" class="btn btn-rounded btn-transparant btn-md">READ MORE</a>
+			</div>
+			<div class="dz-title">
+				<h4 class="mb-3">Contact Info</h4>
+				<div class="dz-separator style-1 text-primary mb-0"></div>
+			</div>
+			<div class="icon-bx-wraper left">
+				<div class="icon-md m-r20">
+					<span class="icon-cell"><i class="fas fa-phone"></i></span>
+				</div>
+				<div class="icon-content">
+					<h5 class="tilte">Call Now</h5>
+					<p class="m-b0">+91 123 456 7890,<br> +91 987 654 3210</p>
+				</div>
+			</div>
+			<div class="icon-bx-wraper left">
+				<div class="icon-md m-r20">
+					<span class="icon-cell"><i class="fas fa-map-marker-alt"></i></span>
+				</div>
+				<div class="icon-content">
+					<h5 class="tilte">Location</h5>
+					<p class="m-b0">info@gmail.com, services@gmail.com</p>
+				</div>
+			</div>
+			<div class="icon-bx-wraper left">
+				<div class="icon-md m-r20">
+					<span class="icon-cell"><i class="fas fa-envelope-open"></i></span>
+				</div>
+				<div class="icon-content">
+					<h5 class="tilte">Email Now</h5>
+					<p class="m-b0">15/B Miranda House, New York, US</p>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="menu-close"></div>
+
+	<div class="page-content">
+
+		<!--Swiper Banner Start -->
+		<div class="main-slider style-1 position-relative">
+			<div class="pagination">
+				<div class="main-swiper1-pagination"></div>
+			</div>
+			<div class="main-swiper swiper">
+				<div class="swiper-wrapper">
+					<div class="swiper-slide" data-rel="1">
+						<div class="main-bnr-one overlay-primary-linear">
+							<div class="move-3 anm" data-speed-x="-1" data-speed-scale="-1">
+								<img src="/assets/images/home-banner/move-1.png" alt="">
+							</div>
+							<div class="container">
+								<div class="row align-items-center banner-inner">
+									<div class="col-xl-7 col-lg-7 col-md-12">
+										<div class="banner-content">
+											<h6 class="sub-title wow fadeInUp" data-wow-delay="0.6s">Welcome To Online Payment</h6>
+											<h1 class="title wow fadeInUp" data-wow-delay="0.8s">FASTER & SECURE ONLINE MONEY TRANSITION</h1>
+											<p class="m-b50 wow fadeInUp" data-wow-delay="1.0s">It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.</p>
+											<a href="dashboard.html" class="btn btn-rounded btn-lg btn-transparant wow fadeInUp" data-wow-delay="1.2s">READ MORE</a>
+										</div>
+									</div>
+									<div class="col-xl-5 col-lg-5 col-md-12">
+										<div class="banner-media">
+											<svg  class="banner-media-shape" viewBox="0 0 587 562" fill="none" xmlns="http://www.w3.org/2000/svg">
+												<path opacity="0.4" d="M49.8018 415.063C49.8018 398.622 60.0001 383.93 75.3918 378.199C165.509 344.617 468.042 229.26 568.949 157.333C579.255 149.987 585.283 138.066 585.283 125.392V119.957" stroke="var(--primary)" stroke-width="0.9948" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="6.53 6.53"/>
+												<g opacity="0.3">
+													<path d="M49.8015 424.939V440.788C58.6006 441.488 67.2113 443.533 74.4228 446.95C77.2751 448.322 78.3784 451.847 77.1944 454.78L74.6112 461.158C73.3196 464.36 69.6062 466.082 66.4579 464.656C63.5518 463.337 60.6456 462.315 57.7394 461.508C53.757 460.404 49.8015 463.445 49.8015 467.589V479.752C49.8015 482.631 51.7658 485.106 54.5643 485.806C69.2294 489.6 83.6524 495.789 83.6524 514.275C83.6524 528.187 74.3151 540.35 55.0486 544.359C52.0617 544.978 49.8015 547.454 49.8015 550.521V561.5H35.2708V551.329C35.2708 548.099 32.8221 545.543 29.62 545.14C19.9329 543.902 10.8109 541.076 4.00298 537.282C1.12376 535.668 -0.0601634 532.17 1.28527 529.183L4.16442 522.805C5.6444 519.523 9.5462 518.177 12.7214 519.872C17.1613 522.267 22.274 524.178 27.6019 525.389C31.5036 526.277 35.2708 523.263 35.2708 519.254V507.252C35.2708 504.4 33.3333 501.924 30.5617 501.198C15.8427 497.269 1.12382 491.08 1.12382 472.298C1.12382 458.117 10.5956 445.793 29.9967 441.891C33.0105 441.272 35.2708 438.797 35.2708 435.729V424.939H42.2132M35.2708 481.016V460.377C27.5749 462.127 24.5342 466.324 24.5342 471.141C24.5073 476.227 28.8665 478.998 35.2708 481.016ZM60.2689 516.051C60.2689 510.966 56.0443 508.221 49.8015 506.014V526.061C57.0668 524.474 60.2689 520.68 60.2689 516.051Z" stroke="var(--primary)" stroke-width="0.9948" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+													<path d="M585.713 103.139V51.3399C585.713 48.8105 583.937 46.6579 581.515 46.1466V28.8444C581.515 13.6948 569.191 1.3707 554.042 1.3707H528.398C513.275 1.3707 500.951 13.6948 500.951 28.8444V46.1466C498.556 46.6579 496.753 48.8105 496.753 51.3399V103.139C496.753 106.072 499.121 108.467 502.081 108.467H575.138M528.424 13.937H554.068C562.276 13.937 568.976 20.6103 568.976 28.8444V46.012H513.517V28.8444C513.517 20.6372 520.217 13.937 528.424 13.937ZM551.781 79.6209C550.651 81.1009 550.005 82.9037 550.005 84.7604V92.6446C550.005 94.5821 548.445 96.1428 546.507 96.1428H536.013C534.075 96.1428 532.515 94.5821 532.515 92.6446V84.7604C532.515 82.9575 531.95 81.1816 530.846 79.7554C529.07 77.4951 527.994 74.6428 527.994 71.5483C527.994 70.4989 528.129 69.4763 528.344 68.5076C529.743 62.5339 535.232 58.1209 541.664 58.3093C547.664 58.4976 552.75 62.8837 554.122 68.5076C554.391 69.5571 554.526 70.6603 554.499 71.7905C554.445 74.7504 553.423 77.4413 551.781 79.6209Z" stroke="var(--primary)" stroke-width="0.9948" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+												</g>
+											</svg>
+											<img src="/assets/images/home-banner/phone.png" alt="" class="anm" data-speed-x="-1" data-speed-scale="-1">
+											<img src="/assets/images/home-banner/card1.png" alt="" class="move-1 move anm" data-speed-x="-1" data-speed-scale="-1">
+											<img src="/assets/images/home-banner/card2.png" alt="" class="move-2 move anm" data-speed-x="-1" data-speed-scale="-1">
+										</div>
+									</div>
+								</div>
+							</div>
+							<ul class="dz-social-icon style-1 mt-20">
+								<li><a href="#0" target="_blank" rel="nofollow" class=" wow bounceInRight" data-wow-delay="1.2s"><i class="fab fa-facebook-f"></i><span>FB</span></a></li>
+								<li><a href="#0" target="_blank" rel="nofollow" class=" wow bounceInRight" data-wow-delay="1.4s"><i class="fab fa-twitter"></i><span>TW</span></a></li>
+								<li><a href="#0" target="_blank" rel="nofollow" class=" wow bounceInRight" data-wow-delay="1.6s"><i class="fab fa-linkedin-in"></i><span>LN</span></a></li>
+								<li><a href="#0" target="_blank" rel="nofollow" class=" wow bounceInRight" data-wow-delay="1.8s"><i class="fab fa-instagram"></i><span>IN</span></a></li>
+							</ul>
+						</div>
+					</div>
+					<div class="swiper-slide" data-rel="2">
+						<div class="main-bnr-one overlay-primary-linear">
+							<div class="move-3 anm" data-speed-x="-1" data-speed-scale="-1">
+								<img src="/assets/images/home-banner/move-1.png" alt="">
+							</div>
+							<div class="container">
+								<div class="row align-items-center banner-inner">
+									<div class="col-xl-7 col-lg-7 col-md-12">
+										<div class="banner-content">
+											<h6 class="sub-title wow fadeInUp" data-wow-delay="0.6s">Welcome To Online Payment</h6>
+											<h1 class="title wow fadeInUp" data-wow-delay="0.8s">WE PROVIDE THE BEST FOR YOU</h1>
+											<p class="m-b50 wow fadeInUp" data-wow-delay="1.0s">It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.</p>
+											<a href="dashboard.html" class="btn btn-rounded btn-lg btn-transparant wow fadeInUp" data-wow-delay="1.2s">READ MORE</a>
+										</div>
+									</div>
+									<div class="col-xl-5 col-lg-5 col-md-12">
+										<div class="banner-media wow fadeInRight" data-wow-delay="1s">
+											<svg  class="banner-media-shape" viewBox="0 0 587 562" fill="none" xmlns="http://www.w3.org/2000/svg">
+												<path opacity="0.4" d="M49.8018 415.063C49.8018 398.622 60.0001 383.93 75.3918 378.199C165.509 344.617 468.042 229.26 568.949 157.333C579.255 149.987 585.283 138.066 585.283 125.392V119.957" stroke="var(--primary)" stroke-width="0.9948" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="6.53 6.53"/>
+												<g opacity="0.3">
+													<path d="M49.8015 424.939V440.788C58.6006 441.488 67.2113 443.533 74.4228 446.95C77.2751 448.322 78.3784 451.847 77.1944 454.78L74.6112 461.158C73.3196 464.36 69.6062 466.082 66.4579 464.656C63.5518 463.337 60.6456 462.315 57.7394 461.508C53.757 460.404 49.8015 463.445 49.8015 467.589V479.752C49.8015 482.631 51.7658 485.106 54.5643 485.806C69.2294 489.6 83.6524 495.789 83.6524 514.275C83.6524 528.187 74.3151 540.35 55.0486 544.359C52.0617 544.978 49.8015 547.454 49.8015 550.521V561.5H35.2708V551.329C35.2708 548.099 32.8221 545.543 29.62 545.14C19.9329 543.902 10.8109 541.076 4.00298 537.282C1.12376 535.668 -0.0601634 532.17 1.28527 529.183L4.16442 522.805C5.6444 519.523 9.5462 518.177 12.7214 519.872C17.1613 522.267 22.274 524.178 27.6019 525.389C31.5036 526.277 35.2708 523.263 35.2708 519.254V507.252C35.2708 504.4 33.3333 501.924 30.5617 501.198C15.8427 497.269 1.12382 491.08 1.12382 472.298C1.12382 458.117 10.5956 445.793 29.9967 441.891C33.0105 441.272 35.2708 438.797 35.2708 435.729V424.939H42.2132M35.2708 481.016V460.377C27.5749 462.127 24.5342 466.324 24.5342 471.141C24.5073 476.227 28.8665 478.998 35.2708 481.016ZM60.2689 516.051C60.2689 510.966 56.0443 508.221 49.8015 506.014V526.061C57.0668 524.474 60.2689 520.68 60.2689 516.051Z" stroke="var(--primary)" stroke-width="0.9948" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+													<path d="M585.713 103.139V51.3399C585.713 48.8105 583.937 46.6579 581.515 46.1466V28.8444C581.515 13.6948 569.191 1.3707 554.042 1.3707H528.398C513.275 1.3707 500.951 13.6948 500.951 28.8444V46.1466C498.556 46.6579 496.753 48.8105 496.753 51.3399V103.139C496.753 106.072 499.121 108.467 502.081 108.467H575.138M528.424 13.937H554.068C562.276 13.937 568.976 20.6103 568.976 28.8444V46.012H513.517V28.8444C513.517 20.6372 520.217 13.937 528.424 13.937ZM551.781 79.6209C550.651 81.1009 550.005 82.9037 550.005 84.7604V92.6446C550.005 94.5821 548.445 96.1428 546.507 96.1428H536.013C534.075 96.1428 532.515 94.5821 532.515 92.6446V84.7604C532.515 82.9575 531.95 81.1816 530.846 79.7554C529.07 77.4951 527.994 74.6428 527.994 71.5483C527.994 70.4989 528.129 69.4763 528.344 68.5076C529.743 62.5339 535.232 58.1209 541.664 58.3093C547.664 58.4976 552.75 62.8837 554.122 68.5076C554.391 69.5571 554.526 70.6603 554.499 71.7905C554.445 74.7504 553.423 77.4413 551.781 79.6209Z" stroke="var(--primary)" stroke-width="0.9948" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+												</g>
+											</svg>
+											<img src="/assets/images/home-banner/phone.png" alt="" class="anm" data-speed-x="-1" data-speed-scale="-1">
+											<img src="/assets/images/home-banner/card1.png" alt="" class="move-1 move anm" data-speed-x="-1" data-speed-scale="-1">
+											<img src="/assets/images/home-banner/card2.png" alt="" class="move-2 move anm" data-speed-x="-1" data-speed-scale="-1">
+										</div>
+									</div>
+								</div>
+							</div>
+							<ul class="dz-social-icon style-1 mt-20">
+								<li><a href="#0" target="_blank" rel="nofollow" class=" wow bounceInRight" data-wow-delay="1.2s"><i class="fab fa-facebook-f"></i><span>FB</span></a></li>
+								<li><a href="#0" target="_blank" rel="nofollow" class=" wow bounceInRight" data-wow-delay="1.4s"><i class="fab fa-twitter"></i><span>TW</span></a></li>
+								<li><a href="#0" target="_blank" rel="nofollow" class=" wow bounceInRight" data-wow-delay="1.6s"><i class="fab fa-linkedin-in"></i><span>LN</span></a></li>
+								<li><a href="#0" target="_blank" rel="nofollow" class=" wow bounceInRight" data-wow-delay="1.8s"><i class="fab fa-instagram"></i><span>IN</span></a></li>
+							</ul>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="bottom-wrapper">
+				<div class="btn-wrapper">
+					<div class="main-btn main-btn-prev wow bounceInLeft" data-wow-delay="2.0s"><i class="fa-solid fa-arrow-up"></i></div>
+					<div class="main-btn main-btn-next wow bounceInLeft" data-wow-delay="2.2s"><i class="fa-solid fa-arrow-down"></i></div>
+				</div>
+			</div>
+		</div>
+		<!--Swiper Banner End-->
+
+
+		<!-- Feature -->
+		<section class="content-inner-3 position-relative about-bx">
+			<h2 class="side-text">OnePay</h2>
+			<div class="container">
+				<div class="row align-items-center">
+					<div class="col-lg-6 m-b30">
+						<div class="dz-media wow bounceInLeft" data-wow-delay="0.4s">
+							<img src="/assets/images/about/phone.png" alt="image">
+						</div>
+					</div>
+					<div class="col-lg-6">
+						<div class="dz-content">
+							<div class="section-head">
+								<h5 class="sub-title wow fadeInUp" data-wow-delay="0.6s">Features For You</h5>
+								<h2 class="title wow fadeInUp" data-wow-delay="0.8s">WE PROVIDE THE BEST FOR YOU</h2>
+							</div>
+							<ul class="list-check list-box ">
+								<li class="wow fadeInUp" data-wow-delay="1.0s" >
+									<svg width="50" height="50" viewBox="0 0 50 50" fill="none" xmlns="http://www.w3.org/2000/svg">
+										<g clip-path="url(#clip0_13_161)">
+											<path d="M49.9995 25.0001L44.3392 18.7157L45.2255 10.3025L36.9487 8.55041L32.7267 1.21606L24.9995 4.6696L23.9565 25.0001L24.9995 45.3305L32.7268 48.784L36.9487 41.4498L45.2255 39.6975L44.3392 31.2843L49.9995 25.0001Z" fill="currentColor"/>
+											<path d="M17.2722 1.21606L13.0503 8.55041L4.7735 10.3026L5.65974 18.7157L-0.000488281 25.0001L5.65974 31.2843L4.7735 39.6975L13.0503 41.4498L17.2723 48.784L24.9996 45.3305V4.6696L17.2722 1.21606Z" fill="currentColor"/>
+											<path d="M35.4801 19.526L33.2918 17.5728L24.9995 26.863L23.9565 29.1718L24.9995 31.268L35.4801 19.526Z" fill="#fff"/>
+											<path d="M16.285 22.791L14.2109 24.8651L22.9311 33.5853L24.9995 31.268V26.863L22.81 29.316L16.285 22.791Z" fill="#fff"/>
+										</g>
+										<defs>
+											<clipPath>
+												<rect width="50" height="50" fill="white" transform="translate(-0.000488281)"/>
+											</clipPath>
+										</defs>
+									</svg>
+									There are many variations of passages of Lorem the way words which don't look believable.
+								</li>
+								<li class="wow fadeInUp" data-wow-delay="1.2s" >
+									<svg width="50" height="50" viewBox="0 0 50 50" fill="none" xmlns="http://www.w3.org/2000/svg">
+										<g clip-path="url(#clip0_13_161)">
+											<path d="M49.9995 25.0001L44.3392 18.7157L45.2255 10.3025L36.9487 8.55041L32.7267 1.21606L24.9995 4.6696L23.9565 25.0001L24.9995 45.3305L32.7268 48.784L36.9487 41.4498L45.2255 39.6975L44.3392 31.2843L49.9995 25.0001Z" fill="currentColor"/>
+											<path d="M17.2722 1.21606L13.0503 8.55041L4.7735 10.3026L5.65974 18.7157L-0.000488281 25.0001L5.65974 31.2843L4.7735 39.6975L13.0503 41.4498L17.2723 48.784L24.9996 45.3305V4.6696L17.2722 1.21606Z" fill="currentColor"/>
+											<path d="M35.4801 19.526L33.2918 17.5728L24.9995 26.863L23.9565 29.1718L24.9995 31.268L35.4801 19.526Z" fill="#fff"/>
+											<path d="M16.285 22.791L14.2109 24.8651L22.9311 33.5853L24.9995 31.268V26.863L22.81 29.316L16.285 22.791Z" fill="#fff"/>
+										</g>
+										<defs>
+											<clipPath>
+												<rect width="50" height="50" fill="white" transform="translate(-0.000488281)"/>
+											</clipPath>
+										</defs>
+									</svg>
+									There are many variations of passages of Lorem the way words which don't look believable.
+								</li>
+							</ul>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+
+
+		<!-- Icon Box -->
+		<section class="content-inner-2 position-relative" >
+			<div class="container">
+				<div class="section-head style-1 text-center">
+					<h5 class="sub-title wow fadeInUp" data-wow-delay="0.4s">SERVICE FOR YOU</h5>
+					<h2 class="title wow fadeInUp" data-wow-delay="0.6s">WHAT WE PROVIDE</h2>
+				</div>
+				<div class="row">
+					<div class="col-xl-3 col-lg-4 col-md-6 col-sm-6 m-b30">
+						<div class="icon-bx-wraper box-hover bg-primary style-3 wow fadeInUp" data-wow-delay="0.8s" >
+							<div class="icon-head">Online Courses</div>
+							<span class="data-text">01</span>
+							<div class="box">
+								<div class="icon-media">
+									<i class="fas  fa-store"></i>
+								</div>
+								<div class="icon-content">
+									<p class="text">It is a long established fact that a reader of a page when looking.</p>
+								</div>
+							</div>
+							<a href="" class="text-white">View More <i class="fa fa-arrow-right" ></i></a>
+						</div>
+					</div>
+					<div class="col-xl-3 col-lg-4 col-md-6 col-sm-6 m-b30">
+						<div class="icon-bx-wraper box-hover active bg-blue style-3 wow fadeInUp" data-wow-delay="1.0s" >
+							<div class="icon-head">Credit Card  </div>
+							<span class="data-text">02</span>
+							<div class="box">
+								<div class="icon-media">
+									<i class="fas text-blue fa-credit-card"></i>
+								</div>
+								<div class="icon-content">
+									<p class="text">It is a long established fact that a reader of a page when looking.</p>
+								</div>
+							</div>
+							<a href="" class="text-white">View More <i class="fa fa-arrow-right" ></i></a>
+						</div>
+					</div>
+					<div class="col-xl-3 col-lg-4 col-md-6 col-sm-6 m-b30">
+						<div class="icon-bx-wraper box-hover bg-pink style-3 wow fadeInUp" data-wow-delay="1.2s" >
+							<div class="icon-head">Home Loan</div>
+							<span class="data-text">03</span>
+							<div class="box">
+								<div class="icon-media">
+									<i class="fad text-pink fa-dollar-sign"></i>
+								</div>
+								<div class="icon-content">
+									<p class="text">It is a long established fact that a reader of a page when looking.</p>
+								</div>
+							</div>
+							<a href="" class="text-white">View More <i class="fa fa-arrow-right" ></i></a>
+						</div>
+					</div>
+					<div class="col-xl-3 col-lg-4 col-md-6 col-sm-6 m-b30">
+						<div class="icon-bx-wraper box-hover bg-orange style-3 wow fadeInUp" data-wow-delay="1.4s" >
+							<div class="icon-head">Mobile Banking</div>
+							<span class="data-text">04</span>
+							<div class="box">
+								<div class="icon-media">
+									<i class="fa fa-mobile"></i>
+								</div>
+								<div class="icon-content">
+									<p class="text">It is a long established fact that a reader of a page when looking.</p>
+								</div>
+							</div>
+							<a href="" class="text-white">View More <i class="fa fa-arrow-right"></i></a>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<!-- dashboard -->
+		<section class="content-inner about-bx4">
+			<div class="container">
+				<div class="row align-items-center">
+					<div class="col-lg-6">
+						<div class="dz-content">
+							<div class="section-head style-1">
+								<h2 class="title wow fadeInUp" data-wow-delay="0.6s" style="visibility: visible; animation-delay: 0.6s; animation-name: fadeInUp;">MOPHY - Payment Admin Dashboard</h2>
+								<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et</p>
+							</div>
+							<ul class="list-check list-box m-b50">
+								<li class="wow fadeInUp align-items-center" data-wow-delay="0.2s" >
+									<svg width="30" height="30" viewBox="0 0 50 50" fill="none" xmlns="http://www.w3.org/2000/svg">
+										<g clip-path="url(#clip0_13_161)">
+											<path d="M49.9995 25.0001L44.3392 18.7157L45.2255 10.3025L36.9487 8.55041L32.7267 1.21606L24.9995 4.6696L23.9565 25.0001L24.9995 45.3305L32.7268 48.784L36.9487 41.4498L45.2255 39.6975L44.3392 31.2843L49.9995 25.0001Z" fill="currentColor"></path>
+											<path d="M17.2722 1.21606L13.0503 8.55041L4.7735 10.3026L5.65974 18.7157L-0.000488281 25.0001L5.65974 31.2843L4.7735 39.6975L13.0503 41.4498L17.2723 48.784L24.9996 45.3305V4.6696L17.2722 1.21606Z" fill="currentColor"></path>
+											<path d="M35.4801 19.526L33.2918 17.5728L24.9995 26.863L23.9565 29.1718L24.9995 31.268L35.4801 19.526Z" fill="#fff"></path>
+											<path d="M16.285 22.791L14.2109 24.8651L22.9311 33.5853L24.9995 31.268V26.863L22.81 29.316L16.285 22.791Z" fill="#fff"></path>
+										</g>
+										<defs>
+											<clipPath>
+												<rect width="30" height="30" fill="white" transform="translate(-0.000488281)"></rect>
+											</clipPath>
+										</defs>
+									</svg>
+									<h5>Create Account</h5>
+								</li>
+								<li class="wow fadeInUp align-items-center" data-wow-delay="0.4s" >
+									<svg width="30" height="30" viewBox="0 0 50 50" fill="none" xmlns="http://www.w3.org/2000/svg">
+										<g clip-path="url(#clip0_13_161)">
+											<path d="M49.9995 25.0001L44.3392 18.7157L45.2255 10.3025L36.9487 8.55041L32.7267 1.21606L24.9995 4.6696L23.9565 25.0001L24.9995 45.3305L32.7268 48.784L36.9487 41.4498L45.2255 39.6975L44.3392 31.2843L49.9995 25.0001Z" fill="currentColor"></path>
+											<path d="M17.2722 1.21606L13.0503 8.55041L4.7735 10.3026L5.65974 18.7157L-0.000488281 25.0001L5.65974 31.2843L4.7735 39.6975L13.0503 41.4498L17.2723 48.784L24.9996 45.3305V4.6696L17.2722 1.21606Z" fill="currentColor"></path>
+											<path d="M35.4801 19.526L33.2918 17.5728L24.9995 26.863L23.9565 29.1718L24.9995 31.268L35.4801 19.526Z" fill="#fff"></path>
+											<path d="M16.285 22.791L14.2109 24.8651L22.9311 33.5853L24.9995 31.268V26.863L22.81 29.316L16.285 22.791Z" fill="#fff"></path>
+										</g>
+										<defs>
+											<clipPath>
+												<rect width="30" height="30" fill="white" transform="translate(-0.000488281)"></rect>
+											</clipPath>
+										</defs>
+									</svg>
+									<h5>Make A Charts Of Payments</h5>
+								</li>
+								<li class="wow fadeInUp align-items-center" data-wow-delay="0.4s" >
+									<svg width="30" height="30" viewBox="0 0 50 50" fill="none" xmlns="http://www.w3.org/2000/svg">
+										<g clip-path="url(#clip0_13_161)">
+											<path d="M49.9995 25.0001L44.3392 18.7157L45.2255 10.3025L36.9487 8.55041L32.7267 1.21606L24.9995 4.6696L23.9565 25.0001L24.9995 45.3305L32.7268 48.784L36.9487 41.4498L45.2255 39.6975L44.3392 31.2843L49.9995 25.0001Z" fill="currentColor"></path>
+											<path d="M17.2722 1.21606L13.0503 8.55041L4.7735 10.3026L5.65974 18.7157L-0.000488281 25.0001L5.65974 31.2843L4.7735 39.6975L13.0503 41.4498L17.2723 48.784L24.9996 45.3305V4.6696L17.2722 1.21606Z" fill="currentColor"></path>
+											<path d="M35.4801 19.526L33.2918 17.5728L24.9995 26.863L23.9565 29.1718L24.9995 31.268L35.4801 19.526Z" fill="#fff"></path>
+											<path d="M16.285 22.791L14.2109 24.8651L22.9311 33.5853L24.9995 31.268V26.863L22.81 29.316L16.285 22.791Z" fill="#fff"></path>
+										</g>
+										<defs>
+											<clipPath>
+												<rect width="30" height="30" fill="white" transform="translate(-0.000488281)"></rect>
+											</clipPath>
+										</defs>
+									</svg>
+									<h5>Arrange Your Payemnts By Using Mophy</h5>
+								</li>
+
+							</ul>
+
+						</div>
+					</div>
+					<div class="col-lg-6">
+
+						<div class="dz-media">
+							<div class="twentytwenty-img-area">
+								<div class="twentytwenty-container">
+									<img src="/assets/images/about/pic1.jpg" alt="" >
+									<img src="/assets/images/about/pic2.jpg" alt="" >
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<!--table  -->
+		<section class="content-inner-2 overflow-hidden position-relative">
+			<div class="container">
+				<div class="section-head style-1 text-center">
+					<h5 class="sub-title wow fadeInUp" data-wow-delay="0.4s">Process</h5>
+					<h2 class="title wow fadeInUp" data-wow-delay="0.6s">RECENTLY BEST TRANSECTIONS</h2>
+				</div>
+
+				<div class="process-table ">
+					<table class=" table-responsive ck-table">
+						<thead>
+						<tr class="head-row">
+							<th >Name</th>
+							<th  class="text-left pe-0">Date</th>
+							<th  class="text-center pe-0">Amount</th>
+							<th  class="text-start ps-0">Description</th>
+							<th  class="text-center pe-0">Details</th>
+						</tr>
+						<tr class="saprator-tr">
+
+						</tr>
+						</thead>
+
+						<tbody>
+						<tr class="">
+							<td class="">
+								<div class="icon-bx-wraper style-4">
+									<div class="icon-bx">
+										<img src="/assets/images/companys/microsoft.png" alt="">
+									</div>
+									<div class="icon-content">
+										<h4 class="title">Microsoft</h4>
+										<p>Web Designer</p>
+									</div>
+								</div>
+							</td>
+
+							<td class="date-bx text-center">
+								<span class="date">01 Feb 23</span>
+								<div class="time">11:00 PM</div>
+							</td>
+
+							<td class="ammount-bx  text-center">
+								<h4 class="ammount">$89.00</h4>
+							</td>
+
+							<td class="description text-left" >
+								It is a long established fact that
+								when looking at its layout.
+							</td>
+
+							<td class="detail-bx text-center">
+								<a href="javascript:void(0)" class="btn btn-rounded btn-s btn-sm btn-transparant">VIEW DETAIL</a>
+							</td>
+						</tr>
+						<tr class="">
+							<td class="">
+								<div class="icon-bx-wraper style-4">
+									<div class="icon-bx">
+										<img src="/assets/images/companys/google.png" alt="">
+									</div>
+									<div class="icon-content">
+										<h4 class="title">Google</h4>
+										<p>Web Designer</p>
+									</div>
+								</div>
+							</td>
+
+							<td class="date-bx text-center">
+								<span class="date">01 Feb 23</span>
+								<div class="time">11:00 PM</div>
+							</td>
+
+							<td class="ammount-bx  text-center">
+								<h4 class="ammount">$89.00</h4>
+							</td>
+
+							<td class="description text-left" >
+								It is a long established fact that
+								when looking at its layout.
+							</td>
+
+							<td class="detail-bx text-center">
+								<a href="javascript:void(0)" class="btn btn-rounded btn-sm btn-transparant">VIEW DETAIL</a>
+							</td>
+						</tr>
+						<tr class="">
+							<td class="">
+								<div class="icon-bx-wraper style-4">
+									<div class="icon-bx">
+										<img src="/assets/images/companys/adobe.png" alt="">
+									</div>
+									<div class="icon-content">
+										<h4 class="title">Adobe</h4>
+										<p>Web Designer</p>
+									</div>
+								</div>
+							</td>
+
+							<td class="date-bx text-center">
+								<span class="date">01 Feb 23</span>
+								<div class="time">11:00 PM</div>
+							</td>
+
+							<td class="ammount-bx  text-center">
+								<h4 class="ammount">$89.00</h4>
+							</td>
+
+							<td class="description text-left" >
+								It is a long established fact that
+								when looking at its layout.
+							</td>
+
+							<td class="detail-bx text-center">
+								<a href="javascript:void(0)" class="btn btn-rounded btn-sm btn-transparant">VIEW DETAIL</a>
+							</td>
+						</tr>
+						<tr class="">
+							<td class="">
+								<div class="icon-bx-wraper style-4">
+									<div class="icon-bx">
+										<img src="/assets/images/companys/amazon-icon.png" alt="">
+									</div>
+									<div class="icon-content">
+										<h4 class="title">Amazon</h4>
+										<p>Web Designer</p>
+									</div>
+								</div>
+							</td>
+
+							<td class="date-bx text-center">
+								<span class="date">01 Feb 23</span>
+								<div class="time">11:00 PM</div>
+							</td>
+
+							<td class="ammount-bx  text-center">
+								<h4 class="ammount">$89.00</h4>
+							</td>
+
+							<td class="description text-left" >
+								It is a long established fact that
+								when looking at its layout.
+							</td>
+
+							<td class="detail-bx text-center">
+								<a href="javascript:void(0)" class="btn btn-rounded btn-sm btn-transparant">VIEW DETAIL</a>
+							</td>
+						</tr>
+						<tr class="">
+							<td class="">
+								<div class="icon-bx-wraper style-4">
+									<div class="icon-bx">
+										<img src="/assets/images/companys/github.png" alt="">
+									</div>
+									<div class="icon-content">
+										<h4 class="title">Github</h4>
+										<p>Web Designer</p>
+									</div>
+								</div>
+							</td>
+
+							<td class="date-bx text-center">
+								<span class="date">01 Feb 23</span>
+								<div class="time">11:00 PM</div>
+							</td>
+
+							<td class="ammount-bx  text-center">
+								<h4 class="ammount">$89.00</h4>
+							</td>
+
+							<td class="description text-left" >
+								It is a long established fact that
+								when looking at its layout.
+							</td>
+
+							<td class="detail-bx text-center">
+								<a href="javascript:void(0)" class="btn btn-rounded btn-sm btn-transparant">VIEW DETAIL</a>
+							</td>
+						</tr>
+						<tr class="">
+							<td class="">
+								<div class="icon-bx-wraper style-4">
+									<div class="icon-bx">
+										<img src="/assets/images/companys/microsoft.png" alt="">
+									</div>
+									<div class="icon-content">
+										<h4 class="title">Microsoft</h4>
+										<p>Web Designer</p>
+									</div>
+								</div>
+							</td>
+
+							<td class="date-bx text-center">
+								<span class="date">01 Feb 23</span>
+								<div class="time">11:00 PM</div>
+							</td>
+
+							<td class="ammount-bx  text-center">
+								<h4 class="ammount">$89.00</h4>
+							</td>
+
+							<td class="description text-left" >
+								It is a long established fact that
+								when looking at its layout.
+							</td>
+
+							<td class="detail-bx text-center">
+								<a href="javascript:void(0)" class="btn btn-rounded btn-sm btn-transparant">VIEW DETAIL</a>
+							</td>
+						</tr>
+						<tr class="">
+							<td class="">
+								<div class="icon-bx-wraper style-4">
+									<div class="icon-bx">
+										<img src="/assets/images/companys/google.png" alt="">
+									</div>
+									<div class="icon-content">
+										<h4 class="title">Google</h4>
+										<p>Web Designer</p>
+									</div>
+								</div>
+							</td>
+
+							<td class="date-bx text-center">
+								<span class="date">01 Feb 23</span>
+								<div class="time">11:00 PM</div>
+							</td>
+
+							<td class="ammount-bx  text-center">
+								<h4 class="ammount">$89.00</h4>
+							</td>
+
+							<td class="description text-left" >
+								It is a long established fact that
+								when looking at its layout.
+							</td>
+
+							<td class="detail-bx text-center">
+								<a href="javascript:void(0)" class="btn btn-rounded btn-sm btn-transparant">VIEW DETAIL</a>
+							</td>
+						</tr>
+						<tr class="">
+							<td class="">
+								<div class="icon-bx-wraper style-4">
+									<div class="icon-bx">
+										<img src="/assets/images/companys/adobe.png" alt="">
+									</div>
+									<div class="icon-content">
+										<h4 class="title">Adobe</h4>
+										<p>Web Designer</p>
+									</div>
+								</div>
+							</td>
+
+							<td class="date-bx text-center">
+								<span class="date">01 Feb 23</span>
+								<div class="time">11:00 PM</div>
+							</td>
+
+							<td class="ammount-bx  text-center">
+								<h4 class="ammount">$89.00</h4>
+							</td>
+
+							<td class="description text-left" >
+								It is a long established fact that
+								when looking at its layout.
+							</td>
+
+							<td class="detail-bx text-center">
+								<a href="javascript:void(0)" class="btn btn-rounded btn-sm btn-transparant">VIEW DETAIL</a>
+							</td>
+						</tr>
+						</tbody>
+					</table>
+				</div>
+			</div>
+		</section>
+	</div>
+
+	<!-- Footer -->
+	<footer class="site-footer style-1" id="footer" style="background-image: url(assets/images/background/bg1.jpg);">
+		<div class="footer-top">
+			<div class="container">
+				<div class="wrapper-inner">
+					<div class="row align-items-center gap-3 gap-sm-0">
+						<div class="col-xl-4 col-md-5">
+							<div class="logo mb-2">
+								<img src="/assets/images/logo-white.png" alt="footer-logo">
+							</div>
+							<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
+						</div>
+						<div class="col-md-7 col-xl-6 ms-auto">
+							<h6 class="title">Subscribe To Our Newsletter</h6>
+							<div class="dz-subscribe style-4">
+								<form class="dzSubscribe" action="script/mailchamp.php" method="post">
+									<div class="dzSubscribeMsg"></div>
+									<div class="form-group">
+										<div class="input-group">
+											<input name="dzEmail" required="required" type="email" class="form-control" placeholder="Email Address">
+											<div class="input-group-addon">
+												<button name="submit" value="Submit" type="submit" class="btn btn-primary">Subscribe</button>
+											</div>
+										</div>
+									</div>
+								</form>
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<div class="row p-t60">
+					<div class="col-xl-3 col-lg-3  col-sm-6 wow fadeIn" data-wow-duration="2s" data-wow-delay="1.0s">
+						<div class="widget widget_getintuch">
+							<h5 class="footer-title">Contact Us</h5>
+							<ul>
+								<li>
+									<i class="fas fa-map-marker-alt "></i>
+									<span>Marmora Road Chi Minh City, Vietnam</span>
+								</li>
+								<li>
+									<i class="fa fa-phone"></i>
+									<span>+91 123-456-7890<br>+91 987-654-3210</span>
+								</li>
+								<li>
+									<i class="fa fa-envelope "></i>
+									<span>info@example.com <br>info@example.com</span>
+								</li>
+
+							</ul>
+						</div>
+					</div>
+					<div class="col-xl-3 col-lg-3   col-sm-6 wow fadeIn" data-wow-duration="2s" data-wow-delay="0.4s">
+						<div class="widget widget_services style-1">
+							<h5 class="footer-title">Our links</h5>
+							<ul>
+								<li><a href="dashboard.html">Home</a></li>
+								<li><a href="about-us-1.html">About Us</a></li>
+								<li><a href="javascript:void(0)">Services</a></li>
+								<li><a href="javascript:void(0)">Team</a></li>
+								<li><a href="blog-details.html">Blog</a></li>
+							</ul>
+						</div>
+					</div>
+					<div class="col-xl-3 col-lg-3 col-sm-6 wow fadeIn" data-wow-duration="2s" data-wow-delay="0.6s">
+						<div class="widget widget_services style-1">
+							<h5 class="footer-title">Our Services</h5>
+							<ul>
+								<li><a href="javascript:void(0)">Strategy & Research</a></li>
+								<li><a href="javascript:void(0)">Web Development</a></li>
+								<li><a href="javascript:void(0)">Web Solution</a></li>
+								<li><a href="javascript:void(0)">Digital Marketing</a></li>
+								<li><a href="javascript:void(0)">App Design </a></li>
+							</ul>
+						</div>
+					</div>
+					<div class="col-xl-3 col-lg-3   col-sm-6 wow fadeIn" data-wow-duration="2s" data-wow-delay="0.8s">
+						<div class="widget widget_services style-1">
+							<h5 class="footer-title">Other links</h5>
+							<ul>
+								<li><a href="faq.html">FAQ</a></li>
+								<li><a href="javascript:void(0)">Portfolio</a></li>
+								<li><a href="javascript:void(0)">Privacy Policy</a></li>
+								<li><a href="javascript:void(0)">Terms & Conditions</a></li>
+								<li><a href="javascript:void(0)">Support </a></li>
+							</ul>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- footer bottom part -->
+		<div class="footer-bottom">
+			<div class="container">
+				<div class="row align-items-center">
+					<div class="col-md-7 text-left">
+						<span class="copyright-text">Copyright © 2023 <a href="https://dexignzone.com/" target="_blank">DexignZone</a>. All rights reserved.</span>
+					</div>
+					<div class="col-md-5 ms-auto">
+						<ul class="footer-link ">
+							<li><a href="about-us.html">About</a></li>
+							<li><a href="javascript:void(0)">Help Desk</a></li>
+							<li><a href="javascript:void(0)">Privacy Policy</a></li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+	</footer>
+	<!-- Footer End -->
+
+	<button class="scroltop icon-up" type="button"><i class="fas fa-arrow-up"></i></button>
+
+
+	<!-- Authentication Modal -->
+	<div class="modal fade modal-wrapper auth-modal" id="modalLogin" tabindex="-1" role="dialog" aria-labelledby="modalLogin" aria-hidden="true">
+		<div class="modal-dialog" role="document">
+			<!-- Login Your Account -->
+			<div class="modal-content">
+				<h2 class="title">Login Your Account</h2>
+				<form method="post" th:action="@{/login}">
+					<div class="form-group">
+						<input name="username" type="text" class="form-control" placeholder="Username">
+					</div>
+					<div class="form-group">
+						<input name="password" type="password" class="form-control" placeholder="Password">
+						<div class="reset-password">
+							<a class="btn-link collapsed" data-bs-toggle="collapse" href="#reset-password" role="button" aria-expanded="false" aria-controls="reset-password">Reset password?</a>
+						</div>
+					</div>
+					<div class="form-group">
+						<button type="submit" class="btn btn-rounded btn-sm btn-outline-primary btn-block">Login</button>
+					</div>
+					<div class="sign-text">
+						<span>Don't have a OnePay account? <a class="btn-link collapsed" data-bs-toggle="collapse" href="#sign-up" role="button" aria-expanded="false" aria-controls="sign-up">Sign up</a></span>
+					</div>
+				</form>
+			</div>
+
+			<!-- Reset Password -->
+			<div class="modal-content collapse reset-password" id="reset-password">
+				<h2 class="title">Reset password?</h2>
+				<form>
+					<div class="form-group password-icon-bx">
+						<i class="fa fa-lock"></i>
+						<p>Enter your email address associated with your account, and we'll email you a link to reset your password...</p>
+					</div>
+					<div class="form-group">
+						<input type="email" class="form-control" placeholder="Enter email address">
+					</div>
+					<div class="form-group">
+						<button type="submit" class="btn btn-rounded btn-sm btn-outline-primary btn-block">Send reset link</button>
+					</div>
+					<a data-bs-toggle="collapse" href="#reset-password" class="sign-text" role="button" aria-expanded="false" aria-controls="reset-password">Back</a>
+				</form>
+			</div>
+
+			<!-- Sign Up Your Account -->
+			<div class="modal-content collapse sign-up" id="sign-up">
+				<h2 class="title">Sign Up Your Account</h2>
+				<form id="registrationForm" method="post" th:action="@{/register}">
+					<div class="form-group">
+						<input id="username" name="username" required type="text" class="form-control" placeholder="Username">
+					</div>
+					<div class="form-group">
+						<input id="email" name="email" required type="email" class="form-control" placeholder="Email Address">
+					</div>
+					<div class="form-group">
+						<input id="password" name="password" required type="password" class="form-control" placeholder="Password">
+					</div>
+					<div class="form-group">
+						<input id="confirm-password" name="confirm-password" required type="password" class="form-control" placeholder="Confirm Password">
+					</div>
+					<div class="form-group">
+						<input id="phone" name="phone" required type="tel" class="form-control" placeholder="Phone Number">
+					</div>
+					<div class="form-group">
+						<button id="submit-register" type="submit" class="btn btn-rounded btn-sm btn-outline-primary btn-block">Sign Up</button>
+					</div>
+					<div class="sign-text">
+						<span>Already have a OnePay account? <a class="btn-link collapsed" data-bs-toggle="collapse" href="#sign-up" role="button" aria-expanded="false" aria-controls="sign-up">Login</a></span>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+
+	<!-- JAVASCRIPT FILES ========================================= -->
+	<script src="/assets/js/jquery.min.js"></script><!-- JQUERY.MIN JS -->
+	<script src="/assets/js/anm.js"></script><!-- JQUERY.MIN JS -->
+	<script src="/assets/vendor/wow/wow.js"></script><!-- WOW.JS -->
+	<script src="/assets/vendor/swiper/swiper-bundle.min.js"></script><!-- OWL silder -->
+	<script src="/assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script><!-- WOW.JS -->
+	<script src="/assets/vendor/counter/waypoints-min.js"></script><!-- WAYPOINTS JS -->
+	<script src="/assets/vendor/counter/counterup.min.js"></script><!-- COUNTERUP JS -->
+	<script src="/assets/vendor/magnific-popup/magnific-popup.js"></script><!-- OWL SLIDER -->
+	<script src="/assets/js/dz.carousel.js"></script><!-- OWL SLIDER -->
+	<script src="/assets/js/dz.ajax.js"></script><!-- AJAX -->
+	<script src="/assets/vendor/odometer/odometer.js"></script><!-- ODOMETER -->
+	<script src="/assets/js/custom.js"></script><!-- CUSTOM JS -->
+	<script src="/assets/vendor/switcher/switcher.js"></script><!-- SWITCHER -->
+	<script src="/assets/vendor/rangeslider/rangeslider.js"></script><!-- RANGESLIDER -->
+	<script src="/assets/plugin/twentytwenty-master/js/jquery.event.move.js"></script>
+	<script src="/assets/plugin/twentytwenty-master/js/jquery.twentytwenty.js"></script>
+
+	<script>
+		$(window).on('load', function () {
+			$(".twentytwenty-container[data-orientation!='vertical']").twentytwenty({default_offset_pct: 0.5});
+			$(".twentytwenty-container[data-orientation='vertical']").twentytwenty({
+				default_offset_pct: 0.3,
+				orientation: 'vertical'
+			});
+		});
+	</script>
+
+	<script>
+		//function for submit report
+		document.getElementById('registrationForm').addEventListener('submit', function (event) {
+			event.preventDefault(); // Prevent the default form submission
+			const username = document.getElementById('username').value;
+			const password = document.getElementById('password').value;
+			const confirmPassword = document.getElementById('confirm-password').value;
+			const email = document.getElementById('email').value;
+			const phoneNumber = document.getElementById('phone').value;
+			const data = {
+				username,
+				password,
+				email,
+				phoneNumber
+			};
+
+			if (password === confirmPassword) {
+				const jsonData = JSON.stringify(data);
+				fetch('/OnePay/signUp', {
+					method: 'POST',
+					headers: {'Content-Type': 'application/json'},
+					body: jsonData
+				})
+						.then(response => response.json())
+						.then(data => {
+							// Handle success - redirect to a success page or show a message
+							console.log('Success:', data);
+							window.location.href = "/"
+						})
+						.catch((error) => {
+							// Handle error
+							console.error('Error:', error);
+						});
+			} else {
+				// Handle password mismatch
+				alert('Passwords do not match');
+			}
+		});
+	</script>
+
+	</body>
 </html>

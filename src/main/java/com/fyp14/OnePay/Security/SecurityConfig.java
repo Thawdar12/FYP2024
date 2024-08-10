@@ -53,13 +53,15 @@ public class SecurityConfig {
                     httpForm
                             .loginPage("/OnePay/home").permitAll()  // Custom login page
                             .loginProcessingUrl("/login")          // Endpoint for login processing
-                            .defaultSuccessUrl("/OnePay/dashboard")  // Redirect on successful login
+                            .defaultSuccessUrl("/OnePay/dashboard/index")  // Redirect on successful login
                             .failureUrl("/OnePay/home?error=true");   // Redirect on login failure
                 })  //this override the default Spring Boot login form
 
                 .authorizeHttpRequests(registry -> {
-                    registry.requestMatchers("/", "/OnePay/home", "/OnePay/signUp", "/css/**", "/js/**").permitAll();
-                    registry.anyRequest().authenticated();
+                    registry
+                            .requestMatchers("/assets/**", "/css/**", "/js/**", "/images/**", "/dashboardassets/**").permitAll()
+                            .requestMatchers("/", "/OnePay/home", "/OnePay/signUp").permitAll()
+                            .anyRequest().authenticated();
                 })  //this allows user to visit these page without login
 
                 .build();

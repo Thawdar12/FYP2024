@@ -18,18 +18,22 @@ repositories {
 }
 
 dependencies {
-    implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
-    implementation 'org.mariadb.jdbc:mariadb-java-client'
-    implementation 'org.springframework.boot:spring-boot-starter-web'
-	implementation 'org.projectlombok:lombok'
-	implementation 'org.springframework.boot:spring-boot-starter-security'
-	implementation 'org.springframework.boot:spring-boot-starter-mail'
-    implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
-    implementation 'org.thymeleaf.extras:thymeleaf-extras-springsecurity6'
+    implementation 'org.springframework.boot:spring-boot-starter-data-jpa' //database interaction
+    implementation 'org.mariadb.jdbc:mariadb-java-client' //MariaDB
+    implementation 'org.springframework.boot:spring-boot-starter-web' //Spring Boots security
+    implementation 'org.projectlombok:lombok' //reduce boilerplate code
+    implementation 'org.springframework.boot:spring-boot-starter-security' //Spring Boots build in security
+    implementation 'org.springframework.boot:spring-boot-starter-mail' //mailing service
+    implementation 'org.springframework.boot:spring-boot-starter-thymeleaf' //HTML engine
+    implementation 'org.thymeleaf.extras:thymeleaf-extras-springsecurity6' //Thymeleaf security
+    implementation('nz.net.ultraq.thymeleaf:thymeleaf-layout-dialect')
+    implementation('org.webjars:bootstrap:5.3.3')
+
+    developmentOnly 'org.springframework.boot:spring-boot-devtools' // hot swap
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
-	testImplementation 'org.springframework.security:spring-security-test'
-	runtimeOnly 'org.mariadb.jdbc:mariadb-java-client'
-	testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
+    testImplementation 'org.springframework.security:spring-security-test'
+    runtimeOnly 'org.mariadb.jdbc:mariadb-java-client'
+    testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
 }
 
 tasks.named('test') {
