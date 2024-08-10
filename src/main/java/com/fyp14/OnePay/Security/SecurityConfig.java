@@ -59,7 +59,7 @@ public class SecurityConfig {
 
                 .authorizeHttpRequests(registry -> {
                     registry
-                            .requestMatchers("/assets/**", "/css/**", "/js/**", "/images/**", "/dashboardassets/**").permitAll()
+                            .requestMatchers("/assets/**", "/css/**", "/js/**", "/images/**").permitAll()
                             .requestMatchers("/", "/OnePay/home", "/OnePay/signUp").permitAll()
                             .anyRequest().authenticated();
                 })  //this allows user to visit these page without login
