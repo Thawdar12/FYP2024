@@ -23,6 +23,9 @@
     <link rel="stylesheet" th:href="@{/dashboardassets/vendor/bootstrap-select/dist/css/bootstrap-select.min.css}">
     <link rel="stylesheet" th:href="@{/dashboardassets/vendor/owl-carousel/owl.carousel.css}">
     <link class="main-css" rel="stylesheet" th:href="@{/dashboardassets/css/style.css}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js">
+
 </head>
 
 <body>
@@ -51,9 +54,9 @@
     ***********************************-->
     <div class="nav-header">
         <a class="brand-logo" href="/OnePay/dashboard/index.html">
-            <img alt="" class="logo-abbr" src="/dashboardassets/images/logo.png">
-            <img alt="" class="logo-compact" src="/dashboardassets/images/logo-text.png">
-            <img alt="" class="brand-title" src="/dashboardassets/images/logo-text.png">
+            <img alt="" class="logo-abbr" src="/assets/images/logo-wallet.png">
+            <img alt="" class="logo-compact" src="/assets/images/logo-word.png">
+            <img alt="" class="brand-title" src="/assets/images/logo-word.png">
         </a>
 
         <div class="nav-control">
@@ -66,658 +69,6 @@
         Nav header end
     ***********************************-->
 
-    <!--**********************************
-        Chat box start
-    ***********************************-->
-    <div class="chatbox">
-        <div class="chatbox-close"></div>
-        <div class="custom-tab-1">
-            <ul class="nav nav-tabs">
-                <li class="nav-item">
-                    <a class="nav-link" data-bs-toggle="tab" href="#notes">Notes</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" data-bs-toggle="tab" href="#alerts">Alerts</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link active" data-bs-toggle="tab" href="#chat">Chat</a>
-                </li>
-            </ul>
-            <div class="tab-content">
-                <div class="tab-pane fade active show" id="chat" role="tabpanel">
-                    <div class="card mb-sm-3 mb-md-0 contacts_card dz-chat-user-box">
-                        <div class="card-header chat-list-header text-center">
-                            <a href="javascript:void(0)">
-                                <svg height="1.125rem"
-                                     version="1.1" viewBox="0 0 24 24"
-                                     width="1.125rem" xmlns="http://www.w3.org/2000/svg">
-                                    <g fill="none" fill-rule="evenodd" stroke="none" stroke-width="1">
-                                        <rect fill="#000000" height="2" rx="1" width="16" x="4" y="11"/>
-                                        <rect fill="#000000" height="2"
-                                              opacity="0.3"
-                                              rx="1"
-                                              transform="translate(12.000000, 12.000000) rotate(-270.000000) translate(-12.000000, -12.000000) "
-                                              width="16" x="4" y="11"/>
-                                    </g>
-                                </svg>
-                            </a>
-                            <div>
-                                <h6 class="mb-1">Chat List</h6>
-                                <p class="mb-0">Show All</p>
-                            </div>
-                            <a href="javascript:void(0)">
-                                <svg height="1.125rem"
-                                     version="1.1" viewBox="0 0 24 24"
-                                     width="1.125rem" xmlns="http://www.w3.org/2000/svg">
-                                    <g fill="none" fill-rule="evenodd" stroke="none" stroke-width="1">
-                                        <rect height="24" width="24" x="0" y="0"/>
-                                        <circle cx="5" cy="12" fill="#000000" r="2"/>
-                                        <circle cx="12" cy="12" fill="#000000" r="2"/>
-                                        <circle cx="19" cy="12" fill="#000000" r="2"/>
-                                    </g>
-                                </svg>
-                            </a>
-                        </div>
-                        <div class="card-body contacts_body p-0 dz-scroll  " id="DZ_W_Contacts_Body">
-                            <ul class="contacts">
-                                <li class="name-first-letter">A</li>
-                                <li class="active dz-chat-user">
-                                    <div class="d-flex bd-highlight">
-                                        <div class="img_cont">
-                                            <img alt="" class="rounded-circle user_img"
-                                                 src="/dashboardassets/images/avatar/1.jpg">
-                                            <span class="online_icon"></span>
-                                        </div>
-                                        <div class="user_info">
-                                            <span>Archie Parker</span>
-                                            <p>Kalid is online</p>
-                                        </div>
-                                    </div>
-                                </li>
-                                <li class="dz-chat-user">
-                                    <div class="d-flex bd-highlight">
-                                        <div class="img_cont">
-                                            <img alt="" class="rounded-circle user_img"
-                                                 src="/dashboardassets/images/avatar/2.jpg">
-                                            <span class="online_icon offline"></span>
-                                        </div>
-                                        <div class="user_info">
-                                            <span>Alfie Mason</span>
-                                            <p>Taherah left 7 mins ago</p>
-                                        </div>
-                                    </div>
-                                </li>
-                                <li class="dz-chat-user">
-                                    <div class="d-flex bd-highlight">
-                                        <div class="img_cont">
-                                            <img alt="" class="rounded-circle user_img"
-                                                 src="/dashboardassets/images/avatar/3.jpg">
-                                            <span class="online_icon"></span>
-                                        </div>
-                                        <div class="user_info">
-                                            <span>AharlieKane</span>
-                                            <p>Sami is online</p>
-                                        </div>
-                                    </div>
-                                </li>
-                                <li class="dz-chat-user">
-                                    <div class="d-flex bd-highlight">
-                                        <div class="img_cont">
-                                            <img alt="" class="rounded-circle user_img"
-                                                 src="/dashboardassets/images/avatar/4.jpg">
-                                            <span class="online_icon offline"></span>
-                                        </div>
-                                        <div class="user_info">
-                                            <span>Athan Jacoby</span>
-                                            <p>Nargis left 30 mins ago</p>
-                                        </div>
-                                    </div>
-                                </li>
-                                <li class="name-first-letter">B</li>
-                                <li class="dz-chat-user">
-                                    <div class="d-flex bd-highlight">
-                                        <div class="img_cont">
-                                            <img alt="" class="rounded-circle user_img"
-                                                 src="/dashboardassets/images/avatar/5.jpg">
-                                            <span class="online_icon offline"></span>
-                                        </div>
-                                        <div class="user_info">
-                                            <span>Bashid Samim</span>
-                                            <p>Rashid left 50 mins ago</p>
-                                        </div>
-                                    </div>
-                                </li>
-                                <li class="dz-chat-user">
-                                    <div class="d-flex bd-highlight">
-                                        <div class="img_cont">
-                                            <img alt="" class="rounded-circle user_img"
-                                                 src="/dashboardassets/images/avatar/1.jpg">
-                                            <span class="online_icon"></span>
-                                        </div>
-                                        <div class="user_info">
-                                            <span>Breddie Ronan</span>
-                                            <p>Kalid is online</p>
-                                        </div>
-                                    </div>
-                                </li>
-                                <li class="dz-chat-user">
-                                    <div class="d-flex bd-highlight">
-                                        <div class="img_cont">
-                                            <img alt="" class="rounded-circle user_img"
-                                                 src="/dashboardassets/images/avatar/2.jpg">
-                                            <span class="online_icon offline"></span>
-                                        </div>
-                                        <div class="user_info">
-                                            <span>Ceorge Carson</span>
-                                            <p>Taherah left 7 mins ago</p>
-                                        </div>
-                                    </div>
-                                </li>
-                                <li class="name-first-letter">D</li>
-                                <li class="dz-chat-user">
-                                    <div class="d-flex bd-highlight">
-                                        <div class="img_cont">
-                                            <img alt="" class="rounded-circle user_img"
-                                                 src="/dashboardassets/images/avatar/3.jpg">
-                                            <span class="online_icon"></span>
-                                        </div>
-                                        <div class="user_info">
-                                            <span>Darry Parker</span>
-                                            <p>Sami is online</p>
-                                        </div>
-                                    </div>
-                                </li>
-                                <li class="dz-chat-user">
-                                    <div class="d-flex bd-highlight">
-                                        <div class="img_cont">
-                                            <img alt="" class="rounded-circle user_img"
-                                                 src="/dashboardassets/images/avatar/4.jpg">
-                                            <span class="online_icon offline"></span>
-                                        </div>
-                                        <div class="user_info">
-                                            <span>Denry Hunter</span>
-                                            <p>Nargis left 30 mins ago</p>
-                                        </div>
-                                    </div>
-                                </li>
-                                <li class="name-first-letter">J</li>
-                                <li class="dz-chat-user">
-                                    <div class="d-flex bd-highlight">
-                                        <div class="img_cont">
-                                            <img alt="" class="rounded-circle user_img"
-                                                 src="/dashboardassets/images/avatar/5.jpg">
-                                            <span class="online_icon offline"></span>
-                                        </div>
-                                        <div class="user_info">
-                                            <span>Jack Ronan</span>
-                                            <p>Rashid left 50 mins ago</p>
-                                        </div>
-                                    </div>
-                                </li>
-                                <li class="dz-chat-user">
-                                    <div class="d-flex bd-highlight">
-                                        <div class="img_cont">
-                                            <img alt="" class="rounded-circle user_img"
-                                                 src="/dashboardassets/images/avatar/1.jpg">
-                                            <span class="online_icon"></span>
-                                        </div>
-                                        <div class="user_info">
-                                            <span>Jacob Tucker</span>
-                                            <p>Kalid is online</p>
-                                        </div>
-                                    </div>
-                                </li>
-                                <li class="dz-chat-user">
-                                    <div class="d-flex bd-highlight">
-                                        <div class="img_cont">
-                                            <img alt="" class="rounded-circle user_img"
-                                                 src="/dashboardassets/images/avatar/2.jpg">
-                                            <span class="online_icon offline"></span>
-                                        </div>
-                                        <div class="user_info">
-                                            <span>James Logan</span>
-                                            <p>Taherah left 7 mins ago</p>
-                                        </div>
-                                    </div>
-                                </li>
-                                <li class="dz-chat-user">
-                                    <div class="d-flex bd-highlight">
-                                        <div class="img_cont">
-                                            <img alt="" class="rounded-circle user_img"
-                                                 src="/dashboardassets/images/avatar/3.jpg">
-                                            <span class="online_icon"></span>
-                                        </div>
-                                        <div class="user_info">
-                                            <span>Joshua Weston</span>
-                                            <p>Sami is online</p>
-                                        </div>
-                                    </div>
-                                </li>
-                                <li class="name-first-letter">O</li>
-                                <li class="dz-chat-user">
-                                    <div class="d-flex bd-highlight">
-                                        <div class="img_cont">
-                                            <img alt="" class="rounded-circle user_img"
-                                                 src="/dashboardassets/images/avatar/4.jpg">
-                                            <span class="online_icon offline"></span>
-                                        </div>
-                                        <div class="user_info">
-                                            <span>Oliver Acker</span>
-                                            <p>Nargis left 30 mins ago</p>
-                                        </div>
-                                    </div>
-                                </li>
-                                <li class="dz-chat-user">
-                                    <div class="d-flex bd-highlight">
-                                        <div class="img_cont">
-                                            <img alt="" class="rounded-circle user_img"
-                                                 src="/dashboardassets/images/avatar/5.jpg">
-                                            <span class="online_icon offline"></span>
-                                        </div>
-                                        <div class="user_info">
-                                            <span>Oscar Weston</span>
-                                            <p>Rashid left 50 mins ago</p>
-                                        </div>
-                                    </div>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="card chat dz-chat-history-box d-none">
-                        <div class="card-header chat-list-header text-center">
-                            <a class="dz-chat-history-back" href="javascript:void(0)">
-                                <svg height="1.125rem"
-                                     version="1.1" viewBox="0 0 24 24" width="1.125rem"
-                                     xmlns="http://www.w3.org/2000/svg">
-                                    <g fill="none" fill-rule="evenodd" stroke="none" stroke-width="1">
-                                        <polygon points="0 0 24 0 24 24 0 24"/>
-                                        <rect fill="#000000" height="10"
-                                              opacity="0.3"
-                                              rx="1"
-                                              transform="translate(15.000000, 12.000000) scale(-1, 1) rotate(-90.000000) translate(-15.000000, -12.000000) "
-                                              width="2" x="14" y="7"/>
-                                        <path
-                                                d="M3.7071045,15.7071045 C3.3165802,16.0976288 2.68341522,16.0976288 2.29289093,15.7071045 C1.90236664,15.3165802 1.90236664,14.6834152 2.29289093,14.2928909 L8.29289093,8.29289093 C8.67146987,7.914312 9.28105631,7.90106637 9.67572234,8.26284357 L15.6757223,13.7628436 C16.0828413,14.136036 16.1103443,14.7686034 15.7371519,15.1757223 C15.3639594,15.5828413 14.7313921,15.6103443 14.3242731,15.2371519 L9.03007346,10.3841355 L3.7071045,15.7071045 Z"
-                                                fill="#000000" fill-rule="nonzero"
-                                                transform="translate(9.000001, 11.999997) scale(-1, -1) rotate(90.000000) translate(-9.000001, -11.999997) "/>
-                                    </g>
-                                </svg>
-                            </a>
-                            <div>
-                                <h6 class="mb-1">Chat with Khelesh</h6>
-                                <p class="mb-0 text-success">Online</p>
-                            </div>
-                            <div class="dropdown">
-                                <a data-bs-toggle="dropdown" href="javascript:void(0)">
-                                    <svg
-                                            height="1.125rem"
-                                            version="1.1"
-                                            viewBox="0 0 24 24" width="1.125rem" xmlns="http://www.w3.org/2000/svg">
-                                        <g fill="none" fill-rule="evenodd" stroke="none" stroke-width="1">
-                                            <rect height="24" width="24" x="0" y="0"/>
-                                            <circle cx="5" cy="12" fill="#000000" r="2"/>
-                                            <circle cx="12" cy="12" fill="#000000" r="2"/>
-                                            <circle cx="19" cy="12" fill="#000000" r="2"/>
-                                        </g>
-                                    </svg>
-                                </a>
-                                <ul class="dropdown-menu dropdown-menu-end">
-                                    <li class="dropdown-item"><i class="fa fa-user-circle text-primary me-2"></i>
-                                        View profile
-                                    </li>
-                                    <li class="dropdown-item"><i class="fa fa-users text-primary me-2"></i> Add to
-                                        close friends
-                                    </li>
-                                    <li class="dropdown-item"><i class="fa fa-plus text-primary me-2"></i> Add to
-                                        group
-                                    </li>
-                                    <li class="dropdown-item"><i class="fa fa-ban text-primary me-2"></i> Block</li>
-                                </ul>
-                            </div>
-                        </div>
-                        <div class="card-body msg_card_body dz-scroll" id="DZ_W_Contacts_Body3">
-                            <div class="d-flex justify-content-start mb-4">
-                                <div class="img_cont_msg">
-                                    <img alt="" class="rounded-circle user_img_msg"
-                                         src="/dashboardassets/images/avatar/1.jpg">
-                                </div>
-                                <div class="msg_cotainer">
-                                    Hi, how are you samim?
-                                    <span class="msg_time">8:40 AM, Today</span>
-                                </div>
-                            </div>
-                            <div class="d-flex justify-content-end mb-4">
-                                <div class="msg_cotainer_send">
-                                    Hi Khalid I am good tnx how about you?
-                                    <span class="msg_time_send">8:55 AM, Today</span>
-                                </div>
-                                <div class="img_cont_msg">
-                                    <img alt="" class="rounded-circle user_img_msg"
-                                         src="/dashboardassets/images/avatar/2.jpg">
-                                </div>
-                            </div>
-                            <div class="d-flex justify-content-start mb-4">
-                                <div class="img_cont_msg">
-                                    <img alt="" class="rounded-circle user_img_msg"
-                                         src="/dashboardassets/images/avatar/1.jpg">
-                                </div>
-                                <div class="msg_cotainer">
-                                    I am good too, thank you for your chat template
-                                    <span class="msg_time">9:00 AM, Today</span>
-                                </div>
-                            </div>
-                            <div class="d-flex justify-content-end mb-4">
-                                <div class="msg_cotainer_send">
-                                    You are welcome
-                                    <span class="msg_time_send">9:05 AM, Today</span>
-                                </div>
-                                <div class="img_cont_msg">
-                                    <img alt="" class="rounded-circle user_img_msg"
-                                         src="/dashboardassets/images/avatar/2.jpg">
-                                </div>
-                            </div>
-                            <div class="d-flex justify-content-start mb-4">
-                                <div class="img_cont_msg">
-                                    <img alt="" class="rounded-circle user_img_msg"
-                                         src="/dashboardassets/images/avatar/1.jpg">
-                                </div>
-                                <div class="msg_cotainer">
-                                    I am looking for your next templates
-                                    <span class="msg_time">9:07 AM, Today</span>
-                                </div>
-                            </div>
-                            <div class="d-flex justify-content-end mb-4">
-                                <div class="msg_cotainer_send">
-                                    Ok, thank you have a good day
-                                    <span class="msg_time_send">9:10 AM, Today</span>
-                                </div>
-                                <div class="img_cont_msg">
-                                    <img alt="" class="rounded-circle user_img_msg"
-                                         src="/dashboardassets/images/avatar/2.jpg">
-                                </div>
-                            </div>
-                            <div class="d-flex justify-content-start mb-4">
-                                <div class="img_cont_msg">
-                                    <img alt="" class="rounded-circle user_img_msg"
-                                         src="/dashboardassets/images/avatar/1.jpg">
-                                </div>
-                                <div class="msg_cotainer">
-                                    Bye, see you
-                                    <span class="msg_time">9:12 AM, Today</span>
-                                </div>
-                            </div>
-                            <div class="d-flex justify-content-start mb-4">
-                                <div class="img_cont_msg">
-                                    <img alt="" class="rounded-circle user_img_msg"
-                                         src="/dashboardassets/images/avatar/1.jpg">
-                                </div>
-                                <div class="msg_cotainer">
-                                    Hi, how are you samim?
-                                    <span class="msg_time">8:40 AM, Today</span>
-                                </div>
-                            </div>
-                            <div class="d-flex justify-content-end mb-4">
-                                <div class="msg_cotainer_send">
-                                    Hi Khalid I am good tnx how about you?
-                                    <span class="msg_time_send">8:55 AM, Today</span>
-                                </div>
-                                <div class="img_cont_msg">
-                                    <img alt="" class="rounded-circle user_img_msg"
-                                         src="/dashboardassets/images/avatar/2.jpg">
-                                </div>
-                            </div>
-                            <div class="d-flex justify-content-start mb-4">
-                                <div class="img_cont_msg">
-                                    <img alt="" class="rounded-circle user_img_msg"
-                                         src="/dashboardassets/images/avatar/1.jpg">
-                                </div>
-                                <div class="msg_cotainer">
-                                    I am good too, thank you for your chat template
-                                    <span class="msg_time">9:00 AM, Today</span>
-                                </div>
-                            </div>
-                            <div class="d-flex justify-content-end mb-4">
-                                <div class="msg_cotainer_send">
-                                    You are welcome
-                                    <span class="msg_time_send">9:05 AM, Today</span>
-                                </div>
-                                <div class="img_cont_msg">
-                                    <img alt="" class="rounded-circle user_img_msg"
-                                         src="/dashboardassets/images/avatar/2.jpg">
-                                </div>
-                            </div>
-                            <div class="d-flex justify-content-start mb-4">
-                                <div class="img_cont_msg">
-                                    <img alt="" class="rounded-circle user_img_msg"
-                                         src="/dashboardassets/images/avatar/1.jpg">
-                                </div>
-                                <div class="msg_cotainer">
-                                    I am looking for your next templates
-                                    <span class="msg_time">9:07 AM, Today</span>
-                                </div>
-                            </div>
-                            <div class="d-flex justify-content-end mb-4">
-                                <div class="msg_cotainer_send">
-                                    Ok, thank you have a good day
-                                    <span class="msg_time_send">9:10 AM, Today</span>
-                                </div>
-                                <div class="img_cont_msg">
-                                    <img alt="" class="rounded-circle user_img_msg"
-                                         src="/dashboardassets/images/avatar/2.jpg">
-                                </div>
-                            </div>
-                            <div class="d-flex justify-content-start mb-4">
-                                <div class="img_cont_msg">
-                                    <img alt="" class="rounded-circle user_img_msg"
-                                         src="/dashboardassets/images/avatar/1.jpg">
-                                </div>
-                                <div class="msg_cotainer">
-                                    Bye, see you
-                                    <span class="msg_time">9:12 AM, Today</span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="card-footer type_msg">
-                            <div class="input-group">
-                                <textarea class="form-control" placeholder="Type your message..."></textarea>
-                                <div class="input-group-append">
-                                    <button class="btn btn-primary" type="button"><i
-                                            class="fa fa-location-arrow"></i></button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="tab-pane fade" id="alerts" role="tabpanel">
-                    <div class="card mb-sm-3 mb-md-0 contacts_card">
-                        <div class="card-header chat-list-header text-center">
-                            <a href="javascript:void(0)">
-                                <svg height="1.125rem"
-                                     version="1.1" viewBox="0 0 24 24"
-                                     width="1.125rem" xmlns="http://www.w3.org/2000/svg">
-                                    <g fill="none" fill-rule="evenodd" stroke="none" stroke-width="1">
-                                        <rect height="24" width="24" x="0" y="0"/>
-                                        <circle cx="5" cy="12" fill="#000000" r="2"/>
-                                        <circle cx="12" cy="12" fill="#000000" r="2"/>
-                                        <circle cx="19" cy="12" fill="#000000" r="2"/>
-                                    </g>
-                                </svg>
-                            </a>
-                            <div>
-                                <h6 class="mb-1">Notications</h6>
-                                <p class="mb-0">Show All</p>
-                            </div>
-                            <a href="javascript:void(0)">
-                                <svg height="1.125rem"
-                                     version="1.1" viewBox="0 0 24 24"
-                                     width="1.125rem" xmlns="http://www.w3.org/2000/svg">
-                                    <g fill="none" fill-rule="evenodd" stroke="none" stroke-width="1">
-                                        <rect height="24" width="24" x="0" y="0"/>
-                                        <path
-                                                d="M14.2928932,16.7071068 C13.9023689,16.3165825 13.9023689,15.6834175 14.2928932,15.2928932 C14.6834175,14.9023689 15.3165825,14.9023689 15.7071068,15.2928932 L19.7071068,19.2928932 C20.0976311,19.6834175 20.0976311,20.3165825 19.7071068,20.7071068 C19.3165825,21.0976311 18.6834175,21.0976311 18.2928932,20.7071068 L14.2928932,16.7071068 Z"
-                                                fill="#000000" fill-rule="nonzero" opacity="0.3"/>
-                                        <path
-                                                d="M11,16 C13.7614237,16 16,13.7614237 16,11 C16,8.23857625 13.7614237,6 11,6 C8.23857625,6 6,8.23857625 6,11 C6,13.7614237 8.23857625,16 11,16 Z M11,18 C7.13400675,18 4,14.8659932 4,11 C4,7.13400675 7.13400675,4 11,4 C14.8659932,4 18,7.13400675 18,11 C18,14.8659932 14.8659932,18 11,18 Z"
-                                                fill="#000000" fill-rule="nonzero"/>
-                                    </g>
-                                </svg>
-                            </a>
-                        </div>
-                        <div class="card-body contacts_body p-0 dz-scroll" id="DZ_W_Contacts_Body1">
-                            <ul class="contacts">
-                                <li class="name-first-letter">SEVER STATUS</li>
-                                <li class="active">
-                                    <div class="d-flex bd-highlight">
-                                        <div class="img_cont primary">KK</div>
-                                        <div class="user_info">
-                                            <span>David Nester Birthday</span>
-                                            <p class="text-primary">Today</p>
-                                        </div>
-                                    </div>
-                                </li>
-                                <li class="name-first-letter">SOCIAL</li>
-                                <li>
-                                    <div class="d-flex bd-highlight">
-                                        <div class="img_cont success">RU<i class="icon fa-birthday-cake"></i></div>
-                                        <div class="user_info">
-                                            <span>Perfection Simplified</span>
-                                            <p>Jame Smith commented on your status</p>
-                                        </div>
-                                    </div>
-                                </li>
-                                <li class="name-first-letter">SEVER STATUS</li>
-                                <li>
-                                    <div class="d-flex bd-highlight">
-                                        <div class="img_cont primary">AU<i class="icon fa fa-user-plus"></i></div>
-                                        <div class="user_info">
-                                            <span>AharlieKane</span>
-                                            <p>Sami is online</p>
-                                        </div>
-                                    </div>
-                                </li>
-                                <li>
-                                    <div class="d-flex bd-highlight">
-                                        <div class="img_cont info">MO<i class="icon fa fa-user-plus"></i></div>
-                                        <div class="user_info">
-                                            <span>Athan Jacoby</span>
-                                            <p>Nargis left 30 mins ago</p>
-                                        </div>
-                                    </div>
-                                </li>
-                            </ul>
-                        </div>
-                        <div class="card-footer"></div>
-                    </div>
-                </div>
-                <div class="tab-pane fade" id="notes">
-                    <div class="card mb-sm-3 mb-md-0 note_card">
-                        <div class="card-header chat-list-header text-center">
-                            <a href="javascript:void(0)">
-                                <svg height="1.125rem"
-                                     version="1.1" viewBox="0 0 24 24"
-                                     width="1.125rem" xmlns="http://www.w3.org/2000/svg">
-                                    <g fill="none" fill-rule="evenodd" stroke="none" stroke-width="1">
-                                        <rect fill="#000000" height="2" rx="1" width="16" x="4" y="11"/>
-                                        <rect fill="#000000" height="2"
-                                              opacity="0.3"
-                                              rx="1"
-                                              transform="translate(12.000000, 12.000000) rotate(-270.000000) translate(-12.000000, -12.000000) "
-                                              width="16" x="4" y="11"/>
-                                    </g>
-                                </svg>
-                            </a>
-                            <div>
-                                <h6 class="mb-1">Notes</h6>
-                                <p class="mb-0">Add New Nots</p>
-                            </div>
-                            <a href="javascript:void(0)">
-                                <svg height="1.125rem"
-                                     version="1.1" viewBox="0 0 24 24"
-                                     width="1.125rem" xmlns="http://www.w3.org/2000/svg">
-                                    <g fill="none" fill-rule="evenodd" stroke="none" stroke-width="1">
-                                        <rect height="24" width="24" x="0" y="0"/>
-                                        <path
-                                                d="M14.2928932,16.7071068 C13.9023689,16.3165825 13.9023689,15.6834175 14.2928932,15.2928932 C14.6834175,14.9023689 15.3165825,14.9023689 15.7071068,15.2928932 L19.7071068,19.2928932 C20.0976311,19.6834175 20.0976311,20.3165825 19.7071068,20.7071068 C19.3165825,21.0976311 18.6834175,21.0976311 18.2928932,20.7071068 L14.2928932,16.7071068 Z"
-                                                fill="#000000" fill-rule="nonzero" opacity="0.3"/>
-                                        <path
-                                                d="M11,16 C13.7614237,16 16,13.7614237 16,11 C16,8.23857625 13.7614237,6 11,6 C8.23857625,6 6,8.23857625 6,11 C6,13.7614237 8.23857625,16 11,16 Z M11,18 C7.13400675,18 4,14.8659932 4,11 C4,7.13400675 7.13400675,4 11,4 C14.8659932,4 18,7.13400675 18,11 C18,14.8659932 14.8659932,18 11,18 Z"
-                                                fill="#000000" fill-rule="nonzero"/>
-                                    </g>
-                                </svg>
-                            </a>
-                        </div>
-                        <div class="card-body contacts_body p-0 dz-scroll" id="DZ_W_Contacts_Body2">
-                            <ul class="contacts">
-                                <li class="active">
-                                    <div class="d-flex bd-highlight">
-                                        <div class="user_info">
-                                            <span>New order placed...</span>
-                                            <p>10 Aug 2024</p>
-                                        </div>
-                                        <div class="ms-auto">
-                                            <a class="btn btn-primary btn-xs sharp me-1"
-                                               href="javascript:void(0)"><i
-                                                    class="fas fa-pencil-alt"></i></a>
-                                            <a class="btn btn-danger btn-xs sharp" href="javascript:void(0)"><i
-                                                    class="fa fa-trash"></i></a>
-                                        </div>
-                                    </div>
-                                </li>
-                                <li>
-                                    <div class="d-flex bd-highlight">
-                                        <div class="user_info">
-                                            <span>Youtube, a video-sharing website...</span>
-                                            <p>10 Aug 2024</p>
-                                        </div>
-                                        <div class="ms-auto">
-                                            <a class="btn btn-primary btn-xs sharp me-1"
-                                               href="javascript:void(0)"><i
-                                                    class="fas fa-pencil-alt"></i></a>
-                                            <a class="btn btn-danger btn-xs sharp" href="javascript:void(0)"><i
-                                                    class="fa fa-trash"></i></a>
-                                        </div>
-                                    </div>
-                                </li>
-                                <li>
-                                    <div class="d-flex bd-highlight">
-                                        <div class="user_info">
-                                            <span>john just buy your product...</span>
-                                            <p>10 Aug 2024</p>
-                                        </div>
-                                        <div class="ms-auto">
-                                            <a class="btn btn-primary btn-xs sharp me-1"
-                                               href="javascript:void(0)"><i
-                                                    class="fas fa-pencil-alt"></i></a>
-                                            <a class="btn btn-danger btn-xs sharp" href="javascript:void(0)"><i
-                                                    class="fa fa-trash"></i></a>
-                                        </div>
-                                    </div>
-                                </li>
-                                <li>
-                                    <div class="d-flex bd-highlight">
-                                        <div class="user_info">
-                                            <span>Athan Jacoby</span>
-                                            <p>10 Aug 2024</p>
-                                        </div>
-                                        <div class="ms-auto">
-                                            <a class="btn btn-primary btn-xs sharp me-1"
-                                               href="javascript:void(0)"><i
-                                                    class="fas fa-pencil-alt"></i></a>
-                                            <a class="btn btn-danger btn-xs sharp" href="javascript:void(0)"><i
-                                                    class="fa fa-trash"></i></a>
-                                        </div>
-                                    </div>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!--**********************************
-        Chat box End
-    ***********************************-->
 
     <!--**********************************
         Header start
@@ -729,28 +80,25 @@
                     <div class="header-left">
                         <div class="dashboard_bar">
                             <div class="input-group search-area d-lg-inline-flex d-none">
-                                <div class="input-group-append">
-                                    <button class="input-group-text search_icon search_icon"><i
-                                            class="flaticon-381-search-2"></i></button>
-                                </div>
-                                <input class="form-control" placeholder="Search here..." type="text">
                             </div>
                         </div>
                     </div>
                     <ul class="navbar-nav header-right">
                         <li class="nav-item">
                             <div class="d-flex weather-detail">
-                                <span><i class="las la-cloud"></i>21</span>
-                                Medan, IDN
+                                <span><i class="fa-solid fa-cloud"></i>32°C</span>
+                                Singapore
                             </div>
                         </li>
-                        <li class="nav-item dropdown notification_dropdown">
-                            <a class="nav-link bell dz-theme-mode" href="javascript:void(0);">
-                                <i class="fas fa-sun" id="icon-light"></i>
-                                <i class="fas fa-moon" id="icon-dark"></i>
+                        <div>
+                            <li class="nav-item dropdown notification_dropdown">
+                                <a class="nav-link bell dz-theme-mode" href="javascript:void(0);">
+                                    <i id="icon-light" class="fas fa-sun"></i>
+                                    <i id="icon-dark" class="fas fa-moon"></i>
+                                </a>
+                            </li>
+                        </div>
 
-                            </a>
-                        </li>
                         <li class="nav-item dropdown notification_dropdown">
                             <a class="nav-link  ai-icon" data-bs-toggle="dropdown" href="javascript:void(0)"
                                role="button">
@@ -840,36 +188,26 @@
                                         class="ti-arrow-right"></i></a>
                             </div>
                         </li>
-                        <li class="nav-item dropdown notification_dropdown">
-                            <a class="nav-link bell bell-link" href="javascript:void(0)">
-                                <svg fill="none" height="20" viewBox="0 0 28 28" width="20"
-                                     xmlns="http://www.w3.org/2000/svg">
-                                    <path clip-rule="evenodd"
-                                          d="M25.6666 8.16666C25.6666 5.5895 23.5771 3.5 21 3.5C17.1161 3.5 10.8838 3.5 6.99998 3.5C4.42281 3.5 2.33331 5.5895 2.33331 8.16666V23.3333C2.33331 23.8058 2.61798 24.2305 3.05315 24.4113C3.48948 24.5922 3.99115 24.4918 4.32481 24.1582C4.32481 24.1582 6.59281 21.8902 7.96714 20.517C8.40464 20.0795 8.99733 19.8333 9.61683 19.8333H21C23.5771 19.8333 25.6666 17.7438 25.6666 15.1667V8.16666ZM23.3333 8.16666C23.3333 6.87866 22.2891 5.83333 21 5.83333C17.1161 5.83333 10.8838 5.83333 6.99998 5.83333C5.71198 5.83333 4.66665 6.87866 4.66665 8.16666V20.517L6.31631 18.8673C7.19132 17.9923 8.37899 17.5 9.61683 17.5H21C22.2891 17.5 23.3333 16.4558 23.3333 15.1667V8.16666ZM8.16665 15.1667H17.5C18.144 15.1667 18.6666 14.644 18.6666 14C18.6666 13.356 18.144 12.8333 17.5 12.8333H8.16665C7.52265 12.8333 6.99998 13.356 6.99998 14C6.99998 14.644 7.52265 15.1667 8.16665 15.1667ZM8.16665 10.5H19.8333C20.4773 10.5 21 9.97733 21 9.33333C21 8.68933 20.4773 8.16666 19.8333 8.16666H8.16665C7.52265 8.16666 6.99998 8.68933 6.99998 9.33333C6.99998 9.97733 7.52265 10.5 8.16665 10.5Z"
-                                          fill="#3E4954"
-                                          fill-rule="evenodd"/>
-                                </svg>
-                                <span class="badge light text-white bg-primary rounded-circle">5</span>
-                            </a>
-                        </li>
+
                         <li class="nav-item dropdown header-profile">
                             <a class="nav-link" data-bs-toggle="dropdown" href="javascript:void(0)" role="button">
                                 <div class="header-info">
-                                    <span class="text-black">Hello,<strong>Franklin</strong></span>
+                                    <span class="text-black">Hello,<strong id="username">Franklin</strong></span>
                                     <p class="fs-12 mb-0">Super Admin</p>
                                 </div>
                                 <img alt="" src="/dashboardassets/images/profile/17.jpg" width="20">
                             </a>
                             <div class="dropdown-menu dropdown-menu-end">
-                                <a class="dropdown-item ai-icon" th:href="@{/OnePay/dashboard/app-profile}">Profile</a>
-                                <svg class="text-primary" fill="none" height="18"
-                                     id="icon-user1" stroke="currentColor" stroke-linecap="round"
-                                     stroke-linejoin="round" stroke-width="2"
-                                     viewBox="0 0 24 24" width="18" xmlns="http://www.w3.org/2000/svg">
-                                    <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
-                                    <circle cx="12" cy="7" r="4"></circle>
-                                </svg>
-                                <span class="ms-2">Profile </span>
+                                <a class="dropdown-item ai-icon" th:href="@{/OnePay/dashboard/app-profile}">
+                                    <svg class="text-primary" fill="none" height="18"
+                                         id="icon-user1" stroke="currentColor" stroke-linecap="round"
+                                         stroke-linejoin="round" stroke-width="2"
+                                         viewBox="0 0 24 24" width="18" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                                        <circle cx="12" cy="7" r="4"></circle>
+                                    </svg>
+                                    <span class="ms-2">Profile </span>
+                                </a>
                                 <a class="dropdown-item ai-icon" href="email-inbox.html">
                                     <svg class="text-success" fill="none" height="18"
                                          id="icon-inbox" stroke="currentColor" stroke-linecap="round"
@@ -908,59 +246,34 @@
     <div class="deznav">
         <div class="deznav-scroll">
             <ul class="metismenu" id="menu">
-                <li><a aria-expanded="false" class="has-arrow ai-icon" href="javascript:void(0);">
-                    <i class="flaticon-381-networking"></i>
-                    <span class="nav-text">Dashboard</span>
-                </a>
-                    <ul aria-expanded="false">
+
+                <li>
+                    <a aria-expanded="false" href="javascript:void(0);" data-bs-toggle="collapse" data-bs-target="#dashboardSubmenu" aria-controls="dashboardSubmenu"  style="display: flex; justify-content: space-between; align-items: center;">
+                        <i class="fas fa-th-large"></i> <!-- Using Font Awesome desktop icon -->
+                        <span class="nav-text">Dashboard</span>
+                        <i class="fas fa-chevron-right dropdown-chevron" style="float:right;"></i> <!-- Chevron for the dropdown arrow -->
+                    </a>
+
+                    <!-- Submenu (collapsed by default) -->
+                    <ul class="collapse" id="dashboardSubmenu">
                         <li><a href="index.html">Dashboard Light</a></li>
                         <li><a href="index-2.html">Dashboard Dark</a></li>
                         <li><a href="my-wallet.html">My Wallet</a></li>
                         <li><a href="invoices.html">Invoices</a></li>
-                        <li><a href="cards-center.html">Cards Center</a></li>
                         <li><a href="transactions.html">Transactions</a></li>
                         <li><a href="transactions-details.html">Transactions Details</a></li>
                     </ul>
                 </li>
+
                 <li>
-                    <a aria-expanded="false" class="has-arrow ai-icon" href="javascript:void(0);">
-                        <i class="fa-regular fa-gear fw-bold"></i>
-                        <span class="nav-text">CMS</span>
+                    <a aria-expanded="false" href="javascript:void(0);" data-bs-toggle="collapse" data-bs-target="#accountSubmenu" aria-controls="accountSubmenu" style="display: flex; justify-content: space-between; align-items: center;">
+                        <i class="fa-regular fa-user"></i> <!-- Using Font Awesome user icon -->
+                        <span class="nav-text">Account</span>
+<!--                        <span class="badge badge-xs style-1 new-badge">New</span>-->
+                        <i class="fas fa-chevron-right dropdown-chevron" style="float:right;"></i> <!-- Chevron for the dropdown arrow -->
                     </a>
-                    <ul aria-expanded="false">
-                        <li><a href="content.html">Content</a></li>
-                        <li><a href="content-add.html">Add Content</a></li>
-                        <li><a href="menu.html">Menus</a></li>
-                        <li><a href="email-template.html">Email Template</a></li>
-                        <li><a href="add-email.html">Add Email</a></li>
-                        <li><a href="blog.html">Blog</a></li>
-                        <li><a href="add-blog.html">Add Blog</a></li>
-                        <li><a href="blog-category.html">Blog Category</a></li>
-                    </ul>
-                </li>
-                <li>
-                    <a aria-expanded="false" class="has-arrow ai-icon" href="javascript:void(0);">
-                        <i class="fa-regular fa-user fw-bold"></i>
-                        <span class="nav-text">Profile</span>
-                        <span class="badge badge-xs style-1 new-badge">New</span>
-                    </a>
-                    <ul aria-expanded="false">
-                        <li><a href="/dashboardassets/profile/overview.html">Overview</a></li>
-                        <li><a href="/dashboardassets/profile/projects.html">Projects</a></li>
-                        <li><a href="/dashboardassets/profile/projects-details.html">Projects Details</a></li>
-                        <li><a href="/dashboardassets/profile/campaigns.html">Campaigns</a></li>
-                        <li><a href="/dashboardassets/profile/documents.html">Documents</a></li>
-                        <li><a href="/dashboardassets/profile/followers.html">Followers</a></li>
-                        <li><a href="/dashboardassets/profile/activity.html">Activity</a></li>
-                    </ul>
-                </li>
-                <li>
-                    <a aria-expanded="false" class="has-arrow ai-icon" href="javascript:void(0);">
-                        <i class="fa-regular fa-user fw-bold"></i>
-                        <span class="nav-text">Accounts</span>
-                        <span class="badge badge-xs style-1 new-badge">New</span>
-                    </a>
-                    <ul aria-expanded="false">
+                    <!-- Submenu (collapsed by default) -->
+                    <ul class="collapse" id="accountSubmenu">
                         <li><a href="/dashboardassets/account/overview.html">Overview</a></li>
                         <li><a href="/dashboardassets/account/settings.html">Settings</a></li>
                         <li><a href="/dashboardassets/account/security.html">Security</a></li>
@@ -968,47 +281,20 @@
                         <li><a href="/dashboardassets/account/billing.html">Billing</a></li>
                         <li><a href="/dashboardassets/account/statements.html">Statements</a></li>
                         <li><a href="/dashboardassets/account/referrals.html">Referrals</a></li>
-                        <li><a href="/dashboardassets/account/api-keys.html">Api keys</a></li>
+                        <li><a href="/dashboardassets/account/api-keys.html">API Keys</a></li>
                         <li><a href="/dashboardassets/account/logs.html">Logs</a></li>
                     </ul>
                 </li>
+
                 <li>
-                    <a aria-expanded="false" class="has-arrow ai-icon" href="javascript:void(0);">
-                        <i class="flaticon-381-television"></i>
-                        <span class="nav-text">Apps</span>
+                    <a aria-expanded="false" href="javascript:void(0);" data-bs-toggle="collapse" data-bs-target="#aikitSubmenu" aria-controls="aikitSubmenu" style="display: flex; justify-content: space-between; align-items: center;">
+                        <i class="fa-solid fa-robot"></i> <!-- Using Font Awesome robot icon -->
+                        <span class="nav-text">AIKit</span>
+
+                        <i class="fas fa-chevron-right dropdown-chevron" style="float:right;"></i> <!-- Chevron for the dropdown arrow -->
                     </a>
-                    <ul aria-expanded="false">
-                        <li><a href="app-profile.html">Profile</a></li>
-                        <li><a href="edit-profile.html">Edit Profile <span
-                                class="badge badge-xs badge-danger ms-3">New</span></a></li>
-                        <li><a href="post-details.html">Post Details</a></li>
-                        <li><a aria-expanded="false" class="has-arrow" href="javascript:void(0);">Email</a>
-                            <ul aria-expanded="false">
-                                <li><a href="email-compose.html">Compose</a></li>
-                                <li><a href="email-inbox.html">Inbox</a></li>
-                                <li><a href="email-read.html">Read</a></li>
-                            </ul>
-                        </li>
-                        <li><a href="app-calender.html">Calendar</a></li>
-                        <li><a aria-expanded="false" class="has-arrow" href="javascript:void(0);">Shop</a>
-                            <ul aria-expanded="false">
-                                <li><a href="ecom-product-grid.html">Product Grid</a></li>
-                                <li><a href="ecom-product-list.html">Product List</a></li>
-                                <li><a href="ecom-product-detail.html">Product Details</a></li>
-                                <li><a href="ecom-product-order.html">Order</a></li>
-                                <li><a href="ecom-checkout.html">Checkout</a></li>
-                                <li><a href="ecom-invoice.html">Invoice</a></li>
-                                <li><a href="ecom-customers.html">Customers</a></li>
-                            </ul>
-                        </li>
-                    </ul>
-                </li>
-                <li><a aria-expanded="false" class="has-arrow ai-icon" href="javascript:void(0);">
-                    <i class="fa-solid fa-robot"></i>
-                    <span class="nav-text">AIKit</span>
-                    <span class="badge badge-xs style-1 new-badge">New</span>
-                </a>
-                    <ul aria-expanded="false">
+                    <!-- Submenu (collapsed by default) -->
+                    <ul class="collapse" id="aikitSubmenu">
                         <li><a href="aikit/auto-write.html">Auto Writer</a></li>
                         <li><a href="aikit/scheduled.html">Scheduler</a></li>
                         <li><a href="aikit/repurpose.html">Repurpose</a></li>
@@ -1020,124 +306,19 @@
                         <li><a href="aikit/import.html">Export/Import Settings</a></li>
                     </ul>
                 </li>
-                <li><a aria-expanded="false" class="has-arrow ai-icon" href="javascript:void(0);">
-                    <i class="flaticon-381-controls-3"></i>
-                    <span class="nav-text">Charts</span>
-                </a>
-                    <ul aria-expanded="false">
-                        <li><a href="chart-flot.html">Flot</a></li>
-                        <li><a href="chart-morris.html">Morris</a></li>
-                        <li><a href="chart-chartjs.html">Chartjs</a></li>
-                        <li><a href="chart-chartist.html">Chartist</a></li>
-                        <li><a href="chart-sparkline.html">Sparkline</a></li>
-                        <li><a href="chart-peity.html">Peity</a></li>
-                    </ul>
-                </li>
-                <li><a aria-expanded="false" class="has-arrow ai-icon" href="javascript:void(0);">
-                    <i class="flaticon-381-internet"></i>
-                    <span class="nav-text">Bootstrap</span>
-                </a>
-                    <ul aria-expanded="false">
-                        <li><a href="ui-accordion.html">Accordion</a></li>
-                        <li><a href="ui-alert.html">Alert</a></li>
-                        <li><a href="ui-badge.html">Badge</a></li>
-                        <li><a href="ui-button.html">Button</a></li>
-                        <li><a href="ui-modal.html">Modal</a></li>
-                        <li><a href="ui-button-group.html">Button Group</a></li>
-                        <li><a href="ui-list-group.html">List Group</a></li>
-                        <li><a href="ui-media-object.html">Media Object</a></li>
-                        <li><a href="ui-card.html">Cards</a></li>
-                        <li><a href="ui-carousel.html">Carousel</a></li>
-                        <li><a href="ui-dropdown.html">Dropdown</a></li>
-                        <li><a href="ui-popover.html">Popover</a></li>
-                        <li><a href="ui-progressbar.html">Progressbar</a></li>
-                        <li><a href="ui-tab.html">Tab</a></li>
-                        <li><a href="ui-offcanvas.html">Offcanvas</a></li>
-                        <li><a href="ui-toasts.html">Toasts</a></li>
-                        <li><a href="ui-spinners.html">Spinners</a></li>
-                        <li><a href="ui-scrollspy.html">Scrollspy</a></li>
-                        <li><a href="ui-range-slider.html">Range Slider</a></li>
-                        <li><a href="ui-placeholder.html">Placeholder</a></li>
-                        <li><a href="ui-object-fit.html">Object Fit</a></li>
-                        <li><a href="ui-navbar.html">Navbar</a></li>
-                        <li><a href="ui-colors.html">Colors</a></li>
-                        <li><a href="ui-breadcrumb.html">Breadcrumb</a></li>
-                        <li><a href="ui-typography.html">Typography</a></li>
-                        <li><a href="ui-pagination.html">Pagination</a></li>
-                        <li><a href="ui-grid.html">Grid</a></li>
-                    </ul>
-                </li>
-                <li><a aria-expanded="false" class="has-arrow ai-icon" href="javascript:void(0);">
-                    <i class="flaticon-381-heart"></i>
-                    <span class="nav-text">Plugins</span>
-                </a>
-                    <ul aria-expanded="false">
-                        <li><a href="uc-select2.html">Select 2</a></li>
-                        <li><a href="uc-nestable.html">Nestedable</a></li>
-                        <li><a href="uc-noui-slider.html">Noui Slider</a></li>
-                        <li><a href="uc-sweetalert.html">Sweet Alert</a></li>
-                        <li><a href="uc-toastr.html">Toastr</a></li>
-                        <li><a href="map-jqvmap.html">Jqv Map</a></li>
-                        <li><a href="uc-lightgallery.html">Light Gallery</a></li>
-                    </ul>
-                </li>
-                <li><a aria-expanded="false" class="ai-icon has-arrow" th:href="@{widget-basic.html}">
-                    <i class="flaticon-381-settings-2"></i>
-                    <span class="nav-text">Widget</span>
-                </a>
-                    <ul aria-expanded="false">
-                        <li><a href="widget-card.html">Card</a></li>
-                        <li><a href="widget-chart.html">Chart</a></li>
-                        <li><a href="widget-list.html">List</a></li>
 
-                    </ul>
-                </li>
-                <li><a aria-expanded="false" class="has-arrow ai-icon" href="javascript:void(0);">
-                    <i class="flaticon-381-notepad"></i>
-                    <span class="nav-text">Forms</span>
-                </a>
-                    <ul aria-expanded="false">
-                        <li><a href="form-element.html">Form Elements</a></li>
-                        <li><a href="form-wizard.html">Wizard</a></li>
-                        <li><a href="form-ckeditor.html">CkEditor</a></li>
-                        <li><a href="form-pickers.html">Pickers</a></li>
-                        <li><a href="form-validation-jquery.html">Form Validate</a></li>
-                    </ul>
-                </li>
-                <li><a aria-expanded="false" class="has-arrow ai-icon" href="javascript:void(0);">
-                    <i class="flaticon-381-network"></i>
-                    <span class="nav-text">Table</span>
-                </a>
-                    <ul aria-expanded="false">
-                        <li><a href="table-bootstrap-basic.html">Bootstrap</a></li>
-                        <li><a href="table-datatable-basic.html">Datatable</a></li>
-                    </ul>
-                </li>
-                <li><a aria-expanded="false" class="has-arrow ai-icon" href="javascript:void(0);">
-                    <i class="flaticon-381-layer-1"></i>
-                    <span class="nav-text">Pages</span>
-                </a>
-                    <ul aria-expanded="false">
-                        <li><a href="page-register.html">Register</a></li>
-                        <li><a href="page-login.html">Login</a></li>
-                        <li><a aria-expanded="false" class="has-arrow" href="javascript:void(0);">Error</a>
-                            <ul aria-expanded="false">
-                                <li><a href="page-error-400.html">Error 400</a></li>
-                                <li><a href="page-error-403.html">Error 403</a></li>
-                                <li><a href="page-error-404.html">Error 404</a></li>
-                                <li><a href="page-error-500.html">Error 500</a></li>
-                                <li><a href="page-error-503.html">Error 503</a></li>
-                            </ul>
-                        </li>
-                        <li><a href="page-lock-screen.html">Lock Screen</a></li>
-                        <li><a href="empty-page.html">Empty Page</a></li>
-                    </ul>
-                </li>
-            </ul>
 
-            <div class="copyright">
-                <p><strong>Mophy Payment Admin Dashboard</strong> © 2024 All Rights Reserved</p>
-                <p>Made with <span class="heart"></span> by DexignZone</p>
+            <div class="copyright" style="
+                    position: absolute;
+                    bottom: 0;
+                    left: 0;
+                    padding: 10px;
+                    font-size: 0.875rem;
+                    width: 100%;
+                    text-align: left;
+                ">
+                <p><strong>OnePay Payment Dashboard</strong> © 2024 All Rights Reserved</p>
+                <p>Made with <span class="heart"></span> by FYP-24-S3-14</p>
             </div>
         </div>
     </div>
@@ -1181,16 +362,7 @@
                                 <a href="cards-center.html"><i aria-hidden="true" class="fa fa-caret-down"></i></a>
                             </div>
                         </div>
-                        <div class="col-xl-4 col-lg-6 col-md-5 col-sm-4">
-                            <div class="card bgl-primary card-body overflow-hidden p-0 d-flex rounded">
-                                <div class="p-0 text-center mt-3">
-                                    <span class="text-black">Limit</span>
-                                    <h3 class="text-black fs-20 mb-0 font-w600">$4,000</h3>
-                                    <small>/$10,000</small>
-                                </div>
-                                <canvas class="mt-auto line-chart-demo" height="300" id="lineChart"></canvas>
-                            </div>
-                        </div>
+
                         <div class="col-xl-12">
                             <div class="card">
                                 <div class="card-header d-sm-flex d-block border-0 pb-0 flex-wrap">
@@ -1359,219 +531,7 @@
                 </div>
                 <div class="col-xl-6">
                     <div class="row">
-                        <div class="col-xl-6 col-sm-6">
-                            <div class="card">
-                                <div class="card-header flex-wrap border-0 pb-0">
-                                    <div class="me-3 mb-2">
-                                        <p class="fs-14 mb-1">Income</p>
-                                        <span class="fs-24 text-black font-w600">$65,123</span>
-                                    </div>
-                                    <span class="fs-12 mb-2">
-											<svg fill="none" height="15" viewBox="0 0 21 15" width="21"
-                                                 xmlns="http://www.w3.org/2000/svg">
-												<path
-                                                        d="M0.999939 13.5C1.91791 12.4157 4.89722 9.22772 6.49994 7.5L12.4999 10.5L19.4999 1.5"
-                                                        stroke="#2BC155" stroke-width="2"/>
-												<path
-                                                        d="M6.49994 7.5C4.89722 9.22772 1.91791 12.4157 0.999939 13.5H19.4999V1.5L12.4999 10.5L6.49994 7.5Z"
-                                                        fill="url(#paint0_linear)"/>
-												<defs>
-													<linearGradient gradientUnits="userSpaceOnUse" id="paint0_linear"
-                                                                    x1="10.2499" x2="10.9999"
-                                                                    y1="3" y2="13.5">
-														<stop offset="0" stop-color="#2BC155" stop-opacity="0.73"/>
-														<stop offset="1" stop-color="#2BC155" stop-opacity="0"/>
-													</linearGradient>
-												</defs>
-											</svg>
-											4% (30 days)</span>
-                                </div>
-                                <div class="card-body p-0">
-                                    <canvas height="80" id="widgetChart1"></canvas>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-xl-6 col-sm-6">
-                            <div class="card">
-                                <div class="card-header flex-wrap border-0 pb-0">
-                                    <div class="me-3 mb-2">
-                                        <p class="fs-14 mb-1">Outome</p>
-                                        <span class="fs-24 text-black font-w600">$24,551</span>
-                                    </div>
-                                    <span class="fs-12 mb-2">
-											<svg fill="none" height="15" viewBox="0 0 21 15" width="21"
-                                                 xmlns="http://www.w3.org/2000/svg">
-												<path
-                                                        d="M14.3514 7.5C15.9974 9.37169 19.0572 12.8253 20 14H1V1L8.18919 10.75L14.3514 7.5Z"
-                                                        fill="url(#paint0_linear1)"/>
-												<path d="M19.5 13.5C18.582 12.4157 15.6027 9.22772 14 7.5L8 10.5L1 1.5"
-                                                      stroke="#FF2E2E" stroke-linecap="round" stroke-width="2"/>
-												<defs>
-													<linearGradient gradientUnits="userSpaceOnUse" id="paint0_linear1"
-                                                                    x1="10.5"
-                                                                    x2="9.64345" y1="2.625"
-                                                                    y2="13.9935">
-														<stop offset="0" stop-color="#FF2E2E"/>
-														<stop offset="1" stop-color="#FF2E2E" stop-opacity="0.03"/>
-													</linearGradient>
-												</defs>
-											</svg>
-											4% (30 days)</span>
-                                </div>
-                                <div class="card-body p-0">
-                                    <canvas height="80" id="widgetChart2"></canvas>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-xl-12">
-                            <div class="card overflow-hidden">
-                                <div class="card-header d-sm-flex d-block border-0 pb-0">
-                                    <div class="mb-sm-0 mb-2">
-                                        <p class="fs-14 mb-1">Weekly Wallet Usage</p>
-                                        <span class="mb-0">
-												<svg fill="none" height="6" viewBox="0 0 12 6" width="12"
-                                                     xmlns="http://www.w3.org/2000/svg">
-													<path d="M11.9999 6L5.99994 -2.62268e-07L-6.10352e-05 6"
-                                                          fill="#2BC155"/>
-												</svg>
-												<strong class="fs-24 text-black ms-2 me-3">43%</strong>Than last
-												week</span>
-                                    </div>
-                                    <span class="fs-12">
-											<svg fill="none" height="15" viewBox="0 0 21 15" width="21"
-                                                 xmlns="http://www.w3.org/2000/svg">
-												<path
-                                                        d="M0.999939 13.5C1.91791 12.4157 4.89722 9.22772 6.49994 7.5L12.4999 10.5L19.4999 1.5"
-                                                        stroke="#2BC155" stroke-width="2"/>
-												<path
-                                                        d="M6.49994 7.5C4.89722 9.22772 1.91791 12.4157 0.999939 13.5H19.4999V1.5L12.4999 10.5L6.49994 7.5Z"
-                                                        fill="url(#paint0_linear2)"/>
-												<defs>
-													<linearGradient gradientUnits="userSpaceOnUse" id="paint0_linear2"
-                                                                    x1="10.2499" x2="10.9999"
-                                                                    y1="3" y2="13.5">
-														<stop offset="0" stop-color="#2BC155" stop-opacity="0.73"/>
-														<stop offset="1" stop-color="#2BC155" stop-opacity="0"/>
-													</linearGradient>
-												</defs>
-											</svg>
-											4% (30 days)</span>
-                                </div>
-                                <div class="card-body p-0">
-                                    <canvas height="80" id="widgetChart3"></canvas>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-xl-12">
-                            <div class="card">
-                                <div class="card-body">
-                                    <div class="row align-items-center">
-                                        <div class="col-xl-5 col-xxl-12 col-md-5">
-                                            <h4 class="fs-20 text-black mb-4">Spendings</h4>
-                                            <div class="row">
-                                                <div class="d-flex col-xl-12 col-xxl-6  col-md-12 col-sm-6 mb-4">
-                                                    <svg class="me-3" fill="none" height="54" viewBox="0 0 14 54"
-                                                         width="14" xmlns="http://www.w3.org/2000/svg">
-                                                        <rect fill="#AC39D4" height="54" rx="7" width="14"
-                                                              x="-6.10352e-05"/>
-                                                    </svg>
-                                                    <div>
-                                                        <p class="fs-14 mb-2">Investment</p>
-                                                        <span class="fs-18 font-w500"><span
-                                                                class="text-black me-2">$1,415</span>/$2,000</span>
-                                                    </div>
-                                                </div>
-                                                <div class="d-flex col-xl-12 col-xxl-6 col-md-12 col-sm-6 mb-4">
-                                                    <svg class="me-3" fill="none" height="54" viewBox="0 0 14 54"
-                                                         width="14" xmlns="http://www.w3.org/2000/svg">
-                                                        <rect fill="#40D4A8" height="54" rx="7" width="14"
-                                                              x="-6.10352e-05"/>
-                                                    </svg>
-                                                    <div>
-                                                        <p class="fs-14 mb-2">Installment</p>
-                                                        <span class="fs-18 font-w500"><span
-                                                                class="text-black me-2">$1,567</span>/$5,000</span>
-                                                    </div>
-                                                </div>
-                                                <div class="d-flex col-xl-12 col-xxl-6 col-md-12 col-sm-6 mb-4">
-                                                    <svg class="me-3" fill="none" height="54" viewBox="0 0 14 54"
-                                                         width="14" xmlns="http://www.w3.org/2000/svg">
-                                                        <rect fill="#1EB6E7" height="54" rx="7" width="14"
-                                                              x="-6.10352e-05"/>
-                                                    </svg>
-                                                    <div>
-                                                        <p class="fs-14 mb-2">Restaurant</p>
-                                                        <span class="fs-18 font-w500"><span
-                                                                class="text-black me-2">$487</span>/$10,000</span>
-                                                    </div>
-                                                </div>
-                                                <div class="d-flex col-xl-12 col-xxl-6 col-md-12 col-sm-6 mb-4">
-                                                    <svg class="me-3" fill="none" height="54" viewBox="0 0 14 54"
-                                                         width="14" xmlns="http://www.w3.org/2000/svg">
-                                                        <rect fill="#461EE7" height="54" rx="7" width="14"
-                                                              x="-6.10352e-05"/>
-                                                    </svg>
-                                                    <div>
-                                                        <p class="fs-14 mb-2">Property</p>
-                                                        <span class="fs-18 font-w500"><span
-                                                                class="text-black me-2">$3,890</span>/$4,000</span>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-xl-7  col-xxl-12 col-md-7">
-                                            <div class="row g-3">
-                                                <div class="col-sm-6">
-                                                    <div class="bg-secondary rounded text-center p-3">
-                                                        <div
-                                                                class="d-inline-block position-relative donut-chart-sale mb-3">
-																<span class="donut1"
-                                                                      data-peity='{ "fill": ["rgb(255, 255, 255)", "rgba(255, 255, 255, 0.2)"],   "innerRadius": 33, "radius": 10}'>5/8</span>
-                                                            <small class="text-white">71%</small>
-                                                        </div>
-                                                        <span class="fs-14 text-white d-block">Investment</span>
-                                                    </div>
-                                                </div>
-                                                <div class="col-sm-6">
-                                                    <div class="bg-success rounded text-center p-3">
-                                                        <div
-                                                                class="d-inline-block position-relative donut-chart-sale mb-3">
-																<span class="donut1"
-                                                                      data-peity='{ "fill": ["rgb(255, 255, 255)", "rgba(255, 255, 255, 0.2)"],   "innerRadius": 33, "radius": 10}'>3/8</span>
-                                                            <small class="text-white">30%</small>
-                                                        </div>
-                                                        <span class="fs-14 text-white d-block">Installment</span>
-                                                    </div>
-                                                </div>
-                                                <div class="col-sm-6">
-                                                    <div
-                                                            class="border border-2 border-primary rounded text-center p-3">
-                                                        <div
-                                                                class="d-inline-block position-relative donut-chart-sale mb-3">
-																<span class="donut1"
-                                                                      data-peity='{ "fill": ["rgb(30, 170, 231)", "rgba(234, 234, 234, 1)"],   "innerRadius": 33, "radius": 10}'>1/8</span>
-                                                            <small class="text-black">5%</small>
-                                                        </div>
-                                                        <span class="fs-14 text-black d-block">Restaurant</span>
-                                                    </div>
-                                                </div>
-                                                <div class="col-sm-6">
-                                                    <div class="bg-info rounded text-center p-3">
-                                                        <div
-                                                                class="d-inline-block position-relative donut-chart-sale mb-3">
-																<span class="donut1"
-                                                                      data-peity='{ "fill": ["rgb(255, 255, 255)", "rgba(255, 255, 255, 0.2)"],   "innerRadius": 33, "radius": 10}'>9/10</span>
-                                                            <small class="text-white">96%</small>
-                                                        </div>
-                                                        <span class="fs-14 text-white d-block">Property</span>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+
                         <div class="col-xl-12">
                             <div class="card">
                                 <div class="card-header d-block d-sm-flex border-0">
@@ -2248,7 +1208,7 @@
     ***********************************-->
     <div class="footer">
         <div class="copyright">
-            <p>Copyright © Designed &amp; Developed by <a href="http://dexignzone.com/" target="_blank">DexignZone</a>
+            <p>Copyright © Designed &amp; Developed by FYP-24-S3-14</a>
                 <span class="current-year">2024</span></p>
         </div>
     </div>
@@ -2344,6 +1304,57 @@
 
         }, 1500)
     });
+
+
+
+    document.addEventListener('DOMContentLoaded', function () {
+        // Select the collapse elements and chevrons
+        var dashboardCollapseElement = document.querySelector('#dashboardSubmenu');
+        var accountCollapseElement = document.querySelector('#accountSubmenu');
+        var aikitCollapseElement = document.querySelector('#aikitSubmenu');
+
+        var dashboardChevron = document.querySelector('a[data-bs-target="#dashboardSubmenu"] .dropdown-chevron');
+        var accountChevron = document.querySelector('a[data-bs-target="#accountSubmenu"] .dropdown-chevron');
+        var aikitChevron = document.querySelector('a[data-bs-target="#aikitSubmenu"] .dropdown-chevron');
+
+        var collapsibles = [
+            { element: dashboardCollapseElement, chevron: dashboardChevron },
+            { element: accountCollapseElement, chevron: accountChevron },
+            { element: aikitCollapseElement, chevron: aikitChevron }
+        ];
+
+        function setupCollapseListener(collapseElement, chevron) {
+            collapseElement.addEventListener('show.bs.collapse', function () {
+                // Close other collapsibles and reset chevrons
+                collapsibles.forEach(function (item) {
+                    if (item.element !== collapseElement) {
+                        var bsCollapse = new bootstrap.Collapse(item.element, { toggle: false });
+                        bsCollapse.hide();
+                        item.chevron.classList.remove('fa-chevron-down');
+                        item.chevron.classList.add('fa-chevron-right');
+                    }
+                });
+
+                // Update the chevron of the currently opened collapsible
+                chevron.classList.remove('fa-chevron-right');
+                chevron.classList.add('fa-chevron-down');
+            });
+
+            collapseElement.addEventListener('hide.bs.collapse', function () {
+                chevron.classList.remove('fa-chevron-down');
+                chevron.classList.add('fa-chevron-right');
+            });
+        }
+
+        // Initialize listeners for each collapsible
+        collapsibles.forEach(function (item) {
+            if (item.chevron && item.element) {
+                setupCollapseListener(item.element, item.chevron);
+            }
+        });
+    });
+
+
 </script>
 </body>
 

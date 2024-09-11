@@ -66,4 +66,25 @@ public class SecurityConfig {
 
                 .build();
     }
+
+//    public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
+//        return http
+//                .csrf(AbstractHttpConfigurer::disable)  //csrf is disabled for development environment
+//                .formLogin(httpForm -> {
+//                    httpForm
+//                            .loginPage("/OnePay/dashboard/page-login").permitAll()  // Custom login page
+//                            .loginProcessingUrl("/login")          // Endpoint for login processing
+//                            .defaultSuccessUrl("/OnePay/dashboard/index")  // Redirect on successful login
+//                            .failureUrl("/OnePay/home?error=true");   // Redirect on login failure
+//                })  //this override the default Spring Boot login form
+//
+//                .authorizeHttpRequests(registry -> {
+//                    registry
+//                            .requestMatchers("/assets/**", "/css/**", "/js/**", "/images/**").permitAll()
+//                            .requestMatchers("/", "/OnePay/home", "/OnePay/signUp").permitAll()
+//                            .anyRequest().authenticated();
+//                })  //this allows user to visit these page without login
+//
+//                .build();
+//    }
 }

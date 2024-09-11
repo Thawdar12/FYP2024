@@ -16,9 +16,22 @@ public class RedirectForGetRequestController {
         return "/OnePay/signUp"; // This resolves to 'templates/OnePay/signUp.html'
     }
 
+    // Add mapping for the custom login page  /////
+    @GetMapping("/OnePay/singIn")
+    public String showLoginPage() {
+        return "/OnePay/dashboard/page-login"; // This resolves to 'templates/page-login.html'
+    }
+
+    // Handle logout page if required    ///////
+    @GetMapping("/OnePay/logout")
+    public String logoutPage() {
+        return "redirect:/OnePay/home"; // After logging out, redirect to the home page
+    }
+
     @GetMapping("/OnePay/dashboard/index")
     public String showDashboardPage() {
         return "/OnePay/dashboard/index"; // This resolves to 'templates/OnePay/dashboard/index.html'
     }
+
 
 }
