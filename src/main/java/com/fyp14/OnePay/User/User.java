@@ -6,7 +6,8 @@ import jakarta.persistence.*;
 @Entity
 public class User {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "userID", nullable = false)
     private Long userID;
     private String username;
     private String email;

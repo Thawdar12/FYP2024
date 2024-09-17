@@ -8,7 +8,7 @@ public class RedirectForGetRequestController {
 
     @GetMapping({"/", "/OnePay/home"})
     public String showHomePage() {
-        return "/OnePay/home"; // This resolves to 'templates/OnePay/home.html'
+        return "/OnePay/home"; // This resolves to 'templatxes/OnePay/home.html'
     }
 
     @GetMapping("/OnePay/signUp")
@@ -34,4 +34,23 @@ public class RedirectForGetRequestController {
     }
 
 
+    @GetMapping("/OnePay/dashboard/transfer")
+    public String getTransferPage() {
+        return "/OnePay/dashboard/transfer"; // This resolves to 'templates/OnePay/dashboard/transfer.html'
+    }
+
+    @GetMapping("/OnePay/dashboard/initiateTransfer")
+    public String getInitiateTransferPage() {
+        return "/OnePay/dashboard/initiateTransfer"; // This resolves to 'templates/OnePay/dashboard/initiateTransfer.html'
+    }
+
+    @GetMapping("/OnePay/dashboard/topup")
+    public String getTopUpPage() {
+        return "/OnePay/dashboard/topup"; // This resolves to 'templates/OnePay/dashboard/topup.html'
+    }
+
+    @GetMapping("/OnePay/dashboard/createWallet")
+    public String getCreateWalletPage() {
+        return "/OnePay/dashboard/create-wallet"; // This resolves to 'templates/OnePay/dashboard/createWallet.html'
+    }
 }

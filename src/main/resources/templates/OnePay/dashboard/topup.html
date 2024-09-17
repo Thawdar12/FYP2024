@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- Title -->
+    <title>OnePay Dashboard</title>
+
+    <!-- Meta Tags -->
+    <meta charset="utf-8">
+    <meta content="IE=edge" http-equiv="X-UA-Compatible">
+    <meta content="telephone=no" name="format-detection">
+    <meta content="width=device-width, initial-scale=1" name="viewport">
+
+    <!-- Favicon and CSS Links -->
+    <link rel="icon" sizes="16x16" href="/dashboardassets/images/favicon.png" type="image/png">
+    <link rel="stylesheet" href="/dashboardassets/vendor/jqvmap/css/jqvmap.min.css">
+    <link rel="stylesheet" href="/dashboardassets/vendor/chartist/css/chartist.min.css">
+    <link rel="stylesheet" href="/dashboardassets/vendor/bootstrap-select/dist/css/bootstrap-select.min.css">
+    <link rel="stylesheet" href="/dashboardassets/vendor/owl-carousel/owl.carousel.css">
+    <link class="main-css" rel="stylesheet" href="/dashboardassets/css/style.css">
+</head>
+
+<body>
+<!-- Transfer Money Form -->
+<div class="col-xl-12">
+    <div class="card">
+        <div class="card-header d-sm-flex d-block border-0 pb-0">
+            <div class="pr-3 mb-sm-0 mb-3 me-auto">
+                <h4 class="fs-20 text-black mb-1">Quick Transfer</h4>
+            </div>
+            <span class="fs-24 text-black font-w600">$<span id="balance">0.00</span></span>
+        </div>
+        <div class="card-body">
+            <form id="topup-form">
+                <div class="form-group mb-0 row style-1 align-items-center">
+                    <div class="col-sm-3">
+                        <label class="fs-18 text-black font-w500">Wallet ID</label>
+                    </div>
+                    <div class="col-sm-9">
+                        <div class="input-group">
+                            <input id="walletId" type="number" class="form-control" placeholder="Enter Wallet ID" required>
+                        </div>
+                    </div>
+                </div>
+                <br/>
+                <div class="form-group mb-0 row style-1 align-items-center">
+                    <div class="col-sm-3">
+                        <label class="fs-18 text-black font-w500">Amount</label>
+                    </div>
+                    <div class="col-sm-9">
+                        <div class="input-group">
+                            <input id="amount" type="number" class="form-control" placeholder="Enter Amount" required>
+                            <div class="input-group-append">
+                                <button id="transferNow" class="btn btn-primary rounded" type="submit">TRANSFER NOW</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<!-- Scripts -->
+<script src="/dashboardassets/vendor/global/global.min.js"></script>
+<script src="/dashboardassets/vendor/bootstrap-select/dist/js/bootstrap-select.min.js"></script>
+<script src="/dashboardassets/vendor/chart-js/chart.bundle.min.js"></script>
+<script src="/dashboardassets/vendor/owl-carousel/owl.carousel.js"></script>
+<script src="/dashboardassets/vendor/peity/jquery.peity.min.js"></script>
+<script src="/dashboardassets/vendor/apexchart/apexchart.js"></script>
+<script src="/dashboardassets/js/dashboard/dashboard-1.js"></script>
+<script src="/dashboardassets/js/custom.min.js"></script>
+<script src="/dashboardassets/js/deznav-init.js"></script>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        // Handle the form submission for top-up
+        document.getElementById('topup-form').addEventListener('submit', function (e) {
+            e.preventDefault();
+
+            const walletId = document.getElementById('walletId').value;
+            const amount = document.getElementById('amount').value;
+
+            if (!walletId || !amount || amount <= 0) {
+                alert("Please provide valid inputs.");
+                return;
+            }
+
+            // Make a POST request to the backend to perform the top-up
+            fetch('/api/topup', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ walletId: walletId, amount: amount })
+            })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.status === 'success') {
+                        alert('Top-up successful!');
+                        updateBalance(walletId); // Update balance after top-up
+                    } else {
+                        alert('Top-up failed: ' + data.message);
+                    }
+                })
+                .catch(error => {
+                    console.error('Error during top-up:', error);
+                    alert('An error occurred. Please try again.');
+                });
+        });
+
+        // Function to fetch and update the wallet balance
+        function updateBalance(walletId) {
+            fetch(`/api/wallet?walletId=${walletId}`)
+                .then(response => response.json())
+                .then(data => {
+                    if (data.balance) {
+                        document.getElementById('balance').textContent = parseFloat(data.balance).toFixed(2);
+                    } else {
+                        console.log("Balance not found in response");
+                    }
+                })
+                .catch(error => {
+                    console.error('Error fetching balance:', error);
+                });
+        }
+    });
+</script>
+
+</body>
+
+</html>

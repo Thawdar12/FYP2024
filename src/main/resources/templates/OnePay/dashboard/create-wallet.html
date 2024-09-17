@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Create Wallet</title>
+    <meta charset="utf-8">
+    <meta content="IE=edge" http-equiv="X-UA-Compatible">
+    <meta content="telephone=no" name="format-detection">
+    <meta content="width=device-width, initial-scale=1" name="viewport">
+
+    <!-- Add necessary CSS files here -->
+    <link rel="icon" sizes="16x16" href="/dashboardassets/images/favicon.png" type="image/png">
+    <link rel="stylesheet" href="/dashboardassets/vendor/bootstrap-select/dist/css/bootstrap-select.min.css">
+    <link class="main-css" rel="stylesheet" href="/dashboardassets/css/style.css">
+</head>
+
+<body>
+<!-- Create Wallet Form -->
+<div class="col-xl-12">
+    <div class="card">
+        <div class="card-header">
+            <h4 class="fs-20 text-black mb-1">Create Wallet</h4>
+        </div>
+        <div class="card-body">
+            <form id="create-wallet-form">
+                <!-- Wallet ID Field -->
+                <div class="form-group row">
+                    <label class="col-sm-3 col-form-label fs-18 text-black font-w500">Wallet ID</label>
+                    <div class="col-sm-9">
+                        <input id="walletId" type="number" class="form-control" placeholder="Enter Wallet ID" required>
+                    </div>
+                </div>
+                <br/>
+                <!-- User ID Field -->
+                <div class="form-group row">
+                    <label class="col-sm-3 col-form-label fs-18 text-black font-w500">User ID</label>
+                    <div class="col-sm-9">
+                        <input id="userId" type="number" class="form-control" placeholder="Enter User ID" required>
+                    </div>
+                </div>
+                <br/>
+                <!-- Wallet Name Field -->
+                <div class="form-group row">
+                    <label class="col-sm-3 col-form-label fs-18 text-black font-w500">Wallet Name</label>
+                    <div class="col-sm-9">
+                        <input id="walletName" type="text" class="form-control" placeholder="Enter Wallet Name" required>
+                    </div>
+                </div>
+                <br/>
+                <!-- Initial Balance Field -->
+                <div class="form-group row">
+                    <label class="col-sm-3 col-form-label fs-18 text-black font-w500">Initial Balance</label>
+                    <div class="col-sm-9">
+                        <input id="initialBalance" type="number" step="0.01" min="0" class="form-control" placeholder="Enter Initial Balance" required>
+                    </div>
+                </div>
+                <br/>
+                <!-- Submit Button -->
+                <div class="form-group row">
+                    <div class="col-sm-9 offset-sm-3">
+                        <button id="createWallet" class="btn btn-primary rounded" type="submit">Create Wallet</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<!-- Scripts -->
+<script src="/dashboardassets/vendor/global/global.min.js"></script>
+<script src="/dashboardassets/vendor/bootstrap-select/dist/js/bootstrap-select.min.js"></script>
+<script src="/dashboardassets/js/custom.min.js"></script>
+<script src="/dashboardassets/js/deznav-init.js"></script>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        // Handle the form submission to create a new wallet
+        document.getElementById('create-wallet-form').addEventListener('submit', function (e) {
+            e.preventDefault();
+
+            const walletId = document.getElementById('walletId').value;
+            const userId = document.getElementById('userId').value;
+            const walletName = document.getElementById('walletName').value;
+            const initialBalance = parseFloat(document.getElementById('initialBalance').value);
+
+            // Validate inputs
+            if (!walletId || !userId || !walletName || isNaN(initialBalance) || initialBalance < 0) {
+                alert("Please provide valid inputs.");
+                return;
+            }
+
+            // Make a POST request to the backend to create the wallet
+            fetch('/api/wallets/create', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    walletId: walletId,
+                    userId: userId,
+                    walletName: walletName,
+                    initialBalance: initialBalance
+                })
+            })
+                .then(response => {
+                    if (!response.ok) {
+                        return response.json().then(err => { throw err; });
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    alert('Wallet created successfully! Wallet ID: ' + data.id);
+                })
+                .catch(error => {
+                    console.error('Error during wallet creation:', error);
+                    alert('Error during wallet creation: ' + JSON.stringify(error));
+                });
+        });
+    });
+</script>
+
+</body>
+
+</html>
