@@ -17,7 +17,7 @@ public class RedirectForGetRequestController {
     }
 
     // Add mapping for the custom login page  /////
-    @GetMapping("/OnePay/singIn")
+    @GetMapping("/OnePay/singin")
     public String showLoginPage() {
         return "/OnePay/dashboard/page-login"; // This resolves to 'templates/page-login.html'
     }

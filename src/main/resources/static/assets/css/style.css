@@ -14249,6 +14249,42 @@ ul a.rsswidget {
     border: 0;
     background: transparent; }
 
+
+#error-message {
+  display: none;
+}
+
+#error-message.show {
+  display: inline-block;
+  margin-bottom: 15px;
+  font-size:12px ;
+  color: red;
+  font-weight: bold;
+  text-align: center;
+}
+
+#error-message1 {
+  display: none;
+}
+
+#error-message1.show {
+  display: inline-block;
+  margin-bottom: 15px;
+  font-size:12px ;
+  color: red;
+  font-weight: bold;
+  text-align: center;
+}
+
+form#registrationForm div.form-group.incorrect.d-flex.align-items-center input.form-control {
+  border-color: red;
+}
+
+form#loginForm div.form-group.incorrect.d-flex.align-items-center input.form-control {
+  border-color: red;
+}
+
+
 .modal.modal-wrapper-lg .modal-dialog {
   max-width: 600px; }
 
@@ -14288,10 +14324,21 @@ ul a.rsswidget {
 
 .modal-wrapper .form-group {
   margin-bottom: 20px;
-  text-align: left; }
+  text-align: left;
+  color: lightblue;
+}
+
+.modal-wrapper .form-group:hover {
+  color: deepskyblue;
+}
+
+.modal-wrapper .form-group .icon-error {
+  color: red;
+}
 
 .auth-modal .modal-dialog {
   padding: 0;
+
   max-width: 380px; }
 
 .auth-modal .btn {
@@ -14373,7 +14420,7 @@ ul a.rsswidget {
 
 .auth-modal .sign-up.modal-content {
   position: absolute;
-  top: 0;
+  top: 10;
   z-index: 1;
   height: 100%; }
   .auth-modal .sign-up.modal-content .sign-text {

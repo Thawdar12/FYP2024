@@ -75,12 +75,9 @@
 					<div class="extra-nav">
 						<div class="extra-cell d-flex align-items-center">
 							<ul class="nav-link-list">
+								<a  class="btn btn-rounded btn-sm btn-outline-primary btn-block" data-bs-toggle="modal" data-bs-target="#modalLogin">Login</a>
+								<a  class="btn btn-rounded btn-sm btn-outline-primary btn-block" data-bs-toggle="modal" data-bs-target="#modalSign-up">Register</a>
 
-<!--								<li><a href="dashboard/page-login.html" class="btn-login" data-bs-toggle="modal" data-bs-target="#modalLogin">Login</a></li>-->
-<!--								<li><a href="dashboard/page-register.html" class="btn-login" data-bs-toggle="modal" data-bs-target="#modalLogin">Register</a></li>-->
-<!--								<li><a href="/OnePay/dashboard/page-login" class="btn-login" >Login</a></li>-->
-								<li><a href="javascript:void(0);" class="btn-login" data-bs-toggle="modal" data-bs-target="#modalLogin">Login</a></li>
-								<li><a href="javascript:void(0);" class="btn-login" data-bs-toggle="modal" data-bs-target="#modalLogin">Register</a></li>
 							</ul>
 							<a href="javascript:void(0);" class="menu-btn" data-bs-toggle="modal" data-bs-target="#modalMohpy">
 								<svg width="32" height="22" viewBox="0 0 32 22" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -105,16 +102,8 @@
 						</ul>
 						<div class="header-bottom">
 							<a href="javascript:void(0);" class="btn btn-rounded btn-primary btn-login btn-sm" data-bs-toggle="modal" data-bs-target="#modalLogin">
-								<i class="flaticon-logout me-3"></i>Login / Sign Up
+								<i class="flaticon-logout me-3"></i>Login / Signup
 							</a>
-							<div class="dz-social-icon">
-								<ul>
-									<li><a href="https://www.facebook.com/dexignzone/"><i class="fab fa-facebook-f"></i></a></li>
-									<li><a href="https://twitter.com/dexignzones"><i class="fab fa-twitter"></i></a></li>
-									<li><a href="https://www.youtube.com/channel/UCGL8V6uxNNMRrk3oZfVct1g"><i class="fab fa-youtube"></i></a></li>
-									<li><a href="https://www.instagram.com/dexignzone/"><i class="fab fa-instagram"></i></a></li>
-								</ul>
-							</div>
 						</div>
 					</div>
 				</div>
@@ -323,9 +312,6 @@
 		</section>
 
 
-
-
-
 	</div>
 
 	<!-- Footer -->
@@ -412,27 +398,42 @@
 
 	<a href="/login" class="btn btn-primary">Login</a>
 
-	<!-- Authentication Modal -->
+	<!-- Login Form -->
 	<div class="modal fade modal-wrapper auth-modal" id="modalLogin" tabindex="-1" role="dialog" aria-labelledby="modalLogin" aria-hidden="true">
 		<div class="modal-dialog" role="document">
 			<!-- Login Your Account -->
 			<div class="modal-content">
 				<h2 class="title">Login Your Account</h2>
-				<form method="post" th:action="@{/login}">
-					<div class="form-group">
-						<input name="username" type="text" class="form-control" placeholder="Username">
+				<p class="align-items-center" id="error-message1"></p>
+				<form name="loginForm" id="loginForm" method="post" th:action="@{/login}" >
+
+
+					<div class="form-group d-flex align-items-center" >
+						<i class="fas fa-user me-2" ></i>
+						<input id="username1" name="username" required type="text" class="form-control" placeholder="Username">
 					</div>
-					<div class="form-group">
-						<input name="password" type="password" class="form-control" placeholder="Password">
-						<div class="reset-password">
-							<a class="btn-link collapsed" data-bs-toggle="collapse" href="#reset-password" role="button" aria-expanded="false" aria-controls="reset-password">Reset password?</a>
-						</div>
+
+<!--					<div class="form-group d-flex align-items-center" >-->
+<!--						<i class="fas fa-envelope me-2" ></i>-->
+<!--						<input id="email1" name="email" required type="email" class="form-control" placeholder="Email">-->
+<!--					</div>-->
+
+					<div class="form-group d-flex align-items-center">
+						<i class="fas fa-lock me-2" ></i>
+						<input id="password1" name="password"  type="password" class="form-control" placeholder="Password">
 					</div>
+
+					<div class="reset-password ">
+						<span style="font-weight:500; font-size: 13px;">Cannot sign in? <a class="btn-link collapsed" data-bs-toggle="collapse" href="#reset-password" role="button" aria-expanded="false" aria-controls="reset-password">Reset password?</a></span>
+					</div>
+					<hr/>
+
 					<div class="form-group">
 						<button type="submit" class="btn btn-rounded btn-sm btn-outline-primary btn-block">Login</button>
 					</div>
+
 					<div class="sign-text">
-						<span>Don't have a OnePay account? <a class="btn-link collapsed" data-bs-toggle="collapse" href="#sign-up" role="button" aria-expanded="false" aria-controls="sign-up">Sign up</a></span>
+						<span>Don't have a OnePay account? <a href="#" class="btn-link" data-bs-toggle="modal" data-bs-target="#modalSign-up" data-bs-dismiss="modal">Sign up</a></span>
 					</div>
 				</form>
 			</div>
@@ -441,49 +442,76 @@
 			<div class="modal-content collapse reset-password" id="reset-password">
 				<h2 class="title">Reset password?</h2>
 				<form>
-					<div class="form-group password-icon-bx">
-						<i class="fa fa-lock"></i>
-						<p>Enter your email address associated with your account, and we'll email you a link to reset your password...</p>
+					<div class="form-group password-icon-bx d-flex align-items-center" >
+						<i class="fa fa-key"></i>
+						<div class="d-flex flex-column">
+							<p>Enter your email address
+							associated with your account,
+							and we'll email you a link
+							to reset your password.</p>
+						</div>
 					</div>
-					<div class="form-group">
-						<input type="email" class="form-control" placeholder="Enter email address">
+
+					<div class="form-group d-flex align-items-center">
+						<i class="fas fa-envelope me-2" ></i>
+						<input required type="email" class="form-control" placeholder="Enter email address">
 					</div>
+
 					<div class="form-group">
 						<button type="submit" class="btn btn-rounded btn-sm btn-outline-primary btn-block">Send reset link</button>
 					</div>
+
 					<a data-bs-toggle="collapse" href="#reset-password" class="sign-text" role="button" aria-expanded="false" aria-controls="reset-password">Back</a>
 				</form>
 			</div>
+		</div>
+	</div>
 
-			<!-- Sign Up Your Account -->
-			<div class="modal-content collapse sign-up" id="sign-up">
-				<h2 class="title">Sign Up Your Account</h2>
-				<form id="registrationForm" method="post" th:action="@{/register}">
-					<div class="form-group">
+	<!-- Register Form -->
+	<div class="modal fade modal-wrapper auth-modal" id="modalSign-up" tabindex="-1" role="dialog" aria-labelledby="modalSign-up" aria-hidden="true">
+		<div class="modal-dialog" role="document">
+			<!-- Register Account -->
+			<div class="modal-content">
+				<h2 class="title">Sign Up the Account</h2>
+				<p class="align-items-center" id="error-message"></p>
+				<form name="registrationForm" id="registrationForm" method="post" th:action="@{/register}">
+<!--				<div class="form-group incorrect d-flex align-items-center">-->
+					<div class="form-group  d-flex align-items-center">
+						<i class="fas fa-user me-2 " ></i>   <!-- -->
 						<input id="username" name="username" required type="text" class="form-control" placeholder="Username">
 					</div>
-					<div class="form-group">
+
+					<div class="form-group d-flex align-items-center">
+						<i class="fas fa-envelope me-2" ></i>
 						<input id="email" name="email" required type="email" class="form-control" placeholder="Email Address">
 					</div>
-					<div class="form-group">
+
+					<div class="form-group d-flex align-items-center">
+						<i class="fas fa-lock me-2" ></i>
 						<input id="password" name="password" required type="password" class="form-control" placeholder="Password">
 					</div>
-					<div class="form-group">
-						<input id="confirm-password" name="confirm-password" required type="password" class="form-control" placeholder="Confirm Password">
+
+					<div class="form-group d-flex align-items-center">
+						<i class="fas fa-user-lock me-2" ></i>
+						<input id="confirmPassword" name="confirmPassword" required type="password" class="form-control" placeholder="Confirm Password">
 					</div>
-					<div class="form-group">
+
+					<div class="form-group d-flex align-items-center">
+						<i class="fas fa-phone me-2" ></i>
 						<input id="phone" name="phone" required type="tel" class="form-control" placeholder="Phone Number">
 					</div>
+
 					<div class="form-group">
 						<button id="submit-register" type="submit" class="btn btn-rounded btn-sm btn-outline-primary btn-block">Sign Up</button>
 					</div>
 					<div class="sign-text">
-						<span>Already have a OnePay account? <a class="btn-link collapsed" data-bs-toggle="collapse" href="#sign-up" role="button" aria-expanded="false" aria-controls="sign-up">Login</a></span>
+						<span>Already have a OnePay account? <a href="#" class="btn-link" data-bs-toggle="modal" data-bs-target="#modalLogin" data-bs-dismiss="modal">Login</a></span>
 					</div>
 				</form>
 			</div>
 		</div>
 	</div>
+
 
 	<!-- JAVASCRIPT FILES ========================================= -->
 	<script src="/assets/js/jquery.min.js"></script><!-- JQUERY.MIN JS -->
@@ -504,6 +532,7 @@
 	<script src="/assets/plugin/twentytwenty-master/js/jquery.twentytwenty.js"></script>
 	<script src="dashboard/page-login.html"></script>
 
+
 	<script>
 		$(window).on('load', function () {
 			$(".twentytwenty-container[data-orientation!='vertical']").twentytwenty({default_offset_pct: 0.5});
@@ -515,44 +544,195 @@
 	</script>
 
 	<script>
-		//function for submit report
-		document.getElementById('registrationForm').addEventListener('submit', function (event) {
-			event.preventDefault(); // Prevent the default form submission
-			const username = document.getElementById('username').value;
-			const password = document.getElementById('password').value;
-			const confirmPassword = document.getElementById('confirm-password').value;
-			const email = document.getElementById('email').value;
-			const phoneNumber = document.getElementById('phone').value;
-			const data = {
-				username,
-				password,
-				email,
-				phoneNumber
-			};
 
-			if (password === confirmPassword) {
-				const jsonData = JSON.stringify(data);
-				fetch('/OnePay/signUp', {
-					method: 'POST',
-					headers: {'Content-Type': 'application/json'},
-					body: jsonData
+		document.addEventListener('DOMContentLoaded', function() {
+			// Add event listener to the form after DOM is fully loaded
+			document.getElementById('registrationForm').addEventListener('submit', function (event) {
+				event.preventDefault(); // Prevent the default form submission
+
+				let errors = [];
+
+				const username = document.getElementById('username').value;
+				const password = document.getElementById('password').value;
+				const confirmPassword = document.getElementById('confirmPassword').value;
+				const email = document.getElementById('email').value;
+				const phoneNumber = document.getElementById('phone').value;
+
+				const error_message = document.getElementById("error-message");
+
+				console.log("hi show")
+				console.log(document.getElementById('username').parentElement); // Check if this logs the correct parent element
+
+				// Username validation
+				if (username.length <= 3) {
+					errors.push("Username should be more than 3 characters.");
+					document.getElementById('username').parentElement.classList.add("incorrect");
+					const icon = document.getElementById('username').parentElement.querySelector('i');
+					icon.classList.add("icon-error");
+				}
+
+				// Password validation
+				if (password.length < 8 ) {
+					errors.push("Password should be at least 8 Characters.");
+					document.getElementById('password').parentElement.classList.add("incorrect");
+					const icon = document.getElementById('password').parentElement.querySelector('i');
+					icon.classList.add("icon-error");
+				}
+				if (!/(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}/.test(password)) {
+					errors.push("Password must contain at least one uppercase letter, one lowercase letter, one number, and one special character.");
+					document.getElementById('password').parentElement.classList.add("incorrect");
+					const icon = document.getElementById('password').parentElement.querySelector('i');
+					icon.classList.add("icon-error");
+				}
+
+				// Confirm Password validation
+				if (confirmPassword !== password) {
+					errors.push("Password does not match with Confirm Password.");
+					document.getElementById('confirmPassword').parentElement.classList.add("incorrect");
+					const icon = document.getElementById('confirmPassword').parentElement.querySelector('i');
+					icon.classList.add("icon-error");
+				}
+
+				// email validation
+				if (email === '' || email == null) {
+					errors.push("Email cannot be empty.");
+					document.getElementById('email').parentElement.classList.add("incorrect");
+					const icon = document.getElementById('email').parentElement.querySelector('i');
+					icon.classList.add("icon-error");
+				}
+
+				// phone number validation
+				if (!/^\d{7,17}$/.test(phoneNumber)) {
+					errors.push("Invalid phone number. Enter valid number.");
+					document.getElementById('phone').parentElement.classList.add("incorrect");
+					const icon = document.getElementById('phone').parentElement.querySelector('i');
+					icon.classList.add("icon-error");
+				}
+
+				// Log errors in the console for debugging
+				console.log("Form errors:", errors);
+
+				if (errors.length > 0) {
+					// alert('Errors exist. Fix them before submitting.');
+					console.log("Errors exist. Fix them before submitting.");
+					event.preventDefault();
+					error_message.innerHTML = errors.map(error => `<p><i class="fas fa-exclamation-triangle"></i> ${error}</p>`).join('');
+					// Show error message container
+					document.getElementById('error-message').classList.add('show');
+				} else {
+					// Process form submission if no errors
+					const jsonData = JSON.stringify({username, password, email, phoneNumber});
+					fetch('/OnePay/signUp', {
+						method: 'POST',
+						headers: {'Content-Type': 'application/json'},
+						body: jsonData
+					})
+							.then(response => response.json())
+							.then(data => {
+								console.log('Success:', data);
+								window.location.href = "/";
+							})
+							.catch(error => {
+								console.error('Error:', error);
+							});
+				}
+
+				const allInputs = [document.getElementById('username'),document.getElementById('password'),
+					document.getElementById('confirmPassword'),document.getElementById('email'),
+					document.getElementById('phone')]
+
+				allInputs.forEach(input => {
+					input.addEventListener('input', ()=> {
+						if(input.parentElement.classList.contains('incorrect')){
+							input.parentElement.classList.remove('incorrect')
+							const icon = input.parentElement.querySelector('i');
+							icon.classList.remove("icon-error");
+							error_message.innerHTML = "";
+							document.getElementById('error-message').classList.remove('show');
+						}
+					})
 				})
-						.then(response => response.json())
-						.then(data => {
-							// Handle success - redirect to a success page or show a message
-							console.log('Success:', data);
-							window.location.href = "/"
-						})
-						.catch((error) => {
-							// Handle error
-							console.error('Error:', error);
-						});
-			} else {
-				// Handle password mismatch
-				alert('Passwords do not match');
-			}
+			});
 		});
+
+		// // for login
+		// document.addEventListener('DOMContentLoaded', function() {
+		// 	// Add event listener to the form after DOM is fully loaded
+		// 	document.getElementById('loginForm').addEventListener('submit', function (event) {
+		// 		event.preventDefault(); // Prevent the default form submission
+		//
+		// 		let errors = [];
+		//
+		// 		const username = document.getElementById('username1').value;
+		// 		const password = document.getElementById('password1').value;
+		// 		const email = document.getElementById('email1').value;
+		//
+		// 		const error_message = document.getElementById("error-message1");
+		//
+		// 		// Username validation
+		// 		if (username.length <= 3) {
+		// 			errors.push("Username should be more than 3 characters.");
+		// 			document.getElementById('username1').parentElement.classList.add("incorrect");
+		// 			const icon = document.getElementById('username1').parentElement.querySelector('i');
+		// 			icon.classList.add("icon-error");
+		// 		}
+		//
+		// 		// Password validation
+		// 		if (password.length < 8 ) {
+		// 			errors.push("Password should be at least 8 Characters.");
+		// 			document.getElementById('password1').parentElement.classList.add("incorrect");
+		// 			const icon = document.getElementById('password1').parentElement.querySelector('i');
+		// 			icon.classList.add("icon-error");
+		// 		}
+		// 		if (!/(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}/.test(password)) {
+		// 			errors.push("Password must contain at least one uppercase letter, one lowercase letter, one number, and one special character.");
+		// 			document.getElementById('password1').parentElement.classList.add("incorrect");
+		// 			const icon = document.getElementById('password1').parentElement.querySelector('i');
+		// 			icon.classList.add("icon-error");
+		// 		}
+		//
+		// 		// email validation
+		// 		if (email === '' || email == null) {
+		// 			errors.push("Email cannot be empty.");
+		// 			document.getElementById('email1').parentElement.classList.add("incorrect");
+		// 			const icon = document.getElementById('email1').parentElement.querySelector('i');
+		// 			icon.classList.add("icon-error");
+		// 		}
+		//
+		//
+		// 		// Log errors in the console for debugging
+		// 		console.log("Form errors:", errors);
+		//
+		// 		if (errors.length > 0) {
+		// 			// alert('Errors exist. Fix them before submitting.');
+		// 			console.log("Errors exist. Fix them before submitting.");
+		// 			event.preventDefault();
+		// 			error_message.innerHTML = errors.map(error => `<p><i class="fas fa-exclamation-triangle"></i> ${error}</p>`).join('');
+		// 			// Show error message container
+		// 			document.getElementById('error-message1').classList.add('show');
+		// 		} else {
+		// 			// Process form submission if no errors
+		// 			console.log("nth.");
+		// 		}
+		//
+		// 		const allInputs = [document.getElementById('username1'),document.getElementById('password1'),
+		// 			document.getElementById('email1')]
+		//
+		// 		allInputs.forEach(input => {
+		// 			input.addEventListener('input', ()=> {
+		// 				if(input.parentElement.classList.contains('incorrect')){
+		// 					input.parentElement.classList.remove('incorrect')
+		// 					const icon = input.parentElement.querySelector('i');
+		// 					icon.classList.remove("icon-error");
+		// 					error_message.innerHTML = "";
+		// 					document.getElementById('error-message1').classList.remove('show');
+		// 				}
+		// 			})
+		// 		})
+		// 	});
+		// });
 	</script>
 
-	</body>
+
+</body>
 </html>
