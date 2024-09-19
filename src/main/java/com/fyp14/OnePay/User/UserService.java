@@ -1,73 +1,52 @@
+//this service handle actual user registration logic
+//and save entry into database
+
 package com.fyp14.OnePay.User;
 
-import com.fyp14.OnePay.Wallets.Wallet;
-import com.fyp14.OnePay.Wallets.WalletService;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.core.userdetails.UserDetailsService;
-import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import com.fyp14.OnePay.Security.KeyManagementService;
+import com.fyp14.OnePay.Wallet.Wallet;
+import com.fyp14.OnePay.Wallet.WalletRepository;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import java.math.BigDecimal;
-import java.util.Optional;
+import java.time.LocalDateTime;
 
 @Service
-public class UserService implements UserDetailsService {
+public class UserService {
 
     private final UserRepository userRepository;
-    private final WalletService walletService;
-    private static final Logger logger = LoggerFactory.getLogger(UserService.class);
+    private final WalletRepository walletRepository;
+    private final PasswordEncoder passwordEncoder;
+    private final KeyManagementService keyManagementService; // Inject KeyManagementService
 
-
-    @Autowired
-    public UserService(UserRepository userRepository, WalletService walletService) {
+    public UserService(UserRepository userRepository,
+                       WalletRepository walletRepository,
+                       PasswordEncoder passwordEncoder,
+                       KeyManagementService keyManagementService) {  // Add KeyManagementService to constructor
         this.userRepository = userRepository;
-        this.walletService = walletService;
+        this.walletRepository = walletRepository;
+        this.passwordEncoder = passwordEncoder;
+        this.keyManagementService = keyManagementService;
     }
 
-    // User registration method
     @Transactional
-    public User registerUser(User user) {
-        // Save the user to the database
+    public void registerUser(User user) throws Exception {
+        // Step 1: Encode the user's password
+        user.setPassword(passwordEncoder.encode(user.getPassword()));
+
+        // Step 2: Process and encrypt the user's KEK
+        keyManagementService.processUserKEK(user);  // Generate, encrypt and set encrypted KEK & IV
+
+        // Step 3: Save the user with encrypted KEK
         User savedUser = userRepository.save(user);
 
-        // Create a wallet for the new user after the user has been saved
-        createWalletForUser(savedUser);
-
-        return savedUser;
-    }
-
-    // Helper method to create a wallet for a user
-    private void createWalletForUser(User user) {
-        // Create a new wallet instance
+        // Step 4: Create and save the user's wallet
         Wallet wallet = new Wallet();
-        wallet.setUser(user);  // Associate the user with the wallet
-        wallet.setName(user.getUsername() + "'s Wallet");  // Set wallet name
-        wallet.setBalance(BigDecimal.ZERO);  // Initial balance (can be set to a different value if needed)
-
-        // Save the wallet using WalletService
-        walletService.createWallet(wallet);
-    }
-
-    @Override
-    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        Optional<User> user = userRepository.findByUsername(username);
-
-        if (user.isPresent()) {
-            User userObj = user.get();
-            return org.springframework.security.core.userdetails.User.builder()
-                    .username(userObj.getUsername())
-                    .password(userObj.getPassword())
-                    .roles(userObj.getUserRole().toString())
-                    .build();
-        } else {
-            throw new UsernameNotFoundException(username);
-        }
+        wallet.setUser(savedUser);
+        wallet.setBalance(BigDecimal.ZERO);
+        wallet.setCreated_at(LocalDateTime.now());
+        walletRepository.save(wallet);
     }
 }
-
-
-

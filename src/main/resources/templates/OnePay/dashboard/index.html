@@ -53,7 +53,7 @@
         Nav header start
     ***********************************-->
     <div class="nav-header">
-        <a class="brand-logo" href="/OnePay/dashboard/index.html">
+        <a class="brand-logo" href="/OnePay/dashboard/index">
             <img alt="" class="logo-abbr" src="/assets/images/logo-wallet.png">
             <img alt="" class="logo-compact" src="/assets/images/logo-word.png">
             <img alt="" class="brand-title" src="/assets/images/logo-word.png">
@@ -117,7 +117,7 @@
                                         <li>
                                             <div class="timeline-panel">
                                                 <div class="media me-2">
-                                                    <img alt="image" src="/dashboardassets/images/avatar/1.jpg"
+                                                    <img alt="image" src="/dashboardassets/enabledimages/avatar/1.jpg"
                                                          width="50">
                                                 </div>
                                                 <div class="media-body">
@@ -192,8 +192,8 @@
                         <li class="nav-item dropdown header-profile">
                             <a class="nav-link" data-bs-toggle="dropdown" href="javascript:void(0)" role="button">
                                 <div class="header-info">
-                                    <span class="text-black">Hello,<strong id="username">Franklin</strong></span>
-                                    <p class="fs-12 mb-0">Super Admin</p>
+                                    <span class="text-black">Hello, <strong id="username" th:text="${username}">Franklin</strong></span>
+                                    <p class="fs-12 mb-0">Normal User</p>
                                 </div>
                                 <img alt="" src="/dashboardassets/images/profile/17.jpg" width="20">
                             </a>
@@ -208,17 +208,7 @@
                                     </svg>
                                     <span class="ms-2">Profile </span>
                                 </a>
-                                <a class="dropdown-item ai-icon" href="email-inbox.html">
-                                    <svg class="text-success" fill="none" height="18"
-                                         id="icon-inbox" stroke="currentColor" stroke-linecap="round"
-                                         stroke-linejoin="round" stroke-width="2"
-                                         viewBox="0 0 24 24" width="18" xmlns="http://www.w3.org/2000/svg">
-                                        <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
-                                        <polyline points="22,6 12,13 2,6"></polyline>
-                                    </svg>
-                                    <span class="ms-2">Inbox </span>
-                                </a>
-                                <a class="dropdown-item ai-icon" href="page-login.html">
+                                <a class="dropdown-item ai-icon" href="/OnePay/home">
                                     <svg class="text-danger" fill="none" height="18"
                                          id="icon-logout" stroke="currentColor" stroke-linecap="round"
                                          stroke-linejoin="round" stroke-width="2"
@@ -227,7 +217,7 @@
                                         <polyline points="16 17 21 12 16 7"></polyline>
                                         <line x1="21" x2="9" y1="12" y2="12"></line>
                                     </svg>
-                                    <span class="ms-2">Logout </span>
+                                    <span class="ms-2">Logout</span>
                                 </a>
                             </div>
                         </li>
@@ -249,77 +239,74 @@
 
                 <li>
                     <a aria-expanded="false" href="javascript:void(0);" data-bs-toggle="collapse" data-bs-target="#dashboardSubmenu" aria-controls="dashboardSubmenu"  style="display: flex; justify-content: space-between; align-items: center;">
-                        <i class="fas fa-th-large"></i> <!-- Using Font Awesome desktop icon -->
+                        <i class="fas fa-th-large"></i>
                         <span class="nav-text">Dashboard</span>
-                        <i class="fas fa-chevron-right dropdown-chevron" style="float:right;"></i> <!-- Chevron for the dropdown arrow -->
+                        <i class="fas fa-chevron-right dropdown-chevron" style="float:right;"></i>
                     </a>
 
                     <!-- Submenu (collapsed by default) -->
                     <ul class="collapse" id="dashboardSubmenu">
-                        <li><a href="index.html">Dashboard Light</a></li>
-                        <li><a href="index-2.html">Dashboard Dark</a></li>
-                        <li><a href="my-wallet.html">My Wallet</a></li>
-                        <li><a href="invoices.html">Invoices</a></li>
-                        <li><a href="transactions.html">Transactions</a></li>
-                        <li><a href="transactions-details.html">Transactions Details</a></li>
+                        <li><a style="cursor: pointer;">Dashboard Light</a></li>
+                        <li><a style="cursor: pointer;">Dashboard Dark</a></li>
+                    </ul>
+                </li>
+
+                <li>
+                    <a aria-expanded="false" href="javascript:void(0);" data-bs-toggle="collapse" data-bs-target="#walletSubmenu" aria-controls="walletSubmenu"  style="display: flex; justify-content: space-between; align-items: center;">
+                        <i class="fas fa-wallet"></i>
+                        <span class="nav-text">My Wallet</span>
+                        <i class="fas fa-chevron-right dropdown-chevron" style="float:right;"></i>
+                    </a>
+
+                    <!-- Submenu (collapsed by default) -->
+                    <ul class="collapse" id="walletSubmenu">
+                        <li><a href="wallet-details.html">Wallet Details</a></li>
+                        <li><a href="wallet-history.html">Wallet History</a></li>
+                        <!-- about top-up/withdraw history-->
+                    </ul>
+                </li>
+
+
+                <li>
+                    <a aria-expanded="false" href="javascript:void(0);" data-bs-toggle="collapse" data-bs-target="#transferSubmenu" aria-controls="transferSubmenu" style="display: flex; justify-content: space-between; align-items: center;">
+                        <i class="fa-solid fa-money-bill-alt"></i>
+                        <span class="nav-text">Transfer</span>
+                        <i class="fas fa-chevron-right dropdown-chevron" style="float:right;"></i> <!-- Chevron for the dropdown arrow -->
+                    </a>
+                    <!-- Submenu (collapsed by default) -->
+                    <ul class="collapse" id="transferSubmenu">
+                        <li><a href="/OnePay/dashboard/transfer">Money Transfer</a></li>
+                        <li><a href="transfer-details.html">Transfer Details</a></li>
                     </ul>
                 </li>
 
                 <li>
                     <a aria-expanded="false" href="javascript:void(0);" data-bs-toggle="collapse" data-bs-target="#accountSubmenu" aria-controls="accountSubmenu" style="display: flex; justify-content: space-between; align-items: center;">
-                        <i class="fa-regular fa-user"></i> <!-- Using Font Awesome user icon -->
+                        <i class="fa-regular fa-user"></i>
                         <span class="nav-text">Account</span>
-<!--                        <span class="badge badge-xs style-1 new-badge">New</span>-->
-                        <i class="fas fa-chevron-right dropdown-chevron" style="float:right;"></i> <!-- Chevron for the dropdown arrow -->
+                        <i class="fas fa-chevron-right dropdown-chevron" style="float:right;"></i>
                     </a>
                     <!-- Submenu (collapsed by default) -->
                     <ul class="collapse" id="accountSubmenu">
-                        <li><a href="/dashboardassets/account/overview.html">Overview</a></li>
-                        <li><a href="/dashboardassets/account/settings.html">Settings</a></li>
-                        <li><a href="/dashboardassets/account/security.html">Security</a></li>
-                        <li><a href="/dashboardassets/account/activity.html">Activity</a></li>
-                        <li><a href="/dashboardassets/account/billing.html">Billing</a></li>
-                        <li><a href="/dashboardassets/account/statements.html">Statements</a></li>
-                        <li><a href="/dashboardassets/account/referrals.html">Referrals</a></li>
-                        <li><a href="/dashboardassets/account/api-keys.html">API Keys</a></li>
-                        <li><a href="/dashboardassets/account/logs.html">Logs</a></li>
+                        <li><a href="account.html">Account Details</a></li>
+                        <li><a href="settings.html">Settings</a></li>
+                        <li><a href="invoices.html">Invoices</a></li>
+                        <li><a href="activity.html">Activity History</a></li>
                     </ul>
                 </li>
 
                 <li>
-                    <a aria-expanded="false" href="javascript:void(0);" data-bs-toggle="collapse" data-bs-target="#aikitSubmenu" aria-controls="aikitSubmenu" style="display: flex; justify-content: space-between; align-items: center;">
-                        <i class="fa-solid fa-robot"></i> <!-- Using Font Awesome robot icon -->
-                        <span class="nav-text">AIKit</span>
-
-                        <i class="fas fa-chevron-right dropdown-chevron" style="float:right;"></i> <!-- Chevron for the dropdown arrow -->
+                    <a class="submenu-icon" href="/OnePay/home" >
+                        <i class=" fas fa-sign-out-alt" ></i>
+                        <span class="nav-text align-content-center" >Log Out</span>
                     </a>
-                    <!-- Submenu (collapsed by default) -->
-                    <ul class="collapse" id="aikitSubmenu">
-                        <li><a href="aikit/auto-write.html">Auto Writer</a></li>
-                        <li><a href="aikit/scheduled.html">Scheduler</a></li>
-                        <li><a href="aikit/repurpose.html">Repurpose</a></li>
-                        <li><a href="aikit/rss.html">RSS</a></li>
-                        <li><a href="aikit/chatbot.html">Chatbot</a></li>
-                        <li><a href="aikit/fine-tune-models.html">Fine-tune Models</a></li>
-                        <li><a href="aikit/prompt.html">AI Menu Prompts</a></li>
-                        <li><a href="aikit/setting.html">Settings</a></li>
-                        <li><a href="aikit/import.html">Export/Import Settings</a></li>
-                    </ul>
                 </li>
 
-
-            <div class="copyright" style="
-                    position: absolute;
-                    bottom: 0;
-                    left: 0;
-                    padding: 10px;
-                    font-size: 0.875rem;
-                    width: 100%;
-                    text-align: left;
-                ">
-                <p><strong>OnePay Payment Dashboard</strong> © 2024 All Rights Reserved</p>
-                <p>Made with <span class="heart"></span> by FYP-24-S3-14</p>
-            </div>
+                <div class="copyright copyright-style">
+                    <p><strong>OnePay Payment Dashboard</strong> © 2024 All Rights Reserved</p>
+                    <p>Made with <span class="heart"></span> by FYP-24-S3-14</p>
+                </div>
+            </ul>
         </div>
     </div>
     <!--**********************************
@@ -338,118 +325,50 @@
             <div class="row">
                 <div class="col-xl-6">
                     <div class="row">
-                        <div class="col-xl-8 col-lg-6 col-md-7 col-sm-8">
+                        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12">
                             <div class="card-bx stacked">
-                                <img alt="" class="mw-100" src="/dashboardassets/images/card/card.png">
+                                <img src="/dashboardassets/images/card/card.png" alt="" class="mw-100">
                                 <div class="card-info text-white">
                                     <p class="mb-1 text-white">Main Balance</p>
-                                    <h2 class="fs-36 text-white mb-sm-4 mb-3">$673,412.66</h2>
+                                    <h2 class="fs-36 text-white mb-sm-4 mb-3" th:text="${balance}">$673,412.66</h2>
                                     <div class="d-flex align-items-center justify-content-between mb-sm-5 mb-3">
-                                        <img alt="" class="dot-img" src="/dashboardassets/images/dual-dot.png">
-                                        <h4 class="fs-20 text-white mb-0">**** **** **** 1234</h4>
+                                        <p></p>
+                                        <h4 class="fs-20 text-white mb-0">**** **** **** ****</h4>
                                     </div>
                                     <div class="d-flex">
-                                        <div class="me-5">
-                                            <p class="fs-14 mb-1 text-white op6">VALID THRU</p>
-                                            <span>08/21</span>
-                                        </div>
                                         <div>
                                             <p class="fs-14 mb-1 text-white op6">CARD HOLDER</p>
-                                            <span>Franklin Jr.</span>
+                                            <span th:text="${username}">Franklin Jr.</span>
                                         </div>
                                     </div>
                                 </div>
-                                <a href="cards-center.html"><i aria-hidden="true" class="fa fa-caret-down"></i></a>
+                                <a><i class="fa fa-caret-down" aria-hidden="true"></i></a>
                             </div>
                         </div>
 
-                        <div class="col-xl-12">
-                            <div class="card">
-                                <div class="card-header d-sm-flex d-block border-0 pb-0 flex-wrap">
-                                    <div class="pr-3 me-auto mb-sm-0 mb-3">
-                                        <h4 class="fs-20 text-black mb-1">Transaction Overview</h4>
-                                        <span class="fs-12">Lorem ipsum dolor sit amet, consectetur</span>
-                                    </div>
-                                    <div class="d-flex align-items-center justify-content-between">
-                                        <a class="btn btn-rounded btn-primary light me-3"
-                                           data-bs-target="#DownloadReport"
-                                           data-bs-toggle="modal" href="javascript:void(0)"><i
-                                                class="las la-download  scale5 me-3"></i>Download Report</a>
-                                        <!-- Modal -->
-                                        <div class="modal fade" id="DownloadReport">
-                                            <div class="modal-dialog modal-dialog-centered" role="document">
-                                                <div class="modal-content">
-                                                    <div class="modal-header">
-                                                        <h5 class="modal-title">Modal title</h5>
-                                                        <button class="btn-close" data-bs-dismiss="modal"
-                                                                type="button">
-                                                        </button>
-                                                    </div>
-                                                    <div class="modal-body">
-                                                        <div class="row">
-                                                            <div class="col-xl-12">
-                                                                <div class="mb-3">
-                                                                    <label class="form-label"
-                                                                           for="exampleFormControlInput1">Report</label>
-                                                                    <input class="form-control"
-                                                                           id="exampleFormControlInput1"
-                                                                           placeholder="transction"
-                                                                           type="text">
-                                                                </div>
 
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="modal-footer">
-                                                        <button class="btn btn-danger light" data-bs-dismiss="modal"
-                                                                type="button">Close
-                                                        </button>
-                                                        <button class="btn btn-primary" type="button">Save
-                                                            changes
-                                                        </button>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="dropdown c-pointer">
-                                            <div class="btn-link" data-bs-toggle="dropdown">
-                                                <svg height="1.5rem" version="1.1" viewBox="0 0 24 24"
-                                                     width="1.5rem">
-                                                    <g fill="none" fill-rule="evenodd" stroke="none"
-                                                       stroke-width="1">
-                                                        <rect height="24" width="24" x="0" y="0"></rect>
-                                                        <circle cx="5" cy="12" fill="#000000" r="2"></circle>
-                                                        <circle cx="12" cy="12" fill="#000000" r="2"></circle>
-                                                        <circle cx="19" cy="12" fill="#000000" r="2"></circle>
-                                                    </g>
-                                                </svg>
-                                            </div>
-                                            <div class="dropdown-menu dropdown-menu-end">
-                                                <a class="dropdown-item" href="javascript:void(0)">Delete</a>
-                                                <a class="dropdown-item" href="javascript:void(0)">Edit</a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="card-body">
-                                    <div id="chartBar"></div>
-                                    <div class="d-flex">
-                                        <div class="form-check custom-switch toggle-switch text-end me-4">
-                                            <input class="form-check-input mt-0" id="customSwitch11"
-                                                   type="checkbox">
-                                            <label class="form-check-label fs-14 text-black pe-2"
-                                                   for="customSwitch11">Number</label>
-                                        </div>
-                                        <div class="form-check custom-switch toggle-switch text-end me-4">
-                                            <input class="form-check-input mt-0" id="customSwitch12"
-                                                   type="checkbox">
-                                            <label class="form-check-label fs-14 text-black pe-2"
-                                                   for="customSwitch12">Analytics</label>
-                                        </div>
-                                    </div>
-                                </div>
+                        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12">
+                            <!-- Buttons Section -->
+                            <div class="d-flex align-items-center justify-content-between mb-sm-2 ">
+                                <a href="/OnePay/dashboard/top-up" class="btn light btn-success col-xl-5 col-lg-5 col-md-5 col-sm-5">Top Up</a>
+                                <button type="button" class="btn light btn-danger col-xl-5 col-lg-5 col-md-5 col-sm-5 " href="">Withdraw</button>
+                            </div>
+                            <!-- Wallet Info Button -->
+                            <div class="d-flex align-items-center justify-content-between mb-sm-2 ">
+                                <a href="/OnePay/dashboard/create-wallet" class="btn light btn-secondary col-xl-5 col-lg-5 col-md-5 col-sm-5 ">Create Wallet</a>
+                                <button type="button" class="btn light btn-info col-xl-5 col-lg-5 col-md-5 col-sm-5 ">Wallet Info</button>
+                            </div>
+
+                            <div class="d-flex align-items-center justify-content-between mb-sm-5 ">
+                                <a href="/OnePay/dashboard/transfer" class="btn btn-primary col-xl-12 col-lg-12 col-md-12 col-sm-12">
+                                            <span class="transfer-icon">
+                                                <i class="fas fa-coins"></i>
+                                            </span>
+                                    <span class="text">Transfer</span>
+                                </a>
                             </div>
                         </div>
+
                         <div class="col-xl-12">
                             <div class="card">
                                 <div class="card-header d-sm-flex d-block border-0 pb-0">
@@ -529,8 +448,35 @@
                         </div>
                     </div>
                 </div>
+
                 <div class="col-xl-6">
                     <div class="row">
+                        <div class="col-xl-12">
+                            <div class="card">
+                                <div class="card-body ">
+                                    <h2>Money Transfer</h2>
+                                    <form id="transfer-form">
+                                        <!-- Receiver Wallet ID -->
+                                        <div class="form-group">
+                                            <label for="receiverMobileNumber">Receiver Mobile Number:</label>
+                                            <input type="number" class="form-control" id="receiverMobileNumber" placeholder="Enter Receiver Mobile Number" required>
+                                            <div class="invalid-feedback">Receiver Mobile Number is required.</div>
+                                        </div>
+
+                                        <!-- Amount -->
+                                        <div class="form-group">
+                                            <label for="amount">Amount to Transfer:</label>
+                                            <input type="number" class="form-control" id="amount" step="0.01" placeholder="Enter Amount" required>
+                                            <div class="invalid-feedback">Amount is required and must be greater than 0.</div>
+                                        </div>
+
+                                        <!-- Submit Button -->
+                                        <button type="submit" class="btn btn-primary">Transfer Now</button>
+                                    </form>
+                                    <div id="resultMessage" class="mt-3"></div>
+                                </div>
+                            </div>
+                        </div>
 
                         <div class="col-xl-12">
                             <div class="card">
@@ -1196,6 +1142,53 @@
                         </div>
                     </div>
                 </div>
+
+
+                <!--                <div class="col-xl-6">-->
+
+                <!--                    <div class="row">-->
+                <!--                        <div class="col-xl-12">-->
+                <!--                        <div class="card">-->
+                <!--                            <div class="card-body">-->
+                <!--                                <div class="transfer-card container mt-5">-->
+                <!--                                    <h2>Wallet Transfer</h2>-->
+                <!--                                    <form id="transfer-form">-->
+                <!--                                        &lt;!&ndash; Sender Wallet ID &ndash;&gt;-->
+                <!--                                        <div class="form-group">-->
+                <!--                                            <label for="senderWalletId">Sender Wallet ID:</label>-->
+                <!--                                            <input type="number" class="form-control" id="senderWalletId" placeholder="Enter Sender Wallet ID" required>-->
+                <!--                                            <div class="invalid-feedback">Sender Wallet ID is required.</div>-->
+                <!--                                        </div>-->
+
+                <!--                                        &lt;!&ndash; Receiver Wallet ID &ndash;&gt;-->
+                <!--                                        <div class="form-group">-->
+                <!--                                            <label for="receiverWalletId">Receiver Wallet ID:</label>-->
+                <!--                                            <input type="number" class="form-control" id="receiverWalletId" placeholder="Enter Receiver Wallet ID" required>-->
+                <!--                                            <div class="invalid-feedback">Receiver Wallet ID is required.</div>-->
+                <!--                                        </div>-->
+
+                <!--                                        &lt;!&ndash; Amount &ndash;&gt;-->
+                <!--                                        <div class="form-group">-->
+                <!--                                            <label for="amount">Amount to Transfer:</label>-->
+                <!--                                            <input type="number" class="form-control" id="amount" step="0.01" placeholder="Enter Amount" required>-->
+                <!--                                            <div class="invalid-feedback">Amount is required and must be greater than 0.</div>-->
+                <!--                                        </div>-->
+
+                <!--                                        &lt;!&ndash; Submit Button &ndash;&gt;-->
+                <!--                                        <button type="submit" class="btn btn-primary">Transfer Now</button>-->
+                <!--                                    </form>-->
+
+                <!--                                    <div id="resultMessage" class="mt-3"></div>-->
+                <!--                                </div>-->
+                <!--                            </div>-->
+                <!--                        </div>-->
+
+                <!--                        </div>-->
+                <!--                    </div>-->
+
+                <!--                </div>-->
+
+
             </div>
         </div>
     </div>
@@ -1296,14 +1289,76 @@
 
 
     jQuery(document).ready(function () {
+        // Initially set the theme to 'light' after a delay (if needed)
         setTimeout(function () {
             dezSettingsOptions.version = 'light';
             new dezSettings(dezSettingsOptions);
 
-            setCookie('version', 'light');
+            jQuery('#icon-light').hide();
+            jQuery('#icon-dark').show();
 
-        }, 1500)
+            setCookie('version', 'light');
+        }, 2000);
+
+        // Initially set the theme based on the cookie (or default to light mode)
+        var theme = getCookie('theme') || 'light';
+        applyTheme(theme);
+
+
+        // Click event for "Dashboard Light"
+        jQuery('#dashboardSubmenu a:contains("Dashboard Light")').on('click', function (e) {
+            e.preventDefault();
+            applyTheme('light');
+        });
+
+        // Click event for "Dashboard Dark"
+        jQuery('#dashboardSubmenu a:contains("Dashboard Dark")').on('click', function (e) {
+            e.preventDefault();
+            applyTheme('dark');
+        });
+
+        // Click event for Sun icon (switch to dark mode)
+        jQuery('#icon-light').on('click', function () {
+            applyTheme('dark');
+        });
+
+        // Click event for Moon icon (switch to light mode)
+        jQuery('#icon-dark').on('click', function () {
+            applyTheme('light');
+        });
+
+        // Function to apply the theme
+        function applyTheme(theme) {
+            // Update the dezSettings and apply the theme
+            dezSettingsOptions.version = theme;
+            new dezSettings(dezSettingsOptions);
+
+            // Show/hide the sun and moon icons based on the theme
+            if (theme === 'light') {
+                jQuery('#icon-light').hide();
+                jQuery('#icon-dark').show();
+            } else {
+                jQuery('#icon-light').show();
+                jQuery('#icon-dark').hide();
+            }
+
+            // Update the cookie to remember the theme
+            setCookie('version', theme);
+        }
+
+        // Helper function to set a cookie
+        function setCookie(name, value) {
+            document.cookie = name + '=' + value + '; path=/';
+        }
+
+        // Helper function to get a cookie by name
+        function getCookie(name) {
+            var match = document.cookie.match(new RegExp('(^| )' + name + '=([^;]+)'));
+            if (match) return match[2];
+            return null;
+        }
     });
+
 
 
 
@@ -1311,16 +1366,19 @@
         // Select the collapse elements and chevrons
         var dashboardCollapseElement = document.querySelector('#dashboardSubmenu');
         var accountCollapseElement = document.querySelector('#accountSubmenu');
-        var aikitCollapseElement = document.querySelector('#aikitSubmenu');
+        var transferCollapseElement = document.querySelector('#transferSubmenu');
+        var walletCollapseElement = document.querySelector('#walletSubmenu');
 
         var dashboardChevron = document.querySelector('a[data-bs-target="#dashboardSubmenu"] .dropdown-chevron');
         var accountChevron = document.querySelector('a[data-bs-target="#accountSubmenu"] .dropdown-chevron');
-        var aikitChevron = document.querySelector('a[data-bs-target="#aikitSubmenu"] .dropdown-chevron');
+        var transferChevron = document.querySelector('a[data-bs-target="#transferSubmenu"] .dropdown-chevron');
+        var walletChevron = document.querySelector('a[data-bs-target="#walletSubmenu"] .dropdown-chevron');
 
         var collapsibles = [
             { element: dashboardCollapseElement, chevron: dashboardChevron },
             { element: accountCollapseElement, chevron: accountChevron },
-            { element: aikitCollapseElement, chevron: aikitChevron }
+            { element: transferCollapseElement, chevron: transferChevron },
+            { element: walletCollapseElement, chevron: walletChevron }
         ];
 
         function setupCollapseListener(collapseElement, chevron) {
@@ -1352,9 +1410,60 @@
                 setupCollapseListener(item.element, item.chevron);
             }
         });
+
+
     });
 
 
+</script>
+
+
+<script>
+    document.getElementById('transfer-form').addEventListener('submit', function (event) {
+        event.preventDefault();  // Prevent default form submission
+
+        // Get input values
+        const receiverMobileNumber = document.getElementById('receiverMobileNumber').value;
+        const amount = document.getElementById('amount').value;
+
+        // Basic validation
+        if (!receiverMobileNumber) {
+            alert('Receiver Mobile Number is required');
+            return;
+        }
+        if (!amount || parseFloat(amount) <= 0) {
+            alert('Amount must be greater than 0');
+            return;
+        }
+
+        // Prepare data to send to the backend
+        const requestData = {
+            receiverMobileNumber: receiverMobileNumber,
+            amount: amount
+        };
+
+        // Send the data to the backend using fetch
+        fetch('/OnePay/transfer', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(requestData)
+        })
+            .then(response => response.json())
+            .then(data => {
+                if (data.status === 'success') {
+                    alert('Transfer successful!');
+                    location.reload();
+                } else {
+                    alert('Transfer failed: ' + data.message);
+                }
+            })
+            .catch(error => {
+                console.error('Error during transfer:', error);
+                alert('An error occurred. Please try again.');
+            });
+    });
 </script>
 </body>
 

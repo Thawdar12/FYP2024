@@ -12,12 +12,12 @@
     <meta content="width=device-width, initial-scale=1" name="viewport">
 
     <!-- Favicon and CSS Links -->
-    <link rel="icon" sizes="16x16" href="/dashboardassets/images/favicon.png" type="image/png">
-    <link rel="stylesheet" href="/dashboardassets/vendor/jqvmap/css/jqvmap.min.css">
-    <link rel="stylesheet" href="/dashboardassets/vendor/chartist/css/chartist.min.css">
-    <link rel="stylesheet" href="/dashboardassets/vendor/bootstrap-select/dist/css/bootstrap-select.min.css">
-    <link rel="stylesheet" href="/dashboardassets/vendor/owl-carousel/owl.carousel.css">
-    <link class="main-css" rel="stylesheet" href="/dashboardassets/css/style.css">
+    <link href="/dashboardassets/images/favicon.png" rel="icon" sizes="16x16" type="image/png">
+    <link href="/dashboardassets/vendor/jqvmap/css/jqvmap.min.css" rel="stylesheet">
+    <link href="/dashboardassets/vendor/chartist/css/chartist.min.css" rel="stylesheet">
+    <link href="/dashboardassets/vendor/bootstrap-select/dist/css/bootstrap-select.min.css" rel="stylesheet">
+    <link href="/dashboardassets/vendor/owl-carousel/owl.carousel.css" rel="stylesheet">
+    <link class="main-css" href="/dashboardassets/css/style.css" rel="stylesheet">
 </head>
 
 <body>
@@ -34,24 +34,14 @@
             <form id="topup-form">
                 <div class="form-group mb-0 row style-1 align-items-center">
                     <div class="col-sm-3">
-                        <label class="fs-18 text-black font-w500">Wallet ID</label>
-                    </div>
-                    <div class="col-sm-9">
-                        <div class="input-group">
-                            <input id="walletId" type="number" class="form-control" placeholder="Enter Wallet ID" required>
-                        </div>
-                    </div>
-                </div>
-                <br/>
-                <div class="form-group mb-0 row style-1 align-items-center">
-                    <div class="col-sm-3">
                         <label class="fs-18 text-black font-w500">Amount</label>
                     </div>
                     <div class="col-sm-9">
                         <div class="input-group">
-                            <input id="amount" type="number" class="form-control" placeholder="Enter Amount" required>
+                            <input class="form-control" id="amount" placeholder="Enter Amount" required type="number">
                             <div class="input-group-append">
-                                <button id="transferNow" class="btn btn-primary rounded" type="submit">TRANSFER NOW</button>
+                                <button class="btn btn-primary rounded" id="transferNow" type="submit">Top-up NOW
+                                </button>
                             </div>
                         </div>
                     </div>
@@ -77,28 +67,27 @@
         // Handle the form submission for top-up
         document.getElementById('topup-form').addEventListener('submit', function (e) {
             e.preventDefault();
-
-            const walletId = document.getElementById('walletId').value;
             const amount = document.getElementById('amount').value;
 
-            if (!walletId || !amount || amount <= 0) {
-                alert("Please provide valid inputs.");
+            if (!amount || amount <= 0) {
+                alert("Please provide a valid amount.");
                 return;
             }
 
             // Make a POST request to the backend to perform the top-up
-            fetch('/api/topup', {
+            fetch('/OnePay/topup', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
                 },
-                body: JSON.stringify({ walletId: walletId, amount: amount })
+                body: JSON.stringify({amount: amount})
             })
                 .then(response => response.json())
                 .then(data => {
                     if (data.status === 'success') {
                         alert('Top-up successful!');
-                        updateBalance(walletId); // Update balance after top-up
+                        // Clear the input field
+                        document.getElementById('amount').value = '';
                     } else {
                         alert('Top-up failed: ' + data.message);
                     }
@@ -108,22 +97,6 @@
                     alert('An error occurred. Please try again.');
                 });
         });
-
-        // Function to fetch and update the wallet balance
-        function updateBalance(walletId) {
-            fetch(`/api/wallet?walletId=${walletId}`)
-                .then(response => response.json())
-                .then(data => {
-                    if (data.balance) {
-                        document.getElementById('balance').textContent = parseFloat(data.balance).toFixed(2);
-                    } else {
-                        console.log("Balance not found in response");
-                    }
-                })
-                .catch(error => {
-                    console.error('Error fetching balance:', error);
-                });
-        }
     });
 </script>
 

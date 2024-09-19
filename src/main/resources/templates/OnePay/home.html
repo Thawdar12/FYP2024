@@ -406,8 +406,6 @@
 				<h2 class="title">Login Your Account</h2>
 				<p class="align-items-center" id="error-message1"></p>
 				<form name="loginForm" id="loginForm" method="post" th:action="@{/login}" >
-
-
 					<div class="form-group d-flex align-items-center" >
 						<i class="fas fa-user me-2" ></i>
 						<input id="username1" name="username" required type="text" class="form-control" placeholder="Username">
@@ -532,126 +530,107 @@
 	<script src="/assets/plugin/twentytwenty-master/js/jquery.twentytwenty.js"></script>
 	<script src="dashboard/page-login.html"></script>
 
-
 	<script>
-		$(window).on('load', function () {
-			$(".twentytwenty-container[data-orientation!='vertical']").twentytwenty({default_offset_pct: 0.5});
-			$(".twentytwenty-container[data-orientation='vertical']").twentytwenty({
-				default_offset_pct: 0.3,
-				orientation: 'vertical'
-			});
-		});
-	</script>
-
-	<script>
-
 		document.addEventListener('DOMContentLoaded', function() {
-			// Add event listener to the form after DOM is fully loaded
-			document.getElementById('registrationForm').addEventListener('submit', function (event) {
+			const registrationForm = document.getElementById('registrationForm');
+			const errorContainer = document.getElementById('error-message');
+
+			registrationForm.addEventListener('submit', function (event) {
 				event.preventDefault(); // Prevent the default form submission
+
+				// Clear previous errors
+				errorContainer.innerHTML = '';
+				errorContainer.classList.remove('show');
+				const incorrectFields = document.querySelectorAll('.incorrect');
+				incorrectFields.forEach(field => {
+					field.classList.remove('incorrect');
+					const icon = field.querySelector('i');
+					if (icon) {
+						icon.classList.remove('icon-error');
+					}
+				});
 
 				let errors = [];
 
-				const username = document.getElementById('username').value;
+				const username = document.getElementById('username').value.trim();
 				const password = document.getElementById('password').value;
 				const confirmPassword = document.getElementById('confirmPassword').value;
-				const email = document.getElementById('email').value;
-				const phoneNumber = document.getElementById('phone').value;
+				const email = document.getElementById('email').value.trim();
+				const phoneNumber = document.getElementById('phone').value.trim();
 
-				const error_message = document.getElementById("error-message");
-
-				console.log("hi show")
-				console.log(document.getElementById('username').parentElement); // Check if this logs the correct parent element
+				// Validation functions
+				function addError(inputId, message) {
+					errors.push(message);
+					const inputField = document.getElementById(inputId);
+					inputField.parentElement.classList.add('incorrect');
+					const icon = inputField.parentElement.querySelector('i');
+					if (icon) {
+						icon.classList.add('icon-error');
+					}
+				}
 
 				// Username validation
 				if (username.length <= 3) {
-					errors.push("Username should be more than 3 characters.");
-					document.getElementById('username').parentElement.classList.add("incorrect");
-					const icon = document.getElementById('username').parentElement.querySelector('i');
-					icon.classList.add("icon-error");
+					addError('username', 'Username should be more than 3 characters.');
 				}
 
 				// Password validation
-				if (password.length < 8 ) {
-					errors.push("Password should be at least 8 Characters.");
-					document.getElementById('password').parentElement.classList.add("incorrect");
-					const icon = document.getElementById('password').parentElement.querySelector('i');
-					icon.classList.add("icon-error");
-				}
-				if (!/(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}/.test(password)) {
-					errors.push("Password must contain at least one uppercase letter, one lowercase letter, one number, and one special character.");
-					document.getElementById('password').parentElement.classList.add("incorrect");
-					const icon = document.getElementById('password').parentElement.querySelector('i');
-					icon.classList.add("icon-error");
+				if (password.length < 8) {
+					addError('password', 'Password should be at least 8 characters.');
+				} else if (!/(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])/.test(password)) {
+					addError('password', 'Password must contain uppercase, lowercase, number, and special character.');
 				}
 
 				// Confirm Password validation
 				if (confirmPassword !== password) {
-					errors.push("Password does not match with Confirm Password.");
-					document.getElementById('confirmPassword').parentElement.classList.add("incorrect");
-					const icon = document.getElementById('confirmPassword').parentElement.querySelector('i');
-					icon.classList.add("icon-error");
+					addError('confirmPassword', 'Passwords do not match.');
 				}
 
-				// email validation
-				if (email === '' || email == null) {
-					errors.push("Email cannot be empty.");
-					document.getElementById('email').parentElement.classList.add("incorrect");
-					const icon = document.getElementById('email').parentElement.querySelector('i');
-					icon.classList.add("icon-error");
+				// Email validation
+				if (!/^\S+@\S+\.\S+$/.test(email)) {
+					addError('email', 'Invalid email address.');
 				}
 
-				// phone number validation
+				// Phone number validation
 				if (!/^\d{7,17}$/.test(phoneNumber)) {
-					errors.push("Invalid phone number. Enter valid number.");
-					document.getElementById('phone').parentElement.classList.add("incorrect");
-					const icon = document.getElementById('phone').parentElement.querySelector('i');
-					icon.classList.add("icon-error");
+					addError('phone', 'Invalid phone number.');
 				}
-
-				// Log errors in the console for debugging
-				console.log("Form errors:", errors);
 
 				if (errors.length > 0) {
-					// alert('Errors exist. Fix them before submitting.');
-					console.log("Errors exist. Fix them before submitting.");
-					event.preventDefault();
-					error_message.innerHTML = errors.map(error => `<p><i class="fas fa-exclamation-triangle"></i> ${error}</p>`).join('');
-					// Show error message container
-					document.getElementById('error-message').classList.add('show');
+					// Show error messages
+					errorContainer.innerHTML = errors.map(error => `<p><i class="fas fa-exclamation-triangle"></i> ${error}</p>`).join('');
+					errorContainer.classList.add('show');
 				} else {
-					// Process form submission if no errors
-					const jsonData = JSON.stringify({username, password, email, phoneNumber});
+					// Prepare data to send
+					const formData = {
+						username,
+						password,
+						email,
+						phoneNumber
+					};
+
 					fetch('/OnePay/signUp', {
 						method: 'POST',
 						headers: {'Content-Type': 'application/json'},
-						body: jsonData
+						body: JSON.stringify(formData)
 					})
-							.then(response => response.json())
-							.then(data => {
-								console.log('Success:', data);
-								window.location.href = "/";
+							.then(response => {
+								if (response.ok) {
+									// Redirect on successful registration
+									window.location.href = "/";
+								} else {
+									// Handle server errors
+									return response.text().then(text => {
+										throw new Error(text || 'Registration failed.');
+									});
+								}
 							})
 							.catch(error => {
 								console.error('Error:', error);
+								errorContainer.innerHTML = `<p><i class="fas fa-exclamation-triangle"></i> ${error.message}</p>`;
+								errorContainer.classList.add('show');
 							});
 				}
-
-				const allInputs = [document.getElementById('username'),document.getElementById('password'),
-					document.getElementById('confirmPassword'),document.getElementById('email'),
-					document.getElementById('phone')]
-
-				allInputs.forEach(input => {
-					input.addEventListener('input', ()=> {
-						if(input.parentElement.classList.contains('incorrect')){
-							input.parentElement.classList.remove('incorrect')
-							const icon = input.parentElement.querySelector('i');
-							icon.classList.remove("icon-error");
-							error_message.innerHTML = "";
-							document.getElementById('error-message').classList.remove('show');
-						}
-					})
-				})
 			});
 		});
 
@@ -732,7 +711,5 @@
 		// 	});
 		// });
 	</script>
-
-
 </body>
 </html>

@@ -1,48 +1,71 @@
 package com.fyp14.OnePay.User;
 
+import com.fyp14.OnePay.Wallet.Wallet;
 import jakarta.persistence.*;
 
-// The user database table
+import java.time.LocalDateTime;
+
 @Entity
+@Table(name = "User")
 public class User {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "userID", nullable = false)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long userID;
-    private String username;
-    private String email;
-    private String password;
-    @Enumerated(EnumType.STRING)
-    private UserRole userRole;
-    private Boolean locked;
-    private Boolean enabled;
-    private int phoneNumber;
 
-    // Default constructor required by JPA and JSon
+    @Column(nullable = false, unique = true, length = 50)
+    private String username;
+
+    @Column(nullable = false, unique = true, length = 100)
+    private String email;
+
+    @Column(nullable = false)
+    private Boolean enabled = true;
+
+    @Column(nullable = false)
+    private Boolean locked = false;
+
+    @Column(nullable = false)
+    private String password;
+
+    @Column(nullable = false, unique = true, length = 20)
+    private String phoneNumber;
+
+    @Column(nullable = false)
+    private LocalDateTime created_at;
+
+    @Column(nullable = false)
+    private LocalDateTime updated_at;
+
+    @OneToOne(mappedBy = "user", cascade = CascadeType.ALL)
+    private Wallet wallet;
+
+    @Lob
+    @Column(name = "encrypted_kek", nullable = false)
+    private byte[] encryptedKEK;
+
+    @Column(name = "kek_encryption_iv", nullable = false)
+    private byte[] kekEncryptionIV;
+
+    // Constructors
+
     public User() {
-        this.userRole = UserRole.USER; // Default role
-        this.locked = false;           // Default locked status
-        this.enabled = true;           // Default enabled status
+        this.created_at = LocalDateTime.now();
+        this.updated_at = LocalDateTime.now();
     }
 
-    // Constructor for full initialization
-    public User(String username, String email, String password, UserRole userRole, Boolean locked, Boolean enabled, int phoneNumber) {
+    public User(String username, String email, String password, String phoneNumber) {
         this.username = username;
         this.email = email;
+        this.enabled = true;
+        this.locked = false;
         this.password = password;
-        this.userRole = userRole;
-        this.locked = locked;
-        this.enabled = enabled;
         this.phoneNumber = phoneNumber;
+        this.created_at = LocalDateTime.now();
+        this.updated_at = LocalDateTime.now();
     }
 
-    // Constructor for minimal initialization
-    public User(String username, String password) {
-        this.username = username;
-        this.password = password;
-    }
+    // Getters and Setters
 
-    // Getters and setters
     public Long getUserID() {
         return userID;
     }
@@ -67,20 +90,12 @@ public class User {
         this.email = email;
     }
 
-    public String getPassword() {
-        return password;
+    public Boolean getEnabled() {
+        return enabled;
     }
 
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
-    public UserRole getUserRole() {
-        return userRole;
-    }
-
-    public void setUserRole(UserRole userRole) {
-        this.userRole = userRole;
+    public void setEnabled(Boolean enabled) {
+        this.enabled = enabled;
     }
 
     public Boolean getLocked() {
@@ -91,19 +106,75 @@ public class User {
         this.locked = locked;
     }
 
-    public Boolean getEnabled() {
-        return enabled;
+    public String getPassword() {
+        return password;
     }
 
-    public void setEnabled(Boolean enabled) {
-        this.enabled = enabled;
+    public void setPassword(String password) {
+        this.password = password;
     }
 
-    public int getPhoneNumber() {
+    public String getPhoneNumber() {
         return phoneNumber;
     }
 
-    public void setPhoneNumber(int phoneNumber) {
+    public void setPhoneNumber(String phoneNumber) {
         this.phoneNumber = phoneNumber;
+    }
+
+    public LocalDateTime getCreated_at() {
+        return created_at;
+    }
+
+    public void setCreated_at(LocalDateTime created_at) {
+        this.created_at = created_at;
+    }
+
+    public LocalDateTime getUpdated_at() {
+        return updated_at;
+    }
+
+    public void setUpdated_at(LocalDateTime updated_at) {
+        this.updated_at = updated_at;
+    }
+
+    public Wallet getWallet() {
+        return wallet;
+    }
+
+    public void setWallet(Wallet wallet) {
+        this.wallet = wallet;
+        if (wallet != null) {
+            wallet.setUser(this);
+        }
+    }
+
+    public byte[] getEncryptedKEK() {
+        return encryptedKEK;
+    }
+
+    public void setEncryptedKEK(byte[] encryptedKEK) {
+        this.encryptedKEK = encryptedKEK;
+    }
+
+    public byte[] getKekEncryptionIV() {
+        return kekEncryptionIV;
+    }
+
+    public void setKekEncryptionIV(byte[] kekEncryptionIV) {
+        this.kekEncryptionIV = kekEncryptionIV;
+    }
+
+    // JPA Callbacks for automatic timestamping
+
+    @PrePersist
+    protected void onCreate() {
+        created_at = LocalDateTime.now();
+        updated_at = LocalDateTime.now();
+    }
+
+    @PreUpdate
+    protected void onUpdate() {
+        updated_at = LocalDateTime.now();
     }
 }
