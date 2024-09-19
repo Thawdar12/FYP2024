@@ -109,83 +109,16 @@
                                           fill="#3E4954"
                                           fill-rule="evenodd"/>
                                 </svg>
-                                <span class="badge light text-white bg-primary rounded-circle">12</span>
+<!--                                <span class="badge light text-white bg-primary rounded-circle ">12</span>-->
                             </a>
                             <div class="dropdown-menu dropdown-menu-end">
-                                <div class="widget-media dz-scroll p-3 height380" id="DZ_W_Notification1">
-                                    <ul class="timeline">
-                                        <li>
-                                            <div class="timeline-panel">
-                                                <div class="media me-2">
-                                                    <img alt="image" src="/dashboardassets/enabledimages/avatar/1.jpg"
-                                                         width="50">
-                                                </div>
-                                                <div class="media-body">
-                                                    <h6 class="mb-1">Dr sultads Send you Photo</h6>
-                                                    <small class="d-block">29 July 2024 - 02:26 PM</small>
-                                                </div>
-                                            </div>
-                                        </li>
-                                        <li>
-                                            <div class="timeline-panel">
-                                                <div class="media me-2 media-info">
-                                                    KG
-                                                </div>
-                                                <div class="media-body">
-                                                    <h6 class="mb-1">Resport created successfully</h6>
-                                                    <small class="d-block">29 July 2024 - 02:26 PM</small>
-                                                </div>
-                                            </div>
-                                        </li>
-                                        <li>
-                                            <div class="timeline-panel">
-                                                <div class="media me-2 media-success">
-                                                    <i class="fa fa-home"></i>
-                                                </div>
-                                                <div class="media-body">
-                                                    <h6 class="mb-1">Reminder : Treatment Time!</h6>
-                                                    <small class="d-block">29 July 2024 - 02:26 PM</small>
-                                                </div>
-                                            </div>
-                                        </li>
-                                        <li>
-                                            <div class="timeline-panel">
-                                                <div class="media me-2">
-                                                    <img alt="image" src="/dashboardassets/images/avatar/1.jpg"
-                                                         width="50">
-                                                </div>
-                                                <div class="media-body">
-                                                    <h6 class="mb-1">Dr sultads Send you Photo</h6>
-                                                    <small class="d-block">29 July 2024 - 02:26 PM</small>
-                                                </div>
-                                            </div>
-                                        </li>
-                                        <li>
-                                            <div class="timeline-panel">
-                                                <div class="media me-2 media-danger">
-                                                    KG
-                                                </div>
-                                                <div class="media-body">
-                                                    <h6 class="mb-1">Resport created successfully</h6>
-                                                    <small class="d-block">29 July 2024 - 02:26 PM</small>
-                                                </div>
-                                            </div>
-                                        </li>
-                                        <li>
-                                            <div class="timeline-panel">
-                                                <div class="media me-2 media-primary">
-                                                    <i class="fa fa-home"></i>
-                                                </div>
-                                                <div class="media-body">
-                                                    <h6 class="mb-1">Reminder : Treatment Time!</h6>
-                                                    <small class="d-block">29 July 2024 - 02:26 PM</small>
-                                                </div>
-                                            </div>
-                                        </li>
-                                    </ul>
+                                <div class="widget-media dz-scroll p-3 justify-content-center align-items-center" id="DZ_W_Notification1">
+                                    <div>
+                                        Empty notification.
+                                    </div>
                                 </div>
-                                <a class="all-notification" href="javascript:void(0)">See all notifications <i
-                                        class="ti-arrow-right"></i></a>
+                                <a class="all-notification" >See all notifications <i class="ti-arrow-right"></i></a>
+<!--                                href="javascript:void(0)"-->
                             </div>
                         </li>
 
@@ -237,19 +170,15 @@
         <div class="deznav-scroll">
             <ul class="metismenu" id="menu">
 
-                <li>
-                    <a aria-expanded="false" href="javascript:void(0);" data-bs-toggle="collapse" data-bs-target="#dashboardSubmenu" aria-controls="dashboardSubmenu"  style="display: flex; justify-content: space-between; align-items: center;">
-                        <i class="fas fa-th-large"></i>
-                        <span class="nav-text">Dashboard</span>
-                        <i class="fas fa-chevron-right dropdown-chevron" style="float:right;"></i>
-                    </a>
 
-                    <!-- Submenu (collapsed by default) -->
-                    <ul class="collapse" id="dashboardSubmenu">
-                        <li><a style="cursor: pointer;">Dashboard Light</a></li>
-                        <li><a style="cursor: pointer;">Dashboard Dark</a></li>
-                    </ul>
+                <li>
+                    <a href="/OnePay/dashboard/index">
+                        <i class=" fas fa-th-large" ></i>
+                        <span class="nav-text align-content-center " style="cursor: pointer; color: var(--primary);">Dashboard</span>
+                    </a>
                 </li>
+
+
 
                 <li>
                     <a aria-expanded="false" href="javascript:void(0);" data-bs-toggle="collapse" data-bs-target="#walletSubmenu" aria-controls="walletSubmenu"  style="display: flex; justify-content: space-between; align-items: center;">
@@ -327,7 +256,7 @@
                     <div class="row">
                         <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12">
                             <div class="card-bx stacked">
-                                <img src="/dashboardassets/images/card/card.png" alt="" class="mw-100">
+                                <img src="/dashboardassets/images/card/card.jpg" alt="" class="mw-100">
                                 <div class="card-info text-white">
                                     <p class="mb-1 text-white">Main Balance</p>
                                     <h2 class="fs-36 text-white mb-sm-4 mb-3" th:text="${balance}">$673,412.66</h2>
@@ -342,30 +271,23 @@
                                         </div>
                                     </div>
                                 </div>
-                                <a><i class="fa fa-caret-down" aria-hidden="true"></i></a>
+                                <div class="icon-container">
+                                    <a><i class="fas fa-circle-info" aria-hidden="true"></i></a>
+                                </div>
                             </div>
                         </div>
 
-
                         <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12">
                             <!-- Buttons Section -->
-                            <div class="d-flex align-items-center justify-content-between mb-sm-2 ">
-                                <a href="/OnePay/dashboard/top-up" class="btn light btn-success col-xl-5 col-lg-5 col-md-5 col-sm-5">Top Up</a>
-                                <button type="button" class="btn light btn-danger col-xl-5 col-lg-5 col-md-5 col-sm-5 " href="">Withdraw</button>
-                            </div>
-                            <!-- Wallet Info Button -->
-                            <div class="d-flex align-items-center justify-content-between mb-sm-2 ">
-                                <a href="/OnePay/dashboard/create-wallet" class="btn light btn-secondary col-xl-5 col-lg-5 col-md-5 col-sm-5 ">Create Wallet</a>
-                                <button type="button" class="btn light btn-info col-xl-5 col-lg-5 col-md-5 col-sm-5 ">Wallet Info</button>
-                            </div>
-
-                            <div class="d-flex align-items-center justify-content-between mb-sm-5 ">
-                                <a href="/OnePay/dashboard/transfer" class="btn btn-primary col-xl-12 col-lg-12 col-md-12 col-sm-12">
-                                            <span class="transfer-icon">
-                                                <i class="fas fa-coins"></i>
-                                            </span>
-                                    <span class="text">Transfer</span>
+                            <div class="d-flex align-items-center justify-content-between  mb-sm-5 ">
+                                <a href="/OnePay/dashboard/top-up" class="btn light btn-success col-xl-5 col-lg-5 col-md-5 col-sm-5">
+                                    <i class="fas fa-arrow-alt-circle-up"></i>
+                                    Top Up
                                 </a>
+                                <button type="button" class="btn light btn-danger col-xl-5 col-lg-5 col-md-5 col-sm-5 " href="">
+                                    <i class="fas fa-arrow-alt-circle-down"></i>
+                                    Withdraw
+                                </button>
                             </div>
                         </div>
 
@@ -374,57 +296,17 @@
                                 <div class="card-header d-sm-flex d-block border-0 pb-0">
                                     <div class="pr-3 mb-sm-0 mb-3 me-auto">
                                         <h4 class="fs-20 text-black mb-1">Quick Transfer</h4>
-                                        <span class="fs-12">Lorem ipsum dolor sit amet, consectetur</span>
+                                        <span class="fs-12">Your saved Recipients</span>
                                     </div>
-                                    <span class="fs-24 text-black font-w600">$56,772.38</span>
+                                    <span class="fs-24 text-black font-w600" th:text="${balance}">$56,772.38</span>
                                 </div>
                                 <div class="card-body">
-                                    <div class="owl-carousel testimonial-one mb-5">
-                                        <div class="item">
-                                            <div class="image-bx mb-2">
-                                                <img alt="" src="/dashboardassets/images/avatar/1.jpg">
-                                                <i class="las la-check-circle"></i>
-                                            </div>
-                                            <h6 class="fs-16 mb-0"><a class="text-black"
-                                                                      href="transactions-details.html">David</a></h6>
-                                            <span class="fs-12">@davidxc</span>
-                                        </div>
-                                        <div class="item">
-                                            <div class="image-bx mb-2">
-                                                <img alt="" src="/dashboardassets/images/avatar/2.jpg">
-                                                <i class="las la-check-circle"></i>
-                                            </div>
-                                            <h6 class="fs-16 mb-0"><a class="text-black"
-                                                                      href="transactions-details.html">Cindy</a></h6>
-                                            <span class="fs-12">@cindyss</span>
-                                        </div>
-                                        <div class="item">
-                                            <div class="image-bx mb-2">
-                                                <img alt="" src="/dashboardassets/images/avatar/3.jpg">
-                                                <i class="las la-check-circle"></i>
-                                            </div>
-                                            <h6 class="fs-16 mb-0"><a class="text-black"
-                                                                      href="transactions-details.html">Samuel</a></h6>
-                                            <span class="fs-12">@sam224</span>
-                                        </div>
-                                        <div class="item">
-                                            <div class="image-bx mb-2">
-                                                <img alt="" src="/dashboardassets/images/avatar/4.jpg">
-                                                <i class="las la-check-circle"></i>
-                                            </div>
-                                            <h6 class="fs-16 mb-0"><a class="text-black"
-                                                                      href="transactions-details.html">Olivia</a></h6>
-                                            <span class="fs-12">@oliv62</span>
-                                        </div>
-                                        <div class="item">
-                                            <div class="image-bx mb-2">
-                                                <img alt="" src="/dashboardassets/images/avatar/5.jpg">
-                                                <i class="las la-check-circle"></i>
-                                            </div>
-                                            <h6 class="fs-16 mb-0"><a class="text-black"
-                                                                      href="transactions-details.html">Martha</a></h6>
-                                            <span class="fs-12">@marthaa</span>
-                                        </div>
+                                    <div class="d-flex justify-content-between align-items-center mb-5">
+                                        <button class="btn btn-primary">
+                                            <i class="fas fa-plus"></i> Add
+                                        </button>
+                                        <span class="mx-auto">No saved Recipients</span>
+
                                     </div>
                                     <form>
                                         <div class="form-group mb-0 row style-1 align-items-center">
@@ -471,7 +353,17 @@
                                         </div>
 
                                         <!-- Submit Button -->
-                                        <button type="submit" class="btn btn-primary">Transfer Now</button>
+
+
+                                        <button type="submit" class="btn btn-primary">
+                                            <span class="transfer-icon">
+                                                <i class="fas fa-exchange-alt"></i>
+                                            </span>
+                                            <span class="text">Transfer Now</span>
+                                        </button>
+
+
+
                                     </form>
                                     <div id="resultMessage" class="mt-3"></div>
                                 </div>
@@ -483,7 +375,7 @@
                                 <div class="card-header d-block d-sm-flex border-0">
                                     <div class="me-3">
                                         <h4 class="fs-20 text-black">Previous Transactions</h4>
-                                        <p class="mb-0 fs-13">Lorem ipsum dolor sit amet, consectetur</p>
+<!--                                        <p class="mb-0 fs-13">Lorem ipsum dolor sit amet, consectetur</p>-->
                                     </div>
                                     <div class="card-action card-tabs d-inline-block mt-3 mt-sm-0">
                                         <ul class="nav nav-tabs" role="tablist">
@@ -1143,52 +1035,6 @@
                     </div>
                 </div>
 
-
-                <!--                <div class="col-xl-6">-->
-
-                <!--                    <div class="row">-->
-                <!--                        <div class="col-xl-12">-->
-                <!--                        <div class="card">-->
-                <!--                            <div class="card-body">-->
-                <!--                                <div class="transfer-card container mt-5">-->
-                <!--                                    <h2>Wallet Transfer</h2>-->
-                <!--                                    <form id="transfer-form">-->
-                <!--                                        &lt;!&ndash; Sender Wallet ID &ndash;&gt;-->
-                <!--                                        <div class="form-group">-->
-                <!--                                            <label for="senderWalletId">Sender Wallet ID:</label>-->
-                <!--                                            <input type="number" class="form-control" id="senderWalletId" placeholder="Enter Sender Wallet ID" required>-->
-                <!--                                            <div class="invalid-feedback">Sender Wallet ID is required.</div>-->
-                <!--                                        </div>-->
-
-                <!--                                        &lt;!&ndash; Receiver Wallet ID &ndash;&gt;-->
-                <!--                                        <div class="form-group">-->
-                <!--                                            <label for="receiverWalletId">Receiver Wallet ID:</label>-->
-                <!--                                            <input type="number" class="form-control" id="receiverWalletId" placeholder="Enter Receiver Wallet ID" required>-->
-                <!--                                            <div class="invalid-feedback">Receiver Wallet ID is required.</div>-->
-                <!--                                        </div>-->
-
-                <!--                                        &lt;!&ndash; Amount &ndash;&gt;-->
-                <!--                                        <div class="form-group">-->
-                <!--                                            <label for="amount">Amount to Transfer:</label>-->
-                <!--                                            <input type="number" class="form-control" id="amount" step="0.01" placeholder="Enter Amount" required>-->
-                <!--                                            <div class="invalid-feedback">Amount is required and must be greater than 0.</div>-->
-                <!--                                        </div>-->
-
-                <!--                                        &lt;!&ndash; Submit Button &ndash;&gt;-->
-                <!--                                        <button type="submit" class="btn btn-primary">Transfer Now</button>-->
-                <!--                                    </form>-->
-
-                <!--                                    <div id="resultMessage" class="mt-3"></div>-->
-                <!--                                </div>-->
-                <!--                            </div>-->
-                <!--                        </div>-->
-
-                <!--                        </div>-->
-                <!--                    </div>-->
-
-                <!--                </div>-->
-
-
             </div>
         </div>
     </div>
@@ -1208,15 +1054,6 @@
     <!--**********************************
         Footer end
     ***********************************-->
-
-    <!--**********************************
-       Support ticket button start
-    ***********************************-->
-
-    <!--**********************************
-       Support ticket button end
-    ***********************************-->
-
 
 </div>
 <!--**********************************
@@ -1287,95 +1124,28 @@
         }, 1000);
     });
 
-
-    jQuery(document).ready(function () {
-        // Initially set the theme to 'light' after a delay (if needed)
-        setTimeout(function () {
+    jQuery(document).ready(function(){
+        setTimeout(function(){
             dezSettingsOptions.version = 'light';
             new dezSettings(dezSettingsOptions);
 
-            jQuery('#icon-light').hide();
-            jQuery('#icon-dark').show();
+            setCookie('version','light');
 
-            setCookie('version', 'light');
-        }, 2000);
-
-        // Initially set the theme based on the cookie (or default to light mode)
-        var theme = getCookie('theme') || 'light';
-        applyTheme(theme);
-
-
-        // Click event for "Dashboard Light"
-        jQuery('#dashboardSubmenu a:contains("Dashboard Light")').on('click', function (e) {
-            e.preventDefault();
-            applyTheme('light');
-        });
-
-        // Click event for "Dashboard Dark"
-        jQuery('#dashboardSubmenu a:contains("Dashboard Dark")').on('click', function (e) {
-            e.preventDefault();
-            applyTheme('dark');
-        });
-
-        // Click event for Sun icon (switch to dark mode)
-        jQuery('#icon-light').on('click', function () {
-            applyTheme('dark');
-        });
-
-        // Click event for Moon icon (switch to light mode)
-        jQuery('#icon-dark').on('click', function () {
-            applyTheme('light');
-        });
-
-        // Function to apply the theme
-        function applyTheme(theme) {
-            // Update the dezSettings and apply the theme
-            dezSettingsOptions.version = theme;
-            new dezSettings(dezSettingsOptions);
-
-            // Show/hide the sun and moon icons based on the theme
-            if (theme === 'light') {
-                jQuery('#icon-light').hide();
-                jQuery('#icon-dark').show();
-            } else {
-                jQuery('#icon-light').show();
-                jQuery('#icon-dark').hide();
-            }
-
-            // Update the cookie to remember the theme
-            setCookie('version', theme);
-        }
-
-        // Helper function to set a cookie
-        function setCookie(name, value) {
-            document.cookie = name + '=' + value + '; path=/';
-        }
-
-        // Helper function to get a cookie by name
-        function getCookie(name) {
-            var match = document.cookie.match(new RegExp('(^| )' + name + '=([^;]+)'));
-            if (match) return match[2];
-            return null;
-        }
+        },1500)
     });
-
-
 
 
     document.addEventListener('DOMContentLoaded', function () {
         // Select the collapse elements and chevrons
-        var dashboardCollapseElement = document.querySelector('#dashboardSubmenu');
         var accountCollapseElement = document.querySelector('#accountSubmenu');
         var transferCollapseElement = document.querySelector('#transferSubmenu');
         var walletCollapseElement = document.querySelector('#walletSubmenu');
 
-        var dashboardChevron = document.querySelector('a[data-bs-target="#dashboardSubmenu"] .dropdown-chevron');
         var accountChevron = document.querySelector('a[data-bs-target="#accountSubmenu"] .dropdown-chevron');
         var transferChevron = document.querySelector('a[data-bs-target="#transferSubmenu"] .dropdown-chevron');
         var walletChevron = document.querySelector('a[data-bs-target="#walletSubmenu"] .dropdown-chevron');
 
         var collapsibles = [
-            { element: dashboardCollapseElement, chevron: dashboardChevron },
             { element: accountCollapseElement, chevron: accountChevron },
             { element: transferCollapseElement, chevron: transferChevron },
             { element: walletCollapseElement, chevron: walletChevron }

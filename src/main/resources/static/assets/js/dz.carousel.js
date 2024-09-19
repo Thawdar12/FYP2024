@@ -1,10 +1,4 @@
-/**
-	Template Name 	 : Mophy
-	Author			 : DexignZone
-	Version			 : 1.0
-	Author Portfolio : https://themeforest.net/user/dexignzone/portfolio
-	
-**/
+
 
 /* JavaScript Document */
 jQuery(window).on('load', function() {

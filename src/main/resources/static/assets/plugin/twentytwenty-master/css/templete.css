@@ -102,7 +102,7 @@
 }
 .title-box h6{
     font-size: 15px;
-    color: #999
+    color: #999;
     text-transform: uppercase;
     font-weight: 700;
     margin-bottom: 15px;
@@ -216,7 +216,7 @@
 	opacity:0.9;
 }
 .overlay-primary.curv-bx:before{
-	background-image: url(../images/shape.png);
+	/*background-image: url(../images/shape.png);*/
 	background-position: bottom;
 	content: "";
 	position: absolute;
@@ -402,7 +402,7 @@
 	font-family: 'Rubik', sans-serif;
 }
 .theme-footer.curv-bx:before{
-	background-image: url(../images/curv.png);
+	/*background-image: url(../images/curv.png);*/
 	background-position: top;
 }
 .theme-footer{
@@ -694,17 +694,17 @@
 	}
 }
 
-@-keyframes horizontal1 {
-	0% {
-		transform: scale(1.2)
-	}
-	50% {
-		transform: scale(1)
-	}
-	100% {
-		transform: scale(1.2)
-	}
-}
+/*@-keyframes horizontal1 {*/
+/*	0% {*/
+/*		transform: scale(1.2)*/
+/*	}*/
+/*	50% {*/
+/*		transform: scale(1)*/
+/*	}*/
+/*	100% {*/
+/*		transform: scale(1.2)*/
+/*	}*/
+/*}*/
 .feature-icons .icon-box {
     background: #fff;
     border-radius: 4px;
@@ -1192,9 +1192,9 @@
     margin-top: 0px;
     z-index: 1;
 }
-.speed-stats span{
-	color:#
-}
+/*.speed-stats span{*/
+/*	color:#*/
+/*}*/
 .speed-stats span:after{
 	
 }
@@ -1584,7 +1584,7 @@ padding-left:20px;
     top: 0;
     width: 100%;
     height: 100%;
-    background-image: url(../images/banner/bg1.png);
+    /*background-image: url(../images/banner/bg1.png);*/
     background-position: left top;
     background-repeat: no-repeat;
     background-size: 65%;
@@ -1605,7 +1605,7 @@ padding-left:20px;
     top: 0;
     width: 100%;
     height: 100%;
-    background-image:  url(../images/banner/bg2.png);
+    /*background-image:  url(../images/banner/bg2.png);*/
     background-position: right top;
     background-repeat: no-repeat;
     background-size:32%;

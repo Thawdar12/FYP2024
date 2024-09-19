@@ -26,9 +26,10 @@
     <div class="card">
         <div class="card-header d-sm-flex d-block border-0 pb-0">
             <div class="pr-3 mb-sm-0 mb-3 me-auto">
-                <h4 class="fs-20 text-black mb-1">Quick Transfer</h4>
+                <h4 class="fs-20 text-black mb-1">Wallet Top-up</h4>
             </div>
-            <span class="fs-24 text-black font-w600">$<span id="balance">0.00</span></span>
+<!--            <p class="mb-1 text-black">Main Balance</p>-->
+            <span class="fs-24 text-black font-w600" th:text="${balance}">$0.00</span>
         </div>
         <div class="card-body">
             <form id="topup-form">

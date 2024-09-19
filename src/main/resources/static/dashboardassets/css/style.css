@@ -16093,45 +16093,22 @@ body:not([data-theme-version="dark"]) .view-dark {
 
 
 .dz-fullscreen #icon-minimize {
-    display: none;
-}
+    display: none; }
 
 .dz-fullscreen.active #icon-full {
-    display: none;
-}
+    display: none; }
 
 .dz-fullscreen.active #icon-minimize {
-    display: inline-block;
-}
+    display: inline-block; }
 
 .dz-theme-mode #icon-light {
-    display: none;
-}
+    display: none; }
 
 .dz-theme-mode.active #icon-light {
-    display: inline-block;
-}
+    display: inline-block; }
 
 .dz-theme-mode.active #icon-dark {
-    display: none;
-}
-
-/*.dz-theme-mode #icon-light {*/
-/*    display: inline-block;*/
-/*}*/
-
-/*.dz-theme-mode #icon-dark {*/
-/*    display: none;*/
-/*}*/
-
-/*.dz-theme-mode.active #icon-light {*/
-/*    display: none;*/
-/*}*/
-
-/*.dz-theme-mode.active #icon-dark {*/
-/*    display: inline-block;*/
-/*}*/
-
+    display: none; }
 
 .notification_dropdown .dropdown-menu-end {
     min-width: 310px;
