@@ -132,6 +132,14 @@ public class Transaction {
         this.description = description;
     }
 
+    public Long getFromWalletID() {
+        return (fromWallet != null) ? fromWallet.getWalletID() : null;
+    }
+
+    public Long getToWalletID() {
+        return (toWallet != null) ? toWallet.getWalletID() : null;
+    }
+
     // JPA Callback for automatic timestamping
 
     @PrePersist

@@ -36,7 +36,8 @@ public class User {
     @Column(nullable = false)
     private LocalDateTime updated_at;
 
-    @OneToOne(mappedBy = "user", cascade = CascadeType.ALL)
+    @OneToOne
+    @JoinColumn(name = "wallet_id", referencedColumnName = "walletID", nullable = true)
     private Wallet wallet;
 
     @Lob
@@ -144,9 +145,13 @@ public class User {
 
     public void setWallet(Wallet wallet) {
         this.wallet = wallet;
-        if (wallet != null) {
-            wallet.setUser(this);
+    }
+
+    public Long getWalletID() {
+        if (this.wallet != null) {
+            return this.wallet.getWalletID(); // Assuming Wallet entity has a getWalletID() method
         }
+        return null; // Return null if wallet is not assigned
     }
 
     public byte[] getEncryptedKEK() {

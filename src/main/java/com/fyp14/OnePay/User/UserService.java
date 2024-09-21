@@ -39,14 +39,18 @@ public class UserService {
         // Step 2: Process and encrypt the user's KEK
         keyManagementService.processUserKEK(user);  // Generate, encrypt and set encrypted KEK & IV
 
-        // Step 3: Save the user with encrypted KEK
+        // Step 3: Save the user with encrypted KEK (wallet not created)
         User savedUser = userRepository.save(user);
 
-        // Step 4: Create and save the user's wallet
+        // Step 4: Create and save the wallet
         Wallet wallet = new Wallet();
-        wallet.setUser(savedUser);
         wallet.setBalance(BigDecimal.ZERO);
+        wallet.setUser(savedUser);  // Associate the wallet with the user
         wallet.setCreated_at(LocalDateTime.now());
         walletRepository.save(wallet);
+
+        // Step 5: Update the user with the wallet
+        savedUser.setWallet(wallet);  // Associate wallet with the user
+        userRepository.save(savedUser);  // Update user with walletID
     }
 }
