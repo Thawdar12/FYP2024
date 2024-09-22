@@ -119,7 +119,7 @@ public class DebugController {
         for (Transaction transaction : transactions) {
             response.append("<tr>")
                     .append("<td>").append(transaction.getTransactionID()).append("</td>")
-                    .append("<td>").append(transaction.getAmountEncrypted()).append("</td>")
+                    .append("<td>").append(Base64.getEncoder().encodeToString(transaction.getAmountEncrypted())).append("</td>")
                     .append("<td>").append(transaction.getDescription()).append("</td>")
                     .append("<td>").append(Base64.getEncoder().encodeToString(transaction.getIv())).append("</td>")
                     .append("<td>").append(transaction.getTransactionType()).append("</td>")
