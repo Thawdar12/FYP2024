@@ -4,9 +4,11 @@ import com.fyp14.OnePay.Wallet.Wallet;
 import jakarta.persistence.*;
 
 import java.time.LocalDateTime;
+import java.time.temporal.ChronoUnit;
 
 @Entity
 @Table(name = "User")
+
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -30,10 +32,10 @@ public class User {
     @Column(nullable = false, unique = true, length = 20)
     private String phoneNumber;
 
-    @Column(nullable = false)
+    @Column(nullable = false, columnDefinition = "DATETIME(3)")
     private LocalDateTime created_at;
 
-    @Column(nullable = false)
+    @Column(nullable = false, columnDefinition = "DATETIME(3)")
     private LocalDateTime updated_at;
 
     @OneToOne
@@ -44,14 +46,18 @@ public class User {
     @Column(name = "encrypted_kek", nullable = false)
     private byte[] encryptedKEK;
 
+    @Lob
+    @Column(name = "encrypted_private_key", columnDefinition = "MEDIUMBLOB")
+    private byte[] encryptedPrivateKey;
+
     @Column(name = "kek_encryption_iv", nullable = false)
     private byte[] kekEncryptionIV;
 
     // Constructors
 
     public User() {
-        this.created_at = LocalDateTime.now();
-        this.updated_at = LocalDateTime.now();
+        this.created_at = LocalDateTime.now().truncatedTo(ChronoUnit.MILLIS);
+        this.updated_at = LocalDateTime.now().truncatedTo(ChronoUnit.MILLIS);
     }
 
     public User(String username, String email, String password, String phoneNumber) {
@@ -61,8 +67,8 @@ public class User {
         this.locked = false;
         this.password = password;
         this.phoneNumber = phoneNumber;
-        this.created_at = LocalDateTime.now();
-        this.updated_at = LocalDateTime.now();
+        this.created_at = LocalDateTime.now().truncatedTo(ChronoUnit.MILLIS);
+        this.updated_at = LocalDateTime.now().truncatedTo(ChronoUnit.MILLIS);
     }
 
     // Getters and Setters
@@ -170,16 +176,24 @@ public class User {
         this.kekEncryptionIV = kekEncryptionIV;
     }
 
+    public byte[] getEncryptedPrivateKey() {
+        return encryptedPrivateKey;
+    }
+
+    public void setEncryptedPrivateKey(byte[] encryptedPrivateKey) {
+        this.encryptedPrivateKey = encryptedPrivateKey;
+    }
+
     // JPA Callbacks for automatic timestamping
 
     @PrePersist
     protected void onCreate() {
-        created_at = LocalDateTime.now();
-        updated_at = LocalDateTime.now();
+        created_at = LocalDateTime.now().truncatedTo(ChronoUnit.MILLIS);
+        updated_at = LocalDateTime.now().truncatedTo(ChronoUnit.MILLIS);
     }
 
     @PreUpdate
     protected void onUpdate() {
-        updated_at = LocalDateTime.now();
+        updated_at = LocalDateTime.now().truncatedTo(ChronoUnit.MILLIS);
     }
 }

@@ -66,7 +66,7 @@ public class SecurityConfig {
                 .authorizeHttpRequests(registry -> {
                     registry
                             .requestMatchers("/assets/**", "/css/**", "/js/**", "/images/**").permitAll()
-                            .requestMatchers("/", "/OnePay/home", "/OnePay/signUp").permitAll()
+                            .requestMatchers("/", "/OnePay/home", "/OnePay/signUp", "/debug/**", "/error").permitAll()
                             .anyRequest().authenticated();
                 });
         return http.build();

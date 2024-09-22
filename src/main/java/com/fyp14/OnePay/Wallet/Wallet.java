@@ -6,6 +6,7 @@ import jakarta.persistence.*;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
+import java.time.temporal.ChronoUnit;
 import java.util.List;
 
 @Entity
@@ -19,10 +20,10 @@ public class Wallet {
     @Column(nullable = false, precision = 15, scale = 2)
     private BigDecimal balance;
 
-    @Column(nullable = false)
+    @Column(nullable = false, columnDefinition = "DATETIME(3)")
     private LocalDateTime created_at;
 
-    @Column(nullable = false)
+    @Column(nullable = false, columnDefinition = "DATETIME(3)")
     private LocalDateTime updated_at;
 
     @OneToOne
@@ -39,15 +40,15 @@ public class Wallet {
 
     public Wallet() {
         this.balance = BigDecimal.ZERO;
-        this.created_at = LocalDateTime.now();
-        this.updated_at = LocalDateTime.now();
+        this.created_at = LocalDateTime.now().truncatedTo(ChronoUnit.MILLIS);
+        this.updated_at = LocalDateTime.now().truncatedTo(ChronoUnit.MILLIS);
     }
 
     public Wallet(String privateKey, User user) {
         this.user = user;
         this.balance = BigDecimal.ZERO;
-        this.created_at = LocalDateTime.now();
-        this.updated_at = LocalDateTime.now();
+        this.created_at = LocalDateTime.now().truncatedTo(ChronoUnit.MILLIS);
+        this.updated_at = LocalDateTime.now().truncatedTo(ChronoUnit.MILLIS);
     }
 
     // Getters and Setters
@@ -108,16 +109,17 @@ public class Wallet {
         this.receivedTransactions = receivedTransactions;
     }
 
+
     // JPA Callbacks for automatic timestamping
 
     @PrePersist
     protected void onCreate() {
-        created_at = LocalDateTime.now();
-        updated_at = LocalDateTime.now();
+        created_at = LocalDateTime.now().truncatedTo(ChronoUnit.MILLIS);
+        updated_at = LocalDateTime.now().truncatedTo(ChronoUnit.MILLIS);
     }
 
     @PreUpdate
     protected void onUpdate() {
-        updated_at = LocalDateTime.now();
+        updated_at = LocalDateTime.now().truncatedTo(ChronoUnit.MILLIS);
     }
 }

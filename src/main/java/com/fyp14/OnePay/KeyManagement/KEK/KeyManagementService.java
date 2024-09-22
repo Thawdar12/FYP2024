@@ -1,7 +1,7 @@
 //key management system
 //MASTER KEK and User KEK is generate here
 
-package com.fyp14.OnePay.Security;
+package com.fyp14.OnePay.KeyManagement.KEK;
 
 import com.fyp14.OnePay.Transcation.Transaction;
 import com.fyp14.OnePay.Transcation.TransactionRepository;
@@ -16,9 +16,12 @@ import javax.crypto.KeyGenerator;
 import javax.crypto.SecretKey;
 import javax.crypto.spec.GCMParameterSpec;
 import javax.crypto.spec.SecretKeySpec;
+import java.nio.charset.StandardCharsets;
 import java.security.NoSuchAlgorithmException;
 import java.security.SecureRandom;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Base64;
+import java.util.List;
 
 @Service
 public class KeyManagementService {
@@ -107,7 +110,7 @@ public class KeyManagementService {
         Cipher cipher = Cipher.getInstance("AES/GCM/NoPadding");
         GCMParameterSpec gcmSpec = new GCMParameterSpec(GCM_TAG_LENGTH, iv);
         cipher.init(Cipher.ENCRYPT_MODE, userKEK, gcmSpec);
-        return cipher.doFinal(data.getBytes("UTF-8")); // Encrypt the data
+        return cipher.doFinal(data.getBytes(StandardCharsets.UTF_8)); // Encrypt the data
     }
 
     // Method used for decryption of data, only accept string
@@ -116,9 +119,10 @@ public class KeyManagementService {
         GCMParameterSpec gcmSpec = new GCMParameterSpec(GCM_TAG_LENGTH, iv);
         cipher.init(Cipher.DECRYPT_MODE, userKEK, gcmSpec);
         byte[] decryptedDataBytes = cipher.doFinal(encryptedData);
-        return new String(decryptedDataBytes, "UTF-8"); // Convert decrypted data back to string
+        return new String(decryptedDataBytes, StandardCharsets.UTF_8); // Convert decrypted data back to string
     }
 
+    //TODO:remember to rotate RSA Keys as well
     @Transactional
     public void rotateMasterKEK() throws Exception {
         // Step 1: Retrieve the current Master KEK from the environment
@@ -127,20 +131,25 @@ public class KeyManagementService {
         // Step 2: Retrieve all users from the database
         List<User> allUsers = userRepository.findAll();
 
-        // Step 3: Create a vector to store pairs of <userID, plaintextUserKEK>
-        List<Map.Entry<Long, SecretKey>> userKEKList = new ArrayList<>();
+        // Step 3: Create a list to store user key data
+        List<UserKeyData> userKeyDataList = new ArrayList<>();
 
         // Step 4: Loop through users and decrypt their KEK using the current Master KEK
         for (User user : allUsers) {
-            // Retrieve the encrypted KEK and IV for each user
+            // Retrieve the encrypted KEK, private key, and IV for each user
             byte[] encryptedKEK = user.getEncryptedKEK();
             byte[] kekIV = user.getKekEncryptionIV();
+            byte[] encryptedPrivateKey = user.getEncryptedPrivateKey();
 
             // Decrypt the user's KEK using the current Master KEK
             SecretKey decryptedUserKEK = decryptUserKEK(encryptedKEK, kekIV, currentMasterKEK);
 
-            // Store the userID and plaintext KEK in the list
-            userKEKList.add(new AbstractMap.SimpleEntry<>(user.getUserID(), decryptedUserKEK));
+            // Decrypt the user's private key using the decrypted user KEK and the same IV (kekIV)
+            String decryptedPrivateKeyBase64 = decryptSensitiveData(encryptedPrivateKey, decryptedUserKEK, kekIV);
+            byte[] decryptedPrivateKeyBytes = Base64.getDecoder().decode(decryptedPrivateKeyBase64);
+
+            // Create a UserKeyData object to store the userID, KEK, and private key
+            userKeyDataList.add(new UserKeyData(user.getUserID(), decryptedUserKEK, decryptedPrivateKeyBytes));
         }
 
         // Step 5: Generate a new Master KEK
@@ -150,24 +159,31 @@ public class KeyManagementService {
         System.out.println("\nTHIS IS THE NEW MASTER KEY: " + base64NewMasterKEK + "\nPLEASE STORE INTO ENV VARIABLE\n");
 
         // Step 6: Loop through the list of user KEKs and re-encrypt them with the new Master KEK
-        for (Map.Entry<Long, SecretKey> entry : userKEKList) {
-            Long userID = entry.getKey();
-            SecretKey userKEK = entry.getValue();
+        for (UserKeyData userData : userKeyDataList) {
+            Long userID = userData.getUserID();
+            SecretKey userKEK = userData.getUserKEK();
+            byte[] privateKeyBytes = userData.getPrivateKey();
 
-            // Generate a new IV for encrypting the KEK
+            // Generate a new IV for encrypting the KEK and private key
             byte[] newIV = generateRandomIV();
 
             // Encrypt the user's KEK with the new Master KEK
             byte[] encryptedKEK = encryptUserKEK(userKEK, newMasterKEK, newIV);
 
-            // Update the user in the database with the new encrypted KEK and IV
+            // Encrypt the user's private key with the new User KEK using the same new IV
+            String privateKeyBase64 = Base64.getEncoder().encodeToString(privateKeyBytes); // Encode the private key as Base64 string
+            byte[] encryptedPrivateKey = encryptSensitiveData(privateKeyBase64, userKEK, newIV); // Encrypt the private key
+
+            // Update the user in the database with the new encrypted KEK, IV, and private key
             User user = userRepository.findById(userID).orElseThrow(() -> new Exception("User not found"));
             user.setEncryptedKEK(encryptedKEK);
             user.setKekEncryptionIV(newIV);
+            user.setEncryptedPrivateKey(encryptedPrivateKey);
 
             // Save the updated user back to the database
             userRepository.save(user);
-        } // At this point, all users' KEKs have been rotated with the new Master KEK
+        }
+        // At this point, all users' KEKs and private key have been rotated with the new Master KEK
         System.out.println("\nAll users' KEKs have been rotated with the new Master KEK, proceed with re-encrypt transaction records\n");
 
         // Next we change record in transactions table
@@ -191,13 +207,16 @@ public class KeyManagementService {
                 throw new Exception("Wallet ID not found for transaction: " + transaction.getTransactionID());
             }
 
-            // Step 10: Find the corresponding User KEK by matching wallet ID with userKEKList
-            for (Map.Entry<Long, SecretKey> entry : userKEKList) {
-                Long userId = entry.getKey();
-                // Find the user by matching the wallet's userID
-                User correspondingUser = userRepository.findByWalletId(walletId);
-                if (correspondingUser != null && correspondingUser.getUserID().equals(userId)) {
-                    userKEK = entry.getValue(); // Found the userKEK corresponding to the wallet
+            // Step 10: Find the corresponding User KEK by matching wallet ID with the UserKeyData list
+            User correspondingUser = userRepository.findByWalletId(walletId);
+            if (correspondingUser == null) {
+                throw new Exception("No corresponding user found for wallet ID: " + walletId);
+            }
+
+            // Loop through the list of UserKeyData objects to find the matching userID
+            for (UserKeyData userData : userKeyDataList) {
+                if (userData.getUserID().equals(correspondingUser.getUserID())) {
+                    userKEK = userData.getUserKEK(); // Found the User KEK corresponding to the wallet
                     break;
                 }
             }
@@ -207,7 +226,7 @@ public class KeyManagementService {
             }
 
             // Step 11: Decrypt the old transaction amount using the old User KEK
-            byte[] oldEncryptedAmount = Base64.getDecoder().decode(transaction.getAmountEncrypted());
+            byte[] oldEncryptedAmount = transaction.getAmountEncrypted();
             String decryptedAmount = decryptSensitiveData(oldEncryptedAmount, userKEK, transaction.getIv()); // Use the plain user KEK from the userKEKList
 
             // Step 12: Generate a new IV for the re-encryption
@@ -221,8 +240,7 @@ public class KeyManagementService {
             byte[] newEncryptedAmountBytes = encryptSensitiveData(decryptedAmount, updatedUserKEK, newIv); // Use the new User KEK decrypted with the new Master KEK
 
             // Step 14: Encode the new encrypted amount and update the transaction
-            String newEncryptedAmount = Base64.getEncoder().encodeToString(newEncryptedAmountBytes);
-            transaction.setAmountEncrypted(newEncryptedAmount);
+            transaction.setAmountEncrypted(newEncryptedAmountBytes);
             transaction.setIv(newIv); // Update with the new IV
 
             // Step 15: Save the updated transaction back to the database

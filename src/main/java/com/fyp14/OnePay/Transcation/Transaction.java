@@ -4,6 +4,7 @@ import com.fyp14.OnePay.Wallet.Wallet;
 import jakarta.persistence.*;
 
 import java.time.LocalDateTime;
+import java.time.temporal.ChronoUnit;
 
 @Entity
 @Table(name = "Transactions")
@@ -15,7 +16,7 @@ public class Transaction {
 
     @Lob
     @Column(nullable = false)
-    private String amountEncrypted;
+    private byte[] amountEncrypted;
 
     @Column(nullable = false)
     private byte[] iv;
@@ -24,7 +25,7 @@ public class Transaction {
     @Column(nullable = false)
     private TransactionType transactionType;
 
-    @Column(nullable = false)
+    @Column(nullable = false, columnDefinition = "DATETIME(3)")
     private LocalDateTime timestamp;
 
     @ManyToOne
@@ -42,21 +43,28 @@ public class Transaction {
     @Column(nullable = true)
     private String description;
 
+    @Column(nullable = true, length = 64)
+    private String hashValueOfTransaction;
+
+    @Lob
+    @Column(nullable = true, columnDefinition = "MEDIUMBLOB")
+    private byte[] digitalSignature;
+
     // Constructors
 
     public Transaction() {
-        this.timestamp = LocalDateTime.now();
+        this.timestamp = LocalDateTime.now().truncatedTo(ChronoUnit.MILLIS);
         this.status = TransactionStatus.PENDING;
     }
 
-    public Transaction(String amountEncrypted, byte[] iv, TransactionType transactionType, Wallet fromWallet, Wallet toWallet, String description) {
+    public Transaction(byte[] amountEncrypted, byte[] iv, TransactionType transactionType, Wallet fromWallet, Wallet toWallet, String description) {
         this.amountEncrypted = amountEncrypted;
         this.iv = iv;
         this.transactionType = transactionType;
         this.fromWallet = fromWallet;
         this.toWallet = toWallet;
         this.description = description;
-        this.timestamp = LocalDateTime.now();
+        this.timestamp = LocalDateTime.now().truncatedTo(ChronoUnit.MILLIS);
         this.status = TransactionStatus.PENDING;
     }
 
@@ -70,11 +78,11 @@ public class Transaction {
         this.transactionID = transactionID;
     }
 
-    public String getAmountEncrypted() {
+    public byte[] getAmountEncrypted() {
         return amountEncrypted;
     }
 
-    public void setAmountEncrypted(String amountEncrypted) {
+    public void setAmountEncrypted(byte[] amountEncrypted) {
         this.amountEncrypted = amountEncrypted;
     }
 
@@ -132,18 +140,27 @@ public class Transaction {
         this.description = description;
     }
 
+    public String getHashValueOfTransaction() {
+        return hashValueOfTransaction;
+    }
+
+    public void setHashValueOfTransaction(String hashValueOfTransaction) {
+        this.hashValueOfTransaction = hashValueOfTransaction;
+    }
+
+    public byte[] getDigitalSignature() {
+        return digitalSignature;
+    }
+
+    public void setDigitalSignature(byte[] digitalSignature) {
+        this.digitalSignature = digitalSignature;
+    }
+
     public Long getFromWalletID() {
         return (fromWallet != null) ? fromWallet.getWalletID() : null;
     }
 
     public Long getToWalletID() {
         return (toWallet != null) ? toWallet.getWalletID() : null;
-    }
-
-    // JPA Callback for automatic timestamping
-
-    @PrePersist
-    protected void onCreate() {
-        timestamp = LocalDateTime.now();
     }
 }

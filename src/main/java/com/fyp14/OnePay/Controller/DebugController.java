@@ -2,7 +2,10 @@
 
 package com.fyp14.OnePay.Controller;
 
-import com.fyp14.OnePay.Security.KeyManagementService;
+import com.fyp14.OnePay.KeyManagement.KEK.KeyManagementService;
+import com.fyp14.OnePay.KeyManagement.RSA.UserRSAKey;
+import com.fyp14.OnePay.KeyManagement.RSA.UserRSAKeyRepository;
+import com.fyp14.OnePay.Security.HashingService;
 import com.fyp14.OnePay.Transcation.Transaction;
 import com.fyp14.OnePay.Transcation.TransactionRepository;
 import com.fyp14.OnePay.Transcation.TransactionType;
@@ -15,6 +18,11 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.crypto.SecretKey;
+import java.nio.charset.StandardCharsets;
+import java.security.KeyFactory;
+import java.security.PublicKey;
+import java.security.Signature;
+import java.security.spec.X509EncodedKeySpec;
 import java.util.*;
 
 @RestController
@@ -24,14 +32,20 @@ public class DebugController {
     private final TransactionRepository transactionRepository;
     private final KeyManagementService keyManagementService;
     private final UserRepository userRepository;
+    private final HashingService hashingService;
+    private final UserRSAKeyRepository userRSAKeyRepository;
 
-    public DebugController(TransactionRepository transactionRepository, KeyManagementService keyManagementService, UserRepository userRepository) {
+    public DebugController(TransactionRepository transactionRepository, KeyManagementService keyManagementService,
+                           UserRepository userRepository, HashingService hashingService,
+                           UserRSAKeyRepository userRSAKeyRepository) {
         this.transactionRepository = transactionRepository;
         this.keyManagementService = keyManagementService;
         this.userRepository = userRepository;
+        this.hashingService = hashingService;
+        this.userRSAKeyRepository = userRSAKeyRepository;
     }
 
-    // Debug endpoint to view session attributes
+    //this endpoint to view session attributes
     @GetMapping("/session")
     public Map<String, Object> getSessionAttributes(HttpSession session) {
         Map<String, Object> sessionData = new HashMap<>();
@@ -43,11 +57,11 @@ public class DebugController {
         return sessionData;
     }
 
-    @GetMapping("/amount")
+    //this endpoint for debug database record
+    @GetMapping("/database")
     @ResponseBody
     public String displayData() throws Exception {
         StringBuilder response = new StringBuilder();
-
         // Start HTML
         response.append("<html><body>");
 
@@ -136,7 +150,7 @@ public class DebugController {
                     keyManagementService.getMasterKEKFromEnv()
             );
 
-            byte[] encryptedAmountBytes = Base64.getDecoder().decode(transaction.getAmountEncrypted());
+            byte[] encryptedAmountBytes = transaction.getAmountEncrypted();
             String decryptedAmount = keyManagementService.decryptSensitiveData(encryptedAmountBytes, userKEK, transaction.getIv());
 
             response.append("<tr>")
@@ -153,4 +167,85 @@ public class DebugController {
         return response.toString();
     }
 
+    @GetMapping("/hashCheck")
+    public String hashCheck() throws Exception {
+        List<Transaction> transactions = transactionRepository.findAll();
+        StringBuilder response = new StringBuilder();
+
+        // Start HTML table
+        response.append("<html><body><table border='1'>");
+        response.append("<tr><th>User ID</th><th>Transaction ID</th><th>Hash in Database</th><th>Recalculated Hash</th><th>Same Hash</th><th>User Public Key</th><th>Transaction Signature</th><th>Signature Verified</th></tr>");
+
+        for (Transaction transaction : transactions) {
+            User user;
+            String fromWalletID;
+            if (transaction.getTransactionType() == TransactionType.TRANSFER) {
+                user = transaction.getFromWallet().getUser();
+            } else {
+                user = transaction.getToWallet().getUser();
+            }
+
+            if (transaction.getFromWalletID() == null) {
+                fromWalletID = "null";
+            } else {
+                fromWalletID = transaction.getFromWalletID().toString();
+            }
+
+            // Decrypt the user's KEK
+            SecretKey userKEK = keyManagementService.decryptUserKEK(
+                    user.getEncryptedKEK(),
+                    user.getKekEncryptionIV(),
+                    keyManagementService.getMasterKEKFromEnv()
+            );
+
+            // Decrypt the amount
+            byte[] encryptedAmountBytes = transaction.getAmountEncrypted();
+            String decryptedAmount = keyManagementService.decryptSensitiveData(encryptedAmountBytes, userKEK, transaction.getIv());
+
+            // Recalculate the hash
+            String recalculatedHash = hashingService.generateTransactionHash(fromWalletID, transaction.getToWalletID().toString(), decryptedAmount, transaction.getTimestamp());
+            // Check if the recalculated hash matches the one in the database
+            String sameHash = recalculatedHash.equals(transaction.getHashValueOfTransaction()) ? "YES" : "NO";
+
+            // Retrieve the user's public key from the UserRSAKeyRepository
+            UserRSAKey userRSAKeyEntity = userRSAKeyRepository.findByUser_UserID(user.getUserID());
+            String userPublicKeyString = userRSAKeyEntity.getUserPublicKey();
+
+
+            // Convert the public key from Base64 string to PublicKey object
+            byte[] publicKeyBytes = Base64.getDecoder().decode(userPublicKeyString);
+            KeyFactory keyFactory = KeyFactory.getInstance("RSA");
+            X509EncodedKeySpec publicKeySpec = new X509EncodedKeySpec(publicKeyBytes);
+            PublicKey publicKey = keyFactory.generatePublic(publicKeySpec);
+
+            // Verify the digital signature
+            Signature signature = Signature.getInstance("SHA256withRSA");
+            signature.initVerify(publicKey);
+            signature.update(recalculatedHash.getBytes(StandardCharsets.UTF_8));
+            byte[] digitalSignature = transaction.getDigitalSignature();
+            boolean isSignatureValid = signature.verify(digitalSignature);
+            String signatureVerificationResult = isSignatureValid ? "VALID" : "INVALID";
+            String truncatedPublicKey = userPublicKeyString.length() > 20 ? userPublicKeyString.substring(0, 20) + "..." : userPublicKeyString;
+            String signatureBase64 = Base64.getEncoder().encodeToString(digitalSignature);
+            String truncatedSignature = signatureBase64.length() > 20 ? signatureBase64.substring(0, 20) + "..." : signatureBase64;
+
+
+            // Append the data as a row in the table
+            response.append("<tr>");
+            response.append("<td>").append(user.getUserID()).append("</td>"); // User ID
+            response.append("<td>").append(transaction.getTransactionID()).append("</td>"); // Transaction ID
+            response.append("<td>").append(transaction.getHashValueOfTransaction()).append("</td>"); // Hash in Database
+            response.append("<td>").append(recalculatedHash).append("</td>"); // Recalculated Hash
+            response.append("<td>").append(sameHash).append("</td>"); // Same Hash Check
+            response.append("<td>").append(truncatedPublicKey).append("</td>"); // User Public Key
+            response.append("<td>").append(truncatedSignature).append("</td>"); // Transaction Signature (truncated)
+            response.append("<td>").append(signatureVerificationResult).append("</td>"); // Signature Verification
+            response.append("</tr>");
+        }
+
+        // Close the table and HTML tags
+        response.append("</table></body></html>");
+
+        return response.toString(); // Return the HTML as a string
+    }
 }

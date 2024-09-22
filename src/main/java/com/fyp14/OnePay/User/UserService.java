@@ -3,7 +3,8 @@
 
 package com.fyp14.OnePay.User;
 
-import com.fyp14.OnePay.Security.KeyManagementService;
+import com.fyp14.OnePay.KeyManagement.KEK.KeyManagementService;
+import com.fyp14.OnePay.KeyManagement.RSA.UserRSAKeyService;
 import com.fyp14.OnePay.Wallet.Wallet;
 import com.fyp14.OnePay.Wallet.WalletRepository;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -12,6 +13,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
+import java.time.temporal.ChronoUnit;
 
 @Service
 public class UserService {
@@ -19,16 +21,19 @@ public class UserService {
     private final UserRepository userRepository;
     private final WalletRepository walletRepository;
     private final PasswordEncoder passwordEncoder;
-    private final KeyManagementService keyManagementService; // Inject KeyManagementService
+    private final KeyManagementService keyManagementService;
+    private final UserRSAKeyService userRSAKeyService;
 
     public UserService(UserRepository userRepository,
                        WalletRepository walletRepository,
                        PasswordEncoder passwordEncoder,
-                       KeyManagementService keyManagementService) {  // Add KeyManagementService to constructor
+                       KeyManagementService keyManagementService,
+                       UserRSAKeyService userRSAKeyService) {  // Add KeyManagementService to constructor
         this.userRepository = userRepository;
         this.walletRepository = walletRepository;
         this.passwordEncoder = passwordEncoder;
         this.keyManagementService = keyManagementService;
+        this.userRSAKeyService = userRSAKeyService;
     }
 
     @Transactional
@@ -46,11 +51,14 @@ public class UserService {
         Wallet wallet = new Wallet();
         wallet.setBalance(BigDecimal.ZERO);
         wallet.setUser(savedUser);  // Associate the wallet with the user
-        wallet.setCreated_at(LocalDateTime.now());
+        wallet.setCreated_at(LocalDateTime.now().truncatedTo(ChronoUnit.MILLIS));
         walletRepository.save(wallet);
 
         // Step 5: Update the user with the wallet
         savedUser.setWallet(wallet);  // Associate wallet with the user
         userRepository.save(savedUser);  // Update user with walletID
+
+        // Step 6: Create RSA key for user
+        userRSAKeyService.generateAndStoreKeyPairs(user);
     }
 }
