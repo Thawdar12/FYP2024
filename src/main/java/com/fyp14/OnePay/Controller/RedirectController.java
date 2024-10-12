@@ -25,4 +25,10 @@ public class RedirectController {
     public String getTopUpPage() {
         return "OnePay/dashboard/topup"; // This resolves to 'templates/OnePay/dashboard/topup.html'
     }
+
+    @GetMapping("/OnePay/dashboard/withdraw")
+    public String getWithdrawPage() {
+        return "OnePay/dashboard/withdraw"; // This resolves to 'templates/OnePay/dashboard/withdraw.html'
+    }
+
 }

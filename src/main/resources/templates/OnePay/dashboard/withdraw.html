@@ -3,7 +3,7 @@
 
 <head>
     <!--Title-->
-    <title>OnePay: Dashboard-Top up</title>
+    <title>OnePay: Dashboard-Withdraw</title>
 
     <!-- Meta -->
     <meta charset="utf-8">
@@ -251,7 +251,7 @@
             <div class="form-head mb-4">
                 <h2 class="text-black font-w600 mb-0">
                     <a href="/OnePay/dashboard/index" class="link">Dashboard/</a>
-                    <a href="/OnePay/dashboard/top-up" class="link" style="font-size: 20px">Wallet Top Up</a>
+                    <a href="/OnePay/dashboard/top-up" class="link" style="font-size: 20px">Wallet Withdraw</a>
                 </h2>
             </div>
             <!-- Transfer Money Form -->
@@ -259,13 +259,13 @@
                 <div class="card">
                     <div class="card-header d-sm-flex d-block border-0 pb-0">
                         <div class="pr-3 mb-sm-0 mb-3 me-auto">
-                            <h2 class="text-black font-w600 fs-20 text-black mb-1">Wallet Top-up</h2>
+                            <h2 class="text-black font-w600 fs-20 text-black mb-1">Wallet Withdraw</h2>
                         </div>
                         <!--            <p class="mb-1 text-black">Main Balance</p>-->
                         <span class="fs-24 text-black font-w600" th:text="${balance}">$0.00</span>
                     </div>
                     <div class="card-body">
-                        <form id="topup-form">
+                        <form id="withdraw-form">
 
                             <div class="form-group mb-4 row align-items-center">
                                 <div class="col-sm-3">
@@ -305,17 +305,29 @@
 
                             <div class="form-group mb-4 row align-items-center">
                                 <div class="col-sm-3">
-                                    <label class="fs-18 text-black font-w500">Amount</label>
+                                    <label class="fs-18 text-black font-w500">Enter Bank Number</label>
                                 </div>
                                 <div class="col-sm-7">
                                     <div class="input-group">
-                                        <input class="form-control" id="amount" placeholder="Enter Amount" required type="number">
+                                        <input class="form-control" id="bank-number" placeholder="Enter Bank Number" required type="number">
                                     </div>
                                 </div>
                             </div>
 
+                            <div class="form-group mb-4 row align-items-center">
+                                <div class="col-sm-3">
+                                    <label class="fs-18 text-black font-w500">Withdrawal Amount</label>
+                                </div>
+                                <div class="col-sm-7">
+                                    <div class="input-group">
+                                        <input class="form-control" id="amount" placeholder="Enter Withdrawal Amount" required type="number">
+                                    </div>
+                                </div>
+                            </div>
+
+
                             <div class="mb-4 input-group-append">
-                                <button class="btn btn-primary rounded" id="transferNow" type="submit">Top-up NOW
+                                <button class="btn btn-primary rounded" id="transferNow" type="submit">Withdraw NOW
                                 </button>
                             </div>
 
@@ -476,20 +488,22 @@
 
 </script>
 
+
+
 <script>
     document.addEventListener('DOMContentLoaded', function () {
         // Handle the form submission for top-up
-        document.getElementById('topup-form').addEventListener('submit', function (e) {
+        document.getElementById('withdraw-form').addEventListener('submit', function (e) {
             e.preventDefault();
             const amount = document.getElementById('amount').value;
 
             if (!amount || amount <= 0) {
-                alert("Please provide a valid amount.");
+                alert("Please provide a valid withdrawal amount.");
                 return;
             }
 
             // Make a POST request to the backend to perform the top-up
-            fetch('/OnePay/topup', {
+            fetch('/OnePay/withdraw', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
@@ -499,15 +513,15 @@
                 .then(response => response.json())
                 .then(data => {
                     if (data.status === 'success') {
-                        alert('Top-up successful!');
+                        alert('Withdraw successful!');
                         // Clear the input field
                         document.getElementById('amount').value = '';
                     } else {
-                        alert('Top-up failed: ' + data.message);
+                        alert('Withdraw failed: ' + data.message);
                     }
                 })
                 .catch(error => {
-                    console.error('Error during top-up:', error);
+                    console.error('Error during withdrawal:', error);
                     alert('An error occurred. Please try again.');
                 });
         });

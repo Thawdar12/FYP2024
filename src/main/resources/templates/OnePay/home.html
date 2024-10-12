@@ -589,10 +589,12 @@
 							.then(response => response.json())
 							.then(data => {
 								console.log('Success:', data);
+								alert('User registered successfully');
 								window.location.href = "/";
 							})
 							.catch(error => {
 								console.error('Error:', error);
+								alert('An error occurred while registering the user');
 							});
 				}
 
@@ -614,82 +616,6 @@
 			});
 		});
 
-		// // for login
-		// document.addEventListener('DOMContentLoaded', function() {
-		// 	// Add event listener to the form after DOM is fully loaded
-		// 	document.getElementById('loginForm').addEventListener('submit', function (event) {
-		// 		event.preventDefault(); // Prevent the default form submission
-		//
-		// 		let errors = [];
-		//
-		// 		const username = document.getElementById('username1').value;
-		// 		const password = document.getElementById('password1').value;
-		// 		const email = document.getElementById('email1').value;
-		//
-		// 		const error_message = document.getElementById("error-message1");
-		//
-		// 		// Username validation
-		// 		if (username.length <= 3) {
-		// 			errors.push("Username should be more than 3 characters.");
-		// 			document.getElementById('username1').parentElement.classList.add("incorrect");
-		// 			const icon = document.getElementById('username1').parentElement.querySelector('i');
-		// 			icon.classList.add("icon-error");
-		// 		}
-		//
-		// 		// Password validation
-		// 		if (password.length < 8 ) {
-		// 			errors.push("Password should be at least 8 Characters.");
-		// 			document.getElementById('password1').parentElement.classList.add("incorrect");
-		// 			const icon = document.getElementById('password1').parentElement.querySelector('i');
-		// 			icon.classList.add("icon-error");
-		// 		}
-		// 		if (!/(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}/.test(password)) {
-		// 			errors.push("Password must contain at least one uppercase letter, one lowercase letter, one number, and one special character.");
-		// 			document.getElementById('password1').parentElement.classList.add("incorrect");
-		// 			const icon = document.getElementById('password1').parentElement.querySelector('i');
-		// 			icon.classList.add("icon-error");
-		// 		}
-		//
-		// 		// email validation
-		// 		if (email === '' || email == null) {
-		// 			errors.push("Email cannot be empty.");
-		// 			document.getElementById('email1').parentElement.classList.add("incorrect");
-		// 			const icon = document.getElementById('email1').parentElement.querySelector('i');
-		// 			icon.classList.add("icon-error");
-		// 		}
-		//
-		//
-		// 		// Log errors in the console for debugging
-		// 		console.log("Form errors:", errors);
-		//
-		// 		if (errors.length > 0) {
-		// 			// alert('Errors exist. Fix them before submitting.');
-		// 			console.log("Errors exist. Fix them before submitting.");
-		// 			event.preventDefault();
-		// 			error_message.innerHTML = errors.map(error => `<p><i class="fas fa-exclamation-triangle"></i> ${error}</p>`).join('');
-		// 			// Show error message container
-		// 			document.getElementById('error-message1').classList.add('show');
-		// 		} else {
-		// 			// Process form submission if no errors
-		// 			console.log("nth.");
-		// 		}
-		//
-		// 		const allInputs = [document.getElementById('username1'),document.getElementById('password1'),
-		// 			document.getElementById('email1')]
-		//
-		// 		allInputs.forEach(input => {
-		// 			input.addEventListener('input', ()=> {
-		// 				if(input.parentElement.classList.contains('incorrect')){
-		// 					input.parentElement.classList.remove('incorrect')
-		// 					const icon = input.parentElement.querySelector('i');
-		// 					icon.classList.remove("icon-error");
-		// 					error_message.innerHTML = "";
-		// 					document.getElementById('error-message1').classList.remove('show');
-		// 				}
-		// 			})
-		// 		})
-		// 	});
-		// });
 	</script>
 
 
