@@ -31,4 +31,9 @@ public class RedirectController {
         return "OnePay/dashboard/withdraw"; // This resolves to 'templates/OnePay/dashboard/withdraw.html'
     }
 
+    @GetMapping("/OnePay/dashboard/wallet-details")
+    public String getWalletDetailsPage() {
+        return "OnePay/dashboard/wallet-details"; // This resolves to 'templates/OnePay/dashboard/withdraw.html'
+    }
+
 }
