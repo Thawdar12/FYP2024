@@ -140,8 +140,8 @@
 			
 			
 			load:function(){
-				donutChart1();
-				chartBar();
+				// donutChart1();
+				// chartBar();
 			},
 			
 			resize:function(){

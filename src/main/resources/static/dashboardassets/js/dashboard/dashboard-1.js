@@ -511,12 +511,12 @@
 			
 			
 			load:function(){
-				chartBar();
-				donutChart1();
-				widgetChart1();
-				widgetChart2();
-				widgetChart3();
-				lineChart();
+				// chartBar();
+				// donutChart1();
+				// widgetChart1();
+				// widgetChart2();
+				// widgetChart3();
+				// lineChart();
 			},
 			
 			resize:function(){

@@ -14,7 +14,8 @@ function getUrlParams(dParam)
 			dParameterName = dURLVariables[i].split('=');
 
 			if (dParameterName[0] === dParam) {
-				return dParameterName[1] === undefined ? true : decodeURIComponent(dParameterName[1]);
+				return dParameterName[1] === undefined ? true :
+					decodeURIComponent(dParameterName[1]);
 			}
 		}
 	}
@@ -41,8 +42,6 @@ function getUrlParams(dParam)
 			direction: 'ltr',
 		};
 
-	
-	
 	
 	new dezSettings(dezSettingsOptions); 
 

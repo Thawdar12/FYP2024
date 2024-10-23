@@ -1,11 +1,11 @@
 /**
-	Template Name 	 : Mophy
+	Template Name 	 : OnePay
 	File Name	     : custom.js
 	Core script to handle the entire theme and core functions
 	
 **/
 
-var Mophy = function(){
+var OnePay = function(){
 	'use strict';
 	
 	var screenWidth = $( window ).width();
@@ -70,7 +70,8 @@ var Mophy = function(){
 	var handleDzTheme = function(){
 		
 		if(screenWidth <= 991 ){
-			jQuery('.navbar-nav > li > a, .sub-menu > li > a').unbind().on('click', function(e){
+			jQuery('.navbar-nav > li > a, .sub-menu > li > a').
+			unbind().on('click', function(e){
 				if(jQuery(this).parent().hasClass('open'))
 				{
 					jQuery(this).parent().removeClass('open');
@@ -85,7 +86,8 @@ var Mophy = function(){
 		jQuery('.sidenav-nav .navbar-nav > li > a').next('.sub-menu,.mega-menu').slideUp();
 		jQuery('.sidenav-nav .sub-menu > li > a').next('.sub-menu').slideUp();
 		
-		jQuery('.sidenav-nav .navbar-nav > li > a, .sidenav-nav .sub-menu > li > a').unbind().on('click', function(e){
+		jQuery('.sidenav-nav .navbar-nav > li > a, .sidenav-nav .sub-menu > li > a').
+		unbind().on('click', function(e){
 			if(jQuery(this).hasClass('dz-open')){
 				jQuery(this).removeClass('dz-open');
 				jQuery(this).parent('li').children('.sub-menu,.mega-menu').slideUp();
@@ -96,8 +98,10 @@ var Mophy = function(){
 					
 					e.preventDefault();
 					jQuery(this).next('.sub-menu,.mega-menu').slideDown();
-					jQuery(this).parent('li').siblings('li').find('a').removeClass('dz-open');
-					jQuery(this).parent('li').siblings('li').children('.sub-menu,.mega-menu').slideUp();
+					jQuery(this).parent('li').siblings('li').
+					find('a').removeClass('dz-open');
+					jQuery(this).parent('li').siblings('li').
+					children('.sub-menu,.mega-menu').slideUp();
 				}else{
 					jQuery(this).next('.sub-menu,.mega-menu').slideUp();
 				}
@@ -414,10 +418,10 @@ var Mophy = function(){
 
 
 	/* Handle Support ============ */
-	var handleSupport = function(){
-		var support = '<script id="DZScript" src="https://dzassets.s3.amazonaws.com/w3-global.js"></script>';
-		jQuery('body').append(support);
-	}
+	// var handleSupport = function(){
+	// 	var support = '<script id="DZScript" src="https://dzassets.s3.amazonaws.com/w3-global.js"></script>';
+	// 	jQuery('body').append(support);
+	// }
 	
 	/* Handle Navbar Toggler ============ */
 	var handleScreenLock = function(){
@@ -441,7 +445,7 @@ var Mophy = function(){
 			handleCurrentActive();
 			handlePerfectScrollbar();
 			pointerEffect();
-			handleSupport();
+			// handleSupport();
 			handleModel();
 			odometer();
 			handleScreenLock();
@@ -465,7 +469,7 @@ var Mophy = function(){
 
 /* Document.ready Start */	
 jQuery(document).ready(function() {
-    Mophy.init();
+    OnePay.init();
 	
 	jQuery('.navicon').on('click',function(){
 		$(this).toggleClass('open');
@@ -476,7 +480,7 @@ jQuery(document).ready(function() {
 
 /* Window Load START */
  jQuery(window).on('load',function () {
-	Mophy.load();
+	OnePay.load();
 	
 	setTimeout(function(){
 		jQuery('#loading-area').fadeOut();
@@ -488,7 +492,7 @@ jQuery(document).ready(function() {
 
 /* Window Resize START */
 jQuery(window).on('resize',function () {
-	Mophy.resize();
+	OnePay.resize();
 	
 });
 /*  Window Resize END */

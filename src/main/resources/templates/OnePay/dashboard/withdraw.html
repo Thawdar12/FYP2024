@@ -33,13 +33,13 @@
 <!--*******************
     Preloader start
 ********************-->
-<div id="preloader">
-    <div class="sk-three-bounce">
-        <div class="sk-child sk-bounce1"></div>
-        <div class="sk-child sk-bounce2"></div>
-        <div class="sk-child sk-bounce3"></div>
-    </div>
-</div>
+<!--<div id="preloader">-->
+<!--    <div class="sk-three-bounce">-->
+<!--        <div class="sk-child sk-bounce1"></div>-->
+<!--        <div class="sk-child sk-bounce2"></div>-->
+<!--        <div class="sk-child sk-bounce3"></div>-->
+<!--    </div>-->
+<!--</div>-->
 <!--*******************
     Preloader end
 ********************-->
@@ -125,7 +125,7 @@
                         <li class="nav-item dropdown header-profile">
                             <a class="nav-link" data-bs-toggle="dropdown" href="javascript:void(0)" role="button">
                                 <div class="header-info">
-                                    <span class="text-black">Hello, <strong id="username" th:text="${username}">Franklin</strong></span>
+                                    <span class="text-black">Hello, <strong id="username" th:text="${#strings.capitalize(session.username.toLowerCase())}">Franklin</strong></span>
                                     <p class="fs-12 mb-0">Normal User</p>
                                 </div>
                                 <img alt="" src="/dashboardassets/images/profile/17.jpg" width="20">
@@ -178,8 +178,6 @@
                     </a>
                 </li>
 
-
-
                 <li>
                     <a aria-expanded="false" href="javascript:void(0);" data-bs-toggle="collapse" data-bs-target="#walletSubmenu" aria-controls="walletSubmenu"  style="display: flex; justify-content: space-between; align-items: center;">
                         <i class="fas fa-wallet"></i>
@@ -189,8 +187,8 @@
 
                     <!-- Submenu (collapsed by default) -->
                     <ul class="collapse" id="walletSubmenu">
-                        <li><a href="wallet-details.html">Wallet Details</a></li>
-                        <li><a href="wallet-history.html">Wallet History</a></li>
+                        <li><a href="/OnePay/dashboard/wallet-details">Wallet Details</a></li>
+                        <li><a href="/OnePay/dashboard/history">Wallet History</a></li>
                         <!-- about top-up/withdraw history-->
                     </ul>
                 </li>
@@ -204,8 +202,8 @@
                     </a>
                     <!-- Submenu (collapsed by default) -->
                     <ul class="collapse" id="transferSubmenu">
-                        <li><a href="/OnePay/dashboard/transfer">Money Transfer</a></li>
-                        <li><a href="transfer-details.html">Transfer Details</a></li>
+                        <li><a href="/OnePay/dashboard/moneytransfer" >Money Transfer</a></li>
+                        <li><a href="/OnePay/dashboard/transfer-details" >Transfer Details</a></li>
                     </ul>
                 </li>
 
@@ -249,10 +247,10 @@
         <!-- row -->
         <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 container-fluid">
             <div class="form-head mb-4">
-                <h2 class="text-black font-w600 mb-0">
-                    <a href="/OnePay/dashboard/index" class="link">Dashboard/</a>
-                    <a href="/OnePay/dashboard/top-up" class="link" style="font-size: 20px">Wallet Withdraw</a>
-                </h2>
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="/OnePay/dashboard/index">Dashboard</a></li>
+                    <li class="breadcrumb-item active"><a href="/OnePay/dashboard/top-up">Wallet Withdraw</a></li>
+                </ol>
             </div>
             <!-- Transfer Money Form -->
             <div class="col-xl-12">
@@ -262,7 +260,7 @@
                             <h2 class="text-black font-w600 fs-20 text-black mb-1">Wallet Withdraw</h2>
                         </div>
                         <!--            <p class="mb-1 text-black">Main Balance</p>-->
-                        <span class="fs-24 text-black font-w600" th:text="${balance}">$0.00</span>
+                        <span class="fs-24 text-black font-w600" th:text="${session.balance}">$0.00</span>
                     </div>
                     <div class="card-body">
                         <form id="withdraw-form">
@@ -299,6 +297,7 @@
                                 <div class="col-sm-7">
                                     <div class="input-group">
                                         <input class="form-control"  id="other-bank" placeholder="Enter your bank name" type="text">
+                                        <div class="invalid-feedback" >Bank Name is required and must valid.</div>
                                     </div>
                                 </div>
                             </div>
@@ -310,6 +309,7 @@
                                 <div class="col-sm-7">
                                     <div class="input-group">
                                         <input class="form-control" id="bank-number" placeholder="Enter Bank Number" required type="number">
+                                        <div class="invalid-feedback" >Bank Number is required and must valid.</div>
                                     </div>
                                 </div>
                             </div>
@@ -321,6 +321,7 @@
                                 <div class="col-sm-7">
                                     <div class="input-group">
                                         <input class="form-control" id="amount" placeholder="Enter Withdrawal Amount" required type="number">
+                                        <div class="invalid-feedback" >Amount is required and must be greater than 0.</div>
                                     </div>
                                 </div>
                             </div>
@@ -332,6 +333,7 @@
                             </div>
 
                         </form>
+                        <div id="resultMessage" class="mt-3"></div>
                     </div>
                 </div>
             </div>
@@ -371,13 +373,13 @@
 <script th:src="@{/dashboardassets/vendor/owl-carousel/owl.carousel.js}"></script>
 
 <!-- Chart piety plugin files -->
-<script th:src="@{/dashboardassets/vendor/peity/jquery.peity.min.js}"></script>
+<!--<script th:src="@{/dashboardassets/vendor/peity/jquery.peity.min.js}"></script>-->
 
-<!-- Apex Chart -->
-<script th:src="@{/dashboardassets/vendor/apexchart/apexchart.js}"></script>
+<!--&lt;!&ndash; Apex Chart &ndash;&gt;-->
+<!--<script th:src="@{/dashboardassets/vendor/apexchart/apexchart.js}"></script>-->
 
-<!-- Dashboard 1 -->
-<script th:src="@{/dashboardassets/js/dashboard/dashboard-1.js}"></script>
+<!--&lt;!&ndash; Dashboard 1 &ndash;&gt;-->
+<!--<script th:src="@{/dashboardassets/js/dashboard/dashboard-1.js}"></script>-->
 
 <script th:src="@{/dashboardassets/js/custom.min.js}"></script>
 <script th:src="@{/dashboardassets/js/deznav-init.js}"></script>
@@ -496,9 +498,26 @@
         document.getElementById('withdraw-form').addEventListener('submit', function (e) {
             e.preventDefault();
             const amount = document.getElementById('amount').value;
+            const bankNum = document.getElementById('bank-number').value;
 
-            if (!amount || amount <= 0) {
-                alert("Please provide a valid withdrawal amount.");
+            let isValid = true;
+
+            if (!amount || isNaN(amount) || amount <= 0) {
+                document.getElementById("amount").classList.add('is-invalid');
+                isValid = false;
+            } else {
+                document.getElementById("amount").classList.remove('is-invalid');
+            }
+
+            if (!bankNum || isNaN(bankNum) || bankNum <= 0) {
+                document.getElementById("bank-number").classList.add('is-invalid');
+                isValid = false;
+            } else {
+                document.getElementById("bank-number").classList.remove('is-invalid');
+            }
+
+            // If form is not valid, stop submission
+            if (!isValid) {
                 return;
             }
 
@@ -513,22 +532,36 @@
                 .then(response => response.json())
                 .then(data => {
                     if (data.status === 'success') {
-                        alert('Withdraw successful!');
+                        document.getElementById('resultMessage').innerHTML =
+                            '<div class="alert alert-success">${data.message}</div>';
                         // Clear the input field
                         document.getElementById('amount').value = '';
+                        document.getElementById('bank').value = 'Select your bank';
+                        document.getElementById('bank-number').value = '';
+                        document.getElementById("other-bank").value = '';
                     } else {
-                        alert('Withdraw failed: ' + data.message);
+                        document.getElementById('resultMessage').innerHTML =
+                            '<div class="alert alert-danger">Transfer failed: ${data.message}</div>';
                     }
                 })
                 .catch(error => {
                     console.error('Error during withdrawal:', error);
-                    alert('An error occurred. Please try again.');
+                    document.getElementById('resultMessage').innerHTML =
+                        '<div class="alert alert-danger">An error occurred. Please try again.</div>';
                 });
         });
     });
 </script>
 
 <script>
+    window.addEventListener('DOMContentLoaded', function () {
+        var mainWrapper = document.getElementById('main-wrapper');
+        if (mainWrapper) {
+            mainWrapper.classList.add('show');
+        }
+    });
+
+
     function toggleOtherBankField() {
         var bankDropdown = document.getElementById("bank");
         var otherBankField = document.getElementById("other-bank-field");
@@ -541,8 +574,12 @@
             otherBankField.style.display = "none";
         }
     }
+
 </script>
 
 </body>
 
 </html>
+
+
+

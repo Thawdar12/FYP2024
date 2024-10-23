@@ -12,12 +12,13 @@ function getUrlParams(dParam) {
         dParameterName = dURLVariables[i].split('=');
 
         if (dParameterName[0] === dParam) {
-            return dParameterName[1] === undefined ? true : decodeURIComponent(dParameterName[1]);
+            return dParameterName[1] === undefined ? true :
+				decodeURIComponent(dParameterName[1]);
         }
     }
 }
 
-var Mophy = function(){
+var OnePay = function(){
 	
 	/* Search Bar ============ */
 	var screenWidth = $( window ).width();
@@ -50,14 +51,18 @@ var Mophy = function(){
 	
 	
 	var handleAllChecked = function() {
-		$("#checkAll, #checkAll4, #checkAll1, #checkAll2, #checkAll5").on('change',function() {
-			$("td input:checkbox, .custom-checkbox input:checkbox").prop('checked', $(this).prop("checked"));
+		$("#checkAll, #checkAll4, #checkAll1, #checkAll2, #checkAll5").
+		on('change',function() {
+			$("td input:checkbox, .custom-checkbox input:checkbox").
+			prop('checked', $(this).prop("checked"));
 		});
 		$(".checkAllInput").on('click',function() {
-			jQuery(this).closest('.ItemsCheckboxSec').find('input[type="checkbox"]').prop('checked', true);		
+			jQuery(this).closest('.ItemsCheckboxSec').
+			find('input[type="checkbox"]').prop('checked', true);
 		});
 		$(".unCheckAllInput").on('click',function() {
-			jQuery(this).closest('.ItemsCheckboxSec').find('input[type="checkbox"]').prop('checked', false);		
+			jQuery(this).closest('.ItemsCheckboxSec').
+			find('input[type="checkbox"]').prop('checked', false);
 		});
 	}
 	
@@ -92,7 +97,7 @@ var Mophy = function(){
 			ClassicEditor
 			.create( document.querySelector( '#ckeditor' ), {
 				simpleUpload: {
-                    uploadUrl: 'ckeditor-upload.php', 
+                    uploadUrl: 'ckeditor-upload.php',
                 }
 			} )
 			.then( editor => {
@@ -103,12 +108,15 @@ var Mophy = function(){
 			} );
 		}
 	}
+
 	var handleCustomFileInput = function() {
 		$(".custom-file-input").on("change", function() {
 			var fileName = $(this).val().split("\\").pop();
-			$(this).siblings(".custom-file-label").addClass("selected").html(fileName);
+			$(this).siblings(".custom-file-label").
+			addClass("selected").html(fileName);
 		});
 	}
+
 	var handleDraggableCard = function() {
 		if($('.draggable-zone').length > 0){
 			var dzCardDraggable = function () {
@@ -128,7 +136,7 @@ var Mophy = function(){
 								constrainDimensions: true
 							}
 						});
-				   
+
 						swappable.on('drag:stop', () => {
 							setTimeout(function(){
 								setBoxCount();
@@ -141,14 +149,14 @@ var Mophy = function(){
 			jQuery(document).ready(function () {
 				dzCardDraggable.init();
 			});
-			
+
 			function setBoxCount(){
 				var cardCount = 0;
 				jQuery('.dropzoneContainer').each(function(){
 					cardCount = jQuery(this).find('.draggable-handle').length;
 					jQuery(this).find('.totalCount').html(cardCount);
 				});
-			}	
+			}
 		}
 	}
 	
@@ -167,13 +175,17 @@ var Mophy = function(){
 	var handleDataAction = function() {
 		$('a[data-action="collapse"]').on("click", function(i) {
 			i.preventDefault(),
-				$(this).closest(".card").find('[data-action="collapse"] i').toggleClass("mdi-arrow-down mdi-arrow-up"),
-				$(this).closest(".card").children(".card-body").collapse("toggle");
+				$(this).closest(".card").
+				find('[data-action="collapse"] i').
+				toggleClass("mdi-arrow-down mdi-arrow-up"),
+				$(this).closest(".card").children(".card-body").
+				collapse("toggle");
 		});
 
 		$('a[data-action="expand"]').on("click", function(i) {
 			i.preventDefault(),
-				$(this).closest(".card").find('[data-action="expand"] i').toggleClass("icon-size-actual icon-size-fullscreen"),
+				$(this).closest(".card").find('[data-action="expand"] i').
+				toggleClass("icon-size-actual icon-size-fullscreen"),
 				$(this).closest(".card").toggleClass("card-fullscreen");
 		});
 
@@ -186,7 +198,8 @@ var Mophy = function(){
 		$('[data-action="reload"]').on("click", function() {
 			var e = $(this);
 			e.parents(".card").addClass("card-load"),
-				e.parents(".card").append('<div class="card-loader"><i class=" ti-reload rotate-refresh"></div>'),
+				e.parents(".card").append('<div class="card-loader">' +
+					'<i class=" ti-reload rotate-refresh"></div>'),
 				setTimeout(function() {
 					e.parents(".card").children(".card-loader").remove(),
 						e.parents(".card").removeClass("card-load")
@@ -197,8 +210,11 @@ var Mophy = function(){
 	var handleHeaderHight = function() {
 		const headerHight = $('.header').innerHeight();
 		$(window).scroll(function() {
-			if ($('body').attr('data-layout') === "horizontal" && $('body').attr('data-header-position') === "static" && $('body').attr('data-sidebar-position') === "fixed")
-				$(this.window).scrollTop() >= headerHight ? $('.deznav').addClass('fixed') : $('.deznav').removeClass('fixed')
+			if ($('body').attr('data-layout') === "horizontal" && $('body').
+			attr('data-header-position') === "static" && $('body').
+			attr('data-sidebar-position') === "fixed")
+				$(this.window).scrollTop() >= headerHight ? $('.deznav').
+				addClass('fixed') : $('.deznav').removeClass('fixed')
 		});
 	}
 	
@@ -229,14 +245,14 @@ var Mophy = function(){
 		}
 	}
 	
-	var handleChatbox = function() {
-		jQuery('.bell-link').on('click',function(){
-			jQuery('.chatbox').addClass('active');
-		});
-		jQuery('.chatbox-close').on('click',function(){
-			jQuery('.chatbox').removeClass('active');
-		});
-	}
+	// var handleChatbox = function() {
+	// 	jQuery('.bell-link').on('click',function(){
+	// 		jQuery('.chatbox').addClass('active');
+	// 	});
+	// 	jQuery('.chatbox-close').on('click',function(){
+	// 		jQuery('.chatbox').removeClass('active');
+	// 	});
+	// }
 	
 	var handleBtnNumber = function() {
 		$('.btn-number').on('click', function(e) {
@@ -257,21 +273,21 @@ var Mophy = function(){
 		});
 	}
 	
-	var handledzChatUser = function() {
-		jQuery('.dz-chat-user-box .dz-chat-user').on('click',function(){
-			jQuery('.dz-chat-user-box').addClass('d-none');
-			jQuery('.dz-chat-history-box').removeClass('d-none');
-		}); 
-		
-		jQuery('.dz-chat-history-back').on('click',function(){
-			jQuery('.dz-chat-user-box').removeClass('d-none');
-			jQuery('.dz-chat-history-box').addClass('d-none');
-		}); 
-		
-		jQuery('.dz-fullscreen').on('click',function(){
-			jQuery('.dz-fullscreen').toggleClass('active');
-		});
-	}
+	// var handledzChatUser = function() {
+	// 	jQuery('.dz-chat-user-box .dz-chat-user').on('click',function(){
+	// 		jQuery('.dz-chat-user-box').addClass('d-none');
+	// 		jQuery('.dz-chat-history-box').removeClass('d-none');
+	// 	});
+	//
+	// 	jQuery('.dz-chat-history-back').on('click',function(){
+	// 		jQuery('.dz-chat-user-box').removeClass('d-none');
+	// 		jQuery('.dz-chat-history-box').addClass('d-none');
+	// 	});
+	//
+	// 	jQuery('.dz-fullscreen').on('click',function(){
+	// 		jQuery('.dz-fullscreen').toggleClass('active');
+	// 	});
+	// }
 	
 	var handledzLoadMore = function() {
 		$(".dz-load-more").on('click', function(e)
@@ -295,11 +311,11 @@ var Mophy = function(){
 	}
 	
 	
-	var handleheartBlast = function (){
-		$(".heart").on("click", function() {
-			$(this).toggleClass("heart-blast");
-		});
-	}	
+	// var handleheartBlast = function (){
+	// 	$(".heart").on("click", function() {
+	// 		$(this).toggleClass("heart-blast");
+	// 	});
+	// }
     
 	var handleshowPass = function (){
 		jQuery('.show-pass').on('click',function(){
@@ -329,10 +345,10 @@ var Mophy = function(){
 		}
 	}
 	
-	var handleSupport = function(){
-		var support = '<script id="DZScript" src="https://dzassets.s3.amazonaws.com/w3-global.js?btn_dir=right"></script>';
-		jQuery('body').append(support);
-	}
+	// var handleSupport = function(){
+	// 	var support = '<script id="DZScript" src="https://dzassets.s3.amazonaws.com/w3-global.js?btn_dir=right"></script>';
+	// 	jQuery('body').append(support);
+	// }
     
 	
 	var handleThemeMode = function() {
@@ -376,8 +392,8 @@ var Mophy = function(){
 		//        $('.datepicker').datetimepicker();
 		//    }
 			if(jQuery('.bt-datepicker').length > 0){
-				$(".bt-datepicker").datepicker({ 
-					autoclose: true, 
+				$(".bt-datepicker").datepicker({
+					autoclose: true,
 					todayHighlight: true
 				}).datepicker('update', new Date());
 			}
@@ -392,7 +408,8 @@ var Mophy = function(){
 				&&
 				$('body').attr('data-sidebar-position') === "fixed"
 			){
-				$('.content-body').css("padding-top" ,  ($('.deznav').height() + $('.header').height()) + 'px');
+				$('.content-body').css("padding-top" ,  ($('.deznav').height() +
+					$('.header').height()) + 'px');
 			}else if(
 				$('body').attr('data-header-position') === "fixed" 
 				&& 
@@ -400,7 +417,8 @@ var Mophy = function(){
 				&&
 				$('body').attr('data-sidebar-position') === "static"
 			){
-				$('.content-body').css("padding-top" , $('.header').height() + "px" );
+				$('.content-body').css("padding-top" , $('.header').height() +
+					"px" );
 			}else if(
 				$('body').attr('data-header-position') === "static" 
 				&& 
@@ -419,7 +437,8 @@ var Mophy = function(){
 	var setCurrentYear = function () {
 		const currentDate = new Date();
 		let currentYear = currentDate.getFullYear();
-		let elements = document.getElementsByClassName('current-year');
+		let elements =
+			document.getElementsByClassName('current-year');
 
 		for (const element of elements) {
 			element.innerHTML = currentYear;
@@ -440,11 +459,11 @@ var Mophy = function(){
 			handleDataAction();
 			handleHeaderHight();
 			handleMenuTabs();
-			handleChatbox();
+			// handleChatbox();
 			handleBtnNumber();
-			handledzChatUser();
+			// handledzChatUser();
 			handledzLoadMore();
-			handleheartBlast();
+			// handleheartBlast();
 			handleshowPass();
 			handleLightgallery();
 			handleCkEditor();
@@ -459,7 +478,7 @@ var Mophy = function(){
 		load:function(){
 			handleSelectPicker();
 			handleTheme();
-			handleSupport();
+			// handleSupport();
 		},
 		
 		resize:function(){
@@ -473,7 +492,7 @@ var Mophy = function(){
 /* Document.ready Start */	
 jQuery(document).ready(function() {
     'use strict';
-	Mophy.init();
+	OnePay.init();
 	
 });
 /* Document.ready END */
@@ -481,7 +500,7 @@ jQuery(document).ready(function() {
 /* Window Load START */
 jQuery(window).on('load',function () {
 	'use strict'; 
-	Mophy.load();
+	OnePay.load();
 	
 });
 /*  Window Load END */
@@ -489,6 +508,6 @@ jQuery(window).on('load',function () {
 /* Window Resize START */
 jQuery(window).on('resize',function () {
 	'use strict'; 
-	Mophy.resize();
+	OnePay.resize();
 });
 /*  Window Resize END */
