@@ -16,13 +16,34 @@ public class RedirectController {
         return "OnePay/home"; // This resolves to 'templates/OnePay/home.html'
     }
 
-    @GetMapping("/OnePay/dashboard/transfer")
-    public String getTransferPage() {
-        return "OnePay/dashboard/transfer"; // This resolves to 'templates/OnePay/dashboard/transfer.html'
-    }
-
     @GetMapping("/OnePay/dashboard/top-up")
     public String getTopUpPage() {
         return "OnePay/dashboard/topup"; // This resolves to 'templates/OnePay/dashboard/topup.html'
     }
+
+    @GetMapping("/OnePay/dashboard/withdraw")
+    public String getWithdrawPage() {
+        return "OnePay/dashboard/withdraw"; // This resolves to 'templates/OnePay/dashboard/withdraw.html'
+    }
+
+    @GetMapping("/OnePay/dashboard/wallet-details")
+    public String getWalletDetailsPage() {
+        return "OnePay/dashboard/wallet-details"; // This resolves to 'templates/OnePay/dashboard/withdraw.html'
+    }
+
+    @GetMapping("/OnePay/dashboard/history")
+    public String getWalletHistoryPage() {
+        return "OnePay/dashboard/history"; // This resolves to 'templates/OnePay/dashboard/wallet/history.html'
+    }
+
+    @GetMapping("/OnePay/dashboard/moneytransfer")
+    public String getTransferPage() {
+        return "OnePay/dashboard/moneytransfer"; // This resolves to 'templates/OnePay/dashboard/transfer/moneytransfer.html'
+    }
+
+    @GetMapping("/OnePay/dashboard/transfer-details")
+    public String getTransferDetailsPage() {
+        return "OnePay/dashboard/transfer-details"; // This resolves to 'templates/OnePay/dashboard/transfer/transfer-details.html'
+    }
+
 }

@@ -3,7 +3,7 @@
 
 <head>
     <!--Title-->
-    <title>OnePay: Dashboard-Top up</title>
+    <title>OnePay: Dashboard-Withdraw</title>
 
     <!-- Meta -->
     <meta charset="utf-8">
@@ -178,8 +178,6 @@
                     </a>
                 </li>
 
-
-
                 <li>
                     <a aria-expanded="false" href="javascript:void(0);" data-bs-toggle="collapse" data-bs-target="#walletSubmenu" aria-controls="walletSubmenu"  style="display: flex; justify-content: space-between; align-items: center;">
                         <i class="fas fa-wallet"></i>
@@ -204,8 +202,8 @@
                     </a>
                     <!-- Submenu (collapsed by default) -->
                     <ul class="collapse" id="transferSubmenu">
-                        <li><a href="/OnePay/dashboard/moneytransfer">Money Transfer</a></li>
-                        <li><a href="/OnePay/dashboard/transfer-details">Transfer Details</a></li>
+                        <li><a href="/OnePay/dashboard/moneytransfer" >Money Transfer</a></li>
+                        <li><a href="/OnePay/dashboard/transfer-details" >Transfer Details</a></li>
                     </ul>
                 </li>
 
@@ -249,22 +247,23 @@
         <!-- row -->
         <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 container-fluid">
             <div class="form-head mb-4">
-            <ol class="breadcrumb">
-                <li class="breadcrumb-item"><a href="/OnePay/dashboard/index">Dashboard</a></li>
-                <li class="breadcrumb-item active"><a href="/OnePay/dashboard/top-up">Wallet Top Up</a></li>
-            </ol>
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="/OnePay/dashboard/index">Dashboard</a></li>
+                    <li class="breadcrumb-item active"><a href="/OnePay/dashboard/top-up">Wallet Withdraw</a></li>
+                </ol>
             </div>
             <!-- Transfer Money Form -->
             <div class="col-xl-12">
                 <div class="card">
                     <div class="card-header d-sm-flex d-block border-0 pb-0">
                         <div class="pr-3 mb-sm-0 mb-3 me-auto">
-                            <h2 class="text-black font-w600 fs-20 text-black mb-1">Wallet Top-up</h2>
+                            <h2 class="text-black font-w600 fs-20 text-black mb-1">Wallet Withdraw</h2>
                         </div>
+                        <!--            <p class="mb-1 text-black">Main Balance</p>-->
                         <span class="fs-24 text-black font-w600" th:text="${session.balance}">$0.00</span>
                     </div>
                     <div class="card-body">
-                        <form id="topup-form">
+                        <form id="withdraw-form">
 
                             <div class="form-group mb-4 row align-items-center">
                                 <div class="col-sm-3">
@@ -298,7 +297,7 @@
                                 <div class="col-sm-7">
                                     <div class="input-group">
                                         <input class="form-control"  id="other-bank" placeholder="Enter your bank name" type="text">
-                                        <div class="invalid-feedback" >Bank name cannot be empty and it has to be a valid name.</div>
+                                        <div class="invalid-feedback" >Bank Name is required and must valid.</div>
                                     </div>
                                 </div>
                             </div>
@@ -310,25 +309,26 @@
                                 <div class="col-sm-7">
                                     <div class="input-group">
                                         <input class="form-control" id="bank-number" placeholder="Enter Bank Number" required type="number">
-                                        <div class="invalid-feedback" >Enter a valid bank number.</div>
+                                        <div class="invalid-feedback" >Bank Number is required and must valid.</div>
                                     </div>
                                 </div>
                             </div>
 
                             <div class="form-group mb-4 row align-items-center">
                                 <div class="col-sm-3">
-                                    <label class="fs-18 text-black font-w500">Amount</label>
+                                    <label class="fs-18 text-black font-w500">Withdrawal Amount</label>
                                 </div>
                                 <div class="col-sm-7">
                                     <div class="input-group">
-                                        <input class="form-control" id="amount" placeholder="Enter Amount" required type="number">
+                                        <input class="form-control" id="amount" placeholder="Enter Withdrawal Amount" required type="number">
                                         <div class="invalid-feedback" >Amount is required and must be greater than 0.</div>
                                     </div>
                                 </div>
                             </div>
 
+
                             <div class="mb-4 input-group-append">
-                                <button class="btn btn-primary rounded" id="transferNow" type="submit">Top-up NOW
+                                <button class="btn btn-primary rounded" id="transferNow" type="submit">Withdraw NOW
                                 </button>
                             </div>
 
@@ -375,10 +375,10 @@
 <!-- Chart piety plugin files -->
 <!--<script th:src="@{/dashboardassets/vendor/peity/jquery.peity.min.js}"></script>-->
 
-<!-- Apex Chart -->
+<!--&lt;!&ndash; Apex Chart &ndash;&gt;-->
 <!--<script th:src="@{/dashboardassets/vendor/apexchart/apexchart.js}"></script>-->
 
-<!-- Dashboard 1 -->
+<!--&lt;!&ndash; Dashboard 1 &ndash;&gt;-->
 <!--<script th:src="@{/dashboardassets/js/dashboard/dashboard-1.js}"></script>-->
 
 <script th:src="@{/dashboardassets/js/custom.min.js}"></script>
@@ -420,12 +420,12 @@
         })
     }
 
-    // jQuery(window).on('load', function () {
-    //     setTimeout(function () {
-    //         carouselReview();
-    //
-    //     }, 1000);
-    // });
+    jQuery(window).on('load', function () {
+        setTimeout(function () {
+            carouselReview();
+
+        }, 1000);
+    });
 
     jQuery(document).ready(function(){
         setTimeout(function(){
@@ -435,13 +435,6 @@
             setCookie('version','light');
 
         },1500)
-    });
-
-    window.addEventListener('DOMContentLoaded', function () {
-        var mainWrapper = document.getElementById('main-wrapper');
-        if (mainWrapper) {
-            mainWrapper.classList.add('show');
-        }
     });
 
 
@@ -497,33 +490,17 @@
 
 </script>
 
+
+
 <script>
     document.addEventListener('DOMContentLoaded', function () {
         // Handle the form submission for top-up
-        document.getElementById('topup-form').addEventListener('submit', function (e) {
+        document.getElementById('withdraw-form').addEventListener('submit', function (e) {
             e.preventDefault();
             const amount = document.getElementById('amount').value;
-
             const bankNum = document.getElementById('bank-number').value;
-            const bankName = document.getElementById('bank').value
-            const otherBankName = document.getElementById('other-bank').value;
 
             let isValid = true;
-
-            if (bankName === 'Other') {
-                if (!otherBankName || isNaN(otherBankName) || otherBankName <= 0) {
-                    document.getElementById("other-bank").classList.add('is-invalid');
-                    isValid = false;
-                } else {
-                    document.getElementById("other-bank").classList.remove('is-invalid');
-                }
-            }
-            if (!bankNum || isNaN(bankNum) || bankNum <= 0) {
-                document.getElementById("bank-number").classList.add('is-invalid');
-                isValid = false;
-            } else {
-                document.getElementById("bank-number").classList.remove('is-invalid');
-            }
 
             if (!amount || isNaN(amount) || amount <= 0) {
                 document.getElementById("amount").classList.add('is-invalid');
@@ -545,7 +522,7 @@
             }
 
             // Make a POST request to the backend to perform the top-up
-            fetch('/OnePay/topup', {
+            fetch('/OnePay/withdraw', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
@@ -556,7 +533,7 @@
                 .then(data => {
                     if (data.status === 'success') {
                         document.getElementById('resultMessage').innerHTML =
-                            '<div class="alert alert-success">' + data.message + '</div>';
+                            '<div class="alert alert-success">${data.message}</div>';
                         // Clear the input field
                         document.getElementById('amount').value = '';
                         document.getElementById('bank').value = 'Select your bank';
@@ -564,12 +541,11 @@
                         document.getElementById("other-bank").value = '';
                     } else {
                         document.getElementById('resultMessage').innerHTML =
-                            `<div class="alert alert-danger">Transfer failed: ${data.message}</div>`;
-
+                            '<div class="alert alert-danger">Transfer failed: ${data.message}</div>';
                     }
                 })
                 .catch(error => {
-                    console.error('Error during top-up:', error);
+                    console.error('Error during withdrawal:', error);
                     document.getElementById('resultMessage').innerHTML =
                         '<div class="alert alert-danger">An error occurred. Please try again.</div>';
                 });
@@ -578,6 +554,14 @@
 </script>
 
 <script>
+    window.addEventListener('DOMContentLoaded', function () {
+        var mainWrapper = document.getElementById('main-wrapper');
+        if (mainWrapper) {
+            mainWrapper.classList.add('show');
+        }
+    });
+
+
     function toggleOtherBankField() {
         var bankDropdown = document.getElementById("bank");
         var otherBankField = document.getElementById("other-bank-field");
@@ -590,8 +574,12 @@
             otherBankField.style.display = "none";
         }
     }
+
 </script>
 
 </body>
 
 </html>
+
+
+

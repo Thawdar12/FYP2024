@@ -18,7 +18,7 @@
 			
 			
 			load:function(){
-				donutChart1();
+				// donutChart1();
 			},
 			
 			resize:function(){

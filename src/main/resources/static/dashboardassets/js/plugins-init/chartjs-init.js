@@ -1156,37 +1156,37 @@
 			
 			
 			load:function(){
-				barChart1();	
-				barChart2();
-				barChart3();	
-				lineChart1();	
-				lineChart2();		
-				lineChart3();
-				lineChart03();
-				areaChart1();
-				areaChart2();
-				areaChart3();
-				radarChart();
-				pieChart();
-				doughnutChart(); 
-				polarChart(); 
+				// barChart1();
+				// barChart2();
+				// barChart3();
+				// lineChart1();
+				// lineChart2();
+				// lineChart3();
+				// lineChart03();
+				// areaChart1();
+				// areaChart2();
+				// areaChart3();
+				// radarChart();
+				// pieChart();
+				// doughnutChart();
+				// polarChart();
 			},
 			
 			resize:function(){
-				barChart1();	
-				barChart2();
-				barChart3();	
-				lineChart1();	
-				lineChart2();		
-				lineChart3();
-				lineChart03();
-				areaChart1();
-				areaChart2();
-				areaChart3();
-				radarChart();
-				pieChart();
-				doughnutChart(); 
-				polarChart(); 
+				// barChart1();
+				// barChart2();
+				// barChart3();
+				// lineChart1();
+				// lineChart2();
+				// lineChart3();
+				// lineChart03();
+				// areaChart1();
+				// areaChart2();
+				// areaChart3();
+				// radarChart();
+				// pieChart();
+				// doughnutChart();
+				// polarChart();
 			}
 		}
 	

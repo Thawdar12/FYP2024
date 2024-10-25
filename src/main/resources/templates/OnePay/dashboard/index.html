@@ -86,6 +86,7 @@
                     <ul class="navbar-nav header-right">
                         <li class="nav-item">
                             <div class="d-flex weather-detail">
+<!--                        <li><div>-->
                                 <span><i class="fa-solid fa-cloud"></i>32°C</span>
                                 Singapore
                             </div>
@@ -109,7 +110,6 @@
                                           fill="#3E4954"
                                           fill-rule="evenodd"/>
                                 </svg>
-<!--                                <span class="badge light text-white bg-primary rounded-circle ">12</span>-->
                             </a>
                             <div class="dropdown-menu dropdown-menu-end">
                                 <div class="widget-media dz-scroll p-3 justify-content-center align-items-center" id="DZ_W_Notification1">
@@ -118,14 +118,13 @@
                                     </div>
                                 </div>
                                 <a class="all-notification" >See all notifications <i class="ti-arrow-right"></i></a>
-<!--                                href="javascript:void(0)"-->
                             </div>
                         </li>
 
                         <li class="nav-item dropdown header-profile">
                             <a class="nav-link" data-bs-toggle="dropdown" href="javascript:void(0)" role="button">
                                 <div class="header-info">
-                                    <span class="text-black">Hello, <strong id="username" th:text="${username}">Franklin</strong></span>
+                                    <span class="text-black">Hello, <strong id="username" th:text="${#strings.capitalize(username.toLowerCase())}">Franklin</strong></span>
                                     <p class="fs-12 mb-0">Normal User</p>
                                 </div>
                                 <img alt="" src="/dashboardassets/images/profile/17.jpg" width="20">
@@ -139,7 +138,7 @@
                                         <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
                                         <circle cx="12" cy="7" r="4"></circle>
                                     </svg>
-                                    <span class="ms-2">Profile </span>
+                                    <span class="ms-2">Account </span>
                                 </a>
                                 <a class="dropdown-item ai-icon" href="/OnePay/home">
                                     <svg class="text-danger" fill="none" height="18"
@@ -189,8 +188,8 @@
 
                     <!-- Submenu (collapsed by default) -->
                     <ul class="collapse" id="walletSubmenu">
-                        <li><a href="wallet-details.html">Wallet Details</a></li>
-                        <li><a href="wallet-history.html">Wallet History</a></li>
+                        <li><a href="/OnePay/dashboard/wallet-details">Wallet Details</a></li>
+                        <li><a href="/OnePay/dashboard/history">Wallet History</a></li>
                         <!-- about top-up/withdraw history-->
                     </ul>
                 </li>
@@ -204,8 +203,8 @@
                     </a>
                     <!-- Submenu (collapsed by default) -->
                     <ul class="collapse" id="transferSubmenu">
-                        <li><a href="/OnePay/dashboard/transfer">Money Transfer</a></li>
-                        <li><a href="transfer-details.html">Transfer Details</a></li>
+                        <li><a href="/OnePay/dashboard/moneytransfer">Money Transfer</a></li>
+                        <li><a href="/OnePay/dashboard/transfer-details">Transfer Details</a></li>
                     </ul>
                 </li>
 
@@ -259,7 +258,7 @@
                                 <img src="/dashboardassets/images/card/card.jpg" alt="" class="mw-100">
                                 <div class="card-info text-white">
                                     <p class="mb-1 text-white">Main Balance</p>
-                                    <h2 class="fs-36 text-white mb-sm-4 mb-3" th:text="${balance}">$673,412.66</h2>
+                                    <h2 class="fs-36 text-white mb-sm-4 mb-3" th:text="${balance}" id="mainBalance">$673,412.66</h2>
                                     <div class="d-flex align-items-center justify-content-between mb-sm-5 mb-3">
                                         <p></p>
                                         <h4 class="fs-20 text-white mb-0">**** **** **** ****</h4>
@@ -284,10 +283,10 @@
                                     <i class="fas fa-arrow-alt-circle-up"></i>
                                     Top Up
                                 </a>
-                                <button type="button" class="btn light btn-danger col-xl-5 col-lg-5 col-md-5 col-sm-5 " href="">
+                                <a href="/OnePay/dashboard/withdraw" class="btn light btn-danger col-xl-5 col-lg-5 col-md-5 col-sm-5">
                                     <i class="fas fa-arrow-alt-circle-down"></i>
                                     Withdraw
-                                </button>
+                                </a>
                             </div>
                         </div>
 
@@ -301,31 +300,109 @@
                                     <span class="fs-24 text-black font-w600" th:text="${balance}">$56,772.38</span>
                                 </div>
                                 <div class="card-body">
-                                    <div class="d-flex justify-content-between align-items-center mb-5">
-                                        <button class="btn btn-primary">
-                                            <i class="fas fa-plus"></i> Add
-                                        </button>
-                                        <span class="mx-auto">No saved Recipients</span>
+                                    <div id="recipients-data">
+                                        <div style="display: block;"   class="user-container d-flex justify-content-between align-items-center">
+                                            <div class="add-btn">
+                                                <button class="btn btn-primary" id="add-button">
+                                                    <i class="fas fa-plus"></i> Add
+                                                </button>
+                                            </div>
+                                            <div class="user-item">
+                                                <div class="logo-box"></div>
+                                                <h6 class="fs-16 mb-0">
+                                                    <a class="recipient-name text-black">David</a>
+                                                </h6>
+                                                <span class="fs-12"> <i class = "fas fa-phone"></i> 2345 6344</span>
+                                            </div>
 
+
+                                            <div class="user-item">
+                                                <div class="logo-box"></div>
+                                                <h6 class="fs-16 mb-0">
+                                                    <a class="recipient-name text-black">Rachel Li</a>
+                                                </h6>
+                                                <span class="fs-12"><i class = "fas fa-phone"></i> 1234 2313</span>
+                                            </div>
+
+                                            <div class="user-item">
+                                                <div class="logo-box"></div>
+                                                <h6 class="fs-16 mb-0">
+                                                    <a class="recipient-name text-black">Amy</a>
+                                                </h6>
+                                                <span class="fs-12"><i class = "fas fa-phone"></i> 1222 2212</span>
+                                            </div>
+
+                                            <div class="user-item">
+                                                <div class="logo-box"></div>
+                                                <h6 class="fs-16 mb-0">
+                                                    <a class="recipient-name text-black">Red</a>
+                                                </h6>
+                                                <span class="fs-12"><i class = "fas fa-phone"></i> 3333 4532</span>
+                                            </div>
+
+                                            <div class="user-item">
+                                                <div class="logo-box"></div>
+                                                <h6 class="fs-16 mb-0">
+                                                    <a class="recipient-name text-black">Michel</a>
+                                                </h6>
+                                                <span class="fs-12"><i class = "fas fa-phone"></i> 7976 7989</span>
+                                            </div>
+
+                                            <div class="user-item">
+                                                <div class="logo-box"></div>
+                                                <h6 class="fs-16 mb-0">
+                                                    <a class="recipient-name text-black">Lee Ri</a>
+                                                </h6>
+                                                <span class="fs-12"><i class = "fas fa-phone"></i> 2342 5656</span>
+                                            </div>
+                                        </div>
                                     </div>
-                                    <form>
-                                        <div class="form-group mb-0 row style-1 align-items-center">
+
+                                    <span id="no-recipient" style="display: none;" class="mx-auto">No saved Recipients</span>
+
+
+                                    <!-- Add Recipient Form Content -->
+                                    <div id="form-content" style="display: none" >
+                                        <form>
+                                            <div class="form-group">
+                                                <label for="recipient-name-input" class="fs-18 text-black font-w500">Enter Name:</label>
+                                                <input type="text" class="form-control col-xl-12" id="recipient-name-input" placeholder="Enter Recipient Name" required>
+                                            </div>
+
+                                            <div class="form-group">
+                                                <label for="phone-number-input" class="fs-18 text-black font-w500">Enter Phone Number:</label>
+                                                <input type="number" class="form-control" id="phone-number-input" placeholder="Enter Phone Number" required>
+                                            </div>
+
+                                            <div class="d-flex justify-content-between">
+                                                <button type="button" class="btn btn-secondary" id="back-button">Back</button>
+                                                <button type="button" class="btn btn-primary" id="save-button">Save</button>
+                                            </div>
+                                        </form>
+                                    </div>
+
+
+                                    <form id="recipient-transfer">
+                                        <div class="fs-12 form-group mb-0 row style-1 align-items-center" style="padding-top: 20px;">
                                             <div class="col-sm-3">
                                                 <label class="fs-18 text-black font-w500">Amount</label>
                                             </div>
                                             <div class="col-sm-9">
                                                 <div class="input-group">
-                                                    <input class="form-control" type="number">
+                                                    <input placeholder="Enter Amount" id="amount-input" class="form-control col-sm-6" type="number" required disabled>
+                                                    <div class="invalid-feedback">Money Amount is required.</div>
                                                     <div class="input-group-append">
-                                                        <button class="btn btn-primary rounded"
-                                                                type="button">TRANSFER NOW
+                                                        <button class="btn btn-primary rounded "
+                                                                type="submit" id="transfer-btn" disabled>TRANSFER NOW
                                                         </button>
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
                                     </form>
+                                    <div id="recipient-result-msg" class="mt-3"></div>
                                 </div>
+
                             </div>
                         </div>
                     </div>
@@ -336,20 +413,21 @@
                         <div class="col-xl-12">
                             <div class="card">
                                 <div class="card-body ">
-                                    <h2>Money Transfer</h2>
+<!--                                    class="text-black font-w600 mb-0"-->
+                                    <h2 class="text-black font-w600 fs-20 text-black mb-1"  >Money Transfer</h2>
                                     <form id="transfer-form">
                                         <!-- Receiver Wallet ID -->
                                         <div class="form-group">
-                                            <label for="receiverMobileNumber">Receiver Mobile Number:</label>
-                                            <input type="number" class="form-control" id="receiverMobileNumber" placeholder="Enter Receiver Mobile Number" required>
-                                            <div class="invalid-feedback">Receiver Mobile Number is required.</div>
+                                            <label for="receiverMobileNumber" class="fs-18 text-black font-w500"  style="margin-top: 20px;" >Receiver Mobile Number:</label>
+                                            <input type="number"  style="background-color: #f4f0ec; color:black" class="form-control" id="receiverMobileNumber" placeholder="Enter Receiver Mobile Number" required>
+                                            <div class="invalid-feedback">Receiver Mobile Number is required and must valid.</div>
                                         </div>
 
                                         <!-- Amount -->
                                         <div class="form-group">
-                                            <label for="amount">Amount to Transfer:</label>
-                                            <input type="number" class="form-control" id="amount" step="0.01" placeholder="Enter Amount" required>
-                                            <div class="invalid-feedback">Amount is required and must be greater than 0.</div>
+                                            <label for="amount" class="fs-18 text-black font-w500">Amount to Transfer:</label>
+                                            <input type="number"  style="background-color: #f4f0ec; color:black" class="form-control" id="amount" step="0.01" placeholder="Enter Amount" required>
+                                            <div class="invalid-feedback" >Amount is required and must be greater than 0.</div>
                                         </div>
 
                                         <!-- Submit Button -->
@@ -361,9 +439,6 @@
                                             </span>
                                             <span class="text">Transfer Now</span>
                                         </button>
-
-
-
                                     </form>
                                     <div id="resultMessage" class="mt-3"></div>
                                 </div>
@@ -1081,6 +1156,7 @@
 <script th:src="@{/dashboardassets/js/custom.min.js}"></script>
 <script th:src="@{/dashboardassets/js/deznav-init.js}"></script>
 
+
 <script>
     function carouselReview() {
         /*  testimonial one function by = owl.carousel.js */
@@ -1189,52 +1265,224 @@
 
 
 <script>
-    document.getElementById('transfer-form').addEventListener('submit', function (event) {
-        event.preventDefault();  // Prevent default form submission
 
-        // Get input values
-        const receiverMobileNumber = document.getElementById('receiverMobileNumber').value;
-        const amount = document.getElementById('amount').value;
+    // transfer money for both quick transfer and normal transfer
+    document.addEventListener('DOMContentLoaded', function () {
+        // Reusable function to handle form submissions
+        function handleFormSubmission(formId, receiverNum, amountValue) {
+            document.getElementById(formId).addEventListener('submit', function (event) {
+                event.preventDefault(); // Prevent default form submission
 
-        // Basic validation
-        if (!receiverMobileNumber) {
-            alert('Receiver Mobile Number is required');
-            return;
-        }
-        if (!amount || parseFloat(amount) <= 0) {
-            alert('Amount must be greater than 0');
-            return;
-        }
+                let isValid= true;
+                // const amount = document.getElementById(amountValue).value;
+                // const receiverMobileNumber = document.getElementById(receiverNum).value;
 
-        // Prepare data to send to the backend
-        const requestData = {
-            receiverMobileNumber: receiverMobileNumber,
-            amount: amount
-        };
+                // Get input values
+                let receiverMobileNumber;
+                // For now {Need to change later}
+                if(formId === "recipient-transfer"){
+                    receiverMobileNumber = receiverNum;
 
-        // Send the data to the backend using fetch
-        fetch('/OnePay/transfer', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(requestData)
-        })
-            .then(response => response.json())
-            .then(data => {
-                if (data.status === 'success') {
-                    alert('Transfer successful!');
-                    location.reload();
                 } else {
-                    alert('Transfer failed: ' + data.message);
+                    receiverMobileNumber = document.getElementById(receiverNum).value;
                 }
-            })
-            .catch(error => {
-                console.error('Error during transfer:', error);
-                alert('An error occurred. Please try again.');
+
+                const amount = document.getElementById(amountValue).value;
+                console.log(formId , receiverNum, amountValue);
+                console.log("show: " , receiverMobileNumber);
+
+                // Basic validation
+                // Only transfer form has the phone number input. For now
+                if(formId === "transfer-form") {
+                    if (!receiverMobileNumber || isNaN(receiverMobileNumber) || receiverMobileNumber <= 0) {
+                        document.getElementById(receiverNum).classList.add('is-invalid');
+                        isValid = false;
+                    } else {
+                        document.getElementById(receiverNum).classList.remove('is-invalid');
+                    }
+                }
+
+
+                if (!amount || isNaN(amount) || parseFloat(amount) <= 0) {
+                    document.getElementById(amountValue).classList.add('is-invalid');
+                    isValid = false;
+                } else {
+                    document.getElementById(amountValue).classList.remove('is-invalid');
+                }
+
+                // If form is not valid, stop submission
+                if (!isValid) {
+                    return;
+                }
+
+                // Prepare data to send to the backend
+                const requestData = {
+                    receiverMobileNumber: receiverMobileNumber,
+                    amount: amount
+                };
+
+                // Send the data to the backend using fetch
+                fetch('/OnePay/transfer', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(requestData)
+                })
+                    .then(response => response.json())
+                    .then(data => {
+
+                        if(formId === "recipient-transfer"){
+
+                            if (data.status === 'success') {
+                                document.getElementById('recipient-result-msg').innerHTML =
+                                    '<div class="alert alert-success">' + data.message + '</div>';
+
+                                // Clear the input field
+                                document.getElementById('amount-input').value = '';
+                            } else {
+                                console.log('Recipient-transfer failed during transfer:', data.message);
+                                document.getElementById('recipient-result-msg').innerHTML =
+                                    '<div class="alert alert-danger">Transfer failed: ' + data.message + '</div>';
+                            }
+                        } else {
+                            if (data.status === 'success') {
+                                console.log('Transfer Successful during transfer:', data.message);
+                                document.getElementById('resultMessage').innerHTML =
+                                   '<div class="alert alert-success">' + data.message + '</div>';
+
+                                // Clear the input field
+                                document.getElementById('receiverMobileNumber').value = '';
+                                document.getElementById('amount').value = '';
+                            } else {
+                                console.log('Transfer failed during transfer:', data.message);
+                                document.getElementById('resultMessage').innerHTML =
+                                    '<div class="alert alert-danger">Transfer failed: ' + data.message + '</div>';
+                            }
+                        }
+                    })
+                    .catch(error => {
+                        console.error('Error during transfer:', error);
+                        if(formId === "recipient-transfer"){
+                            document.getElementById('recipient-result-msg').innerHTML =
+                                '<div class="alert alert-danger">An error occurred. Please try again.</div>';
+                        }else {
+                            document.getElementById('resultMessage').innerHTML =
+                                '<div class="alert alert-danger">An error occurred. Please try again.</div>';
+                        }
+                    });
             });
+        }
+
+        // Attach form submission handlers to both transfer forms
+        handleFormSubmission('transfer-form', 'receiverMobileNumber', 'amount');
+        // mobile number is sample for this one
+        handleFormSubmission('recipient-transfer', 12345678, 'amount-input');
     });
+
+
+    // Function to generate initials for all recipient items
+    function generateLogosFromNames() {
+        const recipientNames = document.querySelectorAll('.recipient-name');
+        const logoBoxes = document.querySelectorAll('.logo-box');
+
+        recipientNames.forEach((nameElement, index) => {
+            const recipientName = nameElement.textContent.trim(); // Get user's name
+            const nameParts = recipientName.split(' ');
+            let initials = '';
+
+            if (nameParts.length === 1) {
+                initials = nameParts[0].charAt(0); // If it's a single name, take the first letter
+            } else {
+                // If multiple parts, take the first letter of the first two parts
+                initials = nameParts[0].charAt(0) + nameParts[1].charAt(0);
+            }
+
+            // Set the initials in the corresponding logo-box (matching by index)
+            logoBoxes[index].textContent = initials.toUpperCase(); // Set initials and convert to uppercase
+        });
+    }
+
+    // Call the function when the page loads to generate the logos for recipients
+    window.onload = generateLogosFromNames;
+
+    // adding recipients
+    document.getElementById('add-button').addEventListener('click', function() {
+        document.getElementById('recipients-data').style.display = 'none';
+        document.getElementById('form-content').style.display = 'block';
+
+        const amountInput = document.getElementById('amount-input');
+        const transferButton = document.getElementById('transfer-btn');
+        amountInput.disabled = true;
+        transferButton.disabled = true;
+
+        const userItems = document.querySelectorAll('.user-item');
+        userItems.forEach(item => {
+            item.classList.remove('selected');
+        });
+
+    })
+
+    // back button from adding recipient
+    document.getElementById('back-button').addEventListener('click', function() {
+        document.getElementById('form-content').style.display = 'none';   // Hide form content
+        document.getElementById('recipients-data').style.display = 'block'; // Show initial content
+    });
+
+
+    // save button from adding recipient
+    document.getElementById('save-button').addEventListener('click', function() {
+        const recipientName = document.getElementById('recipient-name-input').value;
+        const phoneNumber = document.getElementById('phone-number-input').value;
+
+        if (recipientName && phoneNumber) {
+            // For demonstration, we'll log the data and switch back to the initial view
+            console.log('Recipient Name:', recipientName);
+            console.log('Phone Number:', phoneNumber);
+
+            // Reset form
+            document.getElementById('recipient-name-input').value = '';
+            document.getElementById('phone-number-input').value = '';
+
+            // Hide form content and show the initial content
+            document.getElementById('form-content').style.display = 'none';
+            document.getElementById('recipients-data').style.display = 'block';
+        } else {
+            alert('Please fill in both fields');
+        }
+    });
+
+
+
+    document.addEventListener('DOMContentLoaded', function () {
+        const userItems = document.querySelectorAll('.user-item');
+        const amountInput = document.getElementById('amount-input');
+        const transferButton = document.getElementById('transfer-btn');
+        let selectedUser = null;
+
+        userItems.forEach(item => {
+            item.addEventListener('click', function () {
+                // Remove the 'selected' class from previously selected item
+                if (selectedUser) {
+                    selectedUser.classList.remove('selected');
+                }
+
+                // Mark the current user-item as selected
+                this.classList.add('selected');
+                selectedUser = this;
+
+                // Enable the amount input and Transfer Now button
+                amountInput.disabled = false;
+                transferButton.disabled = false;
+            });
+        });
+    });
+
+
 </script>
+
+
+
 </body>
 
 </html>
