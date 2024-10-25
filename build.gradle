@@ -29,6 +29,7 @@ dependencies {
     implementation('nz.net.ultraq.thymeleaf:thymeleaf-layout-dialect')
     implementation('org.webjars:bootstrap:5.3.3')
     implementation 'javax.servlet:javax.servlet-api:4.0.1'
+    implementation 'nz.ac.waikato.cms.weka:weka-dev:3.9.5' // Using Weka for Logistic Regression
 
     compileOnly 'org.projectlombok:lombok'
     developmentOnly 'org.springframework.boot:spring-boot-devtools' // hot swap

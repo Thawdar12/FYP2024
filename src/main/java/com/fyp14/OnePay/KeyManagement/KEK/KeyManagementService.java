@@ -1,6 +1,3 @@
-//key management system
-//MASTER KEK and User KEK is generate here
-
 package com.fyp14.OnePay.KeyManagement.KEK;
 
 import com.fyp14.OnePay.Transcation.Transaction;
@@ -25,6 +22,7 @@ import java.util.List;
 
 @Service
 public class KeyManagementService {
+
     private static final int GCM_IV_LENGTH = 12;  // 12-byte IV for GCM mode
     private static final int GCM_TAG_LENGTH = 128; // 128-bit authentication tag
 
@@ -105,7 +103,7 @@ public class KeyManagementService {
         user.setKekEncryptionIV(iv);
     }
 
-    // Method used for encryption of data, only accept string
+    // ** ENCRYPTION METHOD FOR SENSITIVE DATA ** //
     public byte[] encryptSensitiveData(String data, SecretKey userKEK, byte[] iv) throws Exception {
         Cipher cipher = Cipher.getInstance("AES/GCM/NoPadding");
         GCMParameterSpec gcmSpec = new GCMParameterSpec(GCM_TAG_LENGTH, iv);
@@ -113,7 +111,7 @@ public class KeyManagementService {
         return cipher.doFinal(data.getBytes(StandardCharsets.UTF_8)); // Encrypt the data
     }
 
-    // Method used for decryption of data, only accept string
+    // ** DECRYPTION METHOD FOR SENSITIVE DATA ** //
     public String decryptSensitiveData(byte[] encryptedData, SecretKey userKEK, byte[] iv) throws Exception {
         Cipher cipher = Cipher.getInstance("AES/GCM/NoPadding");
         GCMParameterSpec gcmSpec = new GCMParameterSpec(GCM_TAG_LENGTH, iv);
