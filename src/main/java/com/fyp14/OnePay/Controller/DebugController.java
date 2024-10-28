@@ -253,253 +253,224 @@ public class DebugController {
         return response.toString(); // Return the HTML as a string
     }
 
+
+
 //////////////////////////////////////////////////////////////
-////////////////// Testing Phase for IDS /////////////////////
+////////// IDS with Baseline Probability and Rules ///////////
 //////////////////////////////////////////////////////////////
 
-    // Define base intercept as a constant or class-level variable
-    private final double baseIntercept = -10.0;
-
-    // Function to calculate risk score with low transaction detection
-    private double calculateSuspiciousProbabilityWithLowTransaction(double transactionAmount, double avgAmount, double frequency) {
-        double lowAmountThreshold = avgAmount * 0.01;  // 10% of the average as a baseline for low transactions
-        boolean isLowTransaction = transactionAmount < lowAmountThreshold;
-
-        double weightAmount = calculateDynamicWeightAmount(transactionAmount, avgAmount, isLowTransaction);
-        double weightFrequency = calculateDynamicWeightFrequency(frequency);
-
-        // Calculate linear combination (z)
-        double z = baseIntercept + (weightAmount * transactionAmount) + (weightFrequency * frequency);
-
-        // Apply sigmoid function
-        return sigmoid(z);
+    // Function to classify a transaction based on the probability and a fixed threshold
+    private String classifyTransaction(double probability) {
+        double threshold = 0.75;  // You can adjust this threshold as per your requirements
+        return probability > threshold ? "Suspicious" : "Not Suspicious";
     }
 
-    // Calculate dynamic weight based on low/high transaction
-    private double calculateDynamicWeightAmount(double transactionAmount, double avgAmount, boolean isLowTransaction) {
-        if (isLowTransaction) {
-            return 0.3;  // Assign a higher weight for very low transactions
-        }
-        return 0.1 * (1 + Math.log1p(Math.abs(transactionAmount - avgAmount) / avgAmount));  // Original deviation-based weight
-    }
-
-    // Step 1: Calculate dynamic threshold based on user behavior, transaction amount, and specific transaction
-    private double calculateDynamicThreshold(User user, double transactionAmount, List<Transaction> userTransactions, Transaction transaction) {
-        double avgAmount = calculateAverageAmount(userTransactions, user);  // Use user's average amount
-        double frequency = calculateTransactionFrequency(user, userTransactions);  // Calculate frequency for this user
-        double movingAvg = calculateMovingAverage(userTransactions, user);  // Calculate moving average for evolving patterns
-
-        // Case 1: Large vs. Small Transaction to a new contact
-        if (isNewContact(transaction) && transactionAmount < (avgAmount * 0.1)) {
-            return 0.7;  // Flag smaller transactions made to new contacts
-        }
-
-        // Case 2: Low-value scam detection (transaction below $100 and at suspicious time)
-        if (transactionAmount < 100 && isSuspiciousTime(transaction)) {
-            return 0.6;  // Flag smaller transactions made at suspicious times
-        }
-
-        // Case 3: Evolving spending patterns (dynamic adjustment)
-        if (transactionAmount > movingAvg * 2) {
-            return 0.9;  // Flag transactions that are twice the user's current moving average
-        }
-
-        // Default logic for dynamic threshold
-        if (avgAmount > 5000 && transactionAmount > 10000) {
-            return 0.8;  // Higher threshold for larger transactions
-        } else if (transactionAmount < 100) {
-            return 0.3;  // Lower threshold for small transactions
-        } else if (frequency < 5) {
-            return 0.4;  // Lower threshold for infrequent transactions
+    // Function to calculate the baseline probability based on the transaction amount
+    private double calculateBaselineProbability(double transactionAmount) {
+        if (transactionAmount < 100) {
+            return 0.1;
+        } else if (transactionAmount >= 100 && transactionAmount < 1000) {
+            return 0.3;
+        } else if (transactionAmount >= 1000 && transactionAmount <= 10000) {
+            return 0.5;
         } else {
-            return 0.5;  // Default threshold
+            return 0.7;  // For amounts above $10,000
         }
     }
 
-    // Helper method to calculate the moving average for evolving spending patterns
-    private double calculateMovingAverage(List<Transaction> transactions, User user) {
-        int windowSize = Math.min(30, transactions.size());  // Define a time window for recent transactions
-        return transactions.stream()
-                .skip(transactions.size() - windowSize)  // Focus on recent transactions
-                .mapToDouble(transaction -> decryptTransactionAmount(transaction, user))  // Decrypt amounts using the user
-                .average()
-                .orElse(0.0);
+    // Function to adjust the probability based on time of the transaction
+    private double adjustProbabilityByTime(double probability, LocalTime time) {
+        if (time.isAfter(LocalTime.of(7, 0)) && time.isBefore(LocalTime.of(21, 0))) {
+            return probability * 1.2;  // Day time (7am-9pm)
+        } else if (time.isAfter(LocalTime.of(21, 0)) && time.isBefore(LocalTime.of(0, 0))) {
+            return probability * 1.5;  // Night time (9pm-12am)
+        } else {
+            return probability * 1.75;  // Late night (12am-7am)
+        }
     }
 
-    // Helper method to check if the transaction is made to a new contact
-    private boolean isNewContact(Transaction transaction) {
-        // Logic to check if the recipient is new (e.g., check user’s transaction history)
-        return false;  // Placeholder
-    }
+    // Function to adjust the probability based on transaction history
+    private double adjustProbabilityByHistory(double probability, double transactionAmount, List<Transaction> userTransactions, User user) {
+        LocalDateTime oneWeekAgo = LocalDateTime.now().minusWeeks(1);
+        LocalDateTime twoWeeksAgo = LocalDateTime.now().minusWeeks(2);
+        LocalDateTime oneHourAgo = LocalDateTime.now().minusHours(1);
 
-    // Helper method to check for suspicious transaction time (late night or unusual hours)
-    private boolean isSuspiciousTime(Transaction transaction) {
-        LocalTime time = transaction.getTimestamp().toLocalTime();
-        return time.isAfter(LocalTime.of(22, 0)) || time.isBefore(LocalTime.of(6, 0));  // Late-night transactions
-    }
+        // DEBUG: Display the initial probability and transaction amount
+        System.out.println(">>> Adjusting probability by history...");
+        System.out.println(">>> Initial Probability: " + probability);
+        System.out.println(">>> Transaction Amount: " + transactionAmount);
 
-    // Function to calculate user risk score and adjust for increasing spending trends over time
-    private double calculateUserRiskScore(User user) {
-        List<Transaction> userTransactions = transactionRepository.findByUserId(user.getUserID());
-        if (userTransactions.isEmpty()) {
-            return 0.0;  // No transactions, neutral risk
+        // Transactions over $1000 and $10000 in the last hour
+        long largeTransactionsLastHour = userTransactions.stream()
+                .filter(tx -> tx.getTimestamp().isAfter(oneHourAgo) && decryptTransactionAmount(tx, user) > 1000)
+                .count();
+        long veryLargeTransactionsLastHour = userTransactions.stream()
+                .filter(tx -> tx.getTimestamp().isAfter(oneHourAgo) && decryptTransactionAmount(tx, user) > 10000)
+                .count();
+
+        // DEBUG: Display the number of transactions over $1000 and $10000 in the last hour
+        System.out.println(">>> Large Transactions Last Hour (>$1000): " + largeTransactionsLastHour);
+        System.out.println(">>> Very Large Transactions Last Hour (>$10000): " + veryLargeTransactionsLastHour);
+
+        // Adjust the probability based on recent transactions
+        if (transactionAmount > 9999.99 && veryLargeTransactionsLastHour >= 1) {
+            probability *= 1.6;  // If at least one transaction over $10000 in the last hour
+            System.out.println(">>> Adjusted for $10,000+ transaction in last hour: " + probability);
+        } else if (transactionAmount > 999.99 && largeTransactionsLastHour >= 2) {
+            probability *= 1.5;  // If at least one transaction over $1000 in the last hour
+            System.out.println(">>> Adjusted for $1,000+ transaction in last hour: " + probability);
         }
 
-        // Calculate user's time-based spending pattern (average over the past 6 months)
-        double avgAmount = calculateAverageAmount(userTransactions, user);
-        double riskScore = 0.0;
-        for (Transaction transaction : userTransactions) {
-            double transactionAmount = decryptTransactionAmount(transaction, user);
-            double frequency = calculateTransactionFrequency(user, userTransactions);
-            double suspiciousProbability = calculateSuspiciousProbabilityWithLowTransaction(transactionAmount, avgAmount, frequency);
+        // Transactions in the last week
+        long largeTransactionsLastWeek = userTransactions.stream()
+                .filter(tx -> tx.getTimestamp().isAfter(oneWeekAgo) && decryptTransactionAmount(tx, user) > 1000)
+                .count();
+        long veryLargeTransactionsLastWeek = userTransactions.stream()
+                .filter(tx -> tx.getTimestamp().isAfter(oneWeekAgo) && decryptTransactionAmount(tx, user) > 10000)
+                .count();
 
-            riskScore += suspiciousProbability;
+        System.out.println(">>> Large Transactions Last Week (>$1000): " + largeTransactionsLastWeek);
+        System.out.println(">>> Very Large Transactions Last Week (>$10000): " + veryLargeTransactionsLastWeek);
+
+        if (largeTransactionsLastWeek > 20) {
+            probability *= 1.5;
+            System.out.println(">>> Adjusted for >20 $1,000+ transactions in last week: " + probability);
+        }
+        if (veryLargeTransactionsLastWeek > 20) {
+            probability *= 1.6;
+            System.out.println(">>> Adjusted for >20 $10,000+ transactions in last week: " + probability);
         }
 
-        // Calculate average score
-        return riskScore / userTransactions.size();
+        // Transactions in the last two weeks
+        long largeTransactionsLastTwoWeeks = userTransactions.stream()
+                .filter(tx -> tx.getTimestamp().isAfter(twoWeeksAgo) && decryptTransactionAmount(tx, user) > 1000)
+                .count();
+        long veryLargeTransactionsLastTwoWeeks = userTransactions.stream()
+                .filter(tx -> tx.getTimestamp().isAfter(twoWeeksAgo) && decryptTransactionAmount(tx, user) > 10000)
+                .count();
+
+        if (largeTransactionsLastTwoWeeks > 40) {
+            probability *= 1.2;
+            System.out.println(">>> Adjusted for >40 $1,000+ transactions in last two weeks: " + probability);
+        }
+        if (veryLargeTransactionsLastTwoWeeks > 40) {
+            probability *= 1.4;
+            System.out.println(">>> Adjusted for >40 $10,000+ transactions in last two weeks: " + probability);
+        }
+
+        // Large number of transactions
+        if (largeTransactionsLastWeek > 100) {
+            probability *= 1.1;
+            System.out.println(">>> Adjusted for >100 $1,000+ transactions in last week: " + probability);
+        }
+        if (veryLargeTransactionsLastWeek > 100) {
+            probability *= 1.2;
+            System.out.println(">>> Adjusted for >100 $10,000+ transactions in last week: " + probability);
+        }
+
+        // Cap the probability at 1.0 to avoid extreme results
+        probability = Math.min(probability, 1.0);
+
+        System.out.println(">>> Final adjusted probability: " + probability);
+
+        return probability;
     }
 
-    // Main endpoint to test and display results
+    // Main function that processes transactions through the IDS
     @GetMapping("/math2")
-    public String compute2() {
-        // Fetch the user (using 3L as the user ID)
-        Long someUserId = 3L;  // Replace this with logic to fetch the correct user ID
-        User user = userRepository.findById(someUserId).orElse(null);
+    public String compute() {
+        Long userId = 3L;
+        User user = userRepository.findById(userId).orElse(null);
 
         if (user == null) {
             return "User not found";
         }
 
-        // Fetch all transactions for the user
+        // Fetch the user’s transaction history from the database
         List<Transaction> userTransactions = transactionRepository.findByUserId(user.getUserID());
 
         if (userTransactions.isEmpty()) {
             return "No transactions found for user.";
         }
 
-        // Now call the calculateMovingAverage method with both arguments
-        double movingAvg = calculateMovingAverage(userTransactions, user);  // Ensure you pass both userTransactions and user
-        double frequency = calculateTransactionFrequency(user, userTransactions);
-
-
-        // Build HTML response
         StringBuilder response = new StringBuilder();
         response.append("<html><body>");
-        response.append("<h2>User Transaction Suspicious Activity Probability</h2>");
+        response.append("<h2>Transaction Fraud Detection Result</h2>");
         response.append("<table border='1'>");
-        response.append("<tr><th>Transaction ID</th><th>Amount</th><th>Suspicious Probability</th><th>Classification</th></tr>");
+        response.append("<tr><th>Transaction ID</th><th>Amount</th><th>Probability</th><th>Result</th></tr>");
 
-        // Calculate avgAmount before using it
-        double avgAmount = calculateAverageAmount(userTransactions, user);  // Calculate the average amount
-
-        // Now process each transaction
+        // Process each transaction in the user's transaction history
         for (Transaction transaction : userTransactions) {
-            double decryptedAmount = decryptTransactionAmount(transaction, user);
-            double deviationAmount = calculateDeviation(decryptedAmount, avgAmount);
-            double suspiciousProbability = calculateSuspiciousProbabilityWithLowTransaction(decryptedAmount, avgAmount, frequency);
-            double threshold = calculateDynamicThreshold(user, decryptedAmount, userTransactions, transaction);
-            String classification = classifySuspicion(suspiciousProbability, threshold);
+            // Decrypt the transaction amount
+            double transactionAmount = decryptTransactionAmount(transaction, user);
+            System.out.println(">>> Decrypted Transaction Amount: " + transactionAmount);
 
-            String color = classification.equals("Suspicious") ? "red" : "green";
-            response.append("<tr>")
-                    .append("<td>").append(transaction.getTransactionID()).append("</td>")
-                    .append("<td>").append(decryptedAmount).append("</td>")
-                    .append("<td>").append(suspiciousProbability).append("</td>")
-                    .append("<td style='color:").append(color).append(";'>").append(classification).append("</td>")
-                    .append("</tr>");
+            // Skip transactions with zero amount
+            if (transactionAmount == 0.0) {
+                System.out.println(">>> Skipping transaction due to zero amount.");
+                continue;
+            }
+
+            // Initial baseline probability
+            double baselineProbability = calculateBaselineProbability(transactionAmount);
+            LocalTime transactionTime = transaction.getTimestamp().toLocalTime();
+
+            // Adjust the probability based on the time of the transaction
+            double adjustedProbability = adjustProbabilityByTime(baselineProbability, transactionTime);
+
+            // Adjust the probability based on transaction history
+            adjustedProbability = adjustProbabilityByHistory(adjustedProbability, transactionAmount, userTransactions, user);
+
+            // Classify the transaction based on the final probability
+            String finalResult = classifyTransaction(adjustedProbability);
+            String color = finalResult.equals("Suspicious") ? "red" : "green";
+
+            // Append the row in the HTML table with color coding and final probability
+            response.append("<tr>");
+            response.append("<td>").append(transaction.getTransactionID()).append("</td>");
+            response.append("<td>").append(transactionAmount).append("</td>");
+            response.append("<td>").append(adjustedProbability).append("</td>");
+            response.append("<td style='color:").append(color).append(";'>").append(finalResult).append("</td>");
+            response.append("</tr>");
         }
 
-        double userRiskScore = calculateUserRiskScore(user);
         response.append("</table>");
-        response.append("<h3>General User Risk Score: ").append(userRiskScore).append("</h3>");
         response.append("</body></html>");
-
         return response.toString();
     }
-
 
     // Helper method to decrypt transaction amount
     private double decryptTransactionAmount(Transaction transaction, User user) {
         double amount = 0;
         if (user != null && user.getEncryptedKEK() != null && user.getKekEncryptionIV() != null) {
             try {
-                // Decrypt the user's KEK to get the SecretKey
                 SecretKey userKEK = keyManagementService.decryptUserKEK(
                         user.getEncryptedKEK(),
                         user.getKekEncryptionIV(),
                         keyManagementService.getMasterKEKFromEnv()
                 );
-
-                // Decrypt the transaction amount using the decrypted KEK
                 byte[] encryptedAmountBytes = transaction.getAmountEncrypted();
                 String decryptedAmount = keyManagementService.decryptSensitiveData(encryptedAmountBytes, userKEK, transaction.getIv());
-
-                // Convert decrypted string to double
                 if (decryptedAmount != null) {
                     amount = Double.parseDouble(decryptedAmount);
+                    System.out.println(">>> Successfully decrypted amount: " + amount);
+                } else {
+                    System.out.println(">>> Decrypted amount is null for transaction ID: " + transaction.getTransactionID());
                 }
             } catch (Exception e) {
                 e.printStackTrace();
+                System.out.println(">>> Exception in decryption for transaction ID: " + transaction.getTransactionID());
             }
+        } else {
+            System.out.println(">>> KEK or IV is missing for decryption.");
         }
         return amount;
     }
 
-    // Helper method to calculate average transaction amount
-    private double calculateAverageAmount(List<Transaction> transactions, User user) {
-        return transactions.stream()
-                .mapToDouble(transaction -> decryptTransactionAmount(transaction, user))  // Decrypt the amount for each transaction
-                .average()
-                .orElse(0.0);
-    }
-
     // Helper method to calculate transaction frequency
     private double calculateTransactionFrequency(User user, List<Transaction> transactions) {
-        long daysSinceAccountCreation = Duration.between(user.getCreated_at(), LocalDateTime.now()).toDays() + 1;  // To avoid division by zero
+        long daysSinceAccountCreation = Duration.between(user.getCreated_at(), LocalDateTime.now()).toDays() + 1;  // Avoid division by zero
         return (double) transactions.size() / daysSinceAccountCreation;
     }
 
-    // Helper method to calculate the deviation from the average amount
-    private double calculateDeviation(double transactionAmount, double avgAmount) {
-        return Math.abs(transactionAmount - avgAmount) / avgAmount;
-    }
-
-    // Dynamic logistic regression calculation for suspicious activity probability
-    private double calculateSuspiciousProbability(double deviationAmount, double frequency) {
-        // Dynamically adjust weights based on deviation and frequency
-        double weightAmount = calculateDynamicWeightAmount(deviationAmount);
-        double weightFrequency = calculateDynamicWeightFrequency(frequency);
-
-        // Calculate linear combination (z)
-        double z = baseIntercept + (weightAmount * deviationAmount) + (weightFrequency * frequency);
-
-        // Apply sigmoid function
-        return sigmoid(z);
-    }
-
-    // Helper methods to calculate dynamic weights based on user behavior
-    private double calculateDynamicWeightAmount(double deviationAmount) {
-        return 0.1 * (1 + Math.log1p(deviationAmount));  // Use log1p for smoother scaling of large values
-    }
-
-    private double calculateDynamicWeightFrequency(double frequency) {
-        return 0.2 * (1 + Math.log1p(frequency));  // Logarithmic scaling for frequency
-    }
-
-    // Sigmoid function for logistic regression
-    private double sigmoid(double z) {
-        return 1.0 / (1.0 + Math.exp(-z));
-    }
-
-
-
-    // Step 2: Classify transaction as suspicious or not based on the probability and threshold
-    private String classifySuspicion(double suspiciousProbability, double threshold) {
-        if (suspiciousProbability >= threshold) {
-            return "Suspicious";
-        } else {
-            return "Not Suspicious";
-        }
-    }
 }
