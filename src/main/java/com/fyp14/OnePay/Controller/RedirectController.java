@@ -46,4 +46,14 @@ public class RedirectController {
         return "OnePay/dashboard/transfer-details"; // This resolves to 'templates/OnePay/dashboard/transfer/transfer-details.html'
     }
 
+    @GetMapping("/OnePay/dashboard/wallet-history")
+    public String getWalletHistory() {
+        return "OnePay/dashboard/wallet-history"; // This resolves to 'templates/OnePay/dashboard/transfer/wallet-history.html'
+    }
+
+    @GetMapping("/OnePay/dashboard/account-details")
+    public String getAccountDetailsPage() {
+        return "OnePay/dashboard/account-details"; // This resolves to 'templates/OnePay/dashboard/transfer/account-details.html'
+    }
+
 }

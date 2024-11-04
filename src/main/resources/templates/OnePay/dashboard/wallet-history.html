@@ -3,7 +3,7 @@
 
 <head>
     <!--Title-->
-    <title>OnePay: Dashboard-Transfer Details</title>
+    <title>OnePay: Wallet History</title>
 
     <!-- Meta -->
     <meta charset="utf-8">
@@ -174,9 +174,11 @@
                 <li>
                     <a href="/OnePay/dashboard/index">
                         <i class=" fas fa-th-large" ></i>
-                        <span class="nav-text align-content-center " >Dashboard</span>
+                        <span class="nav-text align-content-center">Dashboard</span>
                     </a>
                 </li>
+
+
 
                 <li>
                     <a aria-expanded="true" href="javascript:void(0);" data-bs-toggle="collapse" data-bs-target="#walletSubmenu" aria-controls="walletSubmenu"  style="display: flex; justify-content: space-between; align-items: center;">
@@ -186,9 +188,9 @@
                     </a>
 
                     <!-- Submenu (collapsed by default) -->
-                    <ul class="collapse" id="walletSubmenu">
+                    <ul class="collapse show" id="walletSubmenu">
                         <li><a href="/OnePay/dashboard/wallet-details">Wallet Details</a></li>
-                        <li><a href="/OnePay/dashboard/wallet-history">Wallet History</a></li>
+                        <li><a href="/OnePay/dashboard/wallet-history" style="cursor: pointer; color: var(--primary);">Wallet History</a></li>
                         <!-- about top-up/withdraw history-->
                     </ul>
                 </li>
@@ -201,9 +203,9 @@
                         <i class="fas fa-chevron-right dropdown-chevron" style="float:right;"></i> <!-- Chevron for the dropdown arrow -->
                     </a>
                     <!-- Submenu (collapsed by default) -->
-                    <ul class="collapse show" id="transferSubmenu">
+                    <ul class="collapse" id="transferSubmenu">
                         <li><a href="/OnePay/dashboard/moneytransfer">Money Transfer</a></li>
-                        <li><a href="/OnePay/dashboard/transfer-details" style="cursor: pointer; color: var(--primary);">Transfer Details</a></li>
+                        <li><a href="/OnePay/dashboard/transfer-details">Transfer Details</a></li>
                     </ul>
                 </li>
 
@@ -215,7 +217,7 @@
                     </a>
                     <!-- Submenu (collapsed by default) -->
                     <ul class="collapse" id="accountSubmenu">
-                        <li><a href="/OnePay/dashboard/account-details">Account Details</a></li>
+                        <li><a href=""/OnePay/dashboard/account-details"">Account Details</a></li>
                         <li><a href="settings.html">Settings</a></li>
                         <li><a href="invoices.html">Invoices</a></li>
                         <li><a href="activity.html">Activity History</a></li>
@@ -247,8 +249,8 @@
         <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 container-fluid">
             <div class="form-head mb-4">
                 <ol class="breadcrumb">
-                    <li class="breadcrumb-item">Transfer</li>
-                    <li class="breadcrumb-item active"><a href="/OnePay/dashboard/transfer-details">Transfer Details</a></li>
+                    <li class="breadcrumb-item">My Wallet</li>
+                    <li class="breadcrumb-item active"><a href="/OnePay/dashboard/wallet-history">Wallet History</a></li>
                 </ol>
             </div>
         <!-- row -->
@@ -1115,6 +1117,64 @@
             otherBankField.style.display = "none";
         }
     }
+</script>
+
+<script> //edit script
+function toggleEditWalletDetails() {
+    const editButton = document.getElementById('edit-button');
+    const nameDisplay = document.getElementById('nameDisplay');
+    const nameInput = document.getElementById('nameInput');
+    const balanceDisplay = document.getElementById('balanceDisplay');
+    const balanceInput = document.getElementById('balanceInput');
+    const saveButton = document.getElementById('save-button');
+
+    // Check if the input fields are currently displayed
+    if (nameInput.style.display === 'none' || nameInput.style.display === '') {
+        // Show input fields and hide displayed values
+        nameDisplay.style.display = 'none';
+        nameInput.style.display = 'block';
+        balanceDisplay.style.display = 'none';
+        balanceInput.style.display = 'block';
+        editButton.textContent = 'Cancel'; // Change button text to 'Cancel'
+        saveButton.style.display = 'block'; // Show save button
+    } else {
+        // Hide input fields and show displayed values
+        nameDisplay.style.display = 'block';
+        nameInput.style.display = 'none';
+        balanceDisplay.style.display = 'block';
+        balanceInput.style.display = 'none';
+        editButton.textContent = 'Edit Wallet Details'; // Reset button text
+        saveButton.style.display = 'none'; // Hide save button
+    }
+}
+
+// Function to save updated wallet details
+function saveWalletDetails() {
+    const nameInput = document.getElementById('nameInput');
+    const balanceInput = document.getElementById('balanceInput');
+
+    // Get new values from input fields
+    const newName = nameInput.value;
+    const newBalance = balanceInput.value;
+
+    // Update displayed values
+    document.getElementById('nameDisplay').textContent = newName;
+    document.getElementById('balanceDisplay').textContent = newBalance;
+
+    // Hide input fields and show the display fields again
+    nameInput.style.display = 'none';
+    balanceInput.style.display = 'none';
+    document.getElementById('nameDisplay').style.display = 'block';
+    document.getElementById('balanceDisplay').style.display = 'block';
+
+    // Hide the save button
+    document.getElementById('save-button').style.display = 'none';
+    document.getElementById('edit-button').textContent = 'Edit Wallet Details'; // Reset edit button text
+}
+
+// Attach event listeners to the buttons
+document.getElementById('edit-button').addEventListener('click', toggleEditWalletDetails);
+document.getElementById('save-button').addEventListener('click', saveWalletDetails);
 </script>
 
 </body>
