@@ -18090,7 +18090,8 @@ body:not([data-theme-version="dark"]) .view-dark {
   filter: brightness(21.5); }
 
 [data-theme-version="dark"] .authincation {
-  background-image: url(../images/student-bg-Recovered.jpg) !important; }
+  /*background-image: url(../images/student-bg-Recovered.jpg) !important; */
+}
 
 [data-theme-version="dark"] .morris_chart_height text tspan {
   fill: #fff; }
@@ -18736,15 +18737,15 @@ body:not([data-theme-version="dark"]) .view-dark {
     .email-left-box {
       margin-top: 20px; } }
 
-.photo-content {
-  position: relative; }
-  .photo-content .cover-photo {
-    background: url(../images/profile/cover.jpg);
-    background-size: cover;
-    background-position: center;
-    min-height: 250px;
-    border-radius: 0.5rem;
-    width: 100%; }
+/*.photo-content {*/
+/*  position: relative; }*/
+/*  .photo-content .cover-photo {*/
+/*    background: url(../images/profile/cover.jpg);*/
+/*    background-size: cover;*/
+/*    background-position: center;*/
+/*    min-height: 250px;*/
+/*    border-radius: 0.5rem;*/
+/*    width: 100%; }*/
 
 .profile .profile-photo {
   max-width: 100px;
@@ -25164,7 +25165,7 @@ table.dataTable thead > tr > th.sorting_disabled::before {
   border-radius: 5px; }
 
 .welcome-content {
-  background: url("./../images/1.jpg");
+
   background-size: cover;
   background-position: center;
   height: 100%;
@@ -26818,7 +26819,7 @@ span#counter {
   width: 60px;
   height: 60px;
   display: inline-block;
-  background: url(../images/like.png);
+
   cursor: pointer;
   margin: -25px -15px; }
 
@@ -27944,7 +27945,8 @@ body > * {
   filter: brightness(21.5); }
 
 [data-theme-version="dark"] .authincation {
-  background-image: url(../images/student-bg-Recovered.jpg) !important; }
+  /*background-image: url(../images/student-bg-Recovered.jpg) !important; */
+}
 
 [data-theme-version="dark"] .morris_chart_height text tspan {
   fill: #fff; }

@@ -3,7 +3,7 @@
 
 <head>
     <!--Title-->
-    <title>OnePay: Wallet Details</title>
+    <title>OnePay: Account-Terms&Conditions</title>
 
     <!-- Meta -->
     <meta charset="utf-8">
@@ -174,22 +174,20 @@
                 <li>
                     <a href="/OnePay/dashboard/index">
                         <i class=" fas fa-th-large" ></i>
-                        <span class="nav-text align-content-center">Dashboard</span>
+                        <span class="nav-text align-content-center " >Dashboard</span>
                     </a>
                 </li>
-
-
 
                 <li>
                     <a aria-expanded="true" href="javascript:void(0);" data-bs-toggle="collapse" data-bs-target="#walletSubmenu" aria-controls="walletSubmenu"  style="display: flex; justify-content: space-between; align-items: center;">
                         <i class="fas fa-wallet"></i>
                         <span class="nav-text">My Wallet</span>
-                        <i class="fas fa-chevron-down dropdown-chevron" style="float:right;"></i>
+                        <i class="fas fa-chevron-right dropdown-chevron" style="float:right;"></i>
                     </a>
 
                     <!-- Submenu (collapsed by default) -->
-                    <ul class="collapse show" id="walletSubmenu">
-                        <li><a href="/OnePay/dashboard/wallet-details" style="cursor: pointer; color: var(--primary);">Wallet Details</a></li>
+                    <ul class="collapse" id="walletSubmenu">
+                        <li><a href="/OnePay/dashboard/wallet-details">Wallet Details</a></li>
                         <li><a href="/OnePay/dashboard/wallet-history">Wallet History</a></li>
                         <!-- about top-up/withdraw history-->
                     </ul>
@@ -203,9 +201,9 @@
                         <i class="fas fa-chevron-right dropdown-chevron" style="float:right;"></i> <!-- Chevron for the dropdown arrow -->
                     </a>
                     <!-- Submenu (collapsed by default) -->
-                    <ul class="collapse" id="transferSubmenu">
+                    <ul class="collapse " id="transferSubmenu">
                         <li><a href="/OnePay/dashboard/moneytransfer">Money Transfer</a></li>
-                        <li><a href="/OnePay/dashboard/transfer-details">Transfer Details</a></li>
+                        <li><a href="/OnePay/dashboard/transfer-history">Transfer History</a></li>
                     </ul>
                 </li>
 
@@ -213,14 +211,14 @@
                     <a aria-expanded="false" href="javascript:void(0);" data-bs-toggle="collapse" data-bs-target="#accountSubmenu" aria-controls="accountSubmenu" style="display: flex; justify-content: space-between; align-items: center;">
                         <i class="fa-regular fa-user"></i>
                         <span class="nav-text">Account</span>
-                        <i class="fas fa-chevron-right dropdown-chevron" style="float:right;"></i>
+                        <i class="fas fa-chevron-down dropdown-chevron" style="float:right;"></i>
                     </a>
                     <!-- Submenu (collapsed by default) -->
-                    <ul class="collapse" id="accountSubmenu">
+                    <ul class="collapse show" id="accountSubmenu">
                         <li><a href="/OnePay/dashboard/account-details">Account Details</a></li>
                         <li><a href="/OnePay/dashboard/settings">Settings</a></li>
                         <li><a href="/OnePay/dashboard/activity-history">Activity History</a></li>
-                        <li><a href="/OnePay/dashboard/terms&conditions">Terms & Conditions</a></li>
+                        <li><a href="/OnePay/dashboard/terms&conditions" style="cursor: pointer; color: var(--primary);">Terms & Conditions</a></li>
                     </ul>
                 </li>
 
@@ -250,116 +248,154 @@
         <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 container-fluid">
             <div class="form-head mb-4">
                 <ol class="breadcrumb">
-                    <li class="breadcrumb-item">My Wallet</li>
-                    <li class="breadcrumb-item active"><a href="/OnePay/dashboard/wallet-details">Wallet Details</a></li>
+                    <li class="breadcrumb-item"><a >Account</a></li>
+                    <li class="breadcrumb-item active"><a href="/OnePay/dashboard/terms&conditions">Terms & Conditions</a></li>
                 </ol>
             </div>
-            <!-- Wallet Details Content -->
-            <div class="tab-content" id="walletDetailsContent">
-                <div class="row">
-                    <div class="col-12">
-                        <div class="card">
-                            <div class="card-header py-3">
-                                <h6 class="card-title">Wallet Details</h6>
-                                <button id="editButton" class="btn btn-sm btn-primary">Edit Wallet Details</button>
-                            </div>
-                            <div class="card-body">
-                                <div class="row py-2">
-                                    <div class="col-6">
-                                        <span class="fs-13">User ID</span>
-                                    </div>
-                                    <div class="col-6">
-                                        <span class="fs-13 fw-semibold" th:text="${session.userID}"></span>
-                                    </div>
-                                </div>
-                                <div class="row py-2">
-                                    <div class="col-6">
-                                        <span class="fs-13">Name</span>
-                                    </div>
-                                    <div class="col-6">
-                                        <span id="nameDisplay" class="fs-13 fw-semibold" th:text="${session.username}"></span>
-                                        <input id="nameInput" type="text" class="form-control fs-13" th:value="${session.username}" style="display: none;" />
-                                    </div>
-                                </div>
-                                <div class="row py-2">
-                                    <div class="col-6">
-                                        <span class="fs-13">Balance</span>
-                                    </div>
-                                    <div class="col-6">
-                                        <span id="balanceDisplay" class="fs-13 fw-semibold" th:text="${session.balance}"></span>
-                                        <input id="balanceInput" type="text" class="form-control fs-13" th:value="${session.balance}" style="display: none;" />
-                                    </div>
-                                </div>
-                                <button id="save-button" class="btn btn-sm btn-success" style="display: none;">Save</button>
-                            </div>
+            <!-- Transfer Money Form -->
+            <div class="col-xl-12">
+                <div class="card">
+                    <div class="card-header d-sm-flex d-block border-0 pb-0">
+                        <div class="pr-3 mb-sm-0 mb-3 me-auto">
+                            <h2 class="text-black font-w600 fs-20 text-black mb-1">Terms & Conditions for OnePay Service</h2>
                         </div>
+                    </div>
+                    <div class="card-body">
+                        <section>
+                            <label class="fs-18 text-black font-w500">1. Acceptance of Terms</label>
+                            <p>By accessing or using the Wallet Transfer Money Service ("Service"),
+                                you agree to comply with and be bound by these Terms & Conditions.
+                                If you do not agree with these terms, please do not use the Service.</p>
+                        </section>
+
+                        <section>
+                            <label class="fs-18 text-black font-w500">2. Service Description</label>
+                            <p>The Service allows registered users to transfer funds between digital wallets,
+                                subject to applicable fees, transaction limits, and eligibility requirements.</p>
+                        </section>
+
+                        <section>
+                            <label class="fs-18 text-black font-w500">3. Eligibility</label>
+                            <ul>
+                                <li>Users must be at least 18 years old to use the Service.</li>
+                                <li>Users must provide accurate, complete, and up-to-date personal and account information.</li>
+                                <li>The Service may be unavailable in certain regions due to regulatory restrictions.</li>
+                            </ul>
+                        </section>
+
+                        <section>
+                            <label class="fs-18 text-black font-w500">4. User Account & Security</label>
+                            <p>Users are responsible for maintaining the confidentiality of their account credentials
+                                and must notify the Service of any unauthorized access or suspicious activity.
+                                The Service is not responsible for unauthorized transactions resulting from
+                                a user's failure to safeguard their credentials.</p>
+                        </section>
+
+                        <section>
+                            <label class="fs-18 text-black font-w500">5. Fees and Charges</label>
+                            <p>The Service may charge fees for transferring funds,
+                                which will be displayed at the time of the transaction.
+                                All fees are non-refundable and subject to change at the Service's discretion.
+                                Users are also responsible for any additional fees charged by their bank
+                                or financial institution.</p>
+                        </section>
+
+                        <section>
+                            <label class="fs-18 text-black font-w500">6. Transaction Limits</label>
+                            <p>The Service may impose limits on transaction amounts per day or month,
+                                based on the user’s transaction history, account verification level,
+                                and regulatory requirements. The Service reserves the right to modify
+                                these limits at any time without prior notice.</p>
+                        </section>
+
+                        <section>
+                            <label class="fs-18 text-black font-w500">7. Transaction Reversal and Refund Policy</label>
+                            <p>Transactions are generally irreversible once completed.
+                                Users should carefully review all details before confirming a transaction.
+                                In case of a technical error, users may request a reversal or refund,
+                                subject to review and approval by the Service.</p>
+                        </section>
+
+                        <section>
+                            <label class="fs-18 text-black font-w500">8. Prohibited Activities</label>
+                            <p>Users agree not to use the Service for illegal or fraudulent purposes,
+                                transferring funds to/from unauthorized accounts, or engaging in any activities
+                                that may harm the Service’s operations, infrastructure, or reputation.</p>
+                        </section>
+
+                        <section>
+                            <label class="fs-18 text-black font-w500">9. User Liability</label>
+                            <p>Users are responsible for all transactions completed through their account,
+                                including unauthorized transactions resulting from user negligence.
+                                The Service is not liable for any losses resulting from compromised account credentials.</p>
+                        </section>
+
+                        <section>
+                            <label class="fs-18 text-black font-w500">10. Service Suspension & Termination</label>
+                            <p>The Service reserves the right to suspend or terminate user accounts
+                                that violate these Terms & Conditions or applicable laws.
+                                Users will be notified of any account suspension or termination,
+                                and any remaining balance will be subject to withdrawal as per the Service’s policies.</p>
+                        </section>
+
+                        <section>
+                            <label class="fs-18 text-black font-w500">11. Privacy and Data Protection</label>
+                            <p>The Service collects and processes personal information in line with its Privacy Policy.
+                                User data may be shared with third parties as needed to complete transactions
+                                or meet legal obligations.</p>
+                        </section>
+
+                        <section>
+                            <label class="fs-18 text-black font-w500">12. Dispute Resolution</label>
+                            <p>In case of a dispute, users are encouraged to contact customer support.
+                                Disputes not resolved through support may be subject to arbitration under the laws.</p>
+                        </section>
+
+                        <section>
+                            <label class="fs-18 text-black font-w500">13. Limitation of Liability</label>
+                            <p>The Service is not liable for indirect, incidental, or consequential damages arising
+                                from use of the Service. The Service’s total liability shall not exceed the
+                                total amount of fees paid by the user in the past six months.</p>
+                        </section>
+
+                        <section>
+                            <label class="fs-18 text-black font-w500">14. Amendments to Terms</label>
+                            <p>The Service reserves the right to update these Terms & Conditions at any time.
+                                Users will be notified of significant changes, and continued use constitutes
+                                acceptance of the updated terms.</p>
+                        </section>
+
+                        <section>
+                            <label class="fs-18 text-black font-w500">15. Contact Information</label>
+                            <p>For any questions or concerns regarding these Terms & Conditions,
+                                users can contact our support team at
+                                <a href="mailto:OnePay@gmail.com"><strong>OnePay@gmail.com</strong></a>.</p>
+                        </section>
+
+
                     </div>
                 </div>
             </div>
-        </div>
 
-        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 container-fluid">
-            <div class="tab-content" id="EditWalletDetailsContent">
-                <div class="row">
-                    <div class="col-12">
-                        <div class="card">
-                            <div class="card-header py-3">
-                                <h6 class="card-title">Wallet Details</h6>
-                                <button id="saveButton" class="btn btn-sm btn-primary">Save</button>
-                            </div>
-                            <div class="card-body">
-                                <div class="row py-2">
-                                    <div class="col-6">
-                                        <span class="fs-13">User ID</span>
-                                    </div>
-                                    <div class="col-6">
-                                        <span class="fs-13 fw-semibold" th:text="${session.userID}"></span>
-                                    </div>
-                                </div>
-                                <div class="row py-2">
-                                    <div class="col-6">
-                                        <span class="fs-13">Name</span>
-                                    </div>
-                                    <div class="col-6">
-                                        <input id="nameInput" type="text" class="form-control fs-13" th:value="${session.username}" />
-                                    </div>
-                                </div>
-                                <div class="row py-2">
-                                    <div class="col-6">
-                                        <span class="fs-13">Balance</span>
-                                    </div>
-                                    <div class="col-6">
-                                        <span id="balanceDisplay" class="fs-13 fw-semibold" th:text="${session.balance}"></span>
-                                        <input id="balanceInput" type="text" class="form-control fs-13" th:value="${session.balance}" style="display: none;" />
-                                    </div>
-                                </div>
-                                <button id="save-button" class="btn btn-sm btn-success" style="display: none;">Save</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+
         </div>
     </div>
+    <!--**********************************
+        Content body end
+    ***********************************-->
 
-
-</div>
-<!--**********************************
-    Content body end
-***********************************-->
-
-<!--**********************************
-    Footer start
-***********************************-->
-<div class="footer">
-    <div class="copyright">
-        <p>Copyright © Designed &amp; Developed by FYP-24-S3-14</a>
-            <span class="current-year">2024</span></p>
+    <!--**********************************
+        Footer start
+    ***********************************-->
+    <div class="footer">
+        <div class="copyright">
+            <p>Copyright © Designed &amp; Developed by FYP-24-S3-14</a>
+                <span class="current-year">2024</span></p>
+        </div>
     </div>
-</div>
-<!--**********************************
-    Footer end
-***********************************-->
+    <!--**********************************
+        Footer end
+    ***********************************-->
 
 </div>
 <!--**********************************
@@ -375,10 +411,10 @@
 <script th:src="@{/dashboardassets/vendor/chart-js/chart.bundle.min.js}"></script>
 <script th:src="@{/dashboardassets/vendor/owl-carousel/owl.carousel.js}"></script>
 
-<!--&lt;!&ndash; Chart piety plugin files &ndash;&gt;-->
+<!-- Chart piety plugin files -->
 <!--<script th:src="@{/dashboardassets/vendor/peity/jquery.peity.min.js}"></script>-->
 
-<!--&lt;!&ndash; Apex Chart &ndash;&gt;-->
+<!-- Apex Chart -->
 <!--<script th:src="@{/dashboardassets/vendor/apexchart/apexchart.js}"></script>-->
 
 <!-- Dashboard 1 -->
@@ -423,12 +459,12 @@
         })
     }
 
-    jQuery(window).on('load', function () {
-        setTimeout(function () {
-            carouselReview();
-
-        }, 1000);
-    });
+    // jQuery(window).on('load', function () {
+    //     setTimeout(function () {
+    //         carouselReview();
+    //
+    //     }, 1000);
+    // });
 
     jQuery(document).ready(function(){
         setTimeout(function(){
@@ -438,6 +474,13 @@
             setCookie('version','light');
 
         },1500)
+    });
+
+    window.addEventListener('DOMContentLoaded', function () {
+        var mainWrapper = document.getElementById('main-wrapper');
+        if (mainWrapper) {
+            mainWrapper.classList.add('show');
+        }
     });
 
 
@@ -493,82 +536,9 @@
 
 </script>
 
-<script>
-    document.addEventListener('DOMContentLoaded', function () {
-        // Handle the form submission for top-up
-        document.getElementById('topup-form').addEventListener('submit', function (e) {
-            e.preventDefault();
-            const amount = document.getElementById('amount').value;
-
-            if (!amount || amount <= 0) {
-                alert("Please provide a valid amount.");
-                return;
-            }
-
-            // Make a POST request to the backend to perform the top-up
-            fetch('/OnePay/topup', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify({amount: amount})
-            })
-                .then(response => response.json())
-                .then(data => {
-                    if (data.status === 'success') {
-                        alert('Top-up successful!');
-                        // Clear the input field
-                        document.getElementById('amount').value = '';
-                    } else {
-                        alert('Top-up failed: ' + data.message);
-                    }
-                })
-                .catch(error => {
-                    console.error('Error during top-up:', error);
-                    alert('An error occurred. Please try again.');
-                });
-        });
-    });
-</script>
-
-<script>
-    function toggleOtherBankField() {
-        var bankDropdown = document.getElementById("bank");
-        var otherBankField = document.getElementById("other-bank-field");
-
-        if (bankDropdown.value === "other") {
-            // Show the "Enter Bank Name" input field if "Other" is selected
-            otherBankField.style.display = "flex";
-        } else {
-            // Hide the "Enter Bank Name" input field otherwise
-            otherBankField.style.display = "none";
-        }
-    }
-</script>
 
 
 
-
-<script>
-    // Hide the edit wallet content section on page load
-    document.addEventListener('DOMContentLoaded', function() {
-        document.getElementById('EditWalletDetailsContent').style.display = 'none';
-    });
-
-    // Function to edit wallet-details
-    document.getElementById('editButton').addEventListener('click', function() {
-        document.getElementById('walletDetailsContent').style.display = 'none';
-        document.getElementById('EditWalletDetailsContent').style.display = 'inline';
-
-    })
-    // Function to go back to the original wallet details content
-    document.getElementById('saveButton').addEventListener('click', function() {
-        // Hide the edit wallet details content and show the original content
-        document.getElementById('EditWalletDetailsContent').style.display = 'none';
-        document.getElementById('walletDetailsContent').style.display = 'inline';
-
-    })
-</script>
 
 </body>
 

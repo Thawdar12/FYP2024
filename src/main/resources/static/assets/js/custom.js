@@ -110,60 +110,60 @@ var OnePay = function(){
 	}
 	
 	/* Magnific Popup ============ */
-	var handleMagnificPopup = function(){
-		if(jQuery('.mfp-gallery').length > 0){
-			/* magnificPopup function */
-			jQuery('.mfp-gallery').magnificPopup({
-				delegate: '.mfp-link',
-				type: 'image',
-				tLoading: 'Loading image #%curr%...',
-				mainClass: 'mfp-img-mobile',
-				gallery: {
-					enabled: true,
-					navigateByImgClick: true,
-					preload: [0,1] // Will preload 0 - before current, and 1 after the current image
-				},
-				image: {
-					tError: '<a href="%url%">The image #%curr%</a> could not be loaded.',
-					titleSrc: function(item) {
-						return item.el.attr('title') + '<small></small>';
-					}
-				}
-			});
-			/* magnificPopup function end */
-		}
-		
-		if(jQuery('.mfp-video').length > 0){
-			/* magnificPopup for Play video function */		
-			jQuery('.mfp-video').magnificPopup({
-				type: 'iframe',
-				iframe: {
-					markup: '<div class="mfp-iframe-scaler">'+
-							'<div class="mfp-close"></div>'+
-							'<iframe class="mfp-iframe" frameborder="0" allowfullscreen></iframe>'+
-							'<div class="mfp-title">Some caption</div>'+
-							'</div>'
-				},
-				callbacks: {
-					markupParse: function(template, values, item) {
-						values.title = item.el.attr('title');
-					}
-				}
-			});	
-		}
-
-		if(jQuery('.popup-youtube, .popup-vimeo, .popup-gmaps').length > 0){
-			/* magnificPopup for Play video function end */
-			$('.popup-youtube, .popup-vimeo, .popup-gmaps').magnificPopup({
-				disableOn: 700,
-				type: 'iframe',
-				mainClass: 'mfp-fade',
-				removalDelay: 160,
-				preloader: false,
-				fixedContentPos: false
-			});
-		}
-	}
+	// var handleMagnificPopup = function(){
+	// 	if(jQuery('.mfp-gallery').length > 0){
+	// 		/* magnificPopup function */
+	// 		jQuery('.mfp-gallery').magnificPopup({
+	// 			delegate: '.mfp-link',
+	// 			type: 'image',
+	// 			tLoading: 'Loading image #%curr%...',
+	// 			mainClass: 'mfp-img-mobile',
+	// 			gallery: {
+	// 				enabled: true,
+	// 				navigateByImgClick: true,
+	// 				preload: [0,1] // Will preload 0 - before current, and 1 after the current image
+	// 			},
+	// 			image: {
+	// 				tError: '<a href="%url%">The image #%curr%</a> could not be loaded.',
+	// 				titleSrc: function(item) {
+	// 					return item.el.attr('title') + '<small></small>';
+	// 				}
+	// 			}
+	// 		});
+	// 		/* magnificPopup function end */
+	// 	}
+	//
+	// 	if(jQuery('.mfp-video').length > 0){
+	// 		/* magnificPopup for Play video function */
+	// 		jQuery('.mfp-video').magnificPopup({
+	// 			type: 'iframe',
+	// 			iframe: {
+	// 				markup: '<div class="mfp-iframe-scaler">'+
+	// 						'<div class="mfp-close"></div>'+
+	// 						'<iframe class="mfp-iframe" frameborder="0" allowfullscreen></iframe>'+
+	// 						'<div class="mfp-title">Some caption</div>'+
+	// 						'</div>'
+	// 			},
+	// 			callbacks: {
+	// 				markupParse: function(template, values, item) {
+	// 					values.title = item.el.attr('title');
+	// 				}
+	// 			}
+	// 		});
+	// 	}
+	//
+	// 	if(jQuery('.popup-youtube, .popup-vimeo, .popup-gmaps').length > 0){
+	// 		/* magnificPopup for Play video function end */
+	// 		$('.popup-youtube, .popup-vimeo, .popup-gmaps').magnificPopup({
+	// 			disableOn: 700,
+	// 			type: 'iframe',
+	// 			mainClass: 'mfp-fade',
+	// 			removalDelay: 160,
+	// 			preloader: false,
+	// 			fixedContentPos: false
+	// 		});
+	// 	}
+	// }
 	
 	/* Scroll To Top ============ */
 	var handleScrollTop = function (){
@@ -216,12 +216,12 @@ var OnePay = function(){
 	}
 	
 	/* Video Popup ============ */
-	var handleVideo = function(){
-		/* Video responsive function */	
-		jQuery('iframe[src*="youtube.com"]').wrap('<div class="embed-responsive embed-responsive-16by9"></div>');
-		jQuery('iframe[src*="vimeo.com"]').wrap('<div class="embed-responsive embed-responsive-16by9"></div>');	
-		/* Video responsive function end */
-	}
+	// var handleVideo = function(){
+	// 	/* Video responsive function */
+	// 	jQuery('iframe[src*="youtube.com"]').wrap('<div class="embed-responsive embed-responsive-16by9"></div>');
+	// 	jQuery('iframe[src*="vimeo.com"]').wrap('<div class="embed-responsive embed-responsive-16by9"></div>');
+	// 	/* Video responsive function end */
+	// }
 	
 	/* BGEFFECT ============ */
 	var reposition = function (){
@@ -417,12 +417,6 @@ var OnePay = function(){
 	}
 
 
-	/* Handle Support ============ */
-	// var handleSupport = function(){
-	// 	var support = '<script id="DZScript" src="https://dzassets.s3.amazonaws.com/w3-global.js"></script>';
-	// 	jQuery('body').append(support);
-	// }
-	
 	/* Handle Navbar Toggler ============ */
 	var handleScreenLock = function(){
 		jQuery('.navbar-toggler').on('click',function(){
@@ -435,11 +429,11 @@ var OnePay = function(){
 		init:function(){
 			handleBoxHover();
 			handleDzTheme();
-			handleMagnificPopup();
+			// handleMagnificPopup();
 			handleScrollTop();
 			handleHeaderFix();
 			handleSelectpicker();
-			handleVideo();
+			// handleVideo();
 			handelResize();
 			jQuery('.modal').on('show.bs.modal', reposition);
 			handleCurrentActive();

@@ -1,0 +1,1118 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <!--Title-->
+    <title>OnePay: Account-Activity History</title>
+
+    <!-- Meta -->
+    <meta charset="utf-8">
+    <meta content="IE=edge" http-equiv="X-UA-Compatible">
+    <meta content="telephone=no" name="format-detection">
+
+    <!-- MOBILE SPECIFIC -->
+    <meta content="width=device-width, initial-scale=1" name="viewport">
+
+    <!-- Favicon icon -->
+    <link rel="icon" sizes="16x16" th:href="@{/dashboardassets/images/favicon.png}" type="image/png">
+    <link rel="stylesheet" th:href="@{/dashboardassets/vendor/jqvmap/css/jqvmap.min.css}">
+    <link rel="stylesheet" th:href="@{/dashboardassets/vendor/chartist/css/chartist.min.css}">
+
+    <!-- Vectormap -->
+    <link rel="stylesheet" th:href="@{/dashboardassets/vendor/jqvmap/css/jqvmap.min.css}">
+    <link rel="stylesheet" th:href="@{/dashboardassets/vendor/bootstrap-select/dist/css/bootstrap-select.min.css}">
+    <link rel="stylesheet" th:href="@{/dashboardassets/vendor/owl-carousel/owl.carousel.css}">
+    <link class="main-css" rel="stylesheet" th:href="@{/dashboardassets/css/style.css}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js">
+
+</head>
+
+<body>
+
+<!--*******************
+    Preloader start
+********************-->
+<!--<div id="preloader">-->
+<!--    <div class="sk-three-bounce">-->
+<!--        <div class="sk-child sk-bounce1"></div>-->
+<!--        <div class="sk-child sk-bounce2"></div>-->
+<!--        <div class="sk-child sk-bounce3"></div>-->
+<!--    </div>-->
+<!--</div>-->
+<!--*******************
+    Preloader end
+********************-->
+
+<!--**********************************
+    Main wrapper start
+***********************************-->
+<div id="main-wrapper">
+
+    <!--**********************************
+        Nav header start
+    ***********************************-->
+    <div class="nav-header">
+        <a class="brand-logo" href="/OnePay/dashboard/index">
+            <img alt="" class="logo-abbr" src="/assets/images/logo-wallet.png">
+            <img alt="" class="logo-compact" src="/assets/images/logo-word.png">
+            <img alt="" class="brand-title" src="/assets/images/logo-word.png">
+        </a>
+
+        <div class="nav-control">
+            <div class="hamburger">
+                <span class="line"></span><span class="line"></span><span class="line"></span>
+            </div>
+        </div>
+    </div>
+    <!--**********************************
+        Nav header end
+    ***********************************-->
+
+
+    <!--**********************************
+        Header start
+    ***********************************-->
+    <div class="header">
+        <div class="header-content">
+            <nav class="navbar navbar-expand">
+                <div class="collapse navbar-collapse justify-content-between">
+                    <div class="header-left">
+                        <div class="dashboard_bar">
+                            <div class="input-group search-area d-lg-inline-flex d-none">
+                            </div>
+                        </div>
+                    </div>
+                    <ul class="navbar-nav header-right">
+                        <li class="nav-item">
+                            <div class="d-flex weather-detail">
+                                <span><i class="fa-solid fa-cloud"></i>32°C</span>
+                                Singapore
+                            </div>
+                        </li>
+                        <div>
+                            <li class="nav-item dropdown notification_dropdown">
+                                <a class="nav-link bell dz-theme-mode" href="javascript:void(0);">
+                                    <i id="icon-light" class="fas fa-sun"></i>
+                                    <i id="icon-dark" class="fas fa-moon"></i>
+                                </a>
+                            </li>
+                        </div>
+
+                        <li class="nav-item dropdown notification_dropdown">
+                            <a class="nav-link  ai-icon" data-bs-toggle="dropdown" href="javascript:void(0)"
+                               role="button">
+                                <svg fill="none" height="20" viewBox="0 0 28 28" width="20"
+                                     xmlns="http://www.w3.org/2000/svg">
+                                    <path clip-rule="evenodd"
+                                          d="M12.6001 4.3008V1.4C12.6001 0.627199 13.2273 0 14.0001 0C14.7715 0 15.4001 0.627199 15.4001 1.4V4.3008C17.4805 4.6004 19.4251 5.56639 20.9287 7.06999C22.7669 8.90819 23.8001 11.4016 23.8001 14V19.2696L24.9327 21.5348C25.4745 22.6198 25.4171 23.9078 24.7787 24.9396C24.1417 25.9714 23.0147 26.6 21.8023 26.6H15.4001C15.4001 27.3728 14.7715 28 14.0001 28C13.2273 28 12.6001 27.3728 12.6001 26.6H6.19791C4.98411 26.6 3.85714 25.9714 3.22014 24.9396C2.58174 23.9078 2.52433 22.6198 3.06753 21.5348L4.20011 19.2696V14C4.20011 11.4016 5.23194 8.90819 7.07013 7.06999C8.57513 5.56639 10.5183 4.6004 12.6001 4.3008ZM14.0001 6.99998C12.1423 6.99998 10.3629 7.73779 9.04973 9.05099C7.73653 10.3628 7.00011 12.1436 7.00011 14V19.6C7.00011 19.817 6.94833 20.0312 6.85173 20.2258C6.85173 20.2258 6.22871 21.4718 5.57072 22.7864C5.46292 23.0034 5.47412 23.2624 5.60152 23.4682C5.72892 23.674 5.95431 23.8 6.19791 23.8H21.8023C22.0445 23.8 22.2699 23.674 22.3973 23.4682C22.5247 23.2624 22.5359 23.0034 22.4281 22.7864C21.7701 21.4718 21.1471 20.2258 21.1471 20.2258C21.0505 20.0312 21.0001 19.817 21.0001 19.6V14C21.0001 12.1436 20.2623 10.3628 18.9491 9.05099C17.6359 7.73779 15.8565 6.99998 14.0001 6.99998Z"
+                                          fill="#3E4954"
+                                          fill-rule="evenodd"/>
+                                </svg>
+                                <!--                                <span class="badge light text-white bg-primary rounded-circle ">12</span>-->
+                            </a>
+                            <div class="dropdown-menu dropdown-menu-end">
+                                <div class="widget-media dz-scroll p-3 justify-content-center align-items-center" id="DZ_W_Notification1">
+                                    <div>
+                                        Empty notification.
+                                    </div>
+                                </div>
+                                <a class="all-notification" >See all notifications <i class="ti-arrow-right"></i></a>
+                                <!--                                href="javascript:void(0)"-->
+                            </div>
+                        </li>
+
+                        <li class="nav-item dropdown header-profile">
+                            <a class="nav-link" data-bs-toggle="dropdown" href="javascript:void(0)" role="button">
+                                <div class="header-info">
+                                    <span class="text-black">Hello, <strong id="username" th:text="${#strings.capitalize(session.username.toLowerCase())}">Franklin</strong></span>
+                                    <p class="fs-12 mb-0">Normal User</p>
+                                </div>
+                                <img alt="" src="/dashboardassets/images/profile/17.jpg" width="20">
+                            </a>
+                            <div class="dropdown-menu dropdown-menu-end">
+                                <a class="dropdown-item ai-icon" th:href="@{/OnePay/dashboard/app-profile}">
+                                    <svg class="text-primary" fill="none" height="18"
+                                         id="icon-user1" stroke="currentColor" stroke-linecap="round"
+                                         stroke-linejoin="round" stroke-width="2"
+                                         viewBox="0 0 24 24" width="18" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                                        <circle cx="12" cy="7" r="4"></circle>
+                                    </svg>
+                                    <span class="ms-2">Profile </span>
+                                </a>
+                                <a class="dropdown-item ai-icon" href="/OnePay/home">
+                                    <svg class="text-danger" fill="none" height="18"
+                                         id="icon-logout" stroke="currentColor" stroke-linecap="round"
+                                         stroke-linejoin="round" stroke-width="2"
+                                         viewBox="0 0 24 24" width="18" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path>
+                                        <polyline points="16 17 21 12 16 7"></polyline>
+                                        <line x1="21" x2="9" y1="12" y2="12"></line>
+                                    </svg>
+                                    <span class="ms-2">Logout</span>
+                                </a>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+        </div>
+    </div>
+    <!--**********************************
+        Header end ti-comment-alt
+    ***********************************-->
+
+    <!--**********************************
+        Sidebar start
+    ***********************************-->
+    <div class="deznav">
+        <div class="deznav-scroll">
+            <ul class="metismenu" id="menu">
+
+
+                <li>
+                    <a href="/OnePay/dashboard/index">
+                        <i class=" fas fa-th-large" ></i>
+                        <span class="nav-text align-content-center " >Dashboard</span>
+                    </a>
+                </li>
+
+                <li>
+                    <a aria-expanded="true" href="javascript:void(0);" data-bs-toggle="collapse" data-bs-target="#walletSubmenu" aria-controls="walletSubmenu"  style="display: flex; justify-content: space-between; align-items: center;">
+                        <i class="fas fa-wallet"></i>
+                        <span class="nav-text">My Wallet</span>
+                        <i class="fas fa-chevron-right dropdown-chevron" style="float:right;"></i>
+                    </a>
+
+                    <!-- Submenu (collapsed by default) -->
+                    <ul class="collapse" id="walletSubmenu">
+                        <li><a href="/OnePay/dashboard/wallet-details">Wallet Details</a></li>
+                        <li><a href="/OnePay/dashboard/wallet-history">Wallet History</a></li>
+                        <!-- about top-up/withdraw history-->
+                    </ul>
+                </li>
+
+
+                <li>
+                    <a aria-expanded="false" href="javascript:void(0);" data-bs-toggle="collapse" data-bs-target="#transferSubmenu" aria-controls="transferSubmenu" style="display: flex; justify-content: space-between; align-items: center;">
+                        <i class="fa-solid fa-money-bill-alt"></i>
+                        <span class="nav-text">Transfer</span>
+                        <i class="fas fa-chevron-right dropdown-chevron" style="float:right;"></i> <!-- Chevron for the dropdown arrow -->
+                    </a>
+                    <!-- Submenu (collapsed by default) -->
+                    <ul class="collapse" id="transferSubmenu">
+                        <li><a href="/OnePay/dashboard/moneytransfer">Money Transfer</a></li>
+                        <li><a href="/OnePay/dashboard/transfer-history">Transfer History</a></li>
+                    </ul>
+                </li>
+
+                <li>
+                    <a aria-expanded="false" href="javascript:void(0);" data-bs-toggle="collapse" data-bs-target="#accountSubmenu" aria-controls="accountSubmenu" style="display: flex; justify-content: space-between; align-items: center;">
+                        <i class="fa-regular fa-user"></i>
+                        <span class="nav-text">Account</span>
+                        <i class="fas fa-chevron-down dropdown-chevron" style="float:right;"></i>
+                    </a>
+                    <!-- Submenu (collapsed by default) -->
+                    <ul class="collapse show" id="accountSubmenu">
+                        <li><a href="/OnePay/dashboard/account-details">Account Details</a></li>
+                        <li><a href="/OnePay/dashboard/settings">Settings</a></li>
+                        <li><a href="/OnePay/dashboard/activity-history"  style="cursor: pointer; color: var(--primary);">Activity History</a></li>
+                        <li><a href="/OnePay/dashboard/terms&conditions">Terms & Conditions</a></li>
+                    </ul>
+                </li>
+
+                <li>
+                    <a class="submenu-icon" href="/OnePay/home" >
+                        <i class=" fas fa-sign-out-alt" ></i>
+                        <span class="nav-text align-content-center" >Log Out</span>
+                    </a>
+                </li>
+
+                <div class="copyright copyright-style">
+                    <p><strong>OnePay Payment Dashboard</strong> © 2024 All Rights Reserved</p>
+                    <p>Made with <span class="heart"></span> by FYP-24-S3-14</p>
+                </div>
+            </ul>
+        </div>
+    </div>
+    <!--**********************************
+        Sidebar end
+    ***********************************-->
+
+    <!--**********************************
+        Content body start
+    ***********************************-->
+    <div class="content-body default-height">
+        <!-- row -->
+        <div class="container-fluid">
+            <div class="col-xl-12 ">
+                <div class="card">
+                    <div class="card-header d-block d-sm-flex border-0">
+                        <div class="me-3">
+                            <h4 class="fs-20 text-black">Previous Transactions</h4>
+                            <!--                                        <p class="mb-0 fs-13">Lorem ipsum dolor sit amet, consectetur</p>-->
+                        </div>
+                        <div class="card-action card-tabs d-inline-block mt-3 mt-sm-0">
+                            <ul class="nav nav-tabs" role="tablist">
+                                <li class="nav-item">
+                                    <a class="nav-link active" data-bs-toggle="tab" href="#monthly"
+                                       role="tab">Monthly</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" data-bs-toggle="tab" href="#Weekly"
+                                       role="tab">Weekly</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" data-bs-toggle="tab" href="#Today"
+                                       role="tab">Today</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="card-body tab-content p-0">
+                        <div class="tab-pane active show fade" id="monthly" role="tabpanel">
+                            <div class="table-responsive">
+                                <table
+                                        class="table table-responsive-md card-table previous-transactions">
+                                    <tbody>
+                                    <tr>
+                                        <td>
+                                            <svg fill="none" height="63" viewBox="0 0 63 63"
+                                                 width="63" xmlns="http://www.w3.org/2000/svg">
+                                                <rect height="61" rx="29" stroke="#2BC155" stroke-width="2"
+                                                      width="61" x="1.00002" y="1"/>
+                                                <g clip-path="url(#clip0)">
+                                                    <path
+                                                            d="M35.2219 42.9875C34.8938 42.3094 35.1836 41.4891 35.8617 41.1609C37.7484 40.2531 39.3453 38.8422 40.4828 37.0758C41.6477 35.2656 42.2656 33.1656 42.2656 31C42.2656 24.7875 37.2125 19.7344 31 19.7344C24.7875 19.7344 19.7344 24.7875 19.7344 31C19.7344 33.1656 20.3523 35.2656 21.5117 37.0813C22.6437 38.8477 24.2461 40.2586 26.1328 41.1664C26.8109 41.4945 27.1008 42.3094 26.7727 42.993C26.4445 43.6711 25.6297 43.9609 24.9461 43.6328C22.6 42.5063 20.6148 40.7563 19.2094 38.5578C17.7656 36.3047 17 33.6906 17 31C17 27.2594 18.4547 23.743 21.1016 21.1016C23.743 18.4547 27.2594 17 31 17C34.7406 17 38.257 18.4547 40.8984 21.1016C43.5453 23.7484 45 27.2594 45 31C45 33.6906 44.2344 36.3047 42.7852 38.5578C41.3742 40.7508 39.3891 42.5063 37.0484 43.6328C36.3648 43.9555 35.55 43.6711 35.2219 42.9875Z"
+                                                            fill="#2BC155"/>
+                                                    <path
+                                                            d="M36.3211 31.7274C36.5891 31.9953 36.7203 32.3453 36.7203 32.6953C36.7203 33.0453 36.5891 33.3953 36.3211 33.6633L32.8812 37.1031C32.3781 37.6063 31.7109 37.8797 31.0055 37.8797C30.3 37.8797 29.6273 37.6008 29.1297 37.1031L25.6898 33.6633C25.1539 33.1274 25.1539 32.2633 25.6898 31.7274C26.2258 31.1914 27.0898 31.1914 27.6258 31.7274L29.6437 33.7453L29.6437 25.9742C29.6437 25.2196 30.2562 24.6071 31.0109 24.6071C31.7656 24.6071 32.3781 25.2196 32.3781 25.9742L32.3781 33.7508L34.3961 31.7328C34.9211 31.1969 35.7852 31.1969 36.3211 31.7274Z"
+                                                            fill="#2BC155"/>
+                                                </g>
+                                                <defs>
+                                                    <clipPath id="clip0">
+                                                        <rect fill="white" height="28"
+                                                              transform="matrix(-4.37114e-08 1 1 4.37114e-08 17 17)"
+                                                              width="28"/>
+                                                    </clipPath>
+                                                </defs>
+                                            </svg>
+                                        </td>
+                                        <td>
+                                            <h6 class="fs-16 font-w600 mb-0"><a
+                                                    class="text-black"
+                                                    href="transactions-details.html">XYZ Store ID</a></h6>
+                                            <span class="fs-14">Cashback</span>
+                                        </td>
+                                        <td>
+                                            <h6 class="fs-16 text-black font-w400 mb-0">June 4, 2024
+                                            </h6>
+                                            <span class="fs-14">05:34</span>
+                                        </td>
+                                        <td><span class="fs-16 text-black font-w500">+$5,553</span>
+                                        </td>
+                                        <td><span
+                                                class="text-success fs-16 font-w500 text-end d-block">Completed</span>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <svg fill="none" height="63" viewBox="0 0 63 63"
+                                                 width="63" xmlns="http://www.w3.org/2000/svg">
+                                                <rect height="61" rx="29" stroke="#FF2E2E" stroke-width="2"
+                                                      width="61"
+                                                      x="1" y="1"/>
+                                                <g clip-path="url(#clip1)">
+                                                    <path
+                                                            d="M35.2219 19.0125C34.8937 19.6906 35.1836 20.5109 35.8617 20.8391C37.7484 21.7469 39.3453 23.1578 40.4828 24.9242C41.6476 26.7344 42.2656 28.8344 42.2656 31C42.2656 37.2125 37.2125 42.2656 31 42.2656C24.7875 42.2656 19.7344 37.2125 19.7344 31C19.7344 28.8344 20.3523 26.7344 21.5117 24.9187C22.6437 23.1523 24.2461 21.7414 26.1328 20.8336C26.8109 20.5055 27.1008 19.6906 26.7726 19.007C26.4445 18.3289 25.6297 18.0391 24.9461 18.3672C22.6 19.4937 20.6148 21.2437 19.2094 23.4422C17.7656 25.6953 17 28.3094 17 31C17 34.7406 18.4547 38.257 21.1015 40.8984C23.743 43.5453 27.2594 45 31 45C34.7406 45 38.257 43.5453 40.8984 40.8984C43.5453 38.2516 45 34.7406 45 31C45 28.3094 44.2344 25.6953 42.7851 23.4422C41.3742 21.2492 39.389 19.4937 37.0484 18.3672C36.3648 18.0445 35.55 18.3289 35.2219 19.0125Z"
+                                                            fill="#FF2E2E"/>
+                                                    <path
+                                                            d="M36.3211 30.2726C36.589 30.0047 36.7203 29.6547 36.7203 29.3047C36.7203 28.9547 36.589 28.6047 36.3211 28.3367L32.8812 24.8969C32.3781 24.3937 31.7109 24.1203 31.0055 24.1203C30.3 24.1203 29.6273 24.3992 29.1297 24.8969L25.6898 28.3367C25.1539 28.8726 25.1539 29.7367 25.6898 30.2726C26.2258 30.8086 27.0898 30.8086 27.6258 30.2726L29.6437 28.2547L29.6437 36.0258C29.6437 36.7804 30.2562 37.3929 31.0109 37.3929C31.7656 37.3929 32.3781 36.7804 32.3781 36.0258L32.3781 28.2492L34.3961 30.2672C34.9211 30.8031 35.7851 30.8031 36.3211 30.2726Z"
+                                                            fill="#FF2E2E"/>
+                                                </g>
+                                                <defs>
+                                                    <clipPath id="clip1">
+                                                        <rect fill="white" height="28"
+                                                              transform="translate(17 45) rotate(-90)"
+                                                              width="28"/>
+                                                    </clipPath>
+                                                </defs>
+                                            </svg>
+                                        </td>
+                                        <td>
+                                            <h6 class="fs-16 font-w600 mb-0"><a
+                                                    class="text-black"
+                                                    href="transactions-details.html">Chef Renata</a></h6>
+                                            <span class="fs-14">Transfer</span>
+                                        </td>
+                                        <td>
+                                            <h6 class="fs-16 text-black font-w400 mb-0">June 5, 2024
+                                            </h6>
+                                            <span class="fs-14">05:34</span>
+                                        </td>
+                                        <td><span class="fs-16 text-black font-w500">-$167</span>
+                                        </td>
+                                        <td><span
+                                                class="text-warning fs-16 font-w500 text-end d-block">Pending</span>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <svg fill="none" height="63" viewBox="0 0 63 63"
+                                                 width="63" xmlns="http://www.w3.org/2000/svg">
+                                                <rect height="61" rx="29" stroke="#2BC155" stroke-width="2"
+                                                      width="61" x="1.00002" y="1"/>
+                                                <g clip-path="url(#clip2)">
+                                                    <path
+                                                            d="M35.2219 42.9875C34.8938 42.3094 35.1836 41.4891 35.8617 41.1609C37.7484 40.2531 39.3453 38.8422 40.4828 37.0758C41.6477 35.2656 42.2656 33.1656 42.2656 31C42.2656 24.7875 37.2125 19.7344 31 19.7344C24.7875 19.7344 19.7344 24.7875 19.7344 31C19.7344 33.1656 20.3523 35.2656 21.5117 37.0813C22.6437 38.8477 24.2461 40.2586 26.1328 41.1664C26.8109 41.4945 27.1008 42.3094 26.7727 42.993C26.4445 43.6711 25.6297 43.9609 24.9461 43.6328C22.6 42.5063 20.6148 40.7563 19.2094 38.5578C17.7656 36.3047 17 33.6906 17 31C17 27.2594 18.4547 23.743 21.1016 21.1016C23.743 18.4547 27.2594 17 31 17C34.7406 17 38.257 18.4547 40.8984 21.1016C43.5453 23.7484 45 27.2594 45 31C45 33.6906 44.2344 36.3047 42.7852 38.5578C41.3742 40.7508 39.3891 42.5063 37.0484 43.6328C36.3648 43.9555 35.55 43.6711 35.2219 42.9875Z"
+                                                            fill="#2BC155"/>
+                                                    <path
+                                                            d="M36.3211 31.7274C36.5891 31.9953 36.7203 32.3453 36.7203 32.6953C36.7203 33.0453 36.5891 33.3953 36.3211 33.6633L32.8812 37.1031C32.3781 37.6063 31.7109 37.8797 31.0055 37.8797C30.3 37.8797 29.6273 37.6008 29.1297 37.1031L25.6898 33.6633C25.1539 33.1274 25.1539 32.2633 25.6898 31.7274C26.2258 31.1914 27.0898 31.1914 27.6258 31.7274L29.6437 33.7453L29.6437 25.9742C29.6437 25.2196 30.2562 24.6071 31.0109 24.6071C31.7656 24.6071 32.3781 25.2196 32.3781 25.9742L32.3781 33.7508L34.3961 31.7328C34.9211 31.1969 35.7852 31.1969 36.3211 31.7274Z"
+                                                            fill="#2BC155"/>
+                                                </g>
+                                                <defs>
+                                                    <clipPath id="clip2">
+                                                        <rect fill="white" height="28"
+                                                              transform="matrix(-4.37114e-08 1 1 4.37114e-08 17 17)"
+                                                              width="28"/>
+                                                    </clipPath>
+                                                </defs>
+                                            </svg>
+                                        </td>
+                                        <td>
+                                            <h6 class="fs-16 font-w600 mb-0"><a
+                                                    class="text-black"
+                                                    href="transactions-details.html">Cindy Alexandro</a>
+                                            </h6>
+                                            <span class="fs-14">Transfer</span>
+                                        </td>
+                                        <td>
+                                            <h6 class="fs-16 text-black font-w400 mb-0">June 5, 2024
+                                            </h6>
+                                            <span class="fs-14">05:34</span>
+                                        </td>
+                                        <td><span class="fs-16 text-black font-w500">+$5,553</span>
+                                        </td>
+                                        <td><span
+                                                class="text-danger fs-16 font-w500 text-end d-block">Canceled</span>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <svg fill="none" height="63" viewBox="0 0 63 63"
+                                                 width="63" xmlns="http://www.w3.org/2000/svg">
+                                                <rect height="61" rx="29" stroke="#2BC155" stroke-width="2"
+                                                      width="61" x="1.00002" y="1"/>
+                                                <g clip-path="url(#clip7)">
+                                                    <path
+                                                            d="M35.2219 42.9875C34.8938 42.3094 35.1836 41.4891 35.8617 41.1609C37.7484 40.2531 39.3453 38.8422 40.4828 37.0758C41.6477 35.2656 42.2656 33.1656 42.2656 31C42.2656 24.7875 37.2125 19.7344 31 19.7344C24.7875 19.7344 19.7344 24.7875 19.7344 31C19.7344 33.1656 20.3523 35.2656 21.5117 37.0813C22.6437 38.8477 24.2461 40.2586 26.1328 41.1664C26.8109 41.4945 27.1008 42.3094 26.7727 42.993C26.4445 43.6711 25.6297 43.9609 24.9461 43.6328C22.6 42.5063 20.6148 40.7563 19.2094 38.5578C17.7656 36.3047 17 33.6906 17 31C17 27.2594 18.4547 23.743 21.1016 21.1016C23.743 18.4547 27.2594 17 31 17C34.7406 17 38.257 18.4547 40.8984 21.1016C43.5453 23.7484 45 27.2594 45 31C45 33.6906 44.2344 36.3047 42.7852 38.5578C41.3742 40.7508 39.3891 42.5063 37.0484 43.6328C36.3648 43.9555 35.55 43.6711 35.2219 42.9875Z"
+                                                            fill="#2BC155"/>
+                                                    <path
+                                                            d="M36.3211 31.7274C36.5891 31.9953 36.7203 32.3453 36.7203 32.6953C36.7203 33.0453 36.5891 33.3953 36.3211 33.6633L32.8812 37.1031C32.3781 37.6063 31.7109 37.8797 31.0055 37.8797C30.3 37.8797 29.6273 37.6008 29.1297 37.1031L25.6898 33.6633C25.1539 33.1274 25.1539 32.2633 25.6898 31.7274C26.2258 31.1914 27.0898 31.1914 27.6258 31.7274L29.6437 33.7453L29.6437 25.9742C29.6437 25.2196 30.2562 24.6071 31.0109 24.6071C31.7656 24.6071 32.3781 25.2196 32.3781 25.9742L32.3781 33.7508L34.3961 31.7328C34.9211 31.1969 35.7852 31.1969 36.3211 31.7274Z"
+                                                            fill="#2BC155"/>
+                                                </g>
+                                                <defs>
+                                                    <clipPath id="clip7">
+                                                        <rect fill="white" height="28"
+                                                              transform="matrix(-4.37114e-08 1 1 4.37114e-08 17 17)"
+                                                              width="28"/>
+                                                    </clipPath>
+                                                </defs>
+                                            </svg>
+                                        </td>
+                                        <td>
+                                            <h6 class="fs-16 font-w600 mb-0"><a
+                                                    class="text-black"
+                                                    href="transactions-details.html">Paipal</a></h6>
+                                            <span class="fs-14">Transfer</span>
+                                        </td>
+                                        <td>
+                                            <h6 class="fs-16 text-black font-w400 mb-0">June 5, 2024
+                                            </h6>
+                                            <span class="fs-14">05:34</span>
+                                        </td>
+                                        <td><span class="fs-16 text-black font-w500">+$5,553</span>
+                                        </td>
+                                        <td><span
+                                                class="text-success fs-16 font-w500 text-end d-block">Completed</span>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <svg fill="none" height="63" viewBox="0 0 63 63"
+                                                 width="63" xmlns="http://www.w3.org/2000/svg">
+                                                <rect height="61" rx="29" stroke="#FF2E2E" stroke-width="2"
+                                                      width="61"
+                                                      x="1" y="1"/>
+                                                <g clip-path="url(#clip3)">
+                                                    <path
+                                                            d="M35.2219 19.0125C34.8937 19.6906 35.1836 20.5109 35.8617 20.8391C37.7484 21.7469 39.3453 23.1578 40.4828 24.9242C41.6476 26.7344 42.2656 28.8344 42.2656 31C42.2656 37.2125 37.2125 42.2656 31 42.2656C24.7875 42.2656 19.7344 37.2125 19.7344 31C19.7344 28.8344 20.3523 26.7344 21.5117 24.9187C22.6437 23.1523 24.2461 21.7414 26.1328 20.8336C26.8109 20.5055 27.1008 19.6906 26.7726 19.007C26.4445 18.3289 25.6297 18.0391 24.9461 18.3672C22.6 19.4937 20.6148 21.2437 19.2094 23.4422C17.7656 25.6953 17 28.3094 17 31C17 34.7406 18.4547 38.257 21.1015 40.8984C23.743 43.5453 27.2594 45 31 45C34.7406 45 38.257 43.5453 40.8984 40.8984C43.5453 38.2516 45 34.7406 45 31C45 28.3094 44.2344 25.6953 42.7851 23.4422C41.3742 21.2492 39.389 19.4937 37.0484 18.3672C36.3648 18.0445 35.55 18.3289 35.2219 19.0125Z"
+                                                            fill="#FF2E2E"/>
+                                                    <path
+                                                            d="M36.3211 30.2726C36.589 30.0047 36.7203 29.6547 36.7203 29.3047C36.7203 28.9547 36.589 28.6047 36.3211 28.3367L32.8812 24.8969C32.3781 24.3937 31.7109 24.1203 31.0055 24.1203C30.3 24.1203 29.6273 24.3992 29.1297 24.8969L25.6898 28.3367C25.1539 28.8726 25.1539 29.7367 25.6898 30.2726C26.2258 30.8086 27.0898 30.8086 27.6258 30.2726L29.6437 28.2547L29.6437 36.0258C29.6437 36.7804 30.2562 37.3929 31.0109 37.3929C31.7656 37.3929 32.3781 36.7804 32.3781 36.0258L32.3781 28.2492L34.3961 30.2672C34.9211 30.8031 35.7851 30.8031 36.3211 30.2726Z"
+                                                            fill="#FF2E2E"/>
+                                                </g>
+                                                <defs>
+                                                    <clipPath id="clip3">
+                                                        <rect fill="white" height="28"
+                                                              transform="translate(17 45) rotate(-90)"
+                                                              width="28"/>
+                                                    </clipPath>
+                                                </defs>
+                                            </svg>
+                                        </td>
+                                        <td>
+                                            <h6 class="fs-16 font-w600 mb-0"><a
+                                                    class="text-black"
+                                                    href="transactions-details.html">Hawkins Jr.</a></h6>
+                                            <span class="fs-14">Transfer</span>
+                                        </td>
+                                        <td>
+                                            <h6 class="fs-16 text-black font-w400 mb-0">June 4, 2024
+                                            </h6>
+                                            <span class="fs-14">05:34</span>
+                                        </td>
+                                        <td><span class="fs-16 text-black font-w500">-$167</span>
+                                        </td>
+                                        <td><span
+                                                class="text-danger fs-16 font-w500 text-end d-block">Canceled</span>
+                                        </td>
+                                    </tr>
+                                    <tbody>
+                                </table>
+                            </div>
+                        </div>
+                        <div class="tab-pane" id="Weekly" role="tabpanel">
+                            <div class="table-responsive">
+                                <table class="table card-table previous-transactions">
+                                    <tbody>
+                                    <tr>
+                                        <td>
+                                            <svg fill="none" height="63" viewBox="0 0 63 63"
+                                                 width="63" xmlns="http://www.w3.org/2000/svg">
+                                                <rect height="61" rx="29" stroke="#2BC155" stroke-width="2"
+                                                      width="61" x="1.00002" y="1"/>
+                                                <g clip-path="url(#clip9)">
+                                                    <path
+                                                            d="M35.2219 42.9875C34.8938 42.3094 35.1836 41.4891 35.8617 41.1609C37.7484 40.2531 39.3453 38.8422 40.4828 37.0758C41.6477 35.2656 42.2656 33.1656 42.2656 31C42.2656 24.7875 37.2125 19.7344 31 19.7344C24.7875 19.7344 19.7344 24.7875 19.7344 31C19.7344 33.1656 20.3523 35.2656 21.5117 37.0813C22.6437 38.8477 24.2461 40.2586 26.1328 41.1664C26.8109 41.4945 27.1008 42.3094 26.7727 42.993C26.4445 43.6711 25.6297 43.9609 24.9461 43.6328C22.6 42.5063 20.6148 40.7563 19.2094 38.5578C17.7656 36.3047 17 33.6906 17 31C17 27.2594 18.4547 23.743 21.1016 21.1016C23.743 18.4547 27.2594 17 31 17C34.7406 17 38.257 18.4547 40.8984 21.1016C43.5453 23.7484 45 27.2594 45 31C45 33.6906 44.2344 36.3047 42.7852 38.5578C41.3742 40.7508 39.3891 42.5063 37.0484 43.6328C36.3648 43.9555 35.55 43.6711 35.2219 42.9875Z"
+                                                            fill="#2BC155"/>
+                                                    <path
+                                                            d="M36.3211 31.7274C36.5891 31.9953 36.7203 32.3453 36.7203 32.6953C36.7203 33.0453 36.5891 33.3953 36.3211 33.6633L32.8812 37.1031C32.3781 37.6063 31.7109 37.8797 31.0055 37.8797C30.3 37.8797 29.6273 37.6008 29.1297 37.1031L25.6898 33.6633C25.1539 33.1274 25.1539 32.2633 25.6898 31.7274C26.2258 31.1914 27.0898 31.1914 27.6258 31.7274L29.6437 33.7453L29.6437 25.9742C29.6437 25.2196 30.2562 24.6071 31.0109 24.6071C31.7656 24.6071 32.3781 25.2196 32.3781 25.9742L32.3781 33.7508L34.3961 31.7328C34.9211 31.1969 35.7852 31.1969 36.3211 31.7274Z"
+                                                            fill="#2BC155"/>
+                                                </g>
+                                                <defs>
+                                                    <clipPath id="clip9">
+                                                        <rect fill="white" height="28"
+                                                              transform="matrix(-4.37114e-08 1 1 4.37114e-08 17 17)"
+                                                              width="28"/>
+                                                    </clipPath>
+                                                </defs>
+                                            </svg>
+                                        </td>
+                                        <td>
+                                            <h6 class="fs-16 font-w600 mb-0"><a
+                                                    class="text-black"
+                                                    href="transactions-details.html">XYZ Store ID</a></h6>
+                                            <span class="fs-14">Cashback</span>
+                                        </td>
+                                        <td>
+                                            <h6 class="fs-16 text-black font-w400 mb-0">June 4, 2024
+                                            </h6>
+                                            <span class="fs-14">05:34</span>
+                                        </td>
+                                        <td><span class="fs-16 text-black font-w500">+$5,553</span>
+                                        </td>
+                                        <td><span
+                                                class="text-success fs-16 font-w500 text-end d-block">Completed</span>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <svg fill="none" height="63" viewBox="0 0 63 63"
+                                                 width="63" xmlns="http://www.w3.org/2000/svg">
+                                                <rect height="61" rx="29" stroke="#FF2E2E" stroke-width="2"
+                                                      width="61"
+                                                      x="1" y="1"/>
+                                                <g clip-path="url(#clip10)">
+                                                    <path
+                                                            d="M35.2219 19.0125C34.8937 19.6906 35.1836 20.5109 35.8617 20.8391C37.7484 21.7469 39.3453 23.1578 40.4828 24.9242C41.6476 26.7344 42.2656 28.8344 42.2656 31C42.2656 37.2125 37.2125 42.2656 31 42.2656C24.7875 42.2656 19.7344 37.2125 19.7344 31C19.7344 28.8344 20.3523 26.7344 21.5117 24.9187C22.6437 23.1523 24.2461 21.7414 26.1328 20.8336C26.8109 20.5055 27.1008 19.6906 26.7726 19.007C26.4445 18.3289 25.6297 18.0391 24.9461 18.3672C22.6 19.4937 20.6148 21.2437 19.2094 23.4422C17.7656 25.6953 17 28.3094 17 31C17 34.7406 18.4547 38.257 21.1015 40.8984C23.743 43.5453 27.2594 45 31 45C34.7406 45 38.257 43.5453 40.8984 40.8984C43.5453 38.2516 45 34.7406 45 31C45 28.3094 44.2344 25.6953 42.7851 23.4422C41.3742 21.2492 39.389 19.4937 37.0484 18.3672C36.3648 18.0445 35.55 18.3289 35.2219 19.0125Z"
+                                                            fill="#FF2E2E"/>
+                                                    <path
+                                                            d="M36.3211 30.2726C36.589 30.0047 36.7203 29.6547 36.7203 29.3047C36.7203 28.9547 36.589 28.6047 36.3211 28.3367L32.8812 24.8969C32.3781 24.3937 31.7109 24.1203 31.0055 24.1203C30.3 24.1203 29.6273 24.3992 29.1297 24.8969L25.6898 28.3367C25.1539 28.8726 25.1539 29.7367 25.6898 30.2726C26.2258 30.8086 27.0898 30.8086 27.6258 30.2726L29.6437 28.2547L29.6437 36.0258C29.6437 36.7804 30.2562 37.3929 31.0109 37.3929C31.7656 37.3929 32.3781 36.7804 32.3781 36.0258L32.3781 28.2492L34.3961 30.2672C34.9211 30.8031 35.7851 30.8031 36.3211 30.2726Z"
+                                                            fill="#FF2E2E"/>
+                                                </g>
+                                                <defs>
+                                                    <clipPath id="clip10">
+                                                        <rect fill="white" height="28"
+                                                              transform="translate(17 45) rotate(-90)"
+                                                              width="28"/>
+                                                    </clipPath>
+                                                </defs>
+                                            </svg>
+                                        </td>
+                                        <td>
+                                            <h6 class="fs-16 font-w600 mb-0"><a
+                                                    class="text-black"
+                                                    href="transactions-details.html">Chef Renata</a></h6>
+                                            <span class="fs-14">Transfer</span>
+                                        </td>
+                                        <td>
+                                            <h6 class="fs-16 text-black font-w400 mb-0">June 5, 2024
+                                            </h6>
+                                            <span class="fs-14">05:34</span>
+                                        </td>
+                                        <td><span class="fs-16 text-black font-w500">-$167</span>
+                                        </td>
+                                        <td><span
+                                                class="text-warning fs-16 font-w500 text-end d-block">Pending</span>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <svg fill="none" height="63" viewBox="0 0 63 63"
+                                                 width="63" xmlns="http://www.w3.org/2000/svg">
+                                                <rect height="61" rx="29" stroke="#2BC155" stroke-width="2"
+                                                      width="61" x="1.00002" y="1"/>
+                                                <g clip-path="url(#clip4)">
+                                                    <path
+                                                            d="M35.2219 42.9875C34.8938 42.3094 35.1836 41.4891 35.8617 41.1609C37.7484 40.2531 39.3453 38.8422 40.4828 37.0758C41.6477 35.2656 42.2656 33.1656 42.2656 31C42.2656 24.7875 37.2125 19.7344 31 19.7344C24.7875 19.7344 19.7344 24.7875 19.7344 31C19.7344 33.1656 20.3523 35.2656 21.5117 37.0813C22.6437 38.8477 24.2461 40.2586 26.1328 41.1664C26.8109 41.4945 27.1008 42.3094 26.7727 42.993C26.4445 43.6711 25.6297 43.9609 24.9461 43.6328C22.6 42.5063 20.6148 40.7563 19.2094 38.5578C17.7656 36.3047 17 33.6906 17 31C17 27.2594 18.4547 23.743 21.1016 21.1016C23.743 18.4547 27.2594 17 31 17C34.7406 17 38.257 18.4547 40.8984 21.1016C43.5453 23.7484 45 27.2594 45 31C45 33.6906 44.2344 36.3047 42.7852 38.5578C41.3742 40.7508 39.3891 42.5063 37.0484 43.6328C36.3648 43.9555 35.55 43.6711 35.2219 42.9875Z"
+                                                            fill="#2BC155"/>
+                                                    <path
+                                                            d="M36.3211 31.7274C36.5891 31.9953 36.7203 32.3453 36.7203 32.6953C36.7203 33.0453 36.5891 33.3953 36.3211 33.6633L32.8812 37.1031C32.3781 37.6063 31.7109 37.8797 31.0055 37.8797C30.3 37.8797 29.6273 37.6008 29.1297 37.1031L25.6898 33.6633C25.1539 33.1274 25.1539 32.2633 25.6898 31.7274C26.2258 31.1914 27.0898 31.1914 27.6258 31.7274L29.6437 33.7453L29.6437 25.9742C29.6437 25.2196 30.2562 24.6071 31.0109 24.6071C31.7656 24.6071 32.3781 25.2196 32.3781 25.9742L32.3781 33.7508L34.3961 31.7328C34.9211 31.1969 35.7852 31.1969 36.3211 31.7274Z"
+                                                            fill="#2BC155"/>
+                                                </g>
+                                                <defs>
+                                                    <clipPath id="clip4">
+                                                        <rect fill="white" height="28"
+                                                              transform="matrix(-4.37114e-08 1 1 4.37114e-08 17 17)"
+                                                              width="28"/>
+                                                    </clipPath>
+                                                </defs>
+                                            </svg>
+                                        </td>
+                                        <td>
+                                            <h6 class="fs-16 font-w600 mb-0"><a
+                                                    class="text-black"
+                                                    href="transactions-details.html">Cindy Alexandro</a>
+                                            </h6>
+                                            <span class="fs-14">Transfer</span>
+                                        </td>
+                                        <td>
+                                            <h6 class="fs-16 text-black font-w400 mb-0">June 5, 2024
+                                            </h6>
+                                            <span class="fs-14">05:34</span>
+                                        </td>
+                                        <td><span class="fs-16 text-black font-w500">+$5,553</span>
+                                        </td>
+                                        <td><span
+                                                class="text-danger fs-16 font-w500 text-end d-block">Canceled</span>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <svg fill="none" height="63" viewBox="0 0 63 63"
+                                                 width="63" xmlns="http://www.w3.org/2000/svg">
+                                                <rect height="61" rx="29" stroke="#2BC155" stroke-width="2"
+                                                      width="61" x="1.00002" y="1"/>
+                                                <g clip-path="url(#clip9)">
+                                                    <path
+                                                            d="M35.2219 42.9875C34.8938 42.3094 35.1836 41.4891 35.8617 41.1609C37.7484 40.2531 39.3453 38.8422 40.4828 37.0758C41.6477 35.2656 42.2656 33.1656 42.2656 31C42.2656 24.7875 37.2125 19.7344 31 19.7344C24.7875 19.7344 19.7344 24.7875 19.7344 31C19.7344 33.1656 20.3523 35.2656 21.5117 37.0813C22.6437 38.8477 24.2461 40.2586 26.1328 41.1664C26.8109 41.4945 27.1008 42.3094 26.7727 42.993C26.4445 43.6711 25.6297 43.9609 24.9461 43.6328C22.6 42.5063 20.6148 40.7563 19.2094 38.5578C17.7656 36.3047 17 33.6906 17 31C17 27.2594 18.4547 23.743 21.1016 21.1016C23.743 18.4547 27.2594 17 31 17C34.7406 17 38.257 18.4547 40.8984 21.1016C43.5453 23.7484 45 27.2594 45 31C45 33.6906 44.2344 36.3047 42.7852 38.5578C41.3742 40.7508 39.3891 42.5063 37.0484 43.6328C36.3648 43.9555 35.55 43.6711 35.2219 42.9875Z"
+                                                            fill="#2BC155"/>
+                                                    <path
+                                                            d="M36.3211 31.7274C36.5891 31.9953 36.7203 32.3453 36.7203 32.6953C36.7203 33.0453 36.5891 33.3953 36.3211 33.6633L32.8812 37.1031C32.3781 37.6063 31.7109 37.8797 31.0055 37.8797C30.3 37.8797 29.6273 37.6008 29.1297 37.1031L25.6898 33.6633C25.1539 33.1274 25.1539 32.2633 25.6898 31.7274C26.2258 31.1914 27.0898 31.1914 27.6258 31.7274L29.6437 33.7453L29.6437 25.9742C29.6437 25.2196 30.2562 24.6071 31.0109 24.6071C31.7656 24.6071 32.3781 25.2196 32.3781 25.9742L32.3781 33.7508L34.3961 31.7328C34.9211 31.1969 35.7852 31.1969 36.3211 31.7274Z"
+                                                            fill="#2BC155"/>
+                                                </g>
+                                                <defs>
+                                                    <clipPath id="clip11">
+                                                        <rect fill="white" height="28"
+                                                              transform="matrix(-4.37114e-08 1 1 4.37114e-08 17 17)"
+                                                              width="28"/>
+                                                    </clipPath>
+                                                </defs>
+                                            </svg>
+                                        </td>
+                                        <td>
+                                            <h6 class="fs-16 font-w600 mb-0"><a
+                                                    class="text-black"
+                                                    href="transactions-details.html">XYZ Store ID</a></h6>
+                                            <span class="fs-14">Cashback</span>
+                                        </td>
+                                        <td>
+                                            <h6 class="fs-16 text-black font-w400 mb-0">June 4, 2024
+                                            </h6>
+                                            <span class="fs-14">05:34</span>
+                                        </td>
+                                        <td><span class="fs-16 text-black font-w500">+$5,553</span>
+                                        </td>
+                                        <td><span
+                                                class="text-success fs-16 font-w500 text-end d-block">Completed</span>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <svg fill="none" height="63" viewBox="0 0 63 63"
+                                                 width="63" xmlns="http://www.w3.org/2000/svg">
+                                                <rect height="61" rx="29" stroke="#FF2E2E" stroke-width="2"
+                                                      width="61"
+                                                      x="1" y="1"/>
+                                                <g clip-path="url(#clip10)">
+                                                    <path
+                                                            d="M35.2219 19.0125C34.8937 19.6906 35.1836 20.5109 35.8617 20.8391C37.7484 21.7469 39.3453 23.1578 40.4828 24.9242C41.6476 26.7344 42.2656 28.8344 42.2656 31C42.2656 37.2125 37.2125 42.2656 31 42.2656C24.7875 42.2656 19.7344 37.2125 19.7344 31C19.7344 28.8344 20.3523 26.7344 21.5117 24.9187C22.6437 23.1523 24.2461 21.7414 26.1328 20.8336C26.8109 20.5055 27.1008 19.6906 26.7726 19.007C26.4445 18.3289 25.6297 18.0391 24.9461 18.3672C22.6 19.4937 20.6148 21.2437 19.2094 23.4422C17.7656 25.6953 17 28.3094 17 31C17 34.7406 18.4547 38.257 21.1015 40.8984C23.743 43.5453 27.2594 45 31 45C34.7406 45 38.257 43.5453 40.8984 40.8984C43.5453 38.2516 45 34.7406 45 31C45 28.3094 44.2344 25.6953 42.7851 23.4422C41.3742 21.2492 39.389 19.4937 37.0484 18.3672C36.3648 18.0445 35.55 18.3289 35.2219 19.0125Z"
+                                                            fill="#FF2E2E"/>
+                                                    <path
+                                                            d="M36.3211 30.2726C36.589 30.0047 36.7203 29.6547 36.7203 29.3047C36.7203 28.9547 36.589 28.6047 36.3211 28.3367L32.8812 24.8969C32.3781 24.3937 31.7109 24.1203 31.0055 24.1203C30.3 24.1203 29.6273 24.3992 29.1297 24.8969L25.6898 28.3367C25.1539 28.8726 25.1539 29.7367 25.6898 30.2726C26.2258 30.8086 27.0898 30.8086 27.6258 30.2726L29.6437 28.2547L29.6437 36.0258C29.6437 36.7804 30.2562 37.3929 31.0109 37.3929C31.7656 37.3929 32.3781 36.7804 32.3781 36.0258L32.3781 28.2492L34.3961 30.2672C34.9211 30.8031 35.7851 30.8031 36.3211 30.2726Z"
+                                                            fill="#FF2E2E"/>
+                                                </g>
+                                                <defs>
+                                                    <clipPath id="clip12">
+                                                        <rect fill="white" height="28"
+                                                              transform="translate(17 45) rotate(-90)"
+                                                              width="28"/>
+                                                    </clipPath>
+                                                </defs>
+                                            </svg>
+                                        </td>
+                                        <td>
+                                            <h6 class="fs-16 font-w600 mb-0"><a
+                                                    class="text-black"
+                                                    href="transactions-details.html">Chef Renata</a></h6>
+                                            <span class="fs-14">Transfer</span>
+                                        </td>
+                                        <td>
+                                            <h6 class="fs-16 text-black font-w400 mb-0">June 5, 2024
+                                            </h6>
+                                            <span class="fs-14">05:34</span>
+                                        </td>
+                                        <td><span class="fs-16 text-black font-w500">-$167</span>
+                                        </td>
+                                        <td><span
+                                                class="text-warning fs-16 font-w500 text-end d-block">Pending</span>
+                                        </td>
+                                    </tr>
+                                    <tbody>
+                                </table>
+                            </div>
+                        </div>
+                        <div class="tab-pane" id="Today" role="tabpanel">
+                            <div class="table-responsive">
+                                <table class="table card-table previous-transactions">
+                                    <tbody>
+                                    <tr>
+                                        <td>
+                                            <svg fill="none" height="63" viewBox="0 0 63 63"
+                                                 width="63" xmlns="http://www.w3.org/2000/svg">
+                                                <rect height="61" rx="29" stroke="#2BC155" stroke-width="2"
+                                                      width="61" x="1.00002" y="1"/>
+                                                <g clip-path="url(#clip5)">
+                                                    <path
+                                                            d="M35.2219 42.9875C34.8938 42.3094 35.1836 41.4891 35.8617 41.1609C37.7484 40.2531 39.3453 38.8422 40.4828 37.0758C41.6477 35.2656 42.2656 33.1656 42.2656 31C42.2656 24.7875 37.2125 19.7344 31 19.7344C24.7875 19.7344 19.7344 24.7875 19.7344 31C19.7344 33.1656 20.3523 35.2656 21.5117 37.0813C22.6437 38.8477 24.2461 40.2586 26.1328 41.1664C26.8109 41.4945 27.1008 42.3094 26.7727 42.993C26.4445 43.6711 25.6297 43.9609 24.9461 43.6328C22.6 42.5063 20.6148 40.7563 19.2094 38.5578C17.7656 36.3047 17 33.6906 17 31C17 27.2594 18.4547 23.743 21.1016 21.1016C23.743 18.4547 27.2594 17 31 17C34.7406 17 38.257 18.4547 40.8984 21.1016C43.5453 23.7484 45 27.2594 45 31C45 33.6906 44.2344 36.3047 42.7852 38.5578C41.3742 40.7508 39.3891 42.5063 37.0484 43.6328C36.3648 43.9555 35.55 43.6711 35.2219 42.9875Z"
+                                                            fill="#2BC155"/>
+                                                    <path
+                                                            d="M36.3211 31.7274C36.5891 31.9953 36.7203 32.3453 36.7203 32.6953C36.7203 33.0453 36.5891 33.3953 36.3211 33.6633L32.8812 37.1031C32.3781 37.6063 31.7109 37.8797 31.0055 37.8797C30.3 37.8797 29.6273 37.6008 29.1297 37.1031L25.6898 33.6633C25.1539 33.1274 25.1539 32.2633 25.6898 31.7274C26.2258 31.1914 27.0898 31.1914 27.6258 31.7274L29.6437 33.7453L29.6437 25.9742C29.6437 25.2196 30.2562 24.6071 31.0109 24.6071C31.7656 24.6071 32.3781 25.2196 32.3781 25.9742L32.3781 33.7508L34.3961 31.7328C34.9211 31.1969 35.7852 31.1969 36.3211 31.7274Z"
+                                                            fill="#2BC155"/>
+                                                </g>
+                                                <defs>
+                                                    <clipPath id="clip13">
+                                                        <rect fill="white" height="28"
+                                                              transform="matrix(-4.37114e-08 1 1 4.37114e-08 17 17)"
+                                                              width="28"/>
+                                                    </clipPath>
+                                                </defs>
+                                            </svg>
+                                        </td>
+                                        <td>
+                                            <h6 class="fs-16 font-w600 mb-0"><a
+                                                    class="text-black"
+                                                    href="transactions-details.html">Paipal</a></h6>
+                                            <span class="fs-14">Transfer</span>
+                                        </td>
+                                        <td>
+                                            <h6 class="fs-16 text-black font-w400 mb-0">June 5, 2024
+                                            </h6>
+                                            <span class="fs-14">05:34</span>
+                                        </td>
+                                        <td><span class="fs-16 text-black font-w500">+$5,553</span>
+                                        </td>
+                                        <td><span
+                                                class="text-success fs-16 font-w500 text-end d-block">Completed</span>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <svg fill="none" height="63" viewBox="0 0 63 63"
+                                                 width="63" xmlns="http://www.w3.org/2000/svg">
+                                                <rect height="61" rx="29" stroke="#FF2E2E" stroke-width="2"
+                                                      width="61"
+                                                      x="1" y="1"/>
+                                                <g clip-path="url(#clip6)">
+                                                    <path
+                                                            d="M35.2219 19.0125C34.8937 19.6906 35.1836 20.5109 35.8617 20.8391C37.7484 21.7469 39.3453 23.1578 40.4828 24.9242C41.6476 26.7344 42.2656 28.8344 42.2656 31C42.2656 37.2125 37.2125 42.2656 31 42.2656C24.7875 42.2656 19.7344 37.2125 19.7344 31C19.7344 28.8344 20.3523 26.7344 21.5117 24.9187C22.6437 23.1523 24.2461 21.7414 26.1328 20.8336C26.8109 20.5055 27.1008 19.6906 26.7726 19.007C26.4445 18.3289 25.6297 18.0391 24.9461 18.3672C22.6 19.4937 20.6148 21.2437 19.2094 23.4422C17.7656 25.6953 17 28.3094 17 31C17 34.7406 18.4547 38.257 21.1015 40.8984C23.743 43.5453 27.2594 45 31 45C34.7406 45 38.257 43.5453 40.8984 40.8984C43.5453 38.2516 45 34.7406 45 31C45 28.3094 44.2344 25.6953 42.7851 23.4422C41.3742 21.2492 39.389 19.4937 37.0484 18.3672C36.3648 18.0445 35.55 18.3289 35.2219 19.0125Z"
+                                                            fill="#FF2E2E"/>
+                                                    <path
+                                                            d="M36.3211 30.2726C36.589 30.0047 36.7203 29.6547 36.7203 29.3047C36.7203 28.9547 36.589 28.6047 36.3211 28.3367L32.8812 24.8969C32.3781 24.3937 31.7109 24.1203 31.0055 24.1203C30.3 24.1203 29.6273 24.3992 29.1297 24.8969L25.6898 28.3367C25.1539 28.8726 25.1539 29.7367 25.6898 30.2726C26.2258 30.8086 27.0898 30.8086 27.6258 30.2726L29.6437 28.2547L29.6437 36.0258C29.6437 36.7804 30.2562 37.3929 31.0109 37.3929C31.7656 37.3929 32.3781 36.7804 32.3781 36.0258L32.3781 28.2492L34.3961 30.2672C34.9211 30.8031 35.7851 30.8031 36.3211 30.2726Z"
+                                                            fill="#FF2E2E"/>
+                                                </g>
+                                                <defs>
+                                                    <clipPath id="clip14">
+                                                        <rect fill="white" height="28"
+                                                              transform="translate(17 45) rotate(-90)"
+                                                              width="28"/>
+                                                    </clipPath>
+                                                </defs>
+                                            </svg>
+                                        </td>
+                                        <td>
+                                            <h6 class="fs-16 font-w600 mb-0"><a
+                                                    class="text-black"
+                                                    href="transactions-details.html">Hawkins Jr.</a></h6>
+                                            <span class="fs-14">Transfer</span>
+                                        </td>
+                                        <td>
+                                            <h6 class="fs-16 text-black font-w400 mb-0">June 4, 2024
+                                            </h6>
+                                            <span class="fs-14">05:34</span>
+                                        </td>
+                                        <td><span class="fs-16 text-black font-w500">-$167</span>
+                                        </td>
+                                        <td><span
+                                                class="text-danger fs-16 font-w500 text-end d-block">Canceled</span>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <svg fill="none" height="63" viewBox="0 0 63 63"
+                                                 width="63" xmlns="http://www.w3.org/2000/svg">
+                                                <rect height="61" rx="29" stroke="#FF2E2E" stroke-width="2"
+                                                      width="61"
+                                                      x="1" y="1"/>
+                                                <g clip-path="url(#clip10)">
+                                                    <path
+                                                            d="M35.2219 19.0125C34.8937 19.6906 35.1836 20.5109 35.8617 20.8391C37.7484 21.7469 39.3453 23.1578 40.4828 24.9242C41.6476 26.7344 42.2656 28.8344 42.2656 31C42.2656 37.2125 37.2125 42.2656 31 42.2656C24.7875 42.2656 19.7344 37.2125 19.7344 31C19.7344 28.8344 20.3523 26.7344 21.5117 24.9187C22.6437 23.1523 24.2461 21.7414 26.1328 20.8336C26.8109 20.5055 27.1008 19.6906 26.7726 19.007C26.4445 18.3289 25.6297 18.0391 24.9461 18.3672C22.6 19.4937 20.6148 21.2437 19.2094 23.4422C17.7656 25.6953 17 28.3094 17 31C17 34.7406 18.4547 38.257 21.1015 40.8984C23.743 43.5453 27.2594 45 31 45C34.7406 45 38.257 43.5453 40.8984 40.8984C43.5453 38.2516 45 34.7406 45 31C45 28.3094 44.2344 25.6953 42.7851 23.4422C41.3742 21.2492 39.389 19.4937 37.0484 18.3672C36.3648 18.0445 35.55 18.3289 35.2219 19.0125Z"
+                                                            fill="#FF2E2E"/>
+                                                    <path
+                                                            d="M36.3211 30.2726C36.589 30.0047 36.7203 29.6547 36.7203 29.3047C36.7203 28.9547 36.589 28.6047 36.3211 28.3367L32.8812 24.8969C32.3781 24.3937 31.7109 24.1203 31.0055 24.1203C30.3 24.1203 29.6273 24.3992 29.1297 24.8969L25.6898 28.3367C25.1539 28.8726 25.1539 29.7367 25.6898 30.2726C26.2258 30.8086 27.0898 30.8086 27.6258 30.2726L29.6437 28.2547L29.6437 36.0258C29.6437 36.7804 30.2562 37.3929 31.0109 37.3929C31.7656 37.3929 32.3781 36.7804 32.3781 36.0258L32.3781 28.2492L34.3961 30.2672C34.9211 30.8031 35.7851 30.8031 36.3211 30.2726Z"
+                                                            fill="#FF2E2E"/>
+                                                </g>
+                                                <defs>
+                                                    <clipPath id="clip15">
+                                                        <rect fill="white" height="28"
+                                                              transform="translate(17 45) rotate(-90)"
+                                                              width="28"/>
+                                                    </clipPath>
+                                                </defs>
+                                            </svg>
+                                        </td>
+                                        <td>
+                                            <h6 class="fs-16 font-w600 mb-0"><a
+                                                    class="text-black"
+                                                    href="transactions-details.html">Chef Renata</a></h6>
+                                            <span class="fs-14">Transfer</span>
+                                        </td>
+                                        <td>
+                                            <h6 class="fs-16 text-black font-w400 mb-0">June 5, 2024
+                                            </h6>
+                                            <span class="fs-14">05:34</span>
+                                        </td>
+                                        <td><span class="fs-16 text-black font-w500">-$167</span>
+                                        </td>
+                                        <td><span
+                                                class="text-warning fs-16 font-w500 text-end d-block">Pending</span>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <svg fill="none" height="63" viewBox="0 0 63 63"
+                                                 width="63" xmlns="http://www.w3.org/2000/svg">
+                                                <rect height="61" rx="29" stroke="#2BC155" stroke-width="2"
+                                                      width="61" x="1.00002" y="1"/>
+                                                <g clip-path="url(#clip9)">
+                                                    <path
+                                                            d="M35.2219 42.9875C34.8938 42.3094 35.1836 41.4891 35.8617 41.1609C37.7484 40.2531 39.3453 38.8422 40.4828 37.0758C41.6477 35.2656 42.2656 33.1656 42.2656 31C42.2656 24.7875 37.2125 19.7344 31 19.7344C24.7875 19.7344 19.7344 24.7875 19.7344 31C19.7344 33.1656 20.3523 35.2656 21.5117 37.0813C22.6437 38.8477 24.2461 40.2586 26.1328 41.1664C26.8109 41.4945 27.1008 42.3094 26.7727 42.993C26.4445 43.6711 25.6297 43.9609 24.9461 43.6328C22.6 42.5063 20.6148 40.7563 19.2094 38.5578C17.7656 36.3047 17 33.6906 17 31C17 27.2594 18.4547 23.743 21.1016 21.1016C23.743 18.4547 27.2594 17 31 17C34.7406 17 38.257 18.4547 40.8984 21.1016C43.5453 23.7484 45 27.2594 45 31C45 33.6906 44.2344 36.3047 42.7852 38.5578C41.3742 40.7508 39.3891 42.5063 37.0484 43.6328C36.3648 43.9555 35.55 43.6711 35.2219 42.9875Z"
+                                                            fill="#2BC155"/>
+                                                    <path
+                                                            d="M36.3211 31.7274C36.5891 31.9953 36.7203 32.3453 36.7203 32.6953C36.7203 33.0453 36.5891 33.3953 36.3211 33.6633L32.8812 37.1031C32.3781 37.6063 31.7109 37.8797 31.0055 37.8797C30.3 37.8797 29.6273 37.6008 29.1297 37.1031L25.6898 33.6633C25.1539 33.1274 25.1539 32.2633 25.6898 31.7274C26.2258 31.1914 27.0898 31.1914 27.6258 31.7274L29.6437 33.7453L29.6437 25.9742C29.6437 25.2196 30.2562 24.6071 31.0109 24.6071C31.7656 24.6071 32.3781 25.2196 32.3781 25.9742L32.3781 33.7508L34.3961 31.7328C34.9211 31.1969 35.7852 31.1969 36.3211 31.7274Z"
+                                                            fill="#2BC155"/>
+                                                </g>
+                                                <defs>
+                                                    <clipPath id="clip16">
+                                                        <rect fill="white" height="28"
+                                                              transform="matrix(-4.37114e-08 1 1 4.37114e-08 17 17)"
+                                                              width="28"/>
+                                                    </clipPath>
+                                                </defs>
+                                            </svg>
+                                        </td>
+                                        <td>
+                                            <h6 class="fs-16 font-w600 mb-0"><a
+                                                    class="text-black"
+                                                    href="transactions-details.html">XYZ Store ID</a></h6>
+                                            <span class="fs-14">Cashback</span>
+                                        </td>
+                                        <td>
+                                            <h6 class="fs-16 text-black font-w400 mb-0">June 4, 2024
+                                            </h6>
+                                            <span class="fs-14">05:34</span>
+                                        </td>
+                                        <td><span class="fs-16 text-black font-w500">+$5,553</span>
+                                        </td>
+                                        <td><span
+                                                class="text-success fs-16 font-w500 text-end d-block">Completed</span>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <svg fill="none" height="63" viewBox="0 0 63 63"
+                                                 width="63" xmlns="http://www.w3.org/2000/svg">
+                                                <rect height="61" rx="29" stroke="#FF2E2E" stroke-width="2"
+                                                      width="61"
+                                                      x="1" y="1"/>
+                                                <g clip-path="url(#clip3)">
+                                                    <path
+                                                            d="M35.2219 19.0125C34.8937 19.6906 35.1836 20.5109 35.8617 20.8391C37.7484 21.7469 39.3453 23.1578 40.4828 24.9242C41.6476 26.7344 42.2656 28.8344 42.2656 31C42.2656 37.2125 37.2125 42.2656 31 42.2656C24.7875 42.2656 19.7344 37.2125 19.7344 31C19.7344 28.8344 20.3523 26.7344 21.5117 24.9187C22.6437 23.1523 24.2461 21.7414 26.1328 20.8336C26.8109 20.5055 27.1008 19.6906 26.7726 19.007C26.4445 18.3289 25.6297 18.0391 24.9461 18.3672C22.6 19.4937 20.6148 21.2437 19.2094 23.4422C17.7656 25.6953 17 28.3094 17 31C17 34.7406 18.4547 38.257 21.1015 40.8984C23.743 43.5453 27.2594 45 31 45C34.7406 45 38.257 43.5453 40.8984 40.8984C43.5453 38.2516 45 34.7406 45 31C45 28.3094 44.2344 25.6953 42.7851 23.4422C41.3742 21.2492 39.389 19.4937 37.0484 18.3672C36.3648 18.0445 35.55 18.3289 35.2219 19.0125Z"
+                                                            fill="#FF2E2E"/>
+                                                    <path
+                                                            d="M36.3211 30.2726C36.589 30.0047 36.7203 29.6547 36.7203 29.3047C36.7203 28.9547 36.589 28.6047 36.3211 28.3367L32.8812 24.8969C32.3781 24.3937 31.7109 24.1203 31.0055 24.1203C30.3 24.1203 29.6273 24.3992 29.1297 24.8969L25.6898 28.3367C25.1539 28.8726 25.1539 29.7367 25.6898 30.2726C26.2258 30.8086 27.0898 30.8086 27.6258 30.2726L29.6437 28.2547L29.6437 36.0258C29.6437 36.7804 30.2562 37.3929 31.0109 37.3929C31.7656 37.3929 32.3781 36.7804 32.3781 36.0258L32.3781 28.2492L34.3961 30.2672C34.9211 30.8031 35.7851 30.8031 36.3211 30.2726Z"
+                                                            fill="#FF2E2E"/>
+                                                </g>
+                                                <defs>
+                                                    <clipPath id="clip17">
+                                                        <rect fill="white" height="28"
+                                                              transform="translate(17 45) rotate(-90)"
+                                                              width="28"/>
+                                                    </clipPath>
+                                                </defs>
+                                            </svg>
+                                        </td>
+                                        <td>
+                                            <h6 class="fs-16 font-w600 mb-0"><a
+                                                    class="text-black"
+                                                    href="transactions-details.html">Hawkins Jr.</a></h6>
+                                            <span class="fs-14">Transfer</span>
+                                        </td>
+                                        <td>
+                                            <h6 class="fs-16 text-black font-w400 mb-0">June 4, 2024
+                                            </h6>
+                                            <span class="fs-14">05:34</span>
+                                        </td>
+                                        <td><span class="fs-16 text-black font-w500">-$167</span>
+                                        </td>
+                                        <td><span
+                                                class="text-danger fs-16 font-w500 text-end d-block">Canceled</span>
+                                        </td>
+                                    </tr>
+                                    <tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <!--**********************************
+        Content body end
+    ***********************************-->
+
+    <!--**********************************
+        Footer start
+    ***********************************-->
+    <div class="footer">
+        <div class="copyright">
+            <p>Copyright © Designed &amp; Developed by FYP-24-S3-14</a>
+                <span class="current-year">2024</span></p>
+        </div>
+    </div>
+    <!--**********************************
+        Footer end
+    ***********************************-->
+
+</div>
+<!--**********************************
+    Main wrapper end
+***********************************-->
+
+<!--**********************************
+    Scripts
+***********************************-->
+<!-- Required vendors -->
+<script th:src="@{/dashboardassets/vendor/global/global.min.js}"></script>
+<script th:src="@{/dashboardassets/vendor/bootstrap-select/dist/js/bootstrap-select.min.js}"></script>
+<script th:src="@{/dashboardassets/vendor/chart-js/chart.bundle.min.js}"></script>
+<script th:src="@{/dashboardassets/vendor/owl-carousel/owl.carousel.js}"></script>
+
+<!--&lt;!&ndash; Chart piety plugin files &ndash;&gt;-->
+<!--<script th:src="@{/dashboardassets/vendor/peity/jquery.peity.min.js}"></script>-->
+
+<!--&lt;!&ndash; Apex Chart &ndash;&gt;-->
+<!--<script th:src="@{/dashboardassets/vendor/apexchart/apexchart.js}"></script>-->
+
+<!-- Dashboard 1 -->
+<!--<script th:src="@{/dashboardassets/js/dashboard/dashboard-1.js}"></script>-->
+
+<script th:src="@{/dashboardassets/js/custom.min.js}"></script>
+<script th:src="@{/dashboardassets/js/deznav-init.js}"></script>
+
+<script>
+    function carouselReview() {
+        /*  testimonial one function by = owl.carousel.js */
+        jQuery('.testimonial-one').owlCarousel({
+            loop: true,
+            margin: 10,
+            autoplay: true,
+            nav: false,
+            center: true,
+            rtl: true,
+            dots: false,
+            navText: ['<i class="fas fa-caret-left"></i>', '<i class="fas fa-caret-right"></i>'],
+            responsive: {
+                0: {
+                    items: 2
+                },
+                400: {
+                    items: 3
+                },
+                700: {
+                    items: 5
+                },
+                991: {
+                    items: 6
+                },
+
+                1200: {
+                    items: 4
+                },
+                1600: {
+                    items: 5
+                }
+            }
+        })
+    }
+
+    jQuery(window).on('load', function () {
+        setTimeout(function () {
+            carouselReview();
+
+        }, 1000);
+    });
+
+    jQuery(document).ready(function(){
+        setTimeout(function(){
+            dezSettingsOptions.version = 'light';
+            new dezSettings(dezSettingsOptions);
+
+            setCookie('version','light');
+
+        },1500)
+    });
+
+
+    document.addEventListener('DOMContentLoaded', function () {
+        // Select the collapse elements and chevrons
+        var accountCollapseElement = document.querySelector('#accountSubmenu');
+        var transferCollapseElement = document.querySelector('#transferSubmenu');
+        var walletCollapseElement = document.querySelector('#walletSubmenu');
+
+        var accountChevron = document.querySelector('a[data-bs-target="#accountSubmenu"] .dropdown-chevron');
+        var transferChevron = document.querySelector('a[data-bs-target="#transferSubmenu"] .dropdown-chevron');
+        var walletChevron = document.querySelector('a[data-bs-target="#walletSubmenu"] .dropdown-chevron');
+
+        var collapsibles = [
+            { element: accountCollapseElement, chevron: accountChevron },
+            { element: transferCollapseElement, chevron: transferChevron },
+            { element: walletCollapseElement, chevron: walletChevron }
+        ];
+
+        function setupCollapseListener(collapseElement, chevron) {
+            collapseElement.addEventListener('show.bs.collapse', function () {
+                // Close other collapsibles and reset chevrons
+                collapsibles.forEach(function (item) {
+                    if (item.element !== collapseElement) {
+                        var bsCollapse = new bootstrap.Collapse(item.element, { toggle: false });
+                        bsCollapse.hide();
+                        item.chevron.classList.remove('fa-chevron-down');
+                        item.chevron.classList.add('fa-chevron-right');
+                    }
+                });
+
+                // Update the chevron of the currently opened collapsible
+                chevron.classList.remove('fa-chevron-right');
+                chevron.classList.add('fa-chevron-down');
+            });
+
+            collapseElement.addEventListener('hide.bs.collapse', function () {
+                chevron.classList.remove('fa-chevron-down');
+                chevron.classList.add('fa-chevron-right');
+            });
+        }
+
+        // Initialize listeners for each collapsible
+        collapsibles.forEach(function (item) {
+            if (item.chevron && item.element) {
+                setupCollapseListener(item.element, item.chevron);
+            }
+        });
+
+
+    });
+
+
+</script>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        // Handle the form submission for top-up
+        document.getElementById('topup-form').addEventListener('submit', function (e) {
+            e.preventDefault();
+            const amount = document.getElementById('amount').value;
+
+            if (!amount || amount <= 0) {
+                alert("Please provide a valid amount.");
+                return;
+            }
+
+            // Make a POST request to the backend to perform the top-up
+            fetch('/OnePay/topup', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({amount: amount})
+            })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.status === 'success') {
+                        alert('Top-up successful!');
+                        // Clear the input field
+                        document.getElementById('amount').value = '';
+                    } else {
+                        alert('Top-up failed: ' + data.message);
+                    }
+                })
+                .catch(error => {
+                    console.error('Error during top-up:', error);
+                    alert('An error occurred. Please try again.');
+                });
+        });
+    });
+</script>
+
+<script>
+    function toggleOtherBankField() {
+        var bankDropdown = document.getElementById("bank");
+        var otherBankField = document.getElementById("other-bank-field");
+
+        if (bankDropdown.value === "other") {
+            // Show the "Enter Bank Name" input field if "Other" is selected
+            otherBankField.style.display = "flex";
+        } else {
+            // Hide the "Enter Bank Name" input field otherwise
+            otherBankField.style.display = "none";
+        }
+    }
+</script>
+
+</body>
+
+</html>

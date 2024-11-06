@@ -1,6 +1,3 @@
-// Anm Â© 2014-2015 Andrey Polischuk
-// github.com/andrepolischuk/anm
-
 !function() {
 
   'use strict';

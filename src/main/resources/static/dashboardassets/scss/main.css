@@ -27588,7 +27588,7 @@ table.dataTable thead .sorting {
     box-shadow: none; }
 
 .welcome-content {
-  background: url("./../images/1.jpg");
+
   background-size: cover;
   background-position: center;
   height: 100%;
@@ -28688,7 +28688,7 @@ span#counter {
   width: 60px;
   height: 60px;
   display: inline-block;
-  background: url("../images/like.png");
+
   cursor: pointer;
   margin: -25px -15px; }
 

@@ -26,7 +26,7 @@ document.querySelector(".sweet-wrong").onclick = function () {
             "error") }) }, document.querySelector(".sweet-image-message").
     onclick = function () { Swal.fire({ title: "Sweet !!",
     text: "Hey, Here's a custom image !!",
-    // imageUrl: "images/hand.png", imageWidth : "20%"
+
     })
 }, document.querySelector(".sweet-html").onclick =
     function () {

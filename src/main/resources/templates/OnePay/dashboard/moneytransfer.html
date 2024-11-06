@@ -1,11 +1,3 @@
-<!--<!DOCTYPE html>-->
-<!--<html lang="en" >-->
-<!--<head>-->
-<!--    <meta charset="UTF-8">-->
-<!--    <meta name="viewport" content="width=device-width, initial-scale=1.0">-->
-<!--    <title>Wallet Transfer</title>-->
-<!--    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">-->
-<!--</head>-->
 
 
 <!DOCTYPE html>
@@ -207,7 +199,7 @@
                     <!-- Submenu (collapsed by default) -->
                     <ul class="collapse show" id="transferSubmenu">
                         <li><a href="/OnePay/dashboard/moneytransfer" style="cursor: pointer; color: var(--primary);">Money Transfer</a></li>
-                        <li><a href="/OnePay/dashboard/transfer-details">Transfer Details</a></li>
+                        <li><a href="/OnePay/dashboard/transfer-history">Transfer History</a></li>
                     </ul>
                 </li>
 
@@ -220,9 +212,9 @@
                     <!-- Submenu (collapsed by default) -->
                     <ul class="collapse" id="accountSubmenu">
                         <li><a href="/OnePay/dashboard/account-details">Account Details</a></li>
-                        <li><a href="settings.html">Settings</a></li>
-                        <li><a href="invoices.html">Invoices</a></li>
-                        <li><a href="activity.html">Activity History</a></li>
+                        <li><a href="/OnePay/dashboard/settings">Settings</a></li>
+                        <li><a href="/OnePay/dashboard/activity-history">Activity History</a></li>
+                        <li><a href="/OnePay/dashboard/terms&conditions">Terms & Conditions</a></li>
                     </ul>
                 </li>
 
@@ -266,7 +258,7 @@
                         <form id="transfer-form">
                             <!-- Receiver Wallet ID -->
                             <div class="form-group">
-                                <label for="receiverMobileNumber" class="fs-18 text-black font-w500"  style="margin-top: 20px;" >Receiver Mobile Number:</label>
+                                <label for="receiverMobileNumber" class="fs-18 text-black font-w500">Receiver Mobile Number:</label>
                                 <input type="number"  style="background-color: #f4f0ec; color:black" class="form-control" id="receiverMobileNumber" placeholder="Enter Receiver Mobile Number" required>
                                 <div class="invalid-feedback">Receiver Mobile Number is required and must valid.</div>
                             </div>
@@ -323,16 +315,6 @@
 <script th:src="@{/dashboardassets/vendor/bootstrap-select/dist/js/bootstrap-select.min.js}"></script>
 <script th:src="@{/dashboardassets/vendor/chart-js/chart.bundle.min.js}"></script>
 <script th:src="@{/dashboardassets/vendor/owl-carousel/owl.carousel.js}"></script>
-
-
-<!-- Chart piety plugin files -->
-<!--<script th:src="@{/dashboardassets/vendor/peity/jquery.peity.min.js}"></script>-->
-
-<!--&lt;!&ndash; Apex Chart &ndash;&gt;-->
-<!--<script th:src="@{/dashboardassets/vendor/apexchart/apexchart.js}"></script>-->
-
-<!-- Dashboard 1 -->
-<!--<script th:src="@{/dashboardassets/js/dashboard/dashboard-1.js}"></script>-->
 
 <script th:src="@{/dashboardassets/js/custom.min.js}"></script>
 <script th:src="@{/dashboardassets/js/deznav-init.js}"></script>
@@ -524,39 +506,7 @@
                     '<div class="alert alert-danger">An error occurred. Please try again.</div>';
             });
 
-        // // Generate current timestamp for transfer_date
-        // const transferDate = new Date().toISOString();
-        //
-        // // Generate a unique transaction ID (UUID or similar)
-        // const transactionId = 'trans-' + Math.random().toString(36).substr(2, 9);
-        //
-        // // Create transfer payload to match the SQL format
-        // const transferPayload = {
-        //     receiverMobileNumber: parseInt(receiverMobileNumber),
-        //     amount: parseFloat(amount),
-        //     transferDate: transferDate,
-        //     status: 'pending',  // Default status as 'pending'
-        //     transactionId: transactionId
-        // }; // Perform the transfer using fetch API
-        // fetch('/api/wallet-transfers', {
-        //     method: 'POST',
-        //     headers: {
-        //         'Content-Type': 'application/json'
-        //     },
-        //     body: JSON.stringify(transferPayload)
-        // })
-        //     .then(response => response.json())
-        //     .then(data => {
-        //         if (data.status === 'success') {
-        //             document.getElementById('resultMessage').innerHTML = <div class="alert alert-success">${data.message}</div>;
-        //         } else {
-        //             document.getElementById('resultMessage').innerHTML = <div class="alert alert-danger">Transfer failed: ${data.message}</div>;
-        //         }
-        //     })
-        //     .catch(error => {
-        //         console.error('Error during transfer:', error);
-        //         document.getElementById('resultMessage').innerHTML = <div class="alert alert-danger">An error occurred. Please try again.</div>;
-        //     });
+
     });
 
 </script>
@@ -565,343 +515,46 @@
 </html>
 
 
-<!--<body>-->
-
-
-
-<!--&lt;!&ndash;**********************************-->
-<!--    Main wrapper start-->
-<!--***********************************&ndash;&gt;-->
-<!--<div id="main-wrapper">-->
-
-
-
-<!--    &lt;!&ndash;**********************************-->
-<!--        Content body start-->
-<!--    ***********************************&ndash;&gt;-->
-<!--    <div class="content-body default-height">-->
-<!--        &lt;!&ndash; row &ndash;&gt;-->
-<!--        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 container-fluid">-->
-<!--            <div class="form-head mb-4">-->
-<!--                <ol class="breadcrumb">-->
-<!--                    <li class="breadcrumb-item">Transfer</li>-->
-<!--                    <li class="breadcrumb-item active"><a href="/OnePay/dashboard/transfer/moneytransfer">Money Transfer</a></li>-->
-<!--                </ol>-->
-<!--            </div>-->
-<!--            &lt;!&ndash; Transfer Money Form &ndash;&gt;-->
-<!--            <div class="col-xl-12">-->
-<!--                <div class="card">-->
-<!--                    <div class="card-header d-sm-flex d-block border-0 pb-0">-->
-<!--                        <div class="pr-3 mb-sm-0 mb-3 me-auto">-->
-<!--                            <h2 class="text-black font-w600 fs-20 text-black mb-1">Money Transfer</h2>-->
-<!--                        </div>-->
-<!--                        &lt;!&ndash;            <p class="mb-1 text-black">Main Balance</p>&ndash;&gt;-->
-<!--                        <span class="fs-24 text-black font-w600" th:text="${session.balance}">$0.00</span>-->
-<!--                    </div>-->
-<!--                    <div class="card-body">-->
-<!--                        <form id="transfer-form">-->
-<!--                            &lt;!&ndash; Receiver Wallet ID &ndash;&gt;-->
-<!--                            <div class="form-group">-->
-<!--                                <label for="receiverMobileNumber" class="fs-18 text-black font-w500"  style="margin-top: 20px;" >Receiver Mobile Number:</label>-->
-<!--                                <input type="number"  style="background-color: #f4f0ec; color:black" class="form-control" id="receiverMobileNumber" placeholder="Enter Receiver Mobile Number" required>-->
-<!--                                <div class="invalid-feedback">Receiver Mobile Number is required and must valid.</div>-->
-<!--                            </div>-->
-
-<!--                            &lt;!&ndash; Amount &ndash;&gt;-->
-<!--                            <div class="form-group">-->
-<!--                                <label for="amount" class="fs-18 text-black font-w500">Amount to Transfer:</label>-->
-<!--                                <input type="number"  style="background-color: #f4f0ec; color:black" class="form-control" id="amount" step="0.01" placeholder="Enter Amount" required>-->
-<!--                                <div class="invalid-feedback" >Amount is required and must be greater than 0.</div>-->
-<!--                            </div>-->
-
-<!--&lt;!&ndash;                            <div class="form-group mb-4 row align-items-center">&ndash;&gt;-->
-<!--&lt;!&ndash;                                <div class="col-sm-3">&ndash;&gt;-->
-<!--&lt;!&ndash;                                    <label class="fs-18 text-black font-w500">Amount</label>&ndash;&gt;-->
-<!--&lt;!&ndash;                                </div>&ndash;&gt;-->
-<!--&lt;!&ndash;                                <div class="col-sm-7">&ndash;&gt;-->
-<!--&lt;!&ndash;                                    <div class="input-group">&ndash;&gt;-->
-<!--&lt;!&ndash;                                        <input class="form-control" id="amount" placeholder="Enter Amount" required type="number">&ndash;&gt;-->
-<!--&lt;!&ndash;                                    </div>&ndash;&gt;-->
-<!--&lt;!&ndash;                                </div>&ndash;&gt;-->
-<!--&lt;!&ndash;                            </div>&ndash;&gt;-->
-
-<!--                            &lt;!&ndash; Submit Button &ndash;&gt;-->
-
-
-<!--                            <button type="submit" class="btn btn-primary">-->
-<!--                                            <span class="transfer-icon">-->
-<!--                                                <i class="fas fa-exchange-alt"></i>-->
-<!--                                            </span>-->
-<!--                                <span class="text">Transfer Now</span>-->
-<!--                            </button>-->
-
-<!--&lt;!&ndash;                            <div class="mb-4 input-group-append">&ndash;&gt;-->
-<!--&lt;!&ndash;                                <button class="btn btn-primary rounded" id="transferNow" type="submit">Top-up NOW&ndash;&gt;-->
-<!--&lt;!&ndash;                                </button>&ndash;&gt;-->
-<!--&lt;!&ndash;                            </div>&ndash;&gt;-->
-
-<!--                        </form>-->
-<!--                        <div id="resultMessage" class="mt-3"></div>-->
-<!--                    </div>-->
-<!--                </div>-->
-<!--            </div>-->
-
-
-<!--        </div>-->
-<!--    </div>-->
-<!--    &lt;!&ndash;**********************************-->
-<!--        Content body end-->
-<!--    ***********************************&ndash;&gt;-->
-
-<!--    &lt;!&ndash;**********************************-->
-<!--        Footer start-->
-<!--    ***********************************&ndash;&gt;-->
-<!--    <div class="footer">-->
-<!--        <div class="copyright">-->
-<!--            <p>Copyright © Designed &amp; Developed by FYP-24-S3-14</a>-->
-<!--                <span class="current-year">2024</span></p>-->
-<!--        </div>-->
-<!--    </div>-->
-<!--    &lt;!&ndash;**********************************-->
-<!--        Footer end-->
-<!--    ***********************************&ndash;&gt;-->
-
-<!--</div>-->
-<!--&lt;!&ndash;**********************************-->
-<!--    Main wrapper end-->
-<!--***********************************&ndash;&gt;-->
-
-<!--&lt;!&ndash;**********************************-->
-<!--    Scripts-->
-<!--***********************************&ndash;&gt;-->
-<!--&lt;!&ndash; Required vendors &ndash;&gt;-->
-<!--<script th:src="@{/dashboardassets/vendor/global/global.min.js}"></script>-->
-<!--<script th:src="@{/dashboardassets/vendor/bootstrap-select/dist/js/bootstrap-select.min.js}"></script>-->
-<!--<script th:src="@{/dashboardassets/vendor/chart-js/chart.bundle.min.js}"></script>-->
-<!--<script th:src="@{/dashboardassets/vendor/owl-carousel/owl.carousel.js}"></script>-->
-
-<!--&lt;!&ndash; Chart piety plugin files &ndash;&gt;-->
-<!--<script th:src="@{/dashboardassets/vendor/peity/jquery.peity.min.js}"></script>-->
-
-<!--&lt;!&ndash; Apex Chart &ndash;&gt;-->
-<!--<script th:src="@{/dashboardassets/vendor/apexchart/apexchart.js}"></script>-->
-
-<!--&lt;!&ndash; Dashboard 1 &ndash;&gt;-->
-<!--<script th:src="@{/dashboardassets/js/dashboard/dashboard-1.js}"></script>-->
-
-<!--<script th:src="@{/dashboardassets/js/custom.min.js}"></script>-->
-<!--<script th:src="@{/dashboardassets/js/deznav-init.js}"></script>-->
-
-<!--<script>-->
-<!--    function carouselReview() {-->
-<!--        /*  testimonial one function by = owl.carousel.js */-->
-<!--        jQuery('.testimonial-one').owlCarousel({-->
-<!--            loop: true,-->
-<!--            margin: 10,-->
-<!--            autoplay: true,-->
-<!--            nav: false,-->
-<!--            center: true,-->
-<!--            rtl: true,-->
-<!--            dots: false,-->
-<!--            navText: ['<i class="fas fa-caret-left"></i>', '<i class="fas fa-caret-right"></i>'],-->
-<!--            responsive: {-->
-<!--                0: {-->
-<!--                    items: 2-->
-<!--                },-->
-<!--                400: {-->
-<!--                    items: 3-->
-<!--                },-->
-<!--                700: {-->
-<!--                    items: 5-->
-<!--                },-->
-<!--                991: {-->
-<!--                    items: 6-->
-<!--                },-->
-
-<!--                1200: {-->
-<!--                    items: 4-->
-<!--                },-->
-<!--                1600: {-->
-<!--                    items: 5-->
-<!--                }-->
-<!--            }-->
-<!--        })-->
-<!--    }-->
-
-<!--    jQuery(window).on('load', function () {-->
-<!--        setTimeout(function () {-->
-<!--            carouselReview();-->
-
-<!--        }, 1000);-->
-<!--    });-->
-
-<!--    jQuery(document).ready(function(){-->
-<!--        setTimeout(function(){-->
-<!--            dezSettingsOptions.version = 'light';-->
-<!--            new dezSettings(dezSettingsOptions);-->
-
-<!--            setCookie('version','light');-->
-
-<!--        },1500)-->
-<!--    });-->
-
-
-<!--    document.addEventListener('DOMContentLoaded', function () {-->
-<!--        // Select the collapse elements and chevrons-->
-<!--        var accountCollapseElement = document.querySelector('#accountSubmenu');-->
-<!--        var transferCollapseElement = document.querySelector('#transferSubmenu');-->
-<!--        var walletCollapseElement = document.querySelector('#walletSubmenu');-->
-
-<!--        var accountChevron = document.querySelector('a[data-bs-target="#accountSubmenu"] .dropdown-chevron');-->
-<!--        var transferChevron = document.querySelector('a[data-bs-target="#transferSubmenu"] .dropdown-chevron');-->
-<!--        var walletChevron = document.querySelector('a[data-bs-target="#walletSubmenu"] .dropdown-chevron');-->
-
-<!--        var collapsibles = [-->
-<!--            { element: accountCollapseElement, chevron: accountChevron },-->
-<!--            { element: transferCollapseElement, chevron: transferChevron },-->
-<!--            { element: walletCollapseElement, chevron: walletChevron }-->
-<!--        ];-->
-
-<!--        function setupCollapseListener(collapseElement, chevron) {-->
-<!--            collapseElement.addEventListener('show.bs.collapse', function () {-->
-<!--                // Close other collapsibles and reset chevrons-->
-<!--                collapsibles.forEach(function (item) {-->
-<!--                    if (item.element !== collapseElement) {-->
-<!--                        var bsCollapse = new bootstrap.Collapse(item.element, { toggle: false });-->
-<!--                        bsCollapse.hide();-->
-<!--                        item.chevron.classList.remove('fa-chevron-down');-->
-<!--                        item.chevron.classList.add('fa-chevron-right');-->
-<!--                    }-->
-<!--                });-->
-
-<!--                // Update the chevron of the currently opened collapsible-->
-<!--                chevron.classList.remove('fa-chevron-right');-->
-<!--                chevron.classList.add('fa-chevron-down');-->
-<!--            });-->
-
-<!--            collapseElement.addEventListener('hide.bs.collapse', function () {-->
-<!--                chevron.classList.remove('fa-chevron-down');-->
-<!--                chevron.classList.add('fa-chevron-right');-->
-<!--            });-->
-<!--        }-->
-
-<!--        // Initialize listeners for each collapsible-->
-<!--        collapsibles.forEach(function (item) {-->
-<!--            if (item.chevron && item.element) {-->
-<!--                setupCollapseListener(item.element, item.chevron);-->
-<!--            }-->
-<!--        });-->
-
-
-<!--    });-->
-
-
-<!--</script>-->
-
-<!--<script>-->
-
-<!--    document.getElementById('transfer-form').addEventListener('submit', function (event) {-->
-<!--        event.preventDefault();  // Prevent default form submission-->
-
-<!--        let isValid= true;-->
-<!--        // Get input values-->
-<!--        const amount = document.getElementById(amount).value;-->
-<!--        const receiverMobileNumber = document.getElementById(receiverMobileNumber).value;-->
-
-<!--        // Validate Receiver Wallet ID-->
-<!--        if (!receiverMobileNumber || isNaN(receiverMobileNumber) || receiverMobileNumber <= 0) {-->
-<!--            document.getElementById('receiverMobileNumber').classList.add('is-invalid');-->
-<!--            isValid = false;-->
-<!--        } else {-->
-<!--            document.getElementById('receiverWalletId').classList.remove('is-invalid');-->
-<!--        }-->
-
-<!--        // Validate Amount-->
-<!--        if (!amount || isNaN(amount) || amount <= 0) {-->
-<!--            document.getElementById('amount').classList.add('is-invalid');-->
-<!--            isValid = false;-->
-<!--        } else {-->
-<!--            document.getElementById('amount').classList.remove('is-invalid');-->
-<!--        }-->
-
-<!--        // If form is not valid, stop submission-->
-<!--        if (!isValid) {-->
-<!--            return;-->
-<!--        }-->
-
-<!--        // Prepare data to send to the backend-->
-<!--        const requestData = {-->
-<!--            receiverMobileNumber: receiverMobileNumber,-->
-<!--            amount: amount-->
-<!--        };-->
-
-<!--        // Send the data to the backend using fetch-->
-<!--        fetch('/OnePay/transfer', {-->
-<!--            method: 'POST',-->
-<!--            headers: {-->
-<!--                'Content-Type': 'application/json'-->
-<!--            },-->
-<!--            body: JSON.stringify(requestData)-->
-<!--        })-->
-<!--            .then(response => response.json())-->
-<!--            .then(data => {-->
-<!--                if (data.status === 'success') {-->
-<!--                    document.getElementById('resultMessage').innerHTML =-->
-<!--                        '<div class="alert alert-success">${data.message}</div>';-->
-
-<!--                    // Clear the input field-->
-<!--                    document.getElementById('receiverMobileNumber').value = '';-->
-<!--                    document.getElementById('amount').value = '';-->
-
-<!--                } else {-->
-<!--                    document.getElementById('resultMessage').innerHTML =-->
-<!--                        '<div class="alert alert-danger">Transfer failed: ${data.message}</div>';-->
-<!--                }-->
-<!--            })-->
-<!--            .catch(error => {-->
-<!--                console.error('Error during transfer:', error);-->
-<!--                document.getElementById('resultMessage').innerHTML =-->
-<!--                    '<div class="alert alert-danger">An error occurred. Please try again.</div>';-->
-<!--            });-->
-
-<!--        // // Generate current timestamp for transfer_date-->
-<!--        // const transferDate = new Date().toISOString();-->
-<!--        //-->
-<!--        // // Generate a unique transaction ID (UUID or similar)-->
-<!--        // const transactionId = 'trans-' + Math.random().toString(36).substr(2, 9);-->
-<!--        //-->
-<!--        // // Create transfer payload to match the SQL format-->
-<!--        // const transferPayload = {-->
-<!--        //     receiverMobileNumber: parseInt(receiverMobileNumber),-->
-<!--        //     amount: parseFloat(amount),-->
-<!--        //     transferDate: transferDate,-->
-<!--        //     status: 'pending',  // Default status as 'pending'-->
-<!--        //     transactionId: transactionId-->
-<!--        // }; // Perform the transfer using fetch API-->
-<!--        // fetch('/api/wallet-transfers', {-->
-<!--        //     method: 'POST',-->
-<!--        //     headers: {-->
-<!--        //         'Content-Type': 'application/json'-->
-<!--        //     },-->
-<!--        //     body: JSON.stringify(transferPayload)-->
-<!--        // })-->
-<!--        //     .then(response => response.json())-->
-<!--        //     .then(data => {-->
-<!--        //         if (data.status === 'success') {-->
-<!--        //             document.getElementById('resultMessage').innerHTML = <div class="alert alert-success">${data.message}</div>;-->
-<!--        //         } else {-->
-<!--        //             document.getElementById('resultMessage').innerHTML = <div class="alert alert-danger">Transfer failed: ${data.message}</div>;-->
-<!--        //         }-->
-<!--        //     })-->
-<!--        //     .catch(error => {-->
-<!--        //         console.error('Error during transfer:', error);-->
-<!--        //         document.getElementById('resultMessage').innerHTML = <div class="alert alert-danger">An error occurred. Please try again.</div>;-->
-<!--        //     });-->
-<!--    });-->
-
-<!--</script>-->
-
-
-<!--</body>-->
-
-<!--</html>-->
+<!--&lt;!&ndash; Car Listings Table &ndash;&gt;-->
+<!--<table class="styled-table">-->
+<!--    <thead>-->
+<!--    <tr>-->
+<!--        <th>Listing ID</th>-->
+<!--        <th>Car Plate Number</th>-->
+<!--        <th>Car Brand</th>-->
+<!--        <th>Car Model</th>-->
+<!--        <th>Listing Status</th>-->
+<!--        <th>Listed By</th>-->
+<!--        <th>Millage</th>-->
+<!--        <th>Manufactured Year</th>-->
+<!--        <th>Price</th>-->
+<!--        <th>Photo</th>-->
+<!--        <th>Created At</th>-->
+<!--        <th>Updated At</th>-->
+<!--        <th>Actions</th>-->
+<!--    </tr>-->
+<!--    </thead>-->
+<!--    <tbody>-->
+<!--    <tr th:each="listing : ${listingPage.content}">-->
+<!--        <td th:text="${listing.listingID}"></td>-->
+<!--        <td th:text="${listing.carPlateNumber}"></td>-->
+<!--        <td th:text="${listing.carBrand}"></td>-->
+<!--        <td th:text="${listing.carModel}"></td>-->
+<!--        <td th:text="${listing.listingStatus != null} ? ${listing.listingStatus.name()} : 'Unknown'"></td>-->
+<!--        <td th:text="${listing.listedBy.username}"></td>-->
+<!--        <td th:text="${listing.millage}"></td>-->
+<!--        <td th:text="${listing.manufacturedYear}"></td>-->
+<!--        <td th:text="${listing.price}"></td>-->
+<!--        <td>-->
+<!--            <img alt="Car Photo" style="width: 100px; height: auto;" th:if="${listing.photo != null}"-->
+<!--                 th:src="@{${listing.photo}}">-->
+<!--            <span th:if="${listing.photo == null}">No Photo</span>-->
+<!--        </td>-->
+<!--        <td th:text="${#temporals.format(listing.created_at, 'yyyy-MM-dd HH:mm:ss')}"></td>-->
+<!--        <td th:text="${#temporals.format(listing.updated_at, 'yyyy-MM-dd HH:mm:ss')}"></td>-->
+<!--    </tr>-->
+<!--    <tr th:if="${#lists.isEmpty(listingPage.content)}">-->
+<!--        <td class="no-listings-message" colspan="13">No listings found.</td>-->
+<!--    </tr>-->
+<!--    </tbody>-->
+<!--</table>-->
