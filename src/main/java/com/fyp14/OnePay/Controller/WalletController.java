@@ -3,21 +3,28 @@
 
 package com.fyp14.OnePay.Controller;
 
+import com.fyp14.OnePay.KeyManagement.KEK.KeyManagementService;
+import com.fyp14.OnePay.Transcation.Transaction;
+import com.fyp14.OnePay.Transcation.TransactionDTO;
+import com.fyp14.OnePay.Transcation.TransactionRepository;
+import com.fyp14.OnePay.Transcation.TransactionType;
 import com.fyp14.OnePay.User.User;
 import com.fyp14.OnePay.User.UserRepository;
 import com.fyp14.OnePay.Wallet.Wallet;
 import com.fyp14.OnePay.Wallet.WalletRepository;
 import com.fyp14.OnePay.Wallet.WalletService;
 import jakarta.servlet.http.HttpSession;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
+import javax.crypto.SecretKey;
 import java.math.BigDecimal;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
+import java.util.Objects;
+import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/OnePay")
@@ -26,11 +33,15 @@ public class WalletController {
     private final WalletService walletService;
     private final UserRepository userRepository;
     private final WalletRepository walletRepository;
+    private final TransactionRepository transactionRepository;
+    private final KeyManagementService keyManagementService;
 
-    public WalletController(WalletService walletService, UserRepository userRepository, WalletRepository walletRepository) {
+    public WalletController(WalletService walletService, UserRepository userRepository, WalletRepository walletRepository, TransactionRepository transactionRepository, KeyManagementService keyManagementService) {
         this.walletService = walletService;
         this.userRepository = userRepository;
         this.walletRepository = walletRepository;
+        this.transactionRepository = transactionRepository;
+        this.keyManagementService = keyManagementService;
     }
 
     @PostMapping("/topup")
@@ -104,11 +115,62 @@ public class WalletController {
         }
     }
 
-    private Map<String, Object> createResponse(String status, String message, BigDecimal balance) {
+    @GetMapping("/fetchHistory")
+    public ResponseEntity<?> fetchHistory(HttpSession session) {
+        try {
+            Long userID = (Long) session.getAttribute("userID");
+            if (userID == null) {
+                return ResponseEntity.badRequest().body("User is not authenticated");
+            }
+
+            // Retrieve the user
+            User user = userRepository.findById(userID).orElseThrow(() -> new Exception("User not found"));
+
+            // Initialize KeyManagementService
+            SecretKey masterKEK = keyManagementService.getMasterKEKFromEnv();
+            SecretKey userKEK = keyManagementService.decryptUserKEK(user.getEncryptedKEK(), user.getKekEncryptionIV(), masterKEK);
+
+            // Fetch and filter transactions as before...
+            List<Transaction> transactions = transactionRepository.findByUserId(userID);
+            List<Transaction> filteredTransactions = transactions.stream()
+                    .filter(t -> {
+                        TransactionType type = t.getTransactionType();
+                        Long fromWalletID = t.getFromWallet() != null ? t.getFromWallet().getWalletID() : null;
+                        Long toWalletID = t.getToWallet() != null ? t.getToWallet().getWalletID() : null;
+
+                        boolean isDeposit = type == TransactionType.DEPOSIT && userID.equals(toWalletID);
+                        boolean isTransferSent = type == TransactionType.TRANSFER && userID.equals(fromWalletID);
+
+                        return isDeposit || isTransferSent;
+                    })
+                    .collect(Collectors.toList());
+
+            // Map transactions to DTOs with decrypted amounts
+            List<TransactionDTO> transactionDTOs = filteredTransactions.stream()
+                    .map(t -> {
+                        try {
+                            String decryptedAmount = keyManagementService.decryptSensitiveData(t.getAmountEncrypted(), userKEK, t.getIv());
+                            return new TransactionDTO(t, decryptedAmount);
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                            return null; // Handle exception as needed
+                        }
+                    })
+                    .filter(Objects::nonNull)
+                    .collect(Collectors.toList());
+            return ResponseEntity.ok(transactionDTOs);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+                    .body("An error occurred while fetching the transaction history.");
+        }
+    }
+
+    private Map<String, Object> createResponse(String status, String message, Object data) {
         Map<String, Object> res = new HashMap<>();
         res.put("status", status);
         res.put("message", message);
-        res.put("balance", balance);
+        res.put("data", data);
         return res;
     }
 }

@@ -15,4 +15,6 @@ public interface UserRepository extends JpaRepository<User, Long> {
 
     @Query("SELECT u FROM User u WHERE u.wallet.walletID = :walletID")
     User findByWalletId(@Param("walletID") Long walletID);
+
+    User findByActivationToken(String activationToken);
 }

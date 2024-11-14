@@ -17,14 +17,17 @@ public class User {
     @Column(nullable = false, unique = true, length = 50)
     private String username;
 
-    @Column(nullable = false, unique = true, length = 100)
+    @Column(nullable = false, unique = false, length = 100)
     private String email;
 
     @Column(nullable = false)
-    private Boolean enabled = true;
+    private Boolean enabled = false;
 
     @Column(nullable = false)
     private Boolean locked = false;
+
+    @Column(nullable = true)
+    private String activationToken;
 
     @Column(nullable = false)
     private String password;
@@ -182,6 +185,14 @@ public class User {
 
     public void setEncryptedPrivateKey(byte[] encryptedPrivateKey) {
         this.encryptedPrivateKey = encryptedPrivateKey;
+    }
+
+    public String getActivationToken() {
+        return activationToken;
+    }
+
+    public void setActivationToken(String activationToken) {
+        this.activationToken = activationToken;
     }
 
     // JPA Callbacks for automatic timestamping

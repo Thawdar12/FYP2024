@@ -42,6 +42,8 @@ public class DashboardController {
                 // Add user data to the Thymeleaf model, model is where thymeleaf engine grab variable from
                 model.addAttribute("username", user.getUsername());
                 model.addAttribute("balance", balance);
+                session.setAttribute("email", user.getEmail());
+                session.setAttribute("phoneNumber", user.getPhoneNumber());
             } else {
                 // Handle case where user is not found
                 model.addAttribute("username", "Guest");
