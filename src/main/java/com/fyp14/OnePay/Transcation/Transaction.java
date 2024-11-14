@@ -50,6 +50,12 @@ public class Transaction {
     @Column(nullable = true, columnDefinition = "MEDIUMBLOB")
     private byte[] digitalSignature;
 
+    @Column(nullable = true, length = 64)
+    private String previousTransactionHash;
+
+    @Column(nullable = true, length = 64)
+    private String currentTransactionHash;
+
     // Constructors
 
     public Transaction() {
@@ -154,6 +160,22 @@ public class Transaction {
 
     public void setDigitalSignature(byte[] digitalSignature) {
         this.digitalSignature = digitalSignature;
+    }
+
+    public String getPreviousTransactionHash() {
+        return previousTransactionHash;
+    }
+
+    public void setPreviousTransactionHash(String previousTransactionHash) {
+        this.previousTransactionHash = previousTransactionHash;
+    }
+
+    public String getCurrentTransactionHash() {
+        return currentTransactionHash;
+    }
+
+    public void setCurrentTransactionHash(String currentTransactionHash) {
+        this.currentTransactionHash = currentTransactionHash;
     }
 
     public Long getFromWalletID() {

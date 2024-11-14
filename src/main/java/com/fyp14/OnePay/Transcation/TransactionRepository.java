@@ -1,7 +1,9 @@
 package com.fyp14.OnePay.Transcation;
+
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
+
 import java.util.List;
 
 public interface TransactionRepository extends JpaRepository<Transaction, Long> {
@@ -9,4 +11,8 @@ public interface TransactionRepository extends JpaRepository<Transaction, Long> 
     @Query("SELECT t FROM Transaction t WHERE t.fromWallet.user.userID = :userID OR t.toWallet.user.userID = :userID")
     List<Transaction> findByUserId(@Param("userID") Long userID);
 
+    @Query("SELECT t FROM Transaction t WHERE (t.fromWallet.walletID = :walletID OR t.toWallet.walletID = :walletID) ORDER BY t.timestamp DESC")
+    List<Transaction> findTopTransactionsByWalletOrderByTimestampDesc(@Param("walletID") Long walletID);
+
+    List<Transaction> findAllByOrderByTransactionIDAsc();
 }

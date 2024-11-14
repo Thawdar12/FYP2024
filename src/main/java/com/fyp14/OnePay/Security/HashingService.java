@@ -15,7 +15,7 @@ public class HashingService {
         return hashSHA256(data);
     }
 
-    private String hashSHA256(String data) {
+    public String hashSHA256(String data) {
         try {
             MessageDigest digest = MessageDigest.getInstance("SHA-256");
             byte[] hash = digest.digest(data.getBytes(StandardCharsets.UTF_8));
