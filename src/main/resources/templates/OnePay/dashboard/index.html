@@ -637,10 +637,7 @@
 
 
     });
-
-
 </script>
-
 
 <script>
 
@@ -830,8 +827,6 @@
         }
     });
 
-
-
     document.addEventListener('DOMContentLoaded', function () {
         const userItems = document.querySelectorAll('.user-item');
         const amountInput = document.getElementById('amount-input');
@@ -855,8 +850,6 @@
             });
         });
     });
-
-
 </script>
 
 <script>
@@ -878,7 +871,7 @@
         transactionTable.style.display = 'none';
 
         // Fetch transaction history
-        fetch('http://localhost:8080/OnePay/fetchHistory', {
+        fetch('/OnePay/fetchHistory', {
             method: 'GET',
             credentials: 'include'
         })
@@ -1064,13 +1057,6 @@
         });
         paginationContainer.appendChild(nextButton);
     }
-
-
-
-
-
 </script>
-
 </body>
-
 </html>
