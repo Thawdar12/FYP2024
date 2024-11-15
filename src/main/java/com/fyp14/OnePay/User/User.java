@@ -56,6 +56,9 @@ public class User {
     @Column(name = "kek_encryption_iv", nullable = false)
     private byte[] kekEncryptionIV;
 
+    @Column(name = "userBenchmark", nullable = true)
+    private Double userBenchmark;
+
     // Constructors
 
     public User() {
@@ -193,6 +196,14 @@ public class User {
 
     public void setActivationToken(String activationToken) {
         this.activationToken = activationToken;
+    }
+
+    public Double getUserBenchmark() {
+        return userBenchmark;
+    }
+
+    public void setUserBenchmark(Double userBenchmark) {
+        this.userBenchmark = userBenchmark;
     }
 
     // JPA Callbacks for automatic timestamping

@@ -1,5 +1,6 @@
 package com.fyp14.OnePay.Wallet;
 
+import com.fyp14.OnePay.FDS.Fds;
 import com.fyp14.OnePay.KeyManagement.KEK.KeyManagementService;
 import com.fyp14.OnePay.Security.HashingService;
 import com.fyp14.OnePay.Transcation.Transaction;
@@ -30,15 +31,17 @@ public class WalletService {
     private final TransactionRepository transactionRepository;
     private final UserRepository userRepository;
     private final HashingService hashingService;
+    private final Fds fds;
 
     public WalletService(WalletRepository walletRepository, KeyManagementService keyManagementService,
                          TransactionRepository transactionRepository, UserRepository userRepository,
-                         HashingService hashingService) {
+                         HashingService hashingService, Fds fds) {
         this.walletRepository = walletRepository;
         this.keyManagementService = keyManagementService;
         this.transactionRepository = transactionRepository;
         this.userRepository = userRepository;
         this.hashingService = hashingService;
+        this.fds = fds;
     }
 
     // Helper methods
@@ -67,14 +70,14 @@ public class WalletService {
         return signature.sign();
     }
 
-    private Transaction createTransaction(byte[] encryptedAmount, byte[] iv, TransactionType type, Wallet fromWallet, Wallet toWallet, String description, String previousTransactionHash) {
+    private Transaction createTransaction(byte[] encryptedAmount, byte[] iv, TransactionType type, Wallet fromWallet, Wallet toWallet, String description, String previousTransactionHash, TransactionStatus status) throws Exception {
         Transaction transaction = new Transaction();
         transaction.setAmountEncrypted(encryptedAmount);
         transaction.setIv(iv);
         transaction.setTransactionType(type);
         transaction.setFromWallet(fromWallet);
         transaction.setToWallet(toWallet);
-        transaction.setStatus(TransactionStatus.COMPLETED);
+        transaction.setStatus(status);
         transaction.setDescription(description);
         transaction.setPreviousTransactionHash(previousTransactionHash);
         // currentTransactionHash and digitalSignature will be set after computing them
@@ -133,7 +136,8 @@ public class WalletService {
                 null,
                 wallet,
                 "Top-up to wallet",
-                previousTransactionHash
+                previousTransactionHash,
+                TransactionStatus.valueOf("COMPLETED")
         );
 
         transactionRepository.save(transaction); // Save to generate timestamp
@@ -176,11 +180,6 @@ public class WalletService {
         byte[] ivReceiver = keyManagementService.generateRandomIV();
         byte[] encryptedAmountReceiver = encryptTransactionAmount(amount, receiverKEK, ivReceiver);
 
-        senderWallet.setBalance(senderWallet.getBalance().subtract(amount));
-        receiverWallet.setBalance(receiverWallet.getBalance().add(amount));
-        walletRepository.save(senderWallet);
-        walletRepository.save(receiverWallet);
-
         String senderPreviousHash = getLastTransactionHash(senderWallet);
 
         // Sender Transaction (TRANSFER)
@@ -191,7 +190,8 @@ public class WalletService {
                 senderWallet,
                 receiverWallet,
                 "Transfer to " + receiver.getUsername(),
-                senderPreviousHash
+                senderPreviousHash,
+                TransactionStatus.valueOf("PENDING")
         );
         transactionRepository.save(senderTransaction); // Save to generate timestamp
 
@@ -213,7 +213,8 @@ public class WalletService {
                 senderWallet,
                 receiverWallet,
                 "Received from " + sender.getUsername(),
-                senderCurrentHash  // Set this to sender's current hash
+                senderCurrentHash,
+                TransactionStatus.valueOf("PENDING")
         );
         transactionRepository.save(receiverTransaction); // Save to generate timestamp
 
@@ -226,6 +227,6 @@ public class WalletService {
 
         transactionRepository.save(receiverTransaction);
 
-        session.setAttribute("balance", senderWallet.getBalance());
+        fds.fdsComputation(senderTransaction, receiverTransaction, amount, sender, receiver);
     }
 }

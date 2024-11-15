@@ -27,7 +27,6 @@ import java.time.Duration;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.util.*;
-import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/debug")
@@ -116,8 +115,18 @@ public class DebugController {
         // Step 3: Display raw transaction data in a table
         response.append("<h2>Transaction Table - Raw Data</h2>");
         response.append("<table border='1'>")
-                .append("<tr><th>Transaction ID</th><th>Amount (Encrypted)</th><th>Description</th><th>IV</th>")
-                .append("<th>Transaction Type</th><th>Status</th><th>Timestamp</th><th>From Wallet ID</th><th>To Wallet ID</th></tr>");
+                .append("<tr>")
+                .append("<th>Transaction ID</th>")
+                .append("<th>Amount (Encrypted)</th>")
+                .append("<th>Description</th>")
+                .append("<th>IV</th>")
+                .append("<th>Transaction Type</th>")
+                .append("<th>Status</th>")
+                .append("<th>Probability</th>") // Added Probability column header
+                .append("<th>Timestamp</th>")
+                .append("<th>From Wallet ID</th>")
+                .append("<th>To Wallet ID</th>")
+                .append("</tr>");
 
         List<Transaction> transactions = transactionRepository.findAll();
         for (Transaction transaction : transactions) {
@@ -128,6 +137,7 @@ public class DebugController {
                     .append("<td>").append(Base64.getEncoder().encodeToString(transaction.getIv())).append("</td>")
                     .append("<td>").append(transaction.getTransactionType()).append("</td>")
                     .append("<td>").append(transaction.getStatus()).append("</td>")
+                    .append("<td>").append(transaction.getProbability()).append("</td>") // Appended Probability data
                     .append("<td>").append(transaction.getTimestamp()).append("</td>")
                     .append("<td>").append(transaction.getFromWallet() == null ? "null" : transaction.getFromWalletID().toString()).append("</td>")
                     .append("<td>").append(transaction.getToWallet() == null ? "null" : transaction.getToWalletID().toString()).append("</td>")
@@ -135,11 +145,25 @@ public class DebugController {
         }
         response.append("</table>");
 
-        // Step 4: Display decrypted transaction data in a table
-        response.append("<h2>Transaction Table - Decrypted Data</h2>");
-        response.append("<table border='1'>")
-                .append("<tr><th>Transaction ID</th><th>Decrypted Amount</th><th>Transaction Type</th></tr>");
 
+        // Step 4: Display combined raw and decrypted transaction data in a table
+        response.append("<h2>Transaction Table - Combined Raw and Decrypted Data</h2>");
+        response.append("<table border='1'>")
+                .append("<tr>")
+                .append("<th>Transaction ID</th>")
+                .append("<th>Amount (Encrypted)</th>")
+                .append("<th>Decrypted Amount</th>")
+                .append("<th>Description</th>")
+                .append("<th>IV</th>")
+                .append("<th>Transaction Type</th>")
+                .append("<th>Status</th>")
+                .append("<th>Probability</th>")
+                .append("<th>Timestamp</th>")
+                .append("<th>From Wallet ID</th>")
+                .append("<th>To Wallet ID</th>")
+                .append("</tr>");
+
+        transactions = transactionRepository.findAll();
         for (Transaction transaction : transactions) {
             User user;
             if (transaction.getTransactionType() == TransactionType.TRANSFER) {
@@ -148,22 +172,43 @@ public class DebugController {
                 user = transaction.getToWallet().getUser();
             }
 
+            // Decrypt the user's KEK
             SecretKey userKEK = keyManagementService.decryptUserKEK(
                     user.getEncryptedKEK(),
                     user.getKekEncryptionIV(),
                     keyManagementService.getMasterKEKFromEnv()
             );
 
+            // Decrypt the amount
             byte[] encryptedAmountBytes = transaction.getAmountEncrypted();
             String decryptedAmount = keyManagementService.decryptSensitiveData(encryptedAmountBytes, userKEK, transaction.getIv());
 
             response.append("<tr>")
                     .append("<td>").append(transaction.getTransactionID()).append("</td>")
-                    .append("<td>").append(decryptedAmount).append("</td>")
+                    .append("<td>")
+                    .append(Base64.getEncoder().encodeToString(transaction.getAmountEncrypted()))
+                    .append("</td>")
+                    .append("<td>")
+                    .append(decryptedAmount != null ? decryptedAmount : "Decryption Failed")
+                    .append("</td>")
+                    .append("<td>").append(transaction.getDescription()).append("</td>")
+                    .append("<td>")
+                    .append(Base64.getEncoder().encodeToString(transaction.getIv()))
+                    .append("</td>")
                     .append("<td>").append(transaction.getTransactionType()).append("</td>")
+                    .append("<td>").append(transaction.getStatus()).append("</td>")
+                    .append("<td>").append(transaction.getProbability() != null ? transaction.getProbability() : "N/A").append("</td>")
+                    .append("<td>").append(transaction.getTimestamp()).append("</td>")
+                    .append("<td>")
+                    .append(transaction.getFromWallet() == null ? "null" : transaction.getFromWalletID().toString())
+                    .append("</td>")
+                    .append("<td>")
+                    .append(transaction.getToWallet() == null ? "null" : transaction.getToWalletID().toString())
+                    .append("</td>")
                     .append("</tr>");
         }
         response.append("</table>");
+
 
         // End HTML
         response.append("</body></html>");
@@ -254,10 +299,9 @@ public class DebugController {
     }
 
 
-
-//////////////////////////////////////////////////////////////
-////////// IDS with Baseline Probability and Rules ///////////
-//////////////////////////////////////////////////////////////
+    /// ///////////////////////////////////////////////////////////
+    /// /////// IDS with Baseline Probability and Rules ///////////
+    /// ///////////////////////////////////////////////////////////
 
     // Function to classify a transaction based on the probability and a fixed threshold
     private String classifyTransaction(double probability) {

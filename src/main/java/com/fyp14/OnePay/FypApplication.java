@@ -7,9 +7,11 @@ import com.fyp14.OnePay.User.UserService;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.scheduling.annotation.EnableScheduling;
 
 import java.security.NoSuchAlgorithmException;
 
+@EnableScheduling
 @SpringBootApplication
 public class FypApplication implements CommandLineRunner {
 
@@ -61,13 +63,13 @@ public class FypApplication implements CommandLineRunner {
                     newUser.setUsername(username);
                     newUser.setPassword("@Aa3609773");
                     newUser.setPhoneNumber("90215389");
-                    newUser.setEmail("adwwee@example.com");
+                    newUser.setEmail("adwwee@icloud.com");
 
                     User newUser2 = new User();
                     newUser2.setUsername(username2);
                     newUser2.setPassword("@Aa3609773");
                     newUser2.setPhoneNumber("12345678");
-                    newUser2.setEmail("test@example.com");
+                    newUser2.setEmail("loveg62815@edectus.com");
 
                     // Register user through the service
                     userService.registerUser(newUser);
