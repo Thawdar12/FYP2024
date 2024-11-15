@@ -1,5 +1,7 @@
 package com.fyp14.OnePay.Transcation;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
@@ -16,7 +18,9 @@ public interface TransactionRepository extends JpaRepository<Transaction, Long> 
 
     List<Transaction> findAllByOrderByTransactionIDAsc();
 
-    @Query("SELECT w.walletID FROM Wallet w WHERE w.user.userID = :userID")
-    List<Long> findWalletIdsByUserId(@Param("userID") Long userID);
+    @Query("SELECT t FROM Transaction t WHERE t.transactionType = 'TRANSFER' AND t.fromWallet.walletID = :walletID ORDER BY t.timestamp DESC")
+    List<Transaction> findTransferTransactionsByFromWallet(@Param("walletID") Long walletID);
 
+    @Query("SELECT t FROM Transaction t WHERE t.transactionType = 'TRANSFER' AND t.fromWallet.walletID = :walletID ORDER BY t.timestamp DESC")
+    Page<Transaction> findTopNTransferTransactionsByFromWallet(@Param("walletID") Long walletID, Pageable pageable);
 }

@@ -43,7 +43,7 @@ public class Transaction {
     @Column(nullable = true)
     private String description;
 
-    @Column(nullable = true, length = 64)
+    @Column(length = 64)
     private String hashValueOfTransaction;
 
     @Lob
@@ -56,6 +56,11 @@ public class Transaction {
     @Column(nullable = true, length = 64)
     private String currentTransactionHash;
 
+    @Column(name = "otp", nullable = true)
+    private String otp;  // New field for storing OTP
+
+    @Column(name = "probability")
+    private Double probability;
 
     // Constructors
 
@@ -185,5 +190,21 @@ public class Transaction {
 
     public Long getToWalletID() {
         return (toWallet != null) ? toWallet.getWalletID() : null;
+    }
+
+    public String getOtp() {
+        return otp;
+    }
+
+    public void setOtp(String otp) {
+        this.otp = otp;
+    }
+
+    public Double getProbability() {
+        return probability;
+    }
+
+    public void setProbability(Double probability) {
+        this.probability = probability;
     }
 }
