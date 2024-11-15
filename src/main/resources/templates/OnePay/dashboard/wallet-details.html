@@ -505,64 +505,7 @@
 
 
 
-<script>
-    // Hide the edit wallet content section on page load
-    document.addEventListener('DOMContentLoaded', function() {
-        document.getElementById('EditWalletDetailsContent').style.display = 'none';
-    });
 
-    // Function to edit wallet-details
-    document.getElementById('editButton').addEventListener('click', function() {
-        document.getElementById('walletDetailsContent').style.display = 'none';
-        document.getElementById('EditWalletDetailsContent').style.display = 'inline';
-
-    })
-    document.getElementById('saveButton').addEventListener('click', function() {
-        // Get updated value from the name input field
-        const updatedName = document.getElementById('nameInput').value;
-
-        // Validate that the name is not empty
-        if (updatedName.trim() === '') {
-            alert('Name cannot be empty. Please enter a valid name.');
-            return; // Stop execution if the input is empty
-        }
-
-        // Prepare data to send to the backend
-        const requestData = {
-            name: updatedName
-        };
-
-        // Send data to backend using fetch
-        fetch('/path/to/your/endpoint', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(requestData)
-        })
-            .then(response => response.json())
-            .then(data => {
-                if (data.status === 'success') {
-                    // Update display element with new name
-                    document.getElementById('nameDisplay').textContent = updatedName;
-
-                    // Show success message
-                    alert('Name updated successfully!');
-                } else {
-                    // Show error message
-                    alert('Failed to update name: ' + data.message);
-                }
-            })
-            .catch(error => {
-                console.error('Error updating name:', error);
-                alert('An error occurred. Please try again.');
-            });
-
-        // Hide the edit wallet details content and show the original content
-        document.getElementById('EditWalletDetailsContent').style.display = 'none';
-        document.getElementById('walletDetailsContent').style.display = 'inline';
-    });
-</script>
 
 
 
