@@ -256,13 +256,12 @@
                 </ol>
             </div>
             <!-- Transfer Money Form -->
-            <div class="tab-content" id="tabContentMyProfileBottom">
+            <div class="tab-content" id="AccountDetailsContent">
                 <div class="row">
                     <div class="col-12">
                         <div class="card">
                             <div class="card-header py-3">
                                 <h6 class="card-title">Account Details</h6>
-                                <button id="edit-button" class="btn btn-sm btn-primary" onclick="toggleEditWalletDetails()">Edit Account Details</button>
                             </div>
                             <div class="card-body">
                                 <div class="row py-2">
@@ -275,11 +274,10 @@
                                 </div>
                                 <div class="row py-2">
                                     <div class="col-6">
-                                        <span class="fs-13">Email</span>
+                                        <span class="fs-13">Name</span>
                                     </div>
                                     <div class="col-6">
-                                        <span id="balanceDisplay" class="fs-13 fw-semibold" th:text="${session.email}"></span>
-                                        <input id="balanceInput" type="text" class="form-control fs-13" th:value="${session.email}" style="display: none;" />
+                                        <span id="nameDisplay" class="fs-13 fw-semibold" th:text="${session.username}"></span>
                                     </div>
                                 </div>
                                 <div class="row py-2">
@@ -287,17 +285,17 @@
                                         <span class="fs-13">Phone Number</span>
                                     </div>
                                     <div class="col-6">
-                                        <span id="balanceDisplay" class="fs-13 fw-semibold" th:text="${session.phoneNumber}"></span>
-                                        <input id="balanceInput" type="text" class="form-control fs-13" th:value="${session.phoneNumber}" style="display: none;" />
+                                        <span id="phoneNumberDisplay" class="fs-13 fw-semibold" th:text="${session.phoneNumber}"></span>
+                                        <input type="text" class="form-control fs-13" th:value="${session.phoneNumber}" style="display: none;" />
                                     </div>
                                 </div>
                                 <div class="row py-2">
                                     <div class="col-6">
-                                        <span class="fs-13">Name</span>
+                                        <span class="fs-13">Email</span>
                                     </div>
                                     <div class="col-6">
-                                        <span id="nameDisplay" class="fs-13 fw-semibold" th:text="${session.username}"></span>
-                                        <input id="nameInput" type="text" class="form-control fs-13" th:value="${session.username}" style="display: none;" />
+                                        <span id="emailDisplay" class="fs-13 fw-semibold" th:text="${session.email}"></span>
+                                        <input type="text" class="form-control fs-13" th:value="${session.email}" style="display: none;" />
                                     </div>
                                 </div>
                                 <div class="row py-2">
@@ -306,11 +304,11 @@
                                     </div>
                                     <div class="col-6">
                                         <span id="balanceDisplay" class="fs-13 fw-semibold" th:text="${session.balance}"></span>
-                                        <input id="balanceInput" type="text" class="form-control fs-13" th:value="${session.balance}" style="display: none;" />
+                                        <input type="text" class="form-control fs-13" th:value="${session.balance}" style="display: none;" />
                                     </div>
                                 </div>
 
-                                <button id="save-button" class="btn btn-sm btn-success" style="display: none;">Save</button>
+
                             </div>
                         </div>
                     </div>
@@ -522,63 +520,8 @@
     }
 </script>
 
-<script> //edit script
-function toggleEditWalletDetails() {
-    const editButton = document.getElementById('edit-button');
-    const nameDisplay = document.getElementById('nameDisplay');
-    const nameInput = document.getElementById('nameInput');
-    const balanceDisplay = document.getElementById('balanceDisplay');
-    const balanceInput = document.getElementById('balanceInput');
-    const saveButton = document.getElementById('save-button');
 
-    // Check if the input fields are currently displayed
-    if (nameInput.style.display === 'none' || nameInput.style.display === '') {
-        // Show input fields and hide displayed values
-        nameDisplay.style.display = 'none';
-        nameInput.style.display = 'block';
-        balanceDisplay.style.display = 'none';
-        balanceInput.style.display = 'block';
-        editButton.textContent = 'Cancel'; // Change button text to 'Cancel'
-        saveButton.style.display = 'block'; // Show save button
-    } else {
-        // Hide input fields and show displayed values
-        nameDisplay.style.display = 'block';
-        nameInput.style.display = 'none';
-        balanceDisplay.style.display = 'block';
-        balanceInput.style.display = 'none';
-        editButton.textContent = 'Edit Wallet Details'; // Reset button text
-        saveButton.style.display = 'none'; // Hide save button
-    }
-}
 
-// Function to save updated wallet details
-function saveWalletDetails() {
-    const nameInput = document.getElementById('nameInput');
-    const balanceInput = document.getElementById('balanceInput');
-
-    // Get new values from input fields
-    const newName = nameInput.value;
-    const newBalance = balanceInput.value;
-
-    // Update displayed values
-    document.getElementById('nameDisplay').textContent = newName;
-    document.getElementById('balanceDisplay').textContent = newBalance;
-
-    // Hide input fields and show the display fields again
-    nameInput.style.display = 'none';
-    balanceInput.style.display = 'none';
-    document.getElementById('nameDisplay').style.display = 'block';
-    document.getElementById('balanceDisplay').style.display = 'block';
-
-    // Hide the save button
-    document.getElementById('save-button').style.display = 'none';
-    document.getElementById('edit-button').textContent = 'Edit Wallet Details'; // Reset edit button text
-}
-
-// Attach event listeners to the buttons
-document.getElementById('edit-button').addEventListener('click', toggleEditWalletDetails);
-document.getElementById('save-button').addEventListener('click', saveWalletDetails);
-</script>
 
 </body>
 

@@ -261,7 +261,6 @@
                         <div class="card">
                             <div class="card-header py-3">
                                 <h6 class="card-title">Wallet Details</h6>
-                                <button id="editButton" class="btn btn-sm btn-primary">Edit Wallet Details</button>
                             </div>
                             <div class="card-body">
                                 <div class="row py-2">
@@ -279,49 +278,6 @@
                                     <div class="col-6">
                                         <span id="nameDisplay" class="fs-13 fw-semibold" th:text="${session.username}"></span>
                                         <input id="nameInput" type="text" class="form-control fs-13" th:value="${session.username}" style="display: none;" />
-                                    </div>
-                                </div>
-                                <div class="row py-2">
-                                    <div class="col-6">
-                                        <span class="fs-13">Balance</span>
-                                    </div>
-                                    <div class="col-6">
-                                        <span id="balanceDisplay" class="fs-13 fw-semibold" th:text="${session.balance}"></span>
-                                        <input id="balanceInput" type="text" class="form-control fs-13" th:value="${session.balance}" style="display: none;" />
-                                    </div>
-                                </div>
-                                <button id="save-button" class="btn btn-sm btn-success" style="display: none;">Save</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 container-fluid">
-            <div class="tab-content" id="EditWalletDetailsContent">
-                <div class="row">
-                    <div class="col-12">
-                        <div class="card">
-                            <div class="card-header py-3">
-                                <h6 class="card-title">Wallet Details</h6>
-                                <button id="saveButton" class="btn btn-sm btn-primary">Save</button>
-                            </div>
-                            <div class="card-body">
-                                <div class="row py-2">
-                                    <div class="col-6">
-                                        <span class="fs-13">User ID</span>
-                                    </div>
-                                    <div class="col-6">
-                                        <span class="fs-13 fw-semibold" th:text="${session.userID}"></span>
-                                    </div>
-                                </div>
-                                <div class="row py-2">
-                                    <div class="col-6">
-                                        <span class="fs-13">Name</span>
-                                    </div>
-                                    <div class="col-6">
-                                        <input id="nameInput" type="text" class="form-control fs-13" th:value="${session.username}" />
                                     </div>
                                 </div>
                                 <div class="row py-2">
@@ -549,26 +505,11 @@
 
 
 
-<script>
-    // Hide the edit wallet content section on page load
-    document.addEventListener('DOMContentLoaded', function() {
-        document.getElementById('EditWalletDetailsContent').style.display = 'none';
-    });
 
-    // Function to edit wallet-details
-    document.getElementById('editButton').addEventListener('click', function() {
-        document.getElementById('walletDetailsContent').style.display = 'none';
-        document.getElementById('EditWalletDetailsContent').style.display = 'inline';
 
-    })
-    // Function to go back to the original wallet details content
-    document.getElementById('saveButton').addEventListener('click', function() {
-        // Hide the edit wallet details content and show the original content
-        document.getElementById('EditWalletDetailsContent').style.display = 'none';
-        document.getElementById('walletDetailsContent').style.display = 'inline';
 
-    })
-</script>
+
+
 
 </body>
 
