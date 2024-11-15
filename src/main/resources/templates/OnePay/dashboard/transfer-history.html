@@ -509,7 +509,7 @@
         transactionTable.style.display = 'none';
 
         // Fetch transaction history
-        fetch('http://localhost:8080/OnePay/fetchHistory', {
+        fetch('/OnePay/fetchHistory', {
             method: 'GET',
             credentials: 'include'
         })
