@@ -256,13 +256,13 @@
                 </ol>
             </div>
             <!-- Transfer Money Form -->
-            <div class="tab-content" id="tabContentMyProfileBottom">
+            <div class="tab-content" id="AccountDetailsContent">
                 <div class="row">
                     <div class="col-12">
                         <div class="card">
                             <div class="card-header py-3">
                                 <h6 class="card-title">Account Details</h6>
-                                <button id="edit-button" class="btn btn-sm btn-primary" onclick="toggleEditWalletDetails()">Edit Account Details</button>
+                                <button id="editAccountDetailsButton" class="btn btn-sm btn-primary">Edit Account Details</button>
                             </div>
                             <div class="card-body">
                                 <div class="row py-2">
@@ -275,11 +275,10 @@
                                 </div>
                                 <div class="row py-2">
                                     <div class="col-6">
-                                        <span class="fs-13">Email</span>
+                                        <span class="fs-13">Name</span>
                                     </div>
                                     <div class="col-6">
-                                        <span id="balanceDisplay" class="fs-13 fw-semibold" th:text="${session.email}"></span>
-                                        <input id="balanceInput" type="text" class="form-control fs-13" th:value="${session.email}" style="display: none;" />
+                                        <span id="nameDisplay" class="fs-13 fw-semibold" th:text="${session.username}"></span>
                                     </div>
                                 </div>
                                 <div class="row py-2">
@@ -287,17 +286,17 @@
                                         <span class="fs-13">Phone Number</span>
                                     </div>
                                     <div class="col-6">
-                                        <span id="balanceDisplay" class="fs-13 fw-semibold" th:text="${session.phoneNumber}"></span>
-                                        <input id="balanceInput" type="text" class="form-control fs-13" th:value="${session.phoneNumber}" style="display: none;" />
+                                        <span id="phoneNumberDisplay" class="fs-13 fw-semibold" th:text="${session.phoneNumber}"></span>
+                                        <input type="text" class="form-control fs-13" th:value="${session.phoneNumber}" style="display: none;" />
                                     </div>
                                 </div>
                                 <div class="row py-2">
                                     <div class="col-6">
-                                        <span class="fs-13">Name</span>
+                                        <span class="fs-13">Email</span>
                                     </div>
                                     <div class="col-6">
-                                        <span id="nameDisplay" class="fs-13 fw-semibold" th:text="${session.username}"></span>
-                                        <input id="nameInput" type="text" class="form-control fs-13" th:value="${session.username}" style="display: none;" />
+                                        <span id="emailDisplay" class="fs-13 fw-semibold" th:text="${session.email}"></span>
+                                        <input type="text" class="form-control fs-13" th:value="${session.email}" style="display: none;" />
                                     </div>
                                 </div>
                                 <div class="row py-2">
@@ -306,6 +305,63 @@
                                     </div>
                                     <div class="col-6">
                                         <span id="balanceDisplay" class="fs-13 fw-semibold" th:text="${session.balance}"></span>
+                                        <input type="text" class="form-control fs-13" th:value="${session.balance}" style="display: none;" />
+                                    </div>
+                                </div>
+
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="tab-content" id="editAccountDetailsContent">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="card">
+                            <div class="card-header py-3">
+                                <h6 class="card-title">Account Details</h6>
+                                <button id="saveAccDetailsButton" class="btn btn-sm btn-primary">Save Account Details</button>
+                            </div>
+                            <div class="card-body">
+                                <div class="row py-2">
+                                    <div class="col-6">
+                                        <span class="fs-13">User ID</span>
+                                    </div>
+                                    <div class="col-6">
+                                        <span class="fs-13 fw-semibold" th:text="${session.userID}"></span>
+                                    </div>
+                                </div>
+                                <div class="row py-2">
+                                    <div class="col-6">
+                                        <span class="fs-13">Name</span>
+                                    </div>
+                                    <div class="col-6">
+                                        <span class="fs-13 fw-semibold" th:text="${session.username}"></span>
+                                    </div>
+                                </div>
+                                <div class="row py-2">
+                                    <div class="col-6">
+                                        <span class="fs-13">Phone Number</span>
+                                    </div>
+                                    <div class="col-6">
+                                        <input id="phoneNumberInput" type="text" class="form-control fs-13" th:value="${session.phoneNumber}" />
+                                    </div>
+                                </div>
+                                <div class="row py-2">
+                                    <div class="col-6">
+                                        <span class="fs-13">Email</span>
+                                    </div>
+                                    <div class="col-6">
+                                        <input id="emailInput" type="text" class="form-control fs-13" th:value="${session.email}" />
+                                    </div>
+                                </div>
+                                <div class="row py-2">
+                                    <div class="col-6">
+                                        <span class="fs-13">Balance</span>
+                                    </div>
+                                    <div class="col-6">
+                                        <span id="balanceDisplay2" class="fs-13 fw-semibold" th:text="${session.balance}"></span>
                                         <input id="balanceInput" type="text" class="form-control fs-13" th:value="${session.balance}" style="display: none;" />
                                     </div>
                                 </div>
@@ -522,63 +578,69 @@
     }
 </script>
 
-<script> //edit script
-function toggleEditWalletDetails() {
-    const editButton = document.getElementById('edit-button');
-    const nameDisplay = document.getElementById('nameDisplay');
-    const nameInput = document.getElementById('nameInput');
-    const balanceDisplay = document.getElementById('balanceDisplay');
-    const balanceInput = document.getElementById('balanceInput');
-    const saveButton = document.getElementById('save-button');
+<script>
+    // Hide the edit account details content section on page load
+    document.addEventListener('DOMContentLoaded', function() {
+        document.getElementById('editAccountDetailsContent').style.display = 'none';
+    });
 
-    // Check if the input fields are currently displayed
-    if (nameInput.style.display === 'none' || nameInput.style.display === '') {
-        // Show input fields and hide displayed values
-        nameDisplay.style.display = 'none';
-        nameInput.style.display = 'block';
-        balanceDisplay.style.display = 'none';
-        balanceInput.style.display = 'block';
-        editButton.textContent = 'Cancel'; // Change button text to 'Cancel'
-        saveButton.style.display = 'block'; // Show save button
-    } else {
-        // Hide input fields and show displayed values
-        nameDisplay.style.display = 'block';
-        nameInput.style.display = 'none';
-        balanceDisplay.style.display = 'block';
-        balanceInput.style.display = 'none';
-        editButton.textContent = 'Edit Wallet Details'; // Reset button text
-        saveButton.style.display = 'none'; // Hide save button
-    }
-}
+    // Function to edit account details
+    document.getElementById('editAccountDetailsButton').addEventListener('click', function() {
+        document.getElementById('AccountDetailsContent').style.display = 'none';
+        document.getElementById('editAccountDetailsContent').style.display = 'inline';
+    });
 
-// Function to save updated wallet details
-function saveWalletDetails() {
-    const nameInput = document.getElementById('nameInput');
-    const balanceInput = document.getElementById('balanceInput');
+    // Function to save account details
+    document.getElementById('saveAccDetailsButton').addEventListener('click', function() {
+        // Get updated values from the input fields
+        const updatedPhoneNumber = document.getElementById('phoneNumberInput').value;
+        const updatedEmail = document.getElementById('emailInput').value;
 
-    // Get new values from input fields
-    const newName = nameInput.value;
-    const newBalance = balanceInput.value;
+        // Validate that the inputs are not empty
+        if (updatedPhoneNumber.trim() === '' || updatedEmail.trim() === '') {
+            alert('Phone Number and Email cannot be empty. Please enter valid values.');
+            return; // Stop execution if any input is empty
+        }
 
-    // Update displayed values
-    document.getElementById('nameDisplay').textContent = newName;
-    document.getElementById('balanceDisplay').textContent = newBalance;
+        // Prepare data to send to the backend
+        const requestData = {
+            phoneNumber: updatedPhoneNumber,
+            email: updatedEmail
+        };
 
-    // Hide input fields and show the display fields again
-    nameInput.style.display = 'none';
-    balanceInput.style.display = 'none';
-    document.getElementById('nameDisplay').style.display = 'block';
-    document.getElementById('balanceDisplay').style.display = 'block';
+        // Send data to backend using fetch
+        fetch('/api/account/update-details', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(requestData)
+        })
+            .then(response => response.json())
+            .then(data => {
+                if (data.status === 'success') {
+                    // Update display elements with new values
+                    document.getElementById('phoneNumberDisplay').textContent = updatedPhoneNumber;
+                    document.getElementById('emailDisplay').textContent = updatedEmail;
 
-    // Hide the save button
-    document.getElementById('save-button').style.display = 'none';
-    document.getElementById('edit-button').textContent = 'Edit Wallet Details'; // Reset edit button text
-}
+                    // Show success message
+                    alert('Account details updated successfully!');
+                } else {
+                    // Show error message
+                    alert('Failed to update account details: ' + data.message);
+                }
+            })
+            .catch(error => {
+                console.error('Error updating account details:', error);
+                alert('An error occurred. Please try again.');
+            });
 
-// Attach event listeners to the buttons
-document.getElementById('edit-button').addEventListener('click', toggleEditWalletDetails);
-document.getElementById('save-button').addEventListener('click', saveWalletDetails);
+        // Hide the edit account details content and show the original content
+        document.getElementById('editAccountDetailsContent').style.display = 'none';
+        document.getElementById('AccountDetailsContent').style.display = 'inline';
+    });
 </script>
+
 
 </body>
 
