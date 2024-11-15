@@ -71,7 +71,5 @@ public class UserService {
 
         // Step 6: Create RSA key for user
         userRSAKeyService.generateAndStoreKeyPairs(user);
-
-
     }
 }

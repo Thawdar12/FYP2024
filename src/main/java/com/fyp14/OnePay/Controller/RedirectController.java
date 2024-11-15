@@ -37,8 +37,7 @@ public class RedirectController {
     public String getWalletHistoryPage() {
         return "OnePay/dashboard/wallet-history"; // This resolves to 'templates/OnePay/dashboard/wallet-history.html'
     }
-
-
+    
     // Transfer
     @GetMapping("/OnePay/dashboard/moneytransfer")
     public String getTransferPage() {
@@ -71,6 +70,4 @@ public class RedirectController {
     public String getActivityHistoryPage() {
         return "OnePay/dashboard/activity-history"; // This resolves to 'templates/OnePay/dashboard/activity-history.html'
     }
-
-
 }

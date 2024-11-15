@@ -83,7 +83,16 @@ public class WalletService {
 
     private String getLastTransactionHash(Wallet wallet) {
         List<Transaction> transactions = transactionRepository.findTopTransactionsByWalletOrderByTimestampDesc(wallet.getWalletID());
-        return !transactions.isEmpty() ? transactions.get(0).getCurrentTransactionHash() : "0";
+        if (!transactions.isEmpty()) {
+            return transactions.get(0).getCurrentTransactionHash();
+        } else {
+            // No previous transaction, so hash the master key and return that
+            SecretKey masterKey = keyManagementService.getMasterKEKFromEnv(); // Retrieve the master key
+            byte[] masterKeyBytes = masterKey.getEncoded();
+            String masterKeyBase64 = Base64.getEncoder().encodeToString(masterKeyBytes);
+            String masterKeyHash = hashingService.hashSHA256(masterKeyBase64);
+            return masterKeyHash;
+        }
     }
 
     private String computeTransactionHash(Transaction transaction) throws Exception {

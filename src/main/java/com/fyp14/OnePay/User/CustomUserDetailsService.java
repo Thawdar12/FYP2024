@@ -29,8 +29,6 @@ public class CustomUserDetailsService implements UserDetailsService {
         Long userID = user.getUserID();
         Wallet wallet = walletRepository.findByUserUserID(userID)
                 .orElseThrow(() -> new RuntimeException("Wallet not found for user with ID: " + userID));
-
-
         // Return CustomUserDetails instance
         return new CustomUserDetails(user, wallet);
     }

@@ -1,5 +1,6 @@
 package com.fyp14.OnePay.Controller;
 
+import com.fyp14.OnePay.KeyManagement.KEK.KeyManagementService;
 import com.fyp14.OnePay.Transcation.Transaction;
 import com.fyp14.OnePay.Transcation.TransactionRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -7,6 +8,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
+import javax.crypto.SecretKey;
 import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
 import java.util.ArrayList;
@@ -17,10 +19,12 @@ import java.util.List;
 public class AuditController {
 
     private final TransactionRepository transactionRepository;
+    private final KeyManagementService keyManagementService;
 
     @Autowired
-    public AuditController(TransactionRepository transactionRepository) {
+    public AuditController(TransactionRepository transactionRepository, KeyManagementService keyManagementService) {
         this.transactionRepository = transactionRepository;
+        this.keyManagementService = keyManagementService;
     }
 
     @GetMapping("/audit")
@@ -31,8 +35,19 @@ public class AuditController {
         // Prepare a list to hold the audit results
         List<String> auditResults = new ArrayList<>();
 
-        // Initialize previousHash to "0" to start with the first transaction
-        String previousHash = "0";
+        // Initialize previousHash to the hash of the master key
+        String previousHash;
+        try {
+            SecretKey masterKey = keyManagementService.getMasterKEKFromEnv(); // Retrieve the master key
+            byte[] masterKeyBytes = masterKey.getEncoded();
+            String masterKeyBase64 = Base64.getEncoder().encodeToString(masterKeyBytes);
+            previousHash = computeHash(masterKeyBase64);
+        } catch (Exception e) {
+            // Handle exception appropriately
+            model.addAttribute("error", "Failed to retrieve master key for audit: " + e.getMessage());
+            return "OnePay/auditResults";  // Adjust the view name as per your setup
+        }
+
         boolean allTransactionsValid = true;
 
         for (Transaction transaction : transactions) {
@@ -43,15 +58,15 @@ public class AuditController {
 
             // Check if current transaction's hash was recalculated to match its stored hash
             String recalculatedHash;
+            boolean isHashValid = false;
             try {
                 recalculatedHash = computeTransactionHash(transaction);
+                isHashValid = recalculatedHash.equals(transaction.getCurrentTransactionHash());
             } catch (Exception e) {
-                recalculatedHash = "Error in hash calculation";
+                recalculatedHash = "Error in hash calculation: " + e.getMessage();
                 allTransactionsValid = false;
                 isLinkValid = false;
             }
-
-            boolean isHashValid = recalculatedHash.equals(transaction.getCurrentTransactionHash());
 
             // Append the audit results
             result.append("Transaction ID: ").append(transaction.getTransactionID()).append("<br>")
@@ -69,7 +84,9 @@ public class AuditController {
                 previousHash = transaction.getCurrentTransactionHash();
             } else {
                 allTransactionsValid = false;
-                break;
+                // Break if you want to stop auditing after finding an invalid transaction
+                // break;
+                // Or continue auditing all transactions
             }
         }
 
@@ -77,7 +94,7 @@ public class AuditController {
         model.addAttribute("auditResults", auditResults);
         model.addAttribute("allTransactionsValid", allTransactionsValid);
 
-        return "auditResults";  // Render the dedicated auditResults.html page
+        return "OnePay/auditResults";  // Render the dedicated auditResults.html page
     }
 
     // Hash computation utility for verification
@@ -90,8 +107,13 @@ public class AuditController {
                 + (transaction.getToWallet() != null ? transaction.getToWallet().getWalletID().toString() : "0")
                 + transaction.getTimestamp().toString()
                 + (transaction.getDescription() != null ? transaction.getDescription() : "");
+        return computeHash(dataToHash);
+    }
+
+    // General-purpose hash computation method
+    private String computeHash(String data) throws Exception {
         MessageDigest digest = MessageDigest.getInstance("SHA-256");
-        byte[] hashBytes = digest.digest(dataToHash.getBytes(StandardCharsets.UTF_8));
+        byte[] hashBytes = digest.digest(data.getBytes(StandardCharsets.UTF_8));
         StringBuilder hexString = new StringBuilder();
         for (byte b : hashBytes) {
             String hex = Integer.toHexString(0xff & b);
