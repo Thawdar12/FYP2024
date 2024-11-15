@@ -41,7 +41,7 @@ public class ConfirmationExpiryScheduler {
     @Transactional
     public void processExpiredConfirmations() {
         List<TransactionConfirmation> expiredConfirmations = transactionConfirmationRepository.findAll().stream()
-                .filter(c -> c.getCreatedAt().plusMinutes(1).isBefore(LocalDateTime.now()))
+                .filter(c -> c.getCreatedAt().plusMinutes(5).isBefore(LocalDateTime.now()))
                 .toList();
 
         for (TransactionConfirmation confirmation : expiredConfirmations) {
