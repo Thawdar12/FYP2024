@@ -36438,41 +36438,6 @@ td.text-ov {
     background: transparent !important;
 }
 
-.dataTables_wrapper .dataTables_paginate .paginate_button {
-    border: 0 !important;
-    padding: 10px 20px;
-    border: 0px solid #1EAAE7 !important;
-    background: transparent !important;
-    border-radius: 0.5rem;
-    color: #1EAAE7 !important;
-    font-size: 16px;
-    margin: .0625rem;
-    display: inline-block;
-}
-
-@media only screen and (max-width: 1400px) {
-    .dataTables_wrapper .dataTables_paginate .paginate_button {
-        padding: 8px 15px;
-        font-size: 14px;
-    }
-}
-
-.dataTables_wrapper .dataTables_paginate .paginate_button:hover, .dataTables_wrapper .dataTables_paginate .paginate_button.current:hover, .dataTables_wrapper .dataTables_paginate .paginate_button.current {
-    color: #fff !important;
-    background: #1EAAE7 !important;
-}
-
-.dataTables_wrapper .dataTables_paginate .paginate_button.previous, .dataTables_wrapper .dataTables_paginate .paginate_button.next {
-    background: var(--card) !important;
-    color: #1EAAE7 !important;
-    margin: 0 10px;
-}
-
-.dataTables_wrapper .dataTables_paginate .paginate_button.previous:hover, .dataTables_wrapper .dataTables_paginate .paginate_button.next:hover {
-    background: var(--card) !important;
-    color: #1EAAE7 !important;
-}
-
 .dataTables_wrapper input[type="search"], .dataTables_wrapper input[type="text"], .dataTables_wrapper select {
     border: 1px solid var(--border);
     padding: .3rem 0.5rem;
@@ -36521,11 +36486,6 @@ table.dataTable.no-footer {
     }
 }
 
-.dataTables_wrapper .dataTables_paginate .paginate_button.disabled,
-.dataTables_wrapper .dataTables_paginate .paginate_button.disabled:hover,
-.dataTables_wrapper .dataTables_paginate .paginate_button.disabled:active {
-    color: #7e7e7e !important;
-}
 
 .dataTables_wrapper .dataTables_length,
 .dataTables_wrapper .dataTables_filter,
@@ -36548,9 +36508,7 @@ table.dataTable.no-footer {
     }
 }
 
-.dataTables_wrapper .dataTables_paginate .paginate_button {
-    color: #7e7e7e !important;
-}
+
 
 table.dataTable.row-border tbody th,
 table.dataTable.row-border tbody td,
@@ -36582,9 +36540,6 @@ table.dataTable thead > tr > th.sorting_disabled::before {
     content: none;
 }
 
-.dataTables_wrapper .dataTables_paginate .paginate_button:active {
-    box-shadow: unset;
-}
 
 .fooicon {
     font-size: 1.25rem;
@@ -41260,3 +41215,38 @@ button.btn:hover:not(:disabled) {
 
 
 
+/*index.html*/
+/* Style for the pagination container */
+.dataTables_paginate {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+    margin: 20px 0;
+}
+
+.paginate_button {
+    padding: 10px 15px;
+    border-radius: 0.5rem;
+    border: 1px solid #ddd;
+    background: transparent;
+    color: #1EAAE7;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.paginate_button:hover {
+    background: #f0f0f0;
+}
+
+.paginate_button.current {
+    color: #fff;
+    background: #1EAAE7;
+    border: 1px solid #1EAAE7;
+}
+
+.paginate_button.disabled {
+    color: #ccc;
+    background: #f5f5f5;
+    cursor: not-allowed;
+}

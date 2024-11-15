@@ -90,14 +90,14 @@
                                 Singapore
                             </div>
                         </li>
-                        <div>
-                            <li class="nav-item dropdown notification_dropdown">
-                                <a class="nav-link bell dz-theme-mode" href="javascript:void(0);">
-                                    <i id="icon-light" class="fas fa-sun"></i>
-                                    <i id="icon-dark" class="fas fa-moon"></i>
-                                </a>
-                            </li>
-                        </div>
+<!--                        <div>-->
+<!--                            <li class="nav-item dropdown notification_dropdown">-->
+<!--                                <a class="nav-link bell dz-theme-mode" href="javascript:void(0);">-->
+<!--                                    <i id="icon-light" class="fas fa-sun"></i>-->
+<!--                                    <i id="icon-dark" class="fas fa-moon"></i>-->
+<!--                                </a>-->
+<!--                            </li>-->
+<!--                        </div>-->
 
                         <li class="nav-item dropdown notification_dropdown">
                             <a class="nav-link  ai-icon" data-bs-toggle="dropdown" href="javascript:void(0)"
@@ -533,7 +533,9 @@
                 .then(data => {
                     if (data.status === 'success') {
                         document.getElementById('resultMessage').innerHTML =
-                            '<div class="alert alert-success">${data.message}</div>';
+                            '<div class="alert alert-success">' + data.message + '</div>';
+                        console.log(data.message);
+
                         // Clear the input field
                         document.getElementById('amount').value = '';
                         document.getElementById('bank').value = 'Select your bank';
@@ -541,7 +543,8 @@
                         document.getElementById("other-bank").value = '';
                     } else {
                         document.getElementById('resultMessage').innerHTML =
-                            '<div class="alert alert-danger">Transfer failed: ${data.message}</div>';
+                            '<div class="alert alert-danger">Transfer failed:' + data.message + '</div>';
+
                     }
                 })
                 .catch(error => {
