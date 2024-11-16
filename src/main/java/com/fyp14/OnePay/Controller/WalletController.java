@@ -166,6 +166,50 @@ public class WalletController {
         }
     }
 
+    @PostMapping("/withdraw")
+    public ResponseEntity<?> withdrawFromWallet(@RequestBody Map<String, Object> payload, HttpSession session) {
+        try {
+            //1. test if amount is more than 0.
+            BigDecimal amount = new BigDecimal(payload.get("amount").toString());
+            if (amount.compareTo(BigDecimal.ZERO) <= 0) {
+                return ResponseEntity.badRequest().body(createResponse("fail", "Invalid amount", null));
+            }
+
+            //grab userID and walletID from session information
+            Long userID = (Long) session.getAttribute("userID");
+            Long walletID = (Long) session.getAttribute("walletID");
+
+            //if failed to get any ID, which means session is not authorize
+            if (userID == null || walletID == null) {
+                return ResponseEntity.badRequest().body(createResponse("fail", "User is not authenticated", null));
+            }
+
+            //search database if user exist
+            User user = userRepository.findById(userID).orElse(null);
+            Wallet wallet = walletRepository.findById(walletID).orElse(null);
+
+            if (user == null || wallet == null) {
+                return ResponseEntity.badRequest().body(createResponse("fail", "User or wallet not found", null));
+            }
+
+            // Check if the wallet has sufficient balance for withdrawal
+            if (wallet.getBalance().compareTo(amount) < 0) {
+                return ResponseEntity.badRequest().body(createResponse("fail", "Insufficient balance", null));
+            }
+
+            // Perform the withdrawal via WalletService
+            walletService.withdrawFromWallet(user, wallet, amount, session);
+
+            // Return updated balance in the response
+            BigDecimal updatedBalance = wallet.getBalance();
+            return ResponseEntity.ok(createResponse("success", "Withdrawal successful", updatedBalance));
+        } catch (Exception e) {
+            e.printStackTrace();
+            return ResponseEntity.badRequest().body(createResponse("fail", e.getMessage(), null));
+        }
+    }
+
+
     private Map<String, Object> createResponse(String status, String message, Object data) {
         Map<String, Object> res = new HashMap<>();
         res.put("status", status);

@@ -155,6 +155,72 @@ public class WalletService {
     }
 
     @Transactional
+    public void withdrawFromWallet(User user, Wallet wallet, BigDecimal amount, HttpSession session) throws Exception {
+        // 1. Validate that the withdrawal amount is more than 0.
+        if (amount.compareTo(BigDecimal.ZERO) <= 0) {
+            throw new IllegalArgumentException("Amount must be positive");
+        }
+
+        // 2. Check if the wallet exists for the user.
+        if (wallet == null) {
+            throw new Exception("Wallet not found for user");
+        }
+
+        // 3. Validate sufficient balance in the wallet.
+        if (wallet.getBalance().compareTo(amount) < 0) {
+            throw new Exception("Insufficient balance in wallet");
+        }
+
+        // 4. Decrypt the user's Key Encryption Key (KEK).
+        SecretKey userKEK = decryptUserKEK(user);
+
+        // 5. Generate a random Initialization Vector (IV) for encryption.
+        byte[] iv = keyManagementService.generateRandomIV();
+
+        // 6. Encrypt the transaction amount using the user's KEK and the generated IV.
+        byte[] encryptedAmount = encryptTransactionAmount(amount, userKEK, iv);
+
+        // 7. Deduct the amount from the wallet's balance and save the updated wallet.
+        wallet.setBalance(wallet.getBalance().subtract(amount));
+        walletRepository.save(wallet);
+
+        // 8. Retrieve the hash of the previous transaction for audit purposes.
+        String previousTransactionHash = getLastTransactionHash(wallet);
+
+        // 9. Create a new transaction record with the encrypted amount and other details.
+        Transaction transaction = createTransaction(
+                encryptedAmount,
+                iv,
+                TransactionType.WITHDRAWAL,
+                wallet,
+                null,
+                "Withdrawal from wallet",
+                previousTransactionHash,
+                TransactionStatus.valueOf("COMPLETED")
+        );
+
+        // 10. Save the transaction to the repository to generate a timestamp.
+        transactionRepository.save(transaction);
+
+        // 11. Compute the hash of the current transaction for integrity verification.
+        String currentTransactionHash = computeTransactionHash(transaction);
+        transaction.setCurrentTransactionHash(currentTransactionHash);
+
+        // 12. Decrypt the user's private key using their KEK.
+        PrivateKey privateKey = decryptUserPrivateKey(user, userKEK);
+
+        // 13. Sign the transaction hash using the decrypted private key to ensure authenticity.
+        byte[] digitalSignature = signTransactionHash(currentTransactionHash, privateKey);
+        transaction.setDigitalSignature(digitalSignature);
+
+        // 14. Save the signed transaction back to the repository.
+        transactionRepository.save(transaction);
+
+        // 15. Update the session with the new wallet balance.
+        session.setAttribute("balance", wallet.getBalance());
+    }
+
+    @Transactional
     public void transferMoney(HttpSession session, String receiverPhoneNumber, BigDecimal amount) throws Exception {
         Long userID = (Long) session.getAttribute("userID");
         if (userID == null) {
