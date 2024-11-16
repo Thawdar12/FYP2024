@@ -140,8 +140,9 @@ public class WalletController {
 
                         boolean isDeposit = type == TransactionType.DEPOSIT && userID.equals(toWalletID);
                         boolean isTransferSent = type == TransactionType.TRANSFER && userID.equals(fromWalletID);
+                        boolean isWithdrawal = type == TransactionType.WITHDRAWAL && userID.equals(fromWalletID);
 
-                        return isDeposit || isTransferSent;
+                        return isDeposit || isTransferSent || isWithdrawal;
                     })
                     .collect(Collectors.toList());
 
