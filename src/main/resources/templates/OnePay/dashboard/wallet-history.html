@@ -571,8 +571,11 @@
             formattedAmount = formattedAmount !== 'N/A' ? `$${formattedAmount}` : 'N/A';
 
 
-            formattedAmount = `-${formattedAmount}`; // Add minus for transfer
-
+            if ( transaction.transactionType === 'WITHDRAWAL') {
+                formattedAmount = `-${formattedAmount}`; // Add minus for withdrawal
+            } else if (transaction.transactionType === 'DEPOSIT') {
+                formattedAmount = `+${formattedAmount}`; // Add plus for deposit
+            }
 
             row.innerHTML = `
                         <td class="fs-16 font-w600 mb-0">

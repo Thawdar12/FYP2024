@@ -564,7 +564,7 @@
             let formattedAmount = transaction.amount || 'N/A';
             formattedAmount = formattedAmount !== 'N/A' ? `$${formattedAmount}` : 'N/A';
 
-            if (transaction.transactionType === 'TRANSFER') {
+            if (transaction.transactionType === 'TRANSFER' || transaction.transactionType === 'WITHDRAWAL') {
                 formattedAmount = `-${formattedAmount}`; // Add minus for transfer
             } else if (transaction.transactionType === 'DEPOSIT') {
                 formattedAmount = `+${formattedAmount}`; // Add plus for deposit
