@@ -570,6 +570,7 @@
             formattedAmount = formattedAmount !== 'N/A' ? `$${formattedAmount}` : 'N/A';
 
 
+
             if (transaction.transactionType === 'TRANSFER') {
                 formattedAmount = `-${formattedAmount}`; // Add minus for transfer
             } else if (transaction.transactionType === 'DEPOSIT') {
