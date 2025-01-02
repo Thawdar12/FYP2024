@@ -7,7 +7,7 @@ OnePay is a secure and scalable payment gateway designed to handle high transact
 
 ### 1. **Security Measures**
    - **AES 256-bit Encryption**: Provides strong data protection through block cipher encryption.
-   - **Multi-Factor Authentication (MFA)**: Secures login with a combination of username, password, and One-Time Password (OTP) via SMS.
+   - **Multi-Factor Authentication (MFA)**: Secures login with a combination of username, password, and One-Time Password (OTP) via email.
    - **Tokenization**: Replaces sensitive data with tokens to reduce breach risks.
    - **Fraud Detection**: Utilizes behavioral analytics to track and identify suspicious activity.
 
