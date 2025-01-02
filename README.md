@@ -12,8 +12,8 @@ OnePay is a secure and scalable payment gateway designed to handle high transact
    - **Fraud Detection**: Utilizes behavioral analytics to track and identify suspicious activity.
 
 ### 2. **Technologies Used**
-   - **Backend**: Cloud platforms (AWS, Google Cloud), Node.js, Python (Flask/Django), and relational databases like MySQL/PostgreSQL.
-   - **Frontend**: React, Angular, or Vue.js for creating dynamic and responsive user interfaces.
+   - **Backend**: Cloud platforms (AWS, Google Cloud), Node.js, Javascript and relational databases like MySQL/PostgreSQL, SpringBoot.
+   - **Frontend**: HTML, Css for creating dynamic and responsive user interfaces.
    - **APIs**: RESTful APIs and secure API gateways to manage communication and protect data.
 
 ### 3. **Scalability and Performance**
